@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,31 +10,24 @@
 
 <title>后台管理系统</title>
 #parse("/common/css-js.html")
+<link rel="stylesheet" href="resources/css/index/login.css">
 </head>
 <body>
-
-  <div class="container">
-    <form id="userLoginForm" class="form-signin" action="/j_spring_security_check" method="post">
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-      <h2 class="form-signin-heading">请登录</h2>
-        <input type="text" id="j_username" name="j_username" maxlength="32" class="form-control" placeholder="用户名" required autofocus>
-        <input type="password" id="password_tmp" name="password_tmp" maxlength="32" class="form-control" placeholder="密码" required>
-        <input type="hidden" id="j_password" name="j_password" value="" />
-        <input type="hidden" id="j_token" name="j_token" value="$!curTime" />
-        <p style="color: red">$!errorMessage</p>
-        #if ($!errorCount && $!errorCount >= 3)
-            <input id="validateCode" name="validateCode" maxlength="4" type="text"onFocus="UFenQiIndex.clearCodeInfo()" class="captcha-input form-control" />
-            <img id="validateImage" onclick="UFenQiIndex.flushValidateCode();" src="/security/code.png" />
-            <a href="javaScript:void(0);" onclick="UFenQiIndex.flushValidateCode();" class="loading">刷新</a><strong id="chckValidate"></strong>
-        #end
-      <div class="row">
-        <label class="col-md-5 checkbox"> <input type="checkbox" name="_spring_security_remember_me" class="login-form-checkbox">下次自动登录
-        </label> <label class="col-md-6"><a class="checkbox" href="/passWord">忘记密码?</a></label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="button" onclick="UFenQiIndex.login()">登录</button>
-    </form>
-  </div>
-  <script src="${static_resource}/resources/js/index/index.js"></script>
-  <script src="${static_resource}/resources/js/common/md5.js"></script>
+ <div class="container">
+      <form class="form-signin" method="post" action="doLogin">
+        <h2 class="form-signin-heading">请登录</h2>
+        <label for="inputName" class="sr-only">账号</label>
+        <input type="text" id="inputName" class="form-control" name="name" placeholder="账号" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="密码" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+      </form>
+ </div> 
+ 
 </body>
 </html>

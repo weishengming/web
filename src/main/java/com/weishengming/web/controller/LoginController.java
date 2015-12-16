@@ -22,5 +22,18 @@ public class LoginController {
         model.addAttribute("tianci", "天赐你好"); 
         
         return "/index/index";  
-    }  
+    } 
+	 
+	@RequestMapping(value="loginPage")
+	public String loginPage(){
+		logger.info("进入login页面");
+		return "/index/login";
+	}
+	
+	@RequestMapping(value="doLogin",method=RequestMethod.POST) 
+	public String doLogin(String name,String password,Model model){
+		logger.info("用户名:{},密码:{}",name,password);
+		model.addAttribute("name",name);
+		return "/index/index";
+	}
 }
