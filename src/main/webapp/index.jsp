@@ -2,7 +2,7 @@
 <html>
 <body>
   <form role="form" action="login" method="post">
-	<button type="submit">进入后台</button>
+	<button type="submit">进入系统</button>
    </form>
 </body>
 </html>
