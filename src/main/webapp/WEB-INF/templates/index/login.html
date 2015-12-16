@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+
+<title>后台管理系统</title>
+#parse("/common/css-js.html")
+</head>
+<body>
+
+  <div class="container">
+    <form id="userLoginForm" class="form-signin" action="/j_spring_security_check" method="post">
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+      <h2 class="form-signin-heading">请登录</h2>
+        <input type="text" id="j_username" name="j_username" maxlength="32" class="form-control" placeholder="用户名" required autofocus>
+        <input type="password" id="password_tmp" name="password_tmp" maxlength="32" class="form-control" placeholder="密码" required>
+        <input type="hidden" id="j_password" name="j_password" value="" />
+        <input type="hidden" id="j_token" name="j_token" value="$!curTime" />
+        <p style="color: red">$!errorMessage</p>
+        #if ($!errorCount && $!errorCount >= 3)
+            <input id="validateCode" name="validateCode" maxlength="4" type="text"onFocus="UFenQiIndex.clearCodeInfo()" class="captcha-input form-control" />
+            <img id="validateImage" onclick="UFenQiIndex.flushValidateCode();" src="/security/code.png" />
+            <a href="javaScript:void(0);" onclick="UFenQiIndex.flushValidateCode();" class="loading">刷新</a><strong id="chckValidate"></strong>
+        #end
+      <div class="row">
+        <label class="col-md-5 checkbox"> <input type="checkbox" name="_spring_security_remember_me" class="login-form-checkbox">下次自动登录
+        </label> <label class="col-md-6"><a class="checkbox" href="/passWord">忘记密码?</a></label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="button" onclick="UFenQiIndex.login()">登录</button>
+    </form>
+  </div>
+  <script src="${static_resource}/resources/js/index/index.js"></script>
+  <script src="${static_resource}/resources/js/common/md5.js"></script>
+</body>
+</html>
