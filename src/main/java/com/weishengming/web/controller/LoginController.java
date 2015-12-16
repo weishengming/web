@@ -19,7 +19,8 @@ public class LoginController {
     public String index_jsp(Model model){  
 		System.out.println("test");
 		logger.info("test:{}","test");
-        model.addAttribute("tianci", "天赐你好");  
+        model.addAttribute("tianci", "天赐你好"); 
+        
         return "/index/index";  
     }  
 }
