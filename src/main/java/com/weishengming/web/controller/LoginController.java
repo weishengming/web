@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 	Logger  logger = LoggerFactory.getLogger(LoginController.class);
 	
-	@RequestMapping(value="login",method=RequestMethod.POST)  
+	@RequestMapping(value="index",method=RequestMethod.GET)  
     public String index_jsp(Model model){  
 		System.out.println("test");
 		logger.info("test:{}","test");
         model.addAttribute("tianci", "天赐你好"); 
-        
         return "/index/index";  
     } 
 	 
