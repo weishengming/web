@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>微生命系统</title> 
 #parse("/common/css-js.html")
-<link rel="stylesheet" href="resources/css/index/blog.css">
-<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="100229030" charset="utf-8"></script>
+<link rel="icon" href="resources/images/ico/weishengming.ico">
+<link rel="stylesheet" href="resources/css/index/index.css">
 </head>
 <body>
 <div class="blog-masthead">
@@ -15,35 +15,15 @@
           <a class="nav-link active" href="#">主页</a>
           <a class="nav-link" href="#">关于我们</a>
           <a class="nav-link" href="#">
-         <!--  #if(! $name) 登陆 #else $name #end -->
-          <span id="qqLoginBtn"><img alt="" src="resources/images/index/qq.png">QQ登陆</span>
-		    <script type="text/javascript">
-			QC.Login({
-				btnId:"qqLoginBtn"	//插入按钮的节点id
-			});
-		</script>
+           #if(! $name) 登陆 #else $name #end  
           </a>
         </nav>
       </div>
     </div>
-
-    <div class="blog-header">
       <div class="container">
         <h1 class="blog-title">微生命项目</h1>
         <p class="lead blog-description">一个互联网+信仰的平台</p>
       </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 blog-main">
-          <div class="blog-post">
-            <h2 class="blog-post-title">项目进入全面开发阶段</h2>
-            <p class="blog-post-meta">开发人<a href="#">杨天赐</a></p>
-            </div>
-            </div>
-            </div>
-            </div>
     <footer class="blog-footer">
       <p><a href="http://www.weishengming.com">微生命</a> by <a href="https://twitter.com/mdo">杨天赐</a>.</p>
       <p>
@@ -51,44 +31,4 @@
       </p>
     </footer>
 </body>
-
-<script> 
-           function callback(user) 
-           {
-              var userName = document.getElementById('userName');
-              var greetingText = document.createTextNode('Greetings, '+ user.openid + '.');
-              userName.appendChild(greetingText);
-           }
- 
-           //应用的APPID，请改为你自己的
-            var appID = "YOUR_APP_ID";
-           //成功授权后的回调地址，请改为你自己的
-            var redirectURI = "http://qzs.qq.com/qzone/openapi/success.html";
- 
-           //构造请求
-           if (window.location.hash.length == 0) 
-           {
-              var path = 'https://graph.qq.com/oauth2.0/authorize?';
-              var queryParams = ['client_id=' + appID,'redirect_uri=' + redirectURI,'
-              scope=' + 'get_user_info,list_album,upload_pic,add_feeds,do_like','response_type=token'];
- 
-              var query = queryParams.join('&');
-              var url = path + query;
-              window.open(url);
-           }
-           else 
-           {
-              //获取access token
-              var accessToken = window.location.hash.substring(1);
-              //使用Access Token来获取用户的OpenID
-              var path = "https://graph.qq.com/oauth2.0/me?";
-              var queryParams = [accessToken, 'callback=callback'];
-              var query = queryParams.join('&');
-              var url = path + query;
-              var script = document.createElement('script');
-              script.src = url;
-              document.body.appendChild(script);        
-           }
-        </script>
-
 </html>
