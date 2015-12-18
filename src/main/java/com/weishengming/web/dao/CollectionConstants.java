@@ -13,4 +13,5 @@ public class CollectionConstants {
 	public static final String KEHU_NICHENG="nicheng";
 	public static final String KEHU_SHOUJIHAO="shoujihao";
 	
+	
 }
