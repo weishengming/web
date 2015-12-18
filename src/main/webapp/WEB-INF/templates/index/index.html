@@ -1,34 +1,242 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>微生命</title> 
-#parse("/common/css-js.html")
-<link rel="icon" href="resources/images/ico/weishengming.ico">
-<link rel="stylesheet" href="resources/css/index/index.css">
-</head>
-<body>
-<div class="blog-masthead">
-      <div class="container">
-        <nav class="nav blog-nav">
-          <a class="nav-link active" href="#">主页</a>
-          <a class="nav-link" href="#">关于我们</a>
-          <a class="nav-link" href="loginPage">
-           #if(! $name) 登陆 #else $name #end  
-          </a>
-        </nav>
-      </div>
-    </div>
-      <div class="container">
-        <h1 class="blog-title">微生命项目</h1>
-        <p class="lead blog-description">一个互联网+信仰的平台</p>
-      </div>
-    <footer class="blog-footer">
-      <p><a href="http://www.weishengming.com">微生命</a> by <a href="https://twitter.com/mdo">杨天赐</a>.</p>
-      <p>
-        <a href="#">回到顶部</a>
-      </p>
-    </footer>
-</body>
+	<head>
+		<title>微生命-发现生命意义</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="resources/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="resources/assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="resources/assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+			<!-- Header -->
+				<div id="header-wrapper">
+					<header id="header" class="container">
+						<div class="row">
+							<div class="12u">
+								<!-- Logo -->
+									<h1><a href="#" id="logo">微生命</a></h1>
+								<!-- Nav -->
+									<nav id="nav">
+										<a href="threecolumn.html">微生命</a>
+										<a href="twocolumn1.html">喂生命</a>
+										<a href="twocolumn2.html">维生命</a>
+										<a href="onecolumn.html">伟生命</a>
+									</nav>
+							</div>
+						</div>
+					</header>
+					<div id="banner">
+						<div class="container">
+							<div class="row">
+								<div class="6u 12u(mobile)">
+
+									<!-- Banner Copy -->
+										<p>人活着,必须弄明白三个问题,我从哪里来,我到哪里去,活着的意义.</p>
+										<a href="#" class="button-big">发现生命</a>
+								</div>
+								<div class="6u 12u(mobile)">
+
+									<!-- Banner Image -->
+										<a href="#" class="bordered-feature-image"><img src="resources/images/index/banner.jpg" alt="" /></a>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			<!-- Features -->
+				<div id="features-wrapper">
+					<div id="features">
+						<div class="container">
+							<div class="row">
+								<div class="3u 12u(mobile)">
+									<!-- Feature #1 -->
+										<section>
+											  <a href="#" class="bordered-feature-image"><img src="resources/images/index/pic01.jpg" alt="" /></a>  
+											<h2>微生命</h2>
+											<p>
+												发现生命的意义明白活着的意义
+											</p>
+										</section>
+								</div>
+								<div class="3u 12u(mobile)">
+									<!-- Feature #2 -->
+										<section>
+											  <a href="#" class="bordered-feature-image"><img src="resources/images/index/pic02.jpg" alt="" /></a>  
+											<h2>喂生命</h2>
+											<p>
+												不断的喂养自己的生命,让生命茁壮成长
+											</p>
+										</section>
+								</div>
+								<div class="3u 12u(mobile)">
+									<!-- Feature #3 -->
+										<section>
+											 <a href="#" class="bordered-feature-image"><img src="resources/images/index/pic03.jpg" alt="" /></a> 
+											<h2>维生命</h2>
+											<p>
+												维护生命,维修生命
+											</p>
+										</section>
+								</div>
+								<div class="3u 12u(mobile)">
+
+									<!-- Feature #4 -->
+										<section>
+											  <a href="#" class="bordered-feature-image"><img src="resources/images/index/pic04.jpg" alt="" /></a>  
+											<h2>伟生命</h2>
+											<p>
+												最后变成一个伟大的生命
+											</p>
+										</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<!-- Content -->
+				<div id="content-wrapper">
+					<div id="content">
+						<div class="container">
+							<div class="row">
+								<div class="4u 12u(mobile)">
+									<!-- Box #1 -->
+										<section>
+											<header>
+												<h2>我们是谁</h2>
+												<h3>A subheading about who we are</h3>
+											</header>
+											<a href="#" class="feature-image"><img src="resources/images/index/pic05.jpg" alt="" /></a>
+											<p>
+												Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed.
+												Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet mollis
+												justo facilisis quis. Sed sagittis mauris amet tellus gravida lorem ipsum.
+											</p>
+										</section>
+								</div>
+								<div class="4u 12u(mobile)">
+									<!-- Box #2 -->
+										<section>
+											<header>
+												<h2>我们能为你做什么</h2>
+												<h3>A subheading about what we do</h3>
+											</header>
+											<ul class="check-list">
+												<li>Sed mattis quis rutrum accum</li>
+												<li>Eu varius nibh suspendisse lorem</li>
+												<li>Magna eget odio amet mollis justo</li>
+												<li>Facilisis quis sagittis mauris</li>
+												<li>Amet tellus gravida lorem ipsum</li>
+											</ul>
+										</section>
+								</div>
+								<div class="4u 12u(mobile)">
+									<!-- Box #3 -->
+										<section>
+											<header>
+												<h2>你最终能变成什么</h2>
+												<h3>And a final subheading about our clients</h3>
+											</header>
+											<ul class="quote-list">
+												<li>
+													<img src="resources/images/index/pic06.jpg" alt="" />
+													<p>"Neque nisidapibus mattis"</p>
+													<span>Jane Doe, CEO of UntitledCorp</span>
+												</li>
+												<li>
+													<img src="resources/images/index/pic07.jpg" alt="" />
+													<p>"Lorem ipsum consequat!"</p>
+													<span>John Doe, President of FakeBiz</span>
+												</li>
+												<li>
+													<img src="resources/images/index/pic08.jpg" alt="" />
+													<p>"Magna veroeros amet tempus"</p>
+													<span>Mary Smith, CFO of UntitledBiz</span>
+												</li>
+											</ul>
+										</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<!-- Footer -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="8u 12u(mobile)">
+								<!-- Links -->
+									<section>
+										<h2>友情链接</h2>
+										<div>
+											<div class="row">
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><a href="#">奇妙真相</a></li>
+														<li><a href="#">福音TV</a></li>
+														<li><a href="#">Accumsan suspendisse</a></li>
+														<li><a href="#">Eu varius vitae magna</a></li>
+													</ul>
+												</div>
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><a href="#">Neque amet dapibus</a></li>
+														<li><a href="#">Sed mattis quis rutrum</a></li>
+														<li><a href="#">Accumsan suspendisse</a></li>
+														<li><a href="#">Eu varius vitae magna</a></li>
+													</ul>
+												</div>
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><a href="#">Neque amet dapibus</a></li>
+														<li><a href="#">Sed mattis quis rutrum</a></li>
+														<li><a href="#">Accumsan suspendisse</a></li>
+														<li><a href="#">Eu varius vitae magna</a></li>
+													</ul>
+												</div>
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><a href="#">Neque amet dapibus</a></li>
+														<li><a href="#">Sed mattis quis rutrum</a></li>
+														<li><a href="#">Accumsan suspendisse</a></li>
+														<li><a href="#">Eu varius vitae magna</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</section>
+							</div>
+							<div class="4u 12u(mobile)">
+								<!-- Blurb -->
+									<section>
+										<h2>关于我们</h2>
+										<p>
+											Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. Suspendisse eu
+											varius nibh. Suspendisse vitae magna eget odio amet mollis. Duis neque nisi,
+											dapibus sed mattis quis, sed rutrum accumsan sed. Suspendisse eu varius nibh
+											lorem ipsum amet dolor sit amet lorem ipsum consequat gravida justo mollis.
+										</p>
+									</section>
+							</div>
+						</div>
+					</footer>
+				</div>
+			<!-- Copyright -->
+				<div id="copyright">
+					Copyright &copy; 
+					<a href="http://www.weishengming.com">www.weishengming.com</a> 
+					All Rights Reserved 冀ICP备14013728号-1
+				</div>
+		</div>
+		<!-- Scripts -->
+			<script src="resources/assets/js/jquery.min.js"></script>
+			<script src="resources/assets/js/skel.min.js"></script>
+			<script src="resources/assets/js/skel-viewport.min.js"></script>
+			<script src="resources/assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="resources/assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="resources/assets/js/main.js"></script>
+	</body>
 </html>

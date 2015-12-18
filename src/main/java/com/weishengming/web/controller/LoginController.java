@@ -35,4 +35,10 @@ public class LoginController {
 		model.addAttribute("name",name);
 		return "/index/index";
 	}
+	@RequestMapping(value="qqLogin")
+	public String qqLogin(){
+		logger.info("qqLogin");
+		return "index/index";
+		
+	}
 }
