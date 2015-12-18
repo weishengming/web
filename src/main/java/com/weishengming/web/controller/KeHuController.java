@@ -32,7 +32,7 @@ public class KeHuController {
 //		kehu.put("nicheng", null);// 查询字段
 		List kehulist=MongoDB.findList(CollectionConstants.KEHU, CollectionConstants.KEHU_XINGMING, kehu);
 		model.addAttribute("kehulist", kehulist);
-		return "kehu/kehulist";
+		return "kehu/kehulist";   
 	}
 	@RequestMapping(value="edit",method=RequestMethod.GET)  
 	public String edit(){
