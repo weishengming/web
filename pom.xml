@@ -97,6 +97,12 @@
 			<artifactId>velocity-tools</artifactId>
 			<version>1.4</version>
 		</dependency>
+		<!-- 引入qq登陆的jar -->
+		<dependency>
+			<groupId>net.gplatform</groupId>
+			<artifactId>Sdk4J</artifactId>
+			<version>2.0</version>
+		</dependency>
 		
 	</dependencies>
 	<build>
