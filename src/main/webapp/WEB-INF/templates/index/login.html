@@ -14,18 +14,23 @@
 <body>
  <div class="container">
       <form class="form-signin" method="post" action="doLogin">
-        <h5>请登录</h5>
+        <h4>请登录</h4>
         <label for="inputName" class="sr-only">账号</label>
-        <input type="text" id="inputName" class="form-control" name="name" placeholder="账号" required autofocus>
+        <input type="text" id="inputName" class="form-control" name="name" placeholder="邮箱/手机号" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" name="password" placeholder="密码" required>
-        <button class="btn btn-lg btn-success btn-block" type="submit">登陆</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">立即登陆</button>
 	    <br>
+	      <h5>快速登陆:
 	      <a href="qqLogin" ><span><img alt="qq" src="resources/images/index/qq.png"></span></a>
           <a href="weixinLogin"><span><img alt="weixin" src="resources/images/index/weixin.png"></span></a>
           <a href="weiboLogin"><span><img alt="weibo" src="resources/images/index/weibo.png"></span></a>
-	      <a href="kuaisuzhuce" class="btn btn-sm btn-info">快速注册</a>
-	      <a href="zhaohuimima" class="btn btn-sm btn-warning">找回密码</a> 
+	      </h5>
+	      <br>
+	      <div>
+	           <a href="kuaisuzhuce" style="float:left;" class="btn btn-sm btn-success">快速注册</a>
+	           <a href="zhaohuimima" style="float:right;"class="btn btn-sm btn-danger">找回密码</a>
+	       </div>
       </form>
  </div> 
 </body>
