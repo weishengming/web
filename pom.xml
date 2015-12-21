@@ -145,7 +145,7 @@
 		
 	</dependencies>
 	<build>
-		<finalName>web</finalName>
+		<finalName>ROOT</finalName>
 		<!-- 这个是关键,根据profile环境来替换属性值 -->
 		<resources> 
 			<resource>
@@ -170,6 +170,7 @@
 			    <version>1.0-beta-1</version>
 			    <configuration>
 			     <port>9999</port>
+			     <path>/</path>  
 			    </configuration>
 			 </plugin>
 			<plugin>

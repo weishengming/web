@@ -22,6 +22,7 @@ public class WebVelocityView extends VelocityView {
 			HttpServletRequest request) throws Exception {
 		super.exposeHelpers(model, request);
 		model.put(CONTEXT_PATH, getPropString("static_resource"));// 静态资源的路径
+		model.put("baseUrl", request.getContextPath());
 	}
 	private String getPropString(String key) {
 	        return ((String) CustomizedPropertyPlaceholderConfigurer.getContextProperty(key)).trim();
