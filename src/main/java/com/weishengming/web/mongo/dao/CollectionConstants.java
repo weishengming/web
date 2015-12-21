@@ -1,4 +1,4 @@
-package com.weishengming.web.dao;
+package com.weishengming.web.mongo.dao;
 
 /**
  * @author 杨天赐

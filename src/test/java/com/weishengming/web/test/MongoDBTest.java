@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-import com.weishengming.web.dao.CollectionConstants;
-import com.weishengming.web.dao.MongoDB;
+import com.weishengming.web.mongo.dao.CollectionConstants;
+import com.weishengming.web.mongo.dao.MongoDB;
 
 
 /**

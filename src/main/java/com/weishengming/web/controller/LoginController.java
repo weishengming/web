@@ -170,8 +170,8 @@ public class LoginController {
 	                 logger.info("很抱歉，我们没能正确获取到您的信息，原因是： " + weiboUserInfoBean.getMsg());
 	             }
 	             logger.info("<p> end -----------------------------------利用获取到的accessToken,openid 去获取用户在微博的昵称等信息 ---------------------------- end </p>");
+	             m.addAttribute("name", userInfoBean.getNickname());
 	         }
-	         m.addAttribute("name", openID);
 			} catch (Exception e) {
 			}
 		 

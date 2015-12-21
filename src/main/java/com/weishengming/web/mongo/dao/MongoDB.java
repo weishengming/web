@@ -1,4 +1,4 @@
-package com.weishengming.web.dao;
+package com.weishengming.web.mongo.dao;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;

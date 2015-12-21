@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mongodb.BasicDBObject;
-import com.weishengming.web.dao.CollectionConstants;
-import com.weishengming.web.dao.MongoDB;
+import com.weishengming.web.mongo.dao.CollectionConstants;
+import com.weishengming.web.mongo.dao.MongoDB;
 
 /**
  * @author 杨天赐
