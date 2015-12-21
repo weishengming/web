@@ -2,12 +2,34 @@
 <html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+#parse("/common/index-css-js.html")
 <title>用户列表</title>
 <body>
-#foreach( $user in $users ) 
-<li>$user.id</li>
-<li>$user.name</li>
- 
-#end
+<div id="page-wrapper">
+    #parse("/common/nav.html")
+    <div id="features-wrapper">
+       <div id="features">
+           <div class="container">
+	           <div class="row">
+					<div class="12u 12u(mobile)">
+						
+						
+					</div>
+	           </div>
+           </div>
+       </div>
+	</div>
+	<div id="content-wrapper">
+		<div id="content">
+			<div class="container">
+				 #foreach( $user in $users ) 
+					<li>$user.id</li>
+					<li>$user.name</li>
+					#end
+			</div>
+		</div>
+	</div>
+	#parse("/common/copyright.html")
+</div>
 </body>
 </html>

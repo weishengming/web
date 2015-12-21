@@ -30,8 +30,8 @@ import com.qq.connect.oauth.Oauth;
  * 登陆控制
  */
 @Controller
-public class LoginController {
-	Logger  logger = LoggerFactory.getLogger(LoginController.class);
+public class IndexController {
+	Logger  logger = LoggerFactory.getLogger(IndexController.class);
 	
 	@RequestMapping(value="index",method=RequestMethod.GET)  
     public String index_jsp(Model model){  
@@ -49,8 +49,20 @@ public class LoginController {
 		logger.info("进入login页面");
 		return "/index/login";
 	}
-	
-	
+	/**
+	 * 进入到注册页面
+	 * @return
+	 */
+	@RequestMapping(value="regPage")
+	public String regPage(){
+		logger.info("进入注册页面");
+		return "index/reg";
+	}
+	@RequestMapping(value="resetPwdPage")
+	public String resetPwdPage(){
+		logger.info("进入找回密码页面");
+		return "index/resetpwd";
+	}
 	/**
 	 * 账号密码登陆
 	 * @param name
@@ -64,7 +76,18 @@ public class LoginController {
 		model.addAttribute("name",name);
 		return "/index/index";
 	}
-	
+	/**
+	 * 注册成功,跳转到登陆页面
+	 * @param name
+	 * @param password
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="doReg",method=RequestMethod.POST) 
+	public String doReg(String name,String password,Model model){
+		logger.info("注册用户名:{}与密码:{}",name,password);
+		return "/index/login";
+	}
 	
 	/**
 	 * 进入QQ登陆

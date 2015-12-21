@@ -22,15 +22,14 @@
 	<!-- 配置模板引擎 -->
 	 <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 	  <property name="contentType" value="text/html;charset=UTF-8" />
+	  <property name="viewClass" value="com.weishengming.web.velocity.WebVelocityView"/>
 	  <property name="suffix" value=".html" />
 	  <property name="dateToolAttribute" value="dateTool" />
       <property name="numberToolAttribute" value="numberTool" />
 	 </bean>
 	 
 	 <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoaderPath">
-            <value>/WEB-INF/templates/</value>
-        </property>
+        <property name="resourceLoaderPath"><value>/WEB-INF/templates/</value></property>
         <property name="velocityProperties">
           <props>
             <prop key="input.encoding">UTF-8</prop>
