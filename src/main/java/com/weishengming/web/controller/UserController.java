@@ -28,8 +28,6 @@ public class UserController {
 		List<UserDO> users=userDao.findAll();
 		m.addAttribute("users", users);
 		return "user/userlist";
-		
-		
 	}
 
 }
