@@ -12,24 +12,16 @@
            <div class="container">
 	           <div class="row">
 					<div class="12u 12u(mobile)">
-						
+						 #foreach( $user in $users ) 
+						<li>$user.id</li>
+						<li>$user.name</li>
+						#end
 						
 					</div>
 	           </div>
            </div>
        </div>
 	</div>
-	<div id="content-wrapper">
-		<div id="content">
-			<div class="container">
-				 #foreach( $user in $users ) 
-					<li>$user.id</li>
-					<li>$user.name</li>
-					#end
-			</div>
-		</div>
-	</div>
-	#parse("/common/copyright.html")
 </div>
 </body>
 </html>
