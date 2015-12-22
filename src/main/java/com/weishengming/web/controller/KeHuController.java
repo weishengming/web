@@ -14,22 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class KeHuController {
 	
 	/**
-	 * 显示列表信息
 	 * @return
+	 * 进入客户信息页面
 	 */
-	@SuppressWarnings("rawtypes")
-	@RequestMapping(value="kehulist",method=RequestMethod.GET)  
-	public String list(Model model){
-//		BasicDBObject kehu = new BasicDBObject();			
-//		kehu.put("xingming",null);
-//		kehu.put("nicheng", null);// 查询字段
-//		List kehulist=MongoDB.findList(CollectionConstants.KEHU, CollectionConstants.KEHU_XINGMING, kehu);
-//		model.addAttribute("kehulist", kehulist);
-		return "kehu/kehulist";   
+	@RequestMapping(value="kehuxinxiPage")
+	public String kehuxinxiPage(){
+		return "kehu/kehuxinxi";
 	}
-	@RequestMapping(value="edit",method=RequestMethod.GET)  
-	public String edit(){
-		return "edit";
-	}
+	
+	 
 
 }

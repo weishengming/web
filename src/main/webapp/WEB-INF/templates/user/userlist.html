@@ -2,39 +2,9 @@
 <html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-#parse("/common/index-css-js.html")
+#parse("/common/css-js.html")
 <title>用户列表</title>
+
 <body>
-<div id="page-wrapper">
-	<div id="header-wrapper">
-	    #parse("/common/index-nav.html")  <!-- 导航 -->
-	    <div id="banner">
-			<div class="container">
-				<div class="row">
-					<div class="12u 12u(mobile)">
-							<p>用户列表</p>
-							<a href="#" class="button-big">寻找生命</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	
-	</div>
-    
-    <div id="features-wrapper">
-       <div id="features">
-           <div class="container">
-	           <div class="row">
-					<div class="12u 12u(mobile)">
-						 #foreach( $user in $users ) 
-						<li>$user.id</li>
-						<li>$user.name</li>
-						#end
-					</div>
-	           </div>
-           </div>
-       </div>
-	</div>
-</div>
 </body>
 </html>
