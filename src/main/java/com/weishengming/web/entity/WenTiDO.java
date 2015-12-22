@@ -8,10 +8,63 @@ public class WenTiDO {
 	private String id;
 	private String tiwen_kehu_id;
 	private String tiwen_biaoti; //标题
+	private String wentileixing; //问题的类型 [参考问题类型 枚举]
 	private String tiwen_miaoshu; //描述
 	private String tijiaoshijian_string;//提交时间
+	private String zhaojichengxu; //问题的着急程度 [1不着急,2很着急,3特别着急,4马上向得到答案]
+	private String jiejuezhuangtai; //解决状态 [1 已解决 2.正在解决]
 	
-	private String huida_kehu_id; //回答人的id
-	private String huida_nirong;  //回答人的内容
+	
+	
+	public String getJiejuezhuangtai() {
+		return jiejuezhuangtai;
+	}
+	public void setJiejuezhuangtai(String jiejuezhuangtai) {
+		this.jiejuezhuangtai = jiejuezhuangtai;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getTiwen_kehu_id() {
+		return tiwen_kehu_id;
+	}
+	public void setTiwen_kehu_id(String tiwen_kehu_id) {
+		this.tiwen_kehu_id = tiwen_kehu_id;
+	}
+	public String getTiwen_biaoti() {
+		return tiwen_biaoti;
+	}
+	public void setTiwen_biaoti(String tiwen_biaoti) {
+		this.tiwen_biaoti = tiwen_biaoti;
+	}
+	public String getWentileixing() {
+		return wentileixing;
+	}
+	public void setWentileixing(String wentileixing) {
+		this.wentileixing = wentileixing;
+	}
+	public String getTiwen_miaoshu() {
+		return tiwen_miaoshu;
+	}
+	public void setTiwen_miaoshu(String tiwen_miaoshu) {
+		this.tiwen_miaoshu = tiwen_miaoshu;
+	}
+	public String getTijiaoshijian_string() {
+		return tijiaoshijian_string;
+	}
+	public void setTijiaoshijian_string(String tijiaoshijian_string) {
+		this.tijiaoshijian_string = tijiaoshijian_string;
+	}
+	public String getZhaojichengxu() {
+		return zhaojichengxu;
+	}
+	public void setZhaojichengxu(String zhaojichengxu) {
+		this.zhaojichengxu = zhaojichengxu;
+	}
+	
+	
 
 }
