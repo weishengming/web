@@ -28,17 +28,17 @@ public class KeHuDO {
 	private String email; //邮箱
 	private String nicheng; //昵称
 	
-	private String suozaidixiangxi; //所在地详细地址
 	private String suozaiguo;//   所在国[默认中国]
 	private String suozaisheng;//所在省
 	private String suozaishi;//所在市
 	private String suozaixian;//所在县/区
+	private String suozaidixiangxi; //所在地详细地址
 	
 	private String yuanjiguo; //原籍国 [默认中国]
-	private String yuanjixiangxi; // 原籍详细地址
 	private String yuanjisheng; //原籍省
 	private String yuanjishi; //原籍市
 	private String yuanjixian; //原籍县/区
+	private String yuanjixiangxi; // 原籍详细地址
 	
 	private String kehuleixing; //客户类型  [参考kehuliexing枚举]
 	private String kehubeizhu;  //客户的自己备注信息  
