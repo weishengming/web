@@ -1,15 +1,9 @@
 package com.weishengming.web.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.mongodb.BasicDBObject;
-import com.weishengming.web.mongo.dao.CollectionConstants;
-import com.weishengming.web.mongo.dao.MongoDB;
 
 /**
  * @author 杨天赐
@@ -19,19 +13,18 @@ import com.weishengming.web.mongo.dao.MongoDB;
 @RequestMapping(value="kehu")
 public class KeHuController {
 	
-	
 	/**
 	 * 显示列表信息
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	@RequestMapping(value="list",method=RequestMethod.GET)  
+	@RequestMapping(value="kehulist",method=RequestMethod.GET)  
 	public String list(Model model){
-		BasicDBObject kehu = new BasicDBObject();			
+//		BasicDBObject kehu = new BasicDBObject();			
 //		kehu.put("xingming",null);
 //		kehu.put("nicheng", null);// 查询字段
-		List kehulist=MongoDB.findList(CollectionConstants.KEHU, CollectionConstants.KEHU_XINGMING, kehu);
-		model.addAttribute("kehulist", kehulist);
+//		List kehulist=MongoDB.findList(CollectionConstants.KEHU, CollectionConstants.KEHU_XINGMING, kehu);
+//		model.addAttribute("kehulist", kehulist);
 		return "kehu/kehulist";   
 	}
 	@RequestMapping(value="edit",method=RequestMethod.GET)  
