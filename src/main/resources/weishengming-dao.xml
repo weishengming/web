@@ -31,13 +31,4 @@
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 		<property name="basePackage" value="com.weishengming.dao.mapper" />
 	</bean>
-	
-	
-  
-
-
-
-
-
-
 </beans>

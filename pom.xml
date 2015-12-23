@@ -29,22 +29,17 @@
 		    <version>2.4</version>
 		    <scope>provided</scope>
 		</dependency>
-		
-		<!-- start 采用两种数据库集成 , mongoDB  MySql -->
-		<!-- 配置mongoDB数据库 
-		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongo-java-driver</artifactId>
-			<version>2.6.5</version>
-		</dependency>
-		-->
-		
 		<!-- 配置Mysql数据库驱动 -->
-		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.34</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
 		</dependency>
 		
 	    <dependency>
@@ -52,9 +47,6 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.4</version>
 		</dependency>
-		
-		<!-- end   -->
-		
 		
 	
 		<dependency>
