@@ -9,9 +9,10 @@
             http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
     <context:annotation-config />
-    <context:component-scan base-package="com.weishengming.web.controller" >
+    <context:component-scan base-package="com.weishengming" >
         <!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/> -->
     </context:component-scan>
+   
 
     <import resource="classpath*:applicationContext.xml"/>
     <import resource="classpath*:spring-dao.xml"/>

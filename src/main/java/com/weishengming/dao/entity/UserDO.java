@@ -1,4 +1,4 @@
-package com.weishengming.web.entity;
+package com.weishengming.dao.entity;
 
 /**
  * @author 杨天赐

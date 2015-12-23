@@ -1,12 +1,18 @@
-package com.weishengming.web.entity;
+package com.weishengming.dao.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @author 杨天赐
  * 跟客户的关系
  */
-public class GuanXiDO {
+@Entity
+@Table(name = "guanxi")
+public class GuanXiDO extends BaseDO {
 	
-	private String id;
+	private static final long serialVersionUID = 1L;
+	
 	private String kehu_id;
 	private String guanxi; //关系 [参考关系名称枚举]
 	private String xingming; //姓名
@@ -18,12 +24,7 @@ public class GuanXiDO {
 	private String qq2;//qq号1
 	private String email;//email;
 	private String email1;//email 1;
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	 
 	public String getKehu_id() {
 		return kehu_id;
 	}

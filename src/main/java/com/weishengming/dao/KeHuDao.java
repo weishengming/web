@@ -1,4 +1,4 @@
-package com.weishengming.web.dao;
+package com.weishengming.dao;
 
 public interface KeHuDao {
 

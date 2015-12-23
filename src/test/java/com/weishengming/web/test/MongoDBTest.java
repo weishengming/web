@@ -1,13 +1,5 @@
 package com.weishengming.web.test;
 
-import java.util.List;
-
-import org.junit.Test;
-
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.weishengming.web.mongo.dao.CollectionConstants;
-import com.weishengming.web.mongo.dao.MongoDB;
 
 
 /**
@@ -17,7 +9,7 @@ import com.weishengming.web.mongo.dao.MongoDB;
 public class MongoDBTest {
 	
 	
-	public void add(){
+	/*public void add(){
 		BasicDBObject bdb=new BasicDBObject();
 		bdb.put("xingming", "王素伟");
 		bdb.put("nicheng", "新生命");
@@ -29,6 +21,6 @@ public class MongoDBTest {
 		List<DBObject> list=MongoDB.findList(CollectionConstants.KEHU, null, null);
 		System.out.println(list);
 		
-	}
+	}*/
 
 }
