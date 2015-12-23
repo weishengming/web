@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import org.springframework.stereotype.Service;
+
 import com.weishengming.service.exception.ServiceException;
 
 public class ValidationServiceImpl implements ValidationService {
