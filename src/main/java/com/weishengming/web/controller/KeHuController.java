@@ -1,9 +1,15 @@
 package com.weishengming.web.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.weishengming.dao.entity.KeHuDO;
+import com.weishengming.service.KeHuService;
 
 /**
  * @author 杨天赐
@@ -12,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value="kehu")
 public class KeHuController {
+	@Resource
+	private KeHuService kehuService;
 	
 	/**
 	 * @return
@@ -22,6 +30,17 @@ public class KeHuController {
 		return "kehu/kehuxinxi";
 	}
 	
-	 
+	/**
+	 * 进入到客户列表页面
+	 * @return
+	 */
+	@RequestMapping(value="kehulistPage")
+	public String kehulistPage(Model m){
+		// 查询客户的信息
+		List<KeHuDO> list=kehuService.findAll();
+		m.addAttribute("kehulist", list);
+		return "kehu/kehulist";
+	}
+	
 
 }

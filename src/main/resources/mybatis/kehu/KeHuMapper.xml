@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ufenqi.mall.contract.dal.mapper.KeHuMapper">
+<mapper namespace="com.weishengming.dao.mapper.KeHuMapper">
 	<sql id="all_columns">
 		ID,CREATEDATE,UPDATEDATE,VERSION,BEIZHU,EMAIL,LEIXING,NIANLING,NICHENG,QQ,QQ1,QQ2,SHENFENZHENG,SHENGRI,SHOUJIHAO,SHOUJIHAO1,SHOUJIHAO2,SUOZAIDIXIANGXI,SUOZAIGUO,SUOZAISHENG,SUOZAISHI,SUOZAIXIAN,WEIXINHAO,XINGBIE,XINGMING,YUANJIGUO,YUANJISHENG,YUANJISHI,YUANJIXIAN,YUANJIXIANGXI,ZHIYE
 	</sql>

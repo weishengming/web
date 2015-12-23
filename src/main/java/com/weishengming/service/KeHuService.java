@@ -27,7 +27,6 @@ public class KeHuService {
         KeHuParam param = new KeHuParam();
         BeanUtils.copyProperties(query, param);
         List<KeHuDO> list = mapper.findList(param);
-
         return new ResultPage<KeHuDO>(list, query);
     }
 

@@ -10,5 +10,9 @@
 <body>
 #parse("/common/nav.html") <!-- 引入导航 -->
 
+#foreach($kehu in $kehulist)
+    $kehu.id
+ #end
+
 </body>
 </html>

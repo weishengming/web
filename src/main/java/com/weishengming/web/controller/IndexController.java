@@ -33,8 +33,13 @@ import com.qq.connect.oauth.Oauth;
 public class IndexController {
 	Logger  logger = LoggerFactory.getLogger(IndexController.class);
 	
+	/**
+	 * 默认进入到首页
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="index",method=RequestMethod.GET)  
-    public String index_jsp(Model model){  
+    public String indexPage(Model model){  
 		logger.info("test:{}","test");
         model.addAttribute("tianci", "天赐你好"); 
         return "/index/index";  
@@ -226,6 +231,5 @@ public class IndexController {
 //            System.out.println("获取到的值为空？");
 //        }
 	}
-	
 	
 }
