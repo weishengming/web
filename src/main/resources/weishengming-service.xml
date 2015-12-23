@@ -28,6 +28,9 @@
         </tx:attributes>
     </tx:advice>
     
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	<bean id="validationService" class="com.weishengming.service.validate.ValidationService" />
+    
     <!-- 配置AOP -->
     <aop:config proxy-target-class="true">
         <aop:pointcut id="interceptorPointCuts" expression="execution(* com.weishengming.service.*Service.*(..))"/>

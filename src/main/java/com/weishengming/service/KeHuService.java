@@ -12,17 +12,18 @@ import com.weishengming.dao.mapper.KeHuMapper;
 import com.weishengming.dao.param.KeHuParam;
 import com.weishengming.dao.query.KeHuQuery;
 import com.weishengming.service.query.ResultPage;
+import com.weishengming.service.validate.ValidationService;
 
 @Service
 public class KeHuService {
 
     @Resource
     private KeHuMapper mapper;
-//    @Resource
-//    private ValidationService validationService;
+    @Resource
+    private ValidationService validationService;
 
     public ResultPage<KeHuDO> findPage(KeHuQuery query) {
-//        validationService.validate(query);
+        validationService.validate(query);
         KeHuParam param = new KeHuParam();
         BeanUtils.copyProperties(query, param);
         List<KeHuDO> list = mapper.findList(param);
@@ -39,12 +40,12 @@ public class KeHuService {
     }
 
     public void create(KeHuDO entity) {
-//        validationService.validate(entity);
+        validationService.validate(entity);
         mapper.insert(entity);
     }
 
     public void update(KeHuDO entity) {
-//        validationService.validate(entity);
+        validationService.validate(entity);
         KeHuDO oldEntity=mapper.findOne(entity.getId());
         mergeEntity(entity,oldEntity);
         mapper.update(oldEntity);

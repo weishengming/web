@@ -5,12 +5,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Resource;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import com.weishengming.service.exception.ServiceException;
 
 public class ValidationService {
+	@Resource
 	private Validator validator ;
 
 	public ValidationResult validate(Object param, boolean fastMode) {
