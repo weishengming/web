@@ -59,11 +59,12 @@
 				<artifactId>hibernate-core</artifactId>
 				<version>4.3.4.Final</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>javax.annotation</groupId>
 			<artifactId>javax.annotation-api</artifactId>
 			<version>1.2</version>
-		</dependency>
+		</dependency> -->
+
 		
 		<!-- 加入mybatis 数据库支持 -->
 		<dependency>

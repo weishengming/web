@@ -23,11 +23,10 @@
         <property name="order" value="2"/>
         <property name="properties" ref="weishengmingConfigProperties"/>
     </bean>
-        <context:annotation-config />
+    <context:annotation-config />
     <context:component-scan base-package="com.weishengming" >
-        <!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/> -->
-    </context:component-scan>
-    
+       <!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>  --> 
+   </context:component-scan>
     <import resource="classpath*:weishengming-dao.xml"/>
     <import resource="classpath*:weishengming-service.xml"/>
 </beans:beans>
