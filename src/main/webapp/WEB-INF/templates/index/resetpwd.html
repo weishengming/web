@@ -8,16 +8,17 @@
 <meta property="qc:admins" content="364425770767513056751676375" />
 <meta property="wb:webmaster" content="c870d1270a3de2dc" />
 <meta name="author" content="">
-<title>请登陆</title>
+<title>请输入密码</title>
 #parse("/common/css-js.html")
-<link rel="stylesheet" href="resources/css/index/login.css">
+<link rel="stylesheet" href="resources/css/index/reg.css">
 </head>
 <body>
+#parse("/common/returnlogin.html")
  <div class="container">
       <form class="form-signin" method="post" action="doReg">
         <h4>请重置密码</h4>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="请再次输入密码" required>
+        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="请输入密码" required>
         <button class="btn btn-lg btn-danger btn-block" type="submit">立即重置</button>
       </form>
  </div> 
