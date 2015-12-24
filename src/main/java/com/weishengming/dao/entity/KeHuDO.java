@@ -47,9 +47,48 @@ public class KeHuDO extends BaseDO{
 	private String yuanjixian; //原籍县/区
 	private String yuanjixiangxi; // 原籍详细地址
 	
-	private String leixing; //客户类型  [参考kehuliexing枚举]
+	private int zhuangtai;   //客户状态  注册  基本信息提交   基本信息认证 通过
+	private String zhuangtai_string;  //状态字符串
+	
+	private int lock;  //用户是否锁定. 1 代表锁定  0代表未锁定 [默认未锁定]
+	
+	private int leixing; //客户类型  [参考kehuliexing枚举]
+	private String leixing_string; 
 	private String beizhu;  //客户的自己备注信息 
 	
+	
+	
+ 
+	public int getLeixing() {
+		return leixing;
+	}
+	public void setLeixing(int leixing) {
+		this.leixing = leixing;
+	}
+	public String getLeixing_string() {
+		return leixing_string;
+	}
+	public void setLeixing_string(String leixing_string) {
+		this.leixing_string = leixing_string;
+	}
+	public int getZhuangtai() {
+		return zhuangtai;
+	}
+	public void setZhuangtai(int zhuangtai) {
+		this.zhuangtai = zhuangtai;
+	}
+	public String getZhuangtai_string() {
+		return zhuangtai_string;
+	}
+	public void setZhuangtai_string(String zhuangtai_string) {
+		this.zhuangtai_string = zhuangtai_string;
+	}
+	public int getLock() {
+		return lock;
+	}
+	public void setLock(int lock) {
+		this.lock = lock;
+	}
 	public String getZhanghao() {
 		return zhanghao;
 	}
@@ -221,12 +260,7 @@ public class KeHuDO extends BaseDO{
 	public void setYuanjixiangxi(String yuanjixiangxi) {
 		this.yuanjixiangxi = yuanjixiangxi;
 	}
-	public String getLeixing() {
-		return leixing;
-	}
-	public void setLeixing(String leixing) {
-		this.leixing = leixing;
-	}
+ 
 	public String getBeizhu() {
 		return beizhu;
 	}

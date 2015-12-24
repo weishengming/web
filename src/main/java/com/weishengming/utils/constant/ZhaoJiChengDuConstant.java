@@ -1,4 +1,4 @@
-package com.weishengming.web.constant;
+package com.weishengming.utils.constant;
 
 public interface ZhaoJiChengDuConstant {
 	public static final String feichangzhaoji="0";

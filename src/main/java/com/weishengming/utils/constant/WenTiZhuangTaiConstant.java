@@ -1,4 +1,4 @@
-package com.weishengming.web.constant;
+package com.weishengming.utils.constant;
 
 /**
  * @author 杨天赐
