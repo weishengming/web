@@ -1,7 +1,9 @@
 package com.weishengming.web.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +26,9 @@ import com.qq.connect.javabeans.qzone.PageFansBean;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
 import com.qq.connect.javabeans.weibo.Company;
 import com.qq.connect.oauth.Oauth;
+import com.weishengming.dao.entity.KeHuDO;
+import com.weishengming.service.KeHuService;
+import com.weishengming.utils.CalendarUtil;
 
 /**
  * @author 杨天赐
@@ -32,7 +37,10 @@ import com.qq.connect.oauth.Oauth;
 @Controller
 public class IndexController {
 	Logger  logger = LoggerFactory.getLogger(IndexController.class);
+	@Resource
+	private KeHuService keHuService;
 	
+
 	/**
 	 * 默认进入到首页
 	 * @param model
@@ -85,9 +93,6 @@ public class IndexController {
 	public String doLogin(String name,String password,Model model){
 		logger.info("用户名:{},密码:{}",name,password);
 		// 判断用户名和密码是否正确
-		
-		
-		
 		model.addAttribute("name",name);
 		return "/index/index";
 	}
@@ -99,8 +104,15 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value="doReg",method=RequestMethod.POST) 
-	public String doReg(String name,String password,Model model){
-		logger.info("注册用户名:{}与密码:{}",name,password);
+	public String doReg(String zhanghao,String mima,Model model){
+		//获得用户的 账号和密码
+		KeHuDO kehuDo =new KeHuDO();
+		kehuDo.setZhanghao(zhanghao);
+		kehuDo.setMima(mima);
+		kehuDo.setCreateDate(CalendarUtil.getCurrentDate());
+		kehuDo.setUpdateDate(CalendarUtil.getCurrentDate());
+		keHuService.create(kehuDo);
+		logger.info("注册用户名:{}与密码:{}",zhanghao,mima);
 		return "/index/login";
 	}
 	
@@ -216,6 +228,13 @@ public class IndexController {
 		return "index/index";
 	}
 	
+	public KeHuService getKeHuService() {
+		return keHuService;
+	}
+
+	public void setKeHuService(KeHuService keHuService) {
+		this.keHuService = keHuService;
+	}
 	
 	
 	 
