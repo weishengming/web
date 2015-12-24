@@ -24,10 +24,9 @@
 		  <version>1.7.6</version>
 		</dependency>
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>servlet-api</artifactId>
-		    <version>2.4</version>
-		    <scope>provided</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 		</dependency>
 		<!-- 配置Mysql数据库驱动 -->
 		<dependency>
@@ -167,6 +166,20 @@
 			<scope>test</scope>
 			<version>6.0.41</version>
 		</dependency>
+		
+		<!-- 导入jetty 集成 -->
+		<dependency>  
+            <groupId>org.eclipse.jetty.aggregate</groupId>  
+            <artifactId>jetty-all</artifactId>  
+            <version>8.0.4.v20111024</version>  
+        </dependency> 
+        
+       <dependency>  
+            <groupId>org.eclipse.jetty</groupId>  
+            <artifactId>jetty-webapp</artifactId>  
+            <version>8.0.4.v20111024</version>  
+        </dependency>
+        
 		
 		<!-- 配置Velocity [需要spring-context-support] -->
 		<dependency>

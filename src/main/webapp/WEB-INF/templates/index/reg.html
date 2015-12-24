@@ -15,14 +15,16 @@
 <body>
 #parse("/common/returnlogin.html")
  <div class="container">
-      <form class="form-signin" method="post" action="doReg">
+      <form id="keHuRegForm" class="form-signin" method="post" action="doReg">
         <h4>请注册</h4>
         <label for="inputZhanghao" class="sr-only">账号</label>
-        <input type="text" id="inputZhanghao" class="form-control" name="zhanghao" placeholder="邮箱/手机号" required>
+        <input type="text" id="zhanghao" class="form-control" name="zhanghao" placeholder="邮箱/手机号" required>
         <label for="inputMima" class="sr-only">密码</label>
-        <input type="password" id="inputMima" class="form-control" name="mima" placeholder="密码" required>
-        <button class="btn btn-lg btn-success btn-block" type="submit">立即注册</button>
+        <input type="password" id="mima" class="form-control" name="mima" placeholder="密码" required>
+        <button class="btn btn-lg btn-success btn-block" type="button" onclick="WeiShengMingReg.reg();">立即注册</button>
       </form>
  </div> 
+<script src="${static_resource}/resources/js/index/reg.js"></script>
+<script src="${static_resource}/resources/js/common/md5.js"></script>
 </body>
 </html>

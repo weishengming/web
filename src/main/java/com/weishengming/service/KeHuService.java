@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.weishengming.dao.entity.KeHuDO;
 import com.weishengming.dao.mapper.KeHuMapper;
@@ -28,6 +29,31 @@ public class KeHuService {
         BeanUtils.copyProperties(query, param);
         List<KeHuDO> list = mapper.findList(param);
         return new ResultPage<KeHuDO>(list, query);
+    }
+    
+    public boolean checkZhanghaoUnique(Long id, String zhanghao) {
+        if (id != null && !StringUtils.isEmpty(zhanghao)) {
+        	KeHuDO kehu = mapper.findOne(id);
+            if (!zhanghao.equals(kehu.getZhanghao())) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return checkZhanghaoUnique(zhanghao);
+        }
+    }
+    public boolean checkZhanghaoUnique(String zhanghao) {
+        boolean zhanghaoUnique = false;
+        if (!StringUtils.isEmpty(zhanghao)) {
+            KeHuParam param = new KeHuParam();
+            param.setZhanghao(zhanghao);
+            List<KeHuDO> list = mapper.findList(param);
+            if (null == list || list.size() == 0) {
+            	zhanghaoUnique = true;
+            }
+        }
+        return zhanghaoUnique;
     }
 
     public List<KeHuDO> findAll() {

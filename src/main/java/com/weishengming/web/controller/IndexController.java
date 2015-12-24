@@ -1,12 +1,11 @@
 package com.weishengming.web.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,21 +13,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.qq.connect.QQConnectException;
 import com.qq.connect.api.OpenID;
 import com.qq.connect.api.qzone.PageFans;
-import com.qq.connect.api.qzone.Topic;
 import com.qq.connect.api.qzone.UserInfo;
 import com.qq.connect.javabeans.AccessToken;
-import com.qq.connect.javabeans.GeneralResultBean;
 import com.qq.connect.javabeans.qzone.PageFansBean;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
 import com.qq.connect.javabeans.weibo.Company;
 import com.qq.connect.oauth.Oauth;
 import com.weishengming.dao.entity.KeHuDO;
+import com.weishengming.dao.query.KeHuQuery;
 import com.weishengming.service.KeHuService;
+import com.weishengming.service.query.ResultPage;
 import com.weishengming.utils.CalendarUtil;
+import com.weishengming.web.ajax.AjaxOutputTool;
 
 /**
  * @author 杨天赐
@@ -96,6 +96,30 @@ public class IndexController {
 		model.addAttribute("name",name);
 		return "/index/index";
 	}
+/*	@RequestMapping(method = RequestMethod.GET, value = "/checkzhanghao_ajax")
+	public void checkZhanghao(String zhanghao,HttpServletResponse response){
+		//如果账号 没有存在,  验证成功.  
+		AjaxOutputTool.writeData(response, "没有问题！");
+		AjaxOutputTool.writeErrorMsg(response,"验证失败");
+	}*/
+	
+	
+    @RequestMapping(method = RequestMethod.POST, value = "check_zhanghao_unique_ajax")
+    @ResponseBody
+    public boolean checkZhanghaoUnique(Long id, String zhanghao) {
+    	logger.info("进入验证");
+        boolean unique = false;
+        try {
+            unique = keHuService.checkZhanghaoUnique(id, zhanghao);
+        } catch (Exception e) {
+            if (logger.isErrorEnabled()) {
+                logger.error(e.getMessage());
+            }
+        }
+        return unique;
+    }
+	
+	
 	/**
 	 * 注册成功,跳转到登陆页面
 	 * @param name
@@ -105,6 +129,19 @@ public class IndexController {
 	 */
 	@RequestMapping(value="doReg",method=RequestMethod.POST) 
 	public String doReg(String zhanghao,String mima,Model model){
+		
+		/* UserQuery query = new UserQuery();
+         query.setUserName(userNameParam);
+         ResultPage<UserDO> result = service.findPage(query);
+         List<UserDO> users = result.getResult();*/
+		
+        KeHuQuery query=new KeHuQuery();
+        query.setZhanghao(zhanghao);
+        ResultPage<KeHuDO> result=keHuService.findPage(query);
+        List<KeHuDO> kehus=result.getResult();
+        
+		
+		
 		//获得用户的 账号和密码
 		KeHuDO kehuDo =new KeHuDO();
 		kehuDo.setZhanghao(zhanghao);
