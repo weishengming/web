@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weishengming.dao.mapper.KeHuMapper">
 	<sql id="all_columns">
-		ID,CREATEDATE,UPDATEDATE,VERSION,BEIZHU,EMAIL,LEIXING,NIANLING,NICHENG,QQ,QQ1,QQ2,SHENFENZHENG,SHENGRI,SHOUJIHAO,SHOUJIHAO1,SHOUJIHAO2,SUOZAIDIXIANGXI,SUOZAIGUO,SUOZAISHENG,SUOZAISHI,SUOZAIXIAN,WEIXINHAO,XINGBIE,XINGMING,YUANJIGUO,YUANJISHENG,YUANJISHI,YUANJIXIAN,YUANJIXIANGXI,ZHIYE
+		ID,CREATEDATE,UPDATEDATE,VERSION,BEIZHU,EMAIL,LEIXING,MIMA,NIANLING,NICHENG,QQ,QQ1,QQ2,SHENFENZHENG,SHENGRI,SHOUJIHAO,SHOUJIHAO1,SHOUJIHAO2,SUOZAIDIXIANGXI,SUOZAIGUO,SUOZAISHENG,SUOZAISHI,SUOZAIXIAN,WEIXINHAO,XINGBIE,XINGMING,YUANJIGUO,YUANJISHENG,YUANJISHI,YUANJIXIAN,YUANJIXIANGXI,ZHANGHAO,ZHIYE
 	</sql>
 	<sql id="where">
 		<where>
@@ -26,6 +26,9 @@
 			</if>
 			<if test="leixing != null">
 				and LEIXING = #{leixing}
+			</if>
+			<if test="mima != null">
+				and MIMA = #{mima}
 			</if>
 			<if test="nianling != null">
 				and NIANLING = #{nianling}
@@ -96,6 +99,9 @@
 			<if test="yuanjixiangxi != null">
 				and YUANJIXIANGXI = #{yuanjixiangxi}
 			</if>
+			<if test="zhanghao != null">
+				and ZHANGHAO = #{zhanghao}
+			</if>
 			<if test="zhiye != null">
 				and ZHIYE = #{zhiye}
 			</if>
@@ -107,7 +113,7 @@
 		INSERT INTO kehu (
 		<include refid="all_columns" />
 		) VALUES
-		(#{id},#{createDate},#{updateDate},#{version},#{beizhu},#{email},#{leixing},#{nianling},#{nicheng},#{qq},#{qq1},#{qq2},#{shenfenzheng},#{shengri},#{shoujihao},#{shoujihao1},#{shoujihao2},#{suozaidixiangxi},#{suozaiguo},#{suozaisheng},#{suozaishi},#{suozaixian},#{weixinhao},#{xingbie},#{xingming},#{yuanjiguo},#{yuanjisheng},#{yuanjishi},#{yuanjixian},#{yuanjixiangxi},#{zhiye})
+		(#{id},#{createDate},#{updateDate},#{version},#{beizhu},#{email},#{leixing},#{mima},#{nianling},#{nicheng},#{qq},#{qq1},#{qq2},#{shenfenzheng},#{shengri},#{shoujihao},#{shoujihao1},#{shoujihao2},#{suozaidixiangxi},#{suozaiguo},#{suozaisheng},#{suozaishi},#{suozaixian},#{weixinhao},#{xingbie},#{xingming},#{yuanjiguo},#{yuanjisheng},#{yuanjishi},#{yuanjixian},#{yuanjixiangxi},#{zhanghao},#{zhiye})
 	</insert>
 	<update id="update" parameterType="KeHuDO">
 		UPDATE kehu SET
@@ -118,6 +124,7 @@
                     <![CDATA[ BEIZHU = #{beizhu}]]>,   
                     <![CDATA[ EMAIL = #{email}]]>,   
                     <![CDATA[ LEIXING = #{leixing}]]>,   
+                    <![CDATA[ MIMA = #{mima}]]>,   
                     <![CDATA[ NIANLING = #{nianling}]]>,   
                     <![CDATA[ NICHENG = #{nicheng}]]>,   
                     <![CDATA[ QQ = #{qq}]]>,   
@@ -141,6 +148,7 @@
                     <![CDATA[ YUANJISHI = #{yuanjishi}]]>,   
                     <![CDATA[ YUANJIXIAN = #{yuanjixian}]]>,   
                     <![CDATA[ YUANJIXIANGXI = #{yuanjixiangxi}]]>,   
+                    <![CDATA[ ZHANGHAO = #{zhanghao}]]>,   
                     <![CDATA[ ZHIYE = #{zhiye}]]>,
 		version = version+1 WHERE
 		id=#{id} and version = #{version}

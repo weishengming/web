@@ -12,6 +12,10 @@ import javax.persistence.Table;
 @Table(name = "kehu")
 public class KeHuDO extends BaseDO{
 	private static final long serialVersionUID = 1L;
+	private String zhanghao;// 手机号,邮箱,qq [openId]
+	private String mima;  //密码
+	private String mima_md5;  //密码MD5
+	
 	private String xingming;  //姓名
 	private String xingbie;   //性别
 	private String nianling;  //年龄
@@ -45,6 +49,28 @@ public class KeHuDO extends BaseDO{
 	
 	private String leixing; //客户类型  [参考kehuliexing枚举]
 	private String beizhu;  //客户的自己备注信息 
+	
+	public String getZhanghao() {
+		return zhanghao;
+	}
+	public void setZhanghao(String zhanghao) {
+		this.zhanghao = zhanghao;
+	}
+	public String getMima() {
+		return mima;
+	}
+	public void setMima(String mima) {
+		this.mima = mima;
+	}
+	public String getMima_md5() {
+		return mima_md5;
+	}
+	public void setMima_md5(String mima_md5) {
+		this.mima_md5 = mima_md5;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public String getXingming() {
 		return xingming;
 	}

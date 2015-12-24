@@ -15,6 +15,7 @@ public class KeHuParam extends MapperQuery{
         private String beizhu;
         private String email;
         private String leixing;
+        private String mima;
         private String nianling;
         private String nicheng;
         private String qq;
@@ -38,6 +39,7 @@ public class KeHuParam extends MapperQuery{
         private String yuanjishi;
         private String yuanjixian;
         private String yuanjixiangxi;
+        private String zhanghao;
         private String zhiye;
         
     
@@ -89,6 +91,13 @@ public class KeHuParam extends MapperQuery{
     
     public String getLeixing(){
     	return leixing;
+    }
+        public void  setMima(String mima){
+    	this.mima=mima;
+    }
+    
+    public String getMima(){
+    	return mima;
     }
         public void  setNianling(String nianling){
     	this.nianling=nianling;
@@ -250,6 +259,13 @@ public class KeHuParam extends MapperQuery{
     
     public String getYuanjixiangxi(){
     	return yuanjixiangxi;
+    }
+        public void  setZhanghao(String zhanghao){
+    	this.zhanghao=zhanghao;
+    }
+    
+    public String getZhanghao(){
+    	return zhanghao;
     }
         public void  setZhiye(String zhiye){
     	this.zhiye=zhiye;

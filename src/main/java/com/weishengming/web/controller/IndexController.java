@@ -27,7 +27,7 @@ import com.qq.connect.oauth.Oauth;
 
 /**
  * @author 杨天赐
- * 登陆控制
+ * indexController 负责 登陆 注册 重置密码 
  */
 @Controller
 public class IndexController {
@@ -54,6 +54,7 @@ public class IndexController {
 		logger.info("进入login页面");
 		return "/index/login";
 	}
+	
 	/**
 	 * 进入到注册页面
 	 * @return
@@ -63,6 +64,11 @@ public class IndexController {
 		logger.info("进入注册页面");
 		return "index/reg";
 	}
+	
+	/**
+	 * 进入重置密码页面
+	 * @return
+	 */
 	@RequestMapping(value="resetPwdPage")
 	public String resetPwdPage(){
 		logger.info("进入找回密码页面");
@@ -78,6 +84,10 @@ public class IndexController {
 	@RequestMapping(value="doLogin",method=RequestMethod.POST) 
 	public String doLogin(String name,String password,Model model){
 		logger.info("用户名:{},密码:{}",name,password);
+		// 判断用户名和密码是否正确
+		
+		
+		
 		model.addAttribute("name",name);
 		return "/index/index";
 	}
@@ -206,30 +216,8 @@ public class IndexController {
 		return "index/index";
 	}
 	
-	public void getShuoshuo(){
-//		request.setCharacterEncoding("utf-8");
-//        String con = request.getParameter("con");
-//        HttpSession session = request.getSession();
-//        String accessToken = (String)session.getAttribute("demo_access_token");
-//        String openID = (String)session.getAttribute("demo_openid");
-//        System.out.println(accessToken);
-//        System.out.println(openID);
-//        //请开发者自行校验获取的con值是否有效
-//        if (con != "") {
-//            Topic topic = new Topic(accessToken, openID);
-//            try {
-//                GeneralResultBean grb = topic.addTopic(con);
-//                if (grb.getRet() == 0) {
-//                    response.getWriter().println("<a href=\"http://www.qzone.com\" target=\"_blank\">您的说说已发表成功，请登录Qzone查看</a>");
-//                } else {
-//                    response.getWriter().println("很遗憾的通知您，发表说说失败！原因： " + grb.getMsg());
-//                }
-//            } catch (QQConnectException e) {
-//                System.out.println("抛异常了？");
-//            }
-//        } else {
-//            System.out.println("获取到的值为空？");
-//        }
-	}
+	
+	
+	 
 	
 }
