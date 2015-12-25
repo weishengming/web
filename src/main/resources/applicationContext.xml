@@ -23,10 +23,22 @@
         <property name="order" value="2"/>
         <property name="properties" ref="weishengmingConfigProperties"/>
     </bean>
+    
+  
+    
     <context:annotation-config />
     <context:component-scan base-package="com.weishengming" >
        <!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>  --> 
    </context:component-scan>
+   
+   
+    <bean id="userDetailsService" class="com.cheng.common.web.security.ChengJdbcDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="enableGroups" value="true"/>
+    </bean>
+   
+  
+    <import resource="classpath*:applicationContext-security.xml"/>
     <import resource="classpath*:weishengming-dao.xml"/>
     <import resource="classpath*:weishengming-service.xml"/>
 </beans:beans>

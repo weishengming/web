@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weishengming.dao.mapper.QuanXianMapper">
+	<sql id="all_columns">
+		ID,CREATEDATE,UPDATEDATE,VERSION,QUANXIANMINGCHENG
+	</sql>
+	<sql id="where">
+		<where>
+			<if test="id != null">
+				and ID = #{id}
+			</if>
+			<if test="createDate != null">
+				and CREATEDATE = #{createDate}
+			</if>
+			<if test="updateDate != null">
+				and UPDATEDATE = #{updateDate}
+			</if>
+			<if test="version != null">
+				and VERSION = #{version}
+			</if>
+			<if test="quanxianmingcheng != null">
+				and QUANXIANMINGCHENG = #{quanxianmingcheng}
+			</if>
+		</where>
+	</sql>
+	<sql id="orderById"> ORDER BY ID DESC </sql>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="QuanXianDO">
+		INSERT INTO quanxian (
+		<include refid="all_columns" />
+		) VALUES
+		(#{id},#{createDate},#{updateDate},#{version},#{quanxianmingcheng})
+	</insert>
+	<update id="update" parameterType="QuanXianDO">
+		UPDATE quanxian SET
+                    <![CDATA[ ID = #{id}]]>,   
+                    <![CDATA[ CREATEDATE = #{createDate}]]>,   
+                    <![CDATA[ UPDATEDATE = #{updateDate}]]>,   
+                    <![CDATA[ VERSION = #{version}]]>,   
+                    <![CDATA[ QUANXIANMINGCHENG = #{quanxianmingcheng}]]>,
+		version = version+1 WHERE
+		id=#{id} and version = #{version}
+	</update>
+	<select id="findOne" parameterType="long" resultType="QuanXianDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM quanxian WHERE ID=#{id}
+	</select>
+	<select id="findAll" resultType="QuanXianDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM quanxian
+	</select>
+	<delete id="delete" parameterType="long">
+		DELETE FROM quanxian WHERE id=#{id}
+	</delete>
+	<delete id="deleteByIds">
+		DELETE FROM quanxian
+		<where>
+			ID in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</where>
+	</delete>
+
+	<select id="findList" resultType="QuanXianDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM quanxian
+		<include refid="where" />
+		<include refid="orderById" />
+		LIMIT #{offset}, #{size}
+	</select>
+	<select id="getByIds" parameterType="list" resultType="QuanXianDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM quanxian
+		<where>
+			ID in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</where>
+	</select>
+	<select id="countList" resultType="long">
+		SELECT count(1) FROM quanxian
+		<include refid="where" />
+		<include refid="orderById" />
+	</select>
+	<select id="count" resultType="long">
+		SELECT count(1) FROM quanxian
+		<include refid="orderById" />
+	</select>
+</mapper>

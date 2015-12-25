@@ -14,7 +14,8 @@ public class KeHuParam extends MapperQuery{
         private Long version;
         private String beizhu;
         private String email;
-        private String leixing;
+        private Boolean enabled;
+        private int leixing;
         private String mima;
         private String nianling;
         private String nicheng;
@@ -41,6 +42,7 @@ public class KeHuParam extends MapperQuery{
         private String yuanjixiangxi;
         private String zhanghao;
         private String zhiye;
+        private int zhuangtai;
         
     
         public void  setId(Long id){
@@ -85,11 +87,18 @@ public class KeHuParam extends MapperQuery{
     public String getEmail(){
     	return email;
     }
-        public void  setLeixing(String leixing){
+        public void  setEnabled(Boolean enabled){
+    	this.enabled=enabled;
+    }
+    
+    public Boolean getEnabled(){
+    	return enabled;
+    }
+        public void  setLeixing(int leixing){
     	this.leixing=leixing;
     }
     
-    public String getLeixing(){
+    public int getLeixing(){
     	return leixing;
     }
         public void  setMima(String mima){
@@ -273,5 +282,12 @@ public class KeHuParam extends MapperQuery{
     
     public String getZhiye(){
     	return zhiye;
+    }
+        public void  setZhuangtai(int zhuangtai){
+    	this.zhuangtai=zhuangtai;
+    }
+    
+    public int getZhuangtai(){
+    	return zhuangtai;
     }
     }

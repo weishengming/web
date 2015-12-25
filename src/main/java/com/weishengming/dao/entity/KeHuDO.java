@@ -50,7 +50,7 @@ public class KeHuDO extends BaseDO{
 	private int zhuangtai;   //客户状态  注册  基本信息提交   基本信息认证 通过
 	private String zhuangtai_string;  //状态字符串
 	
-	private int lock;  //用户是否锁定. 1 代表锁定  0代表未锁定 [默认未锁定]
+    private Boolean  enabled;                                 // 是否有效
 	
 	private int leixing; //客户类型  [参考kehuliexing枚举]
 	private String leixing_string; 
@@ -59,6 +59,12 @@ public class KeHuDO extends BaseDO{
 	
 	
  
+	public Boolean getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 	public int getLeixing() {
 		return leixing;
 	}
@@ -83,12 +89,7 @@ public class KeHuDO extends BaseDO{
 	public void setZhuangtai_string(String zhuangtai_string) {
 		this.zhuangtai_string = zhuangtai_string;
 	}
-	public int getLock() {
-		return lock;
-	}
-	public void setLock(int lock) {
-		this.lock = lock;
-	}
+	 
 	public String getZhanghao() {
 		return zhanghao;
 	}
