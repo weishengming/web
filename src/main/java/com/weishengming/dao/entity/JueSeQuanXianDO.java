@@ -12,32 +12,33 @@ import javax.persistence.Table;
 public class JueSeQuanXianDO extends BaseDO {
 
 	private static final long serialVersionUID = 1L;
-    private Long            juese_id;
-    private Long            quanxian_id;
+    private Long            jueseid;
+    private Long            quanxianid;
     private String          juesemingcheng;
-    private String          quanxianmingcheng;   
+    private String          quanxianmingcheng;
+	public Long getJueseid() {
+		return jueseid;
+	}
+	public void setJueseid(Long jueseid) {
+		this.jueseid = jueseid;
+	}
+	public Long getQuanxianid() {
+		return quanxianid;
+	}
+	public void setQuanxianid(Long quanxianid) {
+		this.quanxianid = quanxianid;
+	}
 	public String getJuesemingcheng() {
 		return juesemingcheng;
 	}
 	public void setJuesemingcheng(String juesemingcheng) {
 		this.juesemingcheng = juesemingcheng;
 	}
-	public Long getQuanxian_id() {
-		return quanxian_id;
-	}
-	public void setQuanxian_id(Long quanxian_id) {
-		this.quanxian_id = quanxian_id;
-	}
 	public String getQuanxianmingcheng() {
 		return quanxianmingcheng;
 	}
 	public void setQuanxianmingcheng(String quanxianmingcheng) {
 		this.quanxianmingcheng = quanxianmingcheng;
-	}
-	public Long getJuese_id() {
-		return juese_id;
-	}
-	public void setJuese_id(Long juese_id) {
-		this.juese_id = juese_id;
-	}  
+	}   
+	 
 }

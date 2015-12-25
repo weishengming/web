@@ -3,7 +3,6 @@ package com.weishengming.web.security;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.jar.Attributes.Name;
 
 import javax.annotation.Resource;
 
@@ -22,6 +21,8 @@ import com.weishengming.dao.entity.KeHuJueSeDO;
 import com.weishengming.dao.mapper.JueSeQuanXianMapper;
 import com.weishengming.dao.mapper.KeHuJueSeMapper;
 import com.weishengming.dao.mapper.KeHuMapper;
+import com.weishengming.dao.param.JueSeQuanXianParam;
+import com.weishengming.dao.param.KeHuJueSeParam;
 
 /**
  * @author 杨天赐
@@ -33,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Resource
 	private KeHuMapper keHuMapper;
 	@Resource
-	private KeHuJueSeMapper KeHuJueSeMapper;
+	private KeHuJueSeMapper keHuJueSeMapper;
 	@Resource
 	private JueSeQuanXianMapper jueSeQuanXianMapper;
 
@@ -41,27 +42,31 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String zhanghao)throws UsernameNotFoundException {
 		logger.info("认证用户" + zhanghao);// 查询数据库获取改账号的信息
-		KeHuDO keHuDO = keHuMapper.findByZhangHao(zhanghao); // 通过账号 查询
+		KeHuDO keHuDO = keHuMapper.findKeHuByZhangHao(zhanghao); // 通过账号 查询
 		if (null == keHuDO) {
 			throw new UsernameNotFoundException("账号" + zhanghao + "不存在");
 		}
 		Set quanxian = getQuanXians(keHuDO); // 将没有使用到的属性设置为true
-		UserDetails userDetails = new User(keHuDO.getZhanghao(),keHuDO.getMima(), true, true, true, true, quanxian);
+		UserDetails userDetails = new User(keHuDO.getZhanghao(),keHuDO.getMima(),keHuDO.getEnabled(), true, true, true, quanxian);
 		return userDetails;
 	}
 
 	// 获得客户所有角色的所有权限
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Set getQuanXians(KeHuDO keHuDO) {
-		List<KeHuJueSeDO> keHuJueSes=KeHuJueSeMapper.findListByZhangHao(keHuDO.getZhanghao());
+		KeHuJueSeParam keHuJueSeParam=new KeHuJueSeParam();
+		keHuJueSeParam.setKehuzhanghao(keHuDO.getZhanghao());
+		List<KeHuJueSeDO> keHuJueSes=keHuJueSeMapper.findList(keHuJueSeParam);
 		Set authoritySet = new HashSet(); // 默认所有的用户有浏览用户的权利
-//		authoritySet.add(new SimpleGrantedAuthority("ROLL_ADMIN")); // 依次添加
+		authoritySet.add(new SimpleGrantedAuthority("ROLE_WEB")); // 依次添加
 		if (null != keHuJueSes&& keHuJueSes.size() > 0){
 			for (KeHuJueSeDO kehuJueSeDO : keHuJueSes) {
-				List<JueSeQuanXianDO> jueSeQuanXians=jueSeQuanXianMapper.findListByJueSeId(kehuJueSeDO.getJuese_id());
+				JueSeQuanXianParam jueSeQuanXianParam=new JueSeQuanXianParam();
+				jueSeQuanXianParam.setJueseid(kehuJueSeDO.getJueseid());
+				List<JueSeQuanXianDO> jueSeQuanXians=jueSeQuanXianMapper.findList(jueSeQuanXianParam);
 				if (null != jueSeQuanXians && jueSeQuanXians.size() > 0){
 					for (JueSeQuanXianDO jueSeQuanXianDO : jueSeQuanXians) {
-						authoritySet.add(new SimpleGrantedAuthority(jueSeQuanXianDO.getJuesemingcheng()));
+						authoritySet.add(new SimpleGrantedAuthority(jueSeQuanXianDO.getQuanxianmingcheng()));
 					}
 				}
 			}

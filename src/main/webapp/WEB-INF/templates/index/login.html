@@ -15,13 +15,13 @@
 </head>
 <body>
  <div class="container">
-      <form id="kehuLoginForm" class="form-signin" method="post" action="doLogin">
+      <form id="kehuLoginForm" class="form-signin" method="post" action="/j_spring_security_check">
         <h4>请登录</h4>
         <label for="aa" class="sr-only">账号</label>
-        <input type="text" id="zhanghao" class="form-control" name="zhanghao" placeholder="邮箱/手机号" required autofocus>
+        <input type="text" id="j_username" class="form-control" name="j_username" placeholder="邮箱/手机号" required autofocus>
         <label for="bb" class="sr-only">Password</label>
-        <input type="password" id="mima" class="form-control" name="mima"  placeholder="密码" required >
-        <input type="hidden" id="mima_md5" class="form-control" name="mima_md5"   placeholder="密码" >
+        <input type="password" id="j_password" class="form-control" name="j_password" placeholder="密码" required >
+        <!-- <input type="hidden" id="mima_md5" class="form-control" name="mima_md5"   placeholder="密码" > -->
         <button class="btn btn-lg btn-primary btn-block" type="button" onclick="WeiShengMingIndex.login()">立即登陆</button>
 	    <br>
 	      <h5>快速通道:&nbsp;

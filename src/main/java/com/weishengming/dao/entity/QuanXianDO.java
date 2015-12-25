@@ -13,14 +13,15 @@ public class QuanXianDO extends BaseDO {
 
 	private static final long serialVersionUID = 1L;
     private String            quanxianmingcheng;
-    private Long              fujiedian_id;
+    private Long              parentid;
 	 
 	 
-	public Long getFujiedian_id() {
-		return fujiedian_id;
+	 
+	public Long getParentid() {
+		return parentid;
 	}
-	public void setFujiedian_id(Long fujiedian_id) {
-		this.fujiedian_id = fujiedian_id;
+	public void setParentid(Long parentid) {
+		this.parentid = parentid;
 	}
 	public String getQuanxianmingcheng() {
 		return quanxianmingcheng;

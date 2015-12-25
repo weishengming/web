@@ -32,10 +32,7 @@
    </context:component-scan>
    
    
-    <bean id="userDetailsService" class="com.cheng.common.web.security.ChengJdbcDaoImpl">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="enableGroups" value="true"/>
-    </bean>
+   
    
   
     <import resource="classpath*:applicationContext-security.xml"/>

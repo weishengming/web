@@ -12,37 +12,29 @@ public class KeHuParam extends MapperQuery{
         private Date createDate;
         private Date updateDate;
         private Long version;
+        private Long areaid;
         private String beizhu;
         private String email;
         private Boolean enabled;
         private int leixing;
+        private String leixingstring;
         private String mima;
-        private String nianling;
+        private String mimamd5;
         private String nicheng;
         private String qq;
         private String qq1;
-        private String qq2;
         private String shenfenzheng;
-        private String shengri;
+        private Date shengri;
         private String shoujihao;
         private String shoujihao1;
-        private String shoujihao2;
-        private String suozaidixiangxi;
-        private String suozaiguo;
-        private String suozaisheng;
-        private String suozaishi;
-        private String suozaixian;
+        private String weibohao;
         private String weixinhao;
         private String xingbie;
         private String xingming;
-        private String yuanjiguo;
-        private String yuanjisheng;
-        private String yuanjishi;
-        private String yuanjixian;
-        private String yuanjixiangxi;
         private String zhanghao;
         private String zhiye;
         private int zhuangtai;
+        private String zhuangtaistring;
         
     
         public void  setId(Long id){
@@ -73,6 +65,13 @@ public class KeHuParam extends MapperQuery{
     public Long getVersion(){
     	return version;
     }
+        public void  setAreaid(Long areaid){
+    	this.areaid=areaid;
+    }
+    
+    public Long getAreaid(){
+    	return areaid;
+    }
         public void  setBeizhu(String beizhu){
     	this.beizhu=beizhu;
     }
@@ -101,6 +100,13 @@ public class KeHuParam extends MapperQuery{
     public int getLeixing(){
     	return leixing;
     }
+        public void  setLeixingstring(String leixingstring){
+    	this.leixingstring=leixingstring;
+    }
+    
+    public String getLeixingstring(){
+    	return leixingstring;
+    }
         public void  setMima(String mima){
     	this.mima=mima;
     }
@@ -108,12 +114,12 @@ public class KeHuParam extends MapperQuery{
     public String getMima(){
     	return mima;
     }
-        public void  setNianling(String nianling){
-    	this.nianling=nianling;
+        public void  setMimamd5(String mimamd5){
+    	this.mimamd5=mimamd5;
     }
     
-    public String getNianling(){
-    	return nianling;
+    public String getMimamd5(){
+    	return mimamd5;
     }
         public void  setNicheng(String nicheng){
     	this.nicheng=nicheng;
@@ -136,13 +142,6 @@ public class KeHuParam extends MapperQuery{
     public String getQq1(){
     	return qq1;
     }
-        public void  setQq2(String qq2){
-    	this.qq2=qq2;
-    }
-    
-    public String getQq2(){
-    	return qq2;
-    }
         public void  setShenfenzheng(String shenfenzheng){
     	this.shenfenzheng=shenfenzheng;
     }
@@ -150,11 +149,11 @@ public class KeHuParam extends MapperQuery{
     public String getShenfenzheng(){
     	return shenfenzheng;
     }
-        public void  setShengri(String shengri){
+        public void  setShengri(Date shengri){
     	this.shengri=shengri;
     }
     
-    public String getShengri(){
+    public Date getShengri(){
     	return shengri;
     }
         public void  setShoujihao(String shoujihao){
@@ -171,47 +170,12 @@ public class KeHuParam extends MapperQuery{
     public String getShoujihao1(){
     	return shoujihao1;
     }
-        public void  setShoujihao2(String shoujihao2){
-    	this.shoujihao2=shoujihao2;
+        public void  setWeibohao(String weibohao){
+    	this.weibohao=weibohao;
     }
     
-    public String getShoujihao2(){
-    	return shoujihao2;
-    }
-        public void  setSuozaidixiangxi(String suozaidixiangxi){
-    	this.suozaidixiangxi=suozaidixiangxi;
-    }
-    
-    public String getSuozaidixiangxi(){
-    	return suozaidixiangxi;
-    }
-        public void  setSuozaiguo(String suozaiguo){
-    	this.suozaiguo=suozaiguo;
-    }
-    
-    public String getSuozaiguo(){
-    	return suozaiguo;
-    }
-        public void  setSuozaisheng(String suozaisheng){
-    	this.suozaisheng=suozaisheng;
-    }
-    
-    public String getSuozaisheng(){
-    	return suozaisheng;
-    }
-        public void  setSuozaishi(String suozaishi){
-    	this.suozaishi=suozaishi;
-    }
-    
-    public String getSuozaishi(){
-    	return suozaishi;
-    }
-        public void  setSuozaixian(String suozaixian){
-    	this.suozaixian=suozaixian;
-    }
-    
-    public String getSuozaixian(){
-    	return suozaixian;
+    public String getWeibohao(){
+    	return weibohao;
     }
         public void  setWeixinhao(String weixinhao){
     	this.weixinhao=weixinhao;
@@ -234,41 +198,6 @@ public class KeHuParam extends MapperQuery{
     public String getXingming(){
     	return xingming;
     }
-        public void  setYuanjiguo(String yuanjiguo){
-    	this.yuanjiguo=yuanjiguo;
-    }
-    
-    public String getYuanjiguo(){
-    	return yuanjiguo;
-    }
-        public void  setYuanjisheng(String yuanjisheng){
-    	this.yuanjisheng=yuanjisheng;
-    }
-    
-    public String getYuanjisheng(){
-    	return yuanjisheng;
-    }
-        public void  setYuanjishi(String yuanjishi){
-    	this.yuanjishi=yuanjishi;
-    }
-    
-    public String getYuanjishi(){
-    	return yuanjishi;
-    }
-        public void  setYuanjixian(String yuanjixian){
-    	this.yuanjixian=yuanjixian;
-    }
-    
-    public String getYuanjixian(){
-    	return yuanjixian;
-    }
-        public void  setYuanjixiangxi(String yuanjixiangxi){
-    	this.yuanjixiangxi=yuanjixiangxi;
-    }
-    
-    public String getYuanjixiangxi(){
-    	return yuanjixiangxi;
-    }
         public void  setZhanghao(String zhanghao){
     	this.zhanghao=zhanghao;
     }
@@ -289,5 +218,12 @@ public class KeHuParam extends MapperQuery{
     
     public int getZhuangtai(){
     	return zhuangtai;
+    }
+        public void  setZhuangtaistring(String zhuangtaistring){
+    	this.zhuangtaistring=zhuangtaistring;
+    }
+    
+    public String getZhuangtaistring(){
+    	return zhuangtaistring;
     }
     }

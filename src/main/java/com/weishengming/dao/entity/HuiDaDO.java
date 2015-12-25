@@ -6,11 +6,9 @@ package com.weishengming.dao.entity;
  */
 public class HuiDaDO {
 	private String id;
-	private String wenti_id;
-	private String heku_id; //回答人的 客户id
+	private String wentiid;
+	private String hekuid; //回答人的 客户id
 	private String neirong;// 回答的内容
-	private String tijiaoshijian_string;//回答问题的时间
-	private String gengxinshijian_string; //更新时间.
 	
 	
 	 

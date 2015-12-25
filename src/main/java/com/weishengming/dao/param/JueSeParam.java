@@ -13,6 +13,7 @@ public class JueSeParam extends MapperQuery{
         private Date updateDate;
         private Long version;
         private String juesemingcheng;
+        private Long parentid;
         
     
         public void  setId(Long id){
@@ -49,5 +50,12 @@ public class JueSeParam extends MapperQuery{
     
     public String getJuesemingcheng(){
     	return juesemingcheng;
+    }
+        public void  setParentid(Long parentid){
+    	this.parentid=parentid;
+    }
+    
+    public Long getParentid(){
+    	return parentid;
     }
     }

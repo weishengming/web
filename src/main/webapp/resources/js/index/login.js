@@ -10,9 +10,9 @@ WeiShengMingIndex.initLoginFormValidator = function () {
 WeiShengMingIndex.login =function(){
 	 WeiShengMingIndex.initLoginFormValidator() 
 	    if(WeiShengMingIndex.validator.validate()) {
-	    	var mima = $.trim($("#mima").val());
+	    	/*var mima = $.trim($("#mima").val());
 	    	var mima_md5=md5(md5(mima));
-	    	$("#mima_md5").val(mima_md5);
+	    	$("#mima_md5").val(mima_md5);*/
 	        $("#kehuLoginForm").submit(); 
 	    }
 }

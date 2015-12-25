@@ -12,7 +12,10 @@ public class KeHuJueSeParam extends MapperQuery{
         private Date createDate;
         private Date updateDate;
         private Long version;
+        private Long jueseid;
         private String juesemingcheng;
+        private Long kehuid;
+        private String kehuxingming;
         private String kehuzhanghao;
         
     
@@ -44,12 +47,33 @@ public class KeHuJueSeParam extends MapperQuery{
     public Long getVersion(){
     	return version;
     }
+        public void  setJueseid(Long jueseid){
+    	this.jueseid=jueseid;
+    }
+    
+    public Long getJueseid(){
+    	return jueseid;
+    }
         public void  setJuesemingcheng(String juesemingcheng){
     	this.juesemingcheng=juesemingcheng;
     }
     
     public String getJuesemingcheng(){
     	return juesemingcheng;
+    }
+        public void  setKehuid(Long kehuid){
+    	this.kehuid=kehuid;
+    }
+    
+    public Long getKehuid(){
+    	return kehuid;
+    }
+        public void  setKehuxingming(String kehuxingming){
+    	this.kehuxingming=kehuxingming;
+    }
+    
+    public String getKehuxingming(){
+    	return kehuxingming;
     }
         public void  setKehuzhanghao(String kehuzhanghao){
     	this.kehuzhanghao=kehuzhanghao;

@@ -14,17 +14,31 @@ public class KeHuJueSeDO extends BaseDO {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Long              juese_id;
-    private Long              kehu_id;
+	private Long              jueseid;
+    private Long              kehuid;
     private String            kehuzhanghao;  //客户账号
+    private String            kehuxingming;
     private String            juesemingcheng; //角色名称
     
     
-	public Long getKehu_id() {
-		return kehu_id;
+ 
+	public Long getJueseid() {
+		return jueseid;
 	}
-	public void setKehu_id(Long kehu_id) {
-		this.kehu_id = kehu_id;
+	public void setJueseid(Long jueseid) {
+		this.jueseid = jueseid;
+	}
+	public Long getKehuid() {
+		return kehuid;
+	}
+	public void setKehuid(Long kehuid) {
+		this.kehuid = kehuid;
+	}
+	public String getKehuxingming() {
+		return kehuxingming;
+	}
+	public void setKehuxingming(String kehuxingming) {
+		this.kehuxingming = kehuxingming;
 	}
 	public String getJuesemingcheng() {
 		return juesemingcheng;
@@ -38,11 +52,6 @@ public class KeHuJueSeDO extends BaseDO {
 	public void setKehuzhanghao(String kehuzhanghao) {
 		this.kehuzhanghao = kehuzhanghao;
 	}
-	public Long getJuese_id() {
-		return juese_id;
-	}
-	public void setJuese_id(Long juese_id) {
-		this.juese_id = juese_id;
-	}
+ 
 
 }

@@ -12,6 +12,7 @@ public class QuanXianParam extends MapperQuery{
         private Date createDate;
         private Date updateDate;
         private Long version;
+        private Long parentid;
         private String quanxianmingcheng;
         
     
@@ -42,6 +43,13 @@ public class QuanXianParam extends MapperQuery{
     
     public Long getVersion(){
     	return version;
+    }
+        public void  setParentid(Long parentid){
+    	this.parentid=parentid;
+    }
+    
+    public Long getParentid(){
+    	return parentid;
     }
         public void  setQuanxianmingcheng(String quanxianmingcheng){
     	this.quanxianmingcheng=quanxianmingcheng;
