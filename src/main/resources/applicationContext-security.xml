@@ -23,6 +23,9 @@
 		<intercept-url pattern="/doReg"             access="permitAll" />
 		<intercept-url pattern="/qqLogin"            access="permitAll" />
 		<intercept-url pattern="/qqcallback"         access="permitAll" />
+		<intercept-url pattern="/check_zhanghao_unique_ajax"         access="permitAll" />
+		
+		
 		<intercept-url pattern="/kehu"               access="permitAll" />
         <intercept-url pattern="/kehu*"              access="permitAll" />
         <intercept-url pattern="/kehu/**"             access="hasRole('ROLE_WEB')" />

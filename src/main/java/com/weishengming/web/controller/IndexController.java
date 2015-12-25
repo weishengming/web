@@ -103,20 +103,18 @@ public class IndexController {
 		AjaxOutputTool.writeErrorMsg(response,"验证失败");
 	}*/
 	
-	
     @RequestMapping(method = RequestMethod.POST, value = "check_zhanghao_unique_ajax")
-    @ResponseBody
-    public boolean checkZhanghaoUnique(Long id, String zhanghao) {
+    public void checkZhanghaoUnique(HttpServletRequest request,HttpServletResponse response) {
     	logger.info("进入验证");
         boolean unique = false;
         try {
-            unique = keHuService.checkZhanghaoUnique(id, zhanghao);
+            unique = keHuService.checkZhanghaoUnique(null, request.getParameter("zhanghao"));
         } catch (Exception e) {
             if (logger.isErrorEnabled()) {
                 logger.error(e.getMessage());
             }
         }
-        return unique;
+        AjaxOutputTool.writeData(response, unique);
     }
 	
 	
