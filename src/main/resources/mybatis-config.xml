@@ -7,6 +7,7 @@
 		<!-- <setting name="defaultScriptingLanguage" value="velocity" /> -->
 		<!-- changes from the defaults -->
 		<setting name="cacheEnabled" value="true" />
+		<setting name="logPrefix" value="dao."/> 
 	</settings>
 	
 </configuration>

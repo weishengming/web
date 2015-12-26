@@ -22,7 +22,7 @@ public class KeHuDO extends BaseDO{
 	private String xingming;     //姓名
 	private String nicheng;      //昵称
 	private String xingbie;      //性别
-	private Date   shengri;      //生日yyyy-mm-dd
+	private String shengri;      //生日yyyy-mm-dd
 	private String zhiye;        //职业 [参考职业类型]
 	private String shenfenzheng; //身份证号
 	private String email;        //邮箱
@@ -37,12 +37,12 @@ public class KeHuDO extends BaseDO{
 	private String weixinhao; //微信号
 	private String weibohao; // 微博号
 	
-	private int    zhuangtai;        //客户状态  注册  基本信息提交   基本信息认证 通过
+	private String    zhuangtai;        //客户状态  注册  基本信息提交   基本信息认证 通过
 	private String zhuangtaistring;  //状态字符串
 	
     private Boolean  enabled;   // 是否有效
 	
-	private int    leixing; //客户类型  [参考kehuliexing枚举]
+	private String    leixing; //客户类型  [参考kehuliexing枚举]
 	private String leixingstring; 
 	private String beizhu;  //客户的自己备注信息 
 	
@@ -89,10 +89,11 @@ public class KeHuDO extends BaseDO{
 	public void setXingbie(String xingbie) {
 		this.xingbie = xingbie;
 	}
-	public Date getShengri() {
+	 
+	public String getShengri() {
 		return shengri;
 	}
-	public void setShengri(Date shengri) {
+	public void setShengri(String shengri) {
 		this.shengri = shengri;
 	}
 	public String getZhiye() {
@@ -149,11 +150,19 @@ public class KeHuDO extends BaseDO{
 	public void setWeibohao(String weibohao) {
 		this.weibohao = weibohao;
 	}
-	public int getZhuangtai() {
+	
+ 
+	public String getZhuangtai() {
 		return zhuangtai;
 	}
-	public void setZhuangtai(int zhuangtai) {
+	public void setZhuangtai(String zhuangtai) {
 		this.zhuangtai = zhuangtai;
+	}
+	public String getLeixing() {
+		return leixing;
+	}
+	public void setLeixing(String leixing) {
+		this.leixing = leixing;
 	}
 	public String getZhuangtaistring() {
 		return zhuangtaistring;
@@ -167,12 +176,7 @@ public class KeHuDO extends BaseDO{
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
-	public int getLeixing() {
-		return leixing;
-	}
-	public void setLeixing(int leixing) {
-		this.leixing = leixing;
-	}
+ 
 	public String getLeixingstring() {
 		return leixingstring;
 	}

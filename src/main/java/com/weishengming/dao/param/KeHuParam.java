@@ -16,7 +16,7 @@ public class KeHuParam extends MapperQuery{
         private String beizhu;
         private String email;
         private Boolean enabled;
-        private int leixing;
+        private String leixing;
         private String leixingstring;
         private String mima;
         private String mimamd5;
@@ -24,7 +24,7 @@ public class KeHuParam extends MapperQuery{
         private String qq;
         private String qq1;
         private String shenfenzheng;
-        private Date shengri;
+        private String shengri;
         private String shoujihao;
         private String shoujihao1;
         private String weibohao;
@@ -33,7 +33,7 @@ public class KeHuParam extends MapperQuery{
         private String xingming;
         private String zhanghao;
         private String zhiye;
-        private int zhuangtai;
+        private String zhuangtai;
         private String zhuangtaistring;
         
     
@@ -93,11 +93,11 @@ public class KeHuParam extends MapperQuery{
     public Boolean getEnabled(){
     	return enabled;
     }
-        public void  setLeixing(int leixing){
+        public void  setLeixing(String leixing){
     	this.leixing=leixing;
     }
     
-    public int getLeixing(){
+    public String getLeixing(){
     	return leixing;
     }
         public void  setLeixingstring(String leixingstring){
@@ -149,11 +149,11 @@ public class KeHuParam extends MapperQuery{
     public String getShenfenzheng(){
     	return shenfenzheng;
     }
-        public void  setShengri(Date shengri){
+        public void  setShengri(String shengri){
     	this.shengri=shengri;
     }
     
-    public Date getShengri(){
+    public String getShengri(){
     	return shengri;
     }
         public void  setShoujihao(String shoujihao){
@@ -212,11 +212,11 @@ public class KeHuParam extends MapperQuery{
     public String getZhiye(){
     	return zhiye;
     }
-        public void  setZhuangtai(int zhuangtai){
+        public void  setZhuangtai(String zhuangtai){
     	this.zhuangtai=zhuangtai;
     }
     
-    public int getZhuangtai(){
+    public String getZhuangtai(){
     	return zhuangtai;
     }
         public void  setZhuangtaistring(String zhuangtaistring){

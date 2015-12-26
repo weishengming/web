@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -14,9 +16,11 @@ import com.weishengming.dao.param.KeHuParam;
 import com.weishengming.dao.query.KeHuQuery;
 import com.weishengming.service.query.ResultPage;
 import com.weishengming.service.validate.ValidationService;
+import com.weishengming.web.controller.IndexController;
 
 @Service
 public class KeHuService {
+	Logger  logger = LoggerFactory.getLogger(KeHuService.class);
 
     @Resource
     private KeHuMapper mapper;
@@ -43,6 +47,21 @@ public class KeHuService {
             return checkZhanghaoUnique(zhanghao);
         }
     }
+    public KeHuDO findKeHuByZhangHao(String zhanghao){
+    	if (!StringUtils.isEmpty(zhanghao)) {
+            KeHuParam param = new KeHuParam();
+            param.setZhanghao(zhanghao);
+            List<KeHuDO> list = mapper.findList(param);
+            if (null == list || list.size() == 0) {
+            	logger.info("找不到信息");
+            	return null;
+            }else{
+            	return list.get(0);
+            }
+        }
+    	return null;
+    }
+    
     public boolean checkZhanghaoUnique(String zhanghao) {
         boolean zhanghaoUnique = false;
         if (!StringUtils.isEmpty(zhanghao)) {

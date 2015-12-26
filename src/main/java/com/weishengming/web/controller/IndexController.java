@@ -28,6 +28,7 @@ import com.weishengming.dao.query.KeHuQuery;
 import com.weishengming.service.KeHuService;
 import com.weishengming.service.query.ResultPage;
 import com.weishengming.utils.CalendarUtil;
+import com.weishengming.utils.constant.KeHuZhuangTaiConstant;
 import com.weishengming.web.ajax.AjaxOutputTool;
 
 /**
@@ -35,7 +36,7 @@ import com.weishengming.web.ajax.AjaxOutputTool;
  * indexController 负责 登陆 注册 重置密码 
  */
 @Controller
-public class IndexController {
+public class IndexController extends SecurityController{
 	Logger  logger = LoggerFactory.getLogger(IndexController.class);
 	@Resource
 	private KeHuService keHuService;
@@ -126,24 +127,15 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value="doReg",method=RequestMethod.POST) 
-	public String doReg(String zhanghao,String mima,Model model){
-		
-		/* UserQuery query = new UserQuery();
-         query.setUserName(userNameParam);
-         ResultPage<UserDO> result = service.findPage(query);
-         List<UserDO> users = result.getResult();*/
-		
-        KeHuQuery query=new KeHuQuery();
-        query.setZhanghao(zhanghao);
-        ResultPage<KeHuDO> result=keHuService.findPage(query);
-        List<KeHuDO> kehus=result.getResult();
-        
-		
-		
+	public String doReg(String zhanghao,String mima,String mimamd5,Model model){
 		//获得用户的 账号和密码
 		KeHuDO kehuDo =new KeHuDO();
 		kehuDo.setZhanghao(zhanghao);
 		kehuDo.setMima(mima);
+		kehuDo.setMimamd5(mimamd5);
+		kehuDo.setEnabled(true);
+		kehuDo.setZhuangtai(KeHuZhuangTaiConstant.REG);
+		kehuDo.setZhuangtaistring(KeHuZhuangTaiConstant.REG_STRING);//注册状态
 		kehuDo.setCreateDate(CalendarUtil.getCurrentDate());
 		kehuDo.setUpdateDate(CalendarUtil.getCurrentDate());
 		keHuService.create(kehuDo);
