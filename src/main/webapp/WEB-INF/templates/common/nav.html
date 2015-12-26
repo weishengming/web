@@ -14,7 +14,11 @@
       <a class="nav-link" href="/kehu/kehulist">用户列表</a><!-- 按地区查询 -->
     </li>
     <li class="nav-item active pull-right">
-         <a class="nav-link" href="/j_spring_security_logout">$!zhanghao</a> 
+         #if($!zhanghao)
+           <a class="nav-link" href="/j_spring_security_logout">$!zhanghao</a>  
+         #else
+            <a class="nav-link" href="/loginPage">请登录</a> 
+         #end
     </li>
   </ul>
 </nav>
