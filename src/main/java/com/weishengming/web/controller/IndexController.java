@@ -45,8 +45,7 @@ public class IndexController extends SecurityController{
 	 */
 	@RequestMapping(value="index",method=RequestMethod.GET)  
     public String indexPage(Model model){  
-		logger.info("test:{}","test");
-        model.addAttribute("tianci", "天赐你好"); 
+		model.addAttribute("zhanghao",getZhangHao());
         return "/index/index";  
     } 
 	 
@@ -90,7 +89,7 @@ public class IndexController extends SecurityController{
 	public String doLogin(String name,String password,Model model){
 		logger.info("用户名:{},密码:{}",name,password);
 		// 判断用户名和密码是否正确
-		model.addAttribute("name",name);
+		model.addAttribute("zhanghao",getZhangHao());
 		return "/index/index";
 	}
 /*	@RequestMapping(method = RequestMethod.GET, value = "/checkzhanghao_ajax")

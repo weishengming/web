@@ -23,17 +23,16 @@
   </div>
   <div class="form-group">
   <button type="submit" class="btn btn-success btn-sm">查询</button>
-  <button type="button" class="btn btn-info btn-sm">添加</button>
+  <!-- <button type="button" class="btn btn-info btn-sm">添加</button> -->
   </div>
 </form>
 <br>
-
 <table class="table table-striped table-bordered table-hover table-sm">
    <thead class="table-success">
      <tr>
        <th>姓名</th>
        <th>qq</th>
-       <th>手机号</th>
+       <!-- <th>手机号</th> -->
        <th>操作</th>
      </tr>
    </thead>
@@ -41,7 +40,7 @@
      #foreach($!model in $!resultViewList)
      <tr>
          <td>$!model.xingming</td>
-         <td>$!model.qq</td>
+         <!--<td>$!model.qq</td>-->
          <td>$!model.shoujihao</td>
          <td>
             #if($!model.zhanghao == $!zhanghao)
@@ -53,6 +52,5 @@
   </tbody>
 </table>
 </div>
-
 </body>
 </html>
