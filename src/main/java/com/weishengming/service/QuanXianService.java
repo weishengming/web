@@ -7,12 +7,12 @@ import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.weishengming.commom.validate.ValidationService;
 import com.weishengming.dao.entity.QuanXianDO;
 import com.weishengming.dao.mapper.QuanXianMapper;
 import com.weishengming.dao.param.QuanXianParam;
 import com.weishengming.dao.query.QuanXianQuery;
 import com.weishengming.service.query.ResultPage;
-import com.weishengming.service.validate.ValidationService;
 
 @Service
 public class QuanXianService {

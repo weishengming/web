@@ -1,7 +1,6 @@
 package com.weishengming.web.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qq.connect.api.OpenID;
 import com.qq.connect.api.qzone.PageFans;
@@ -23,13 +21,11 @@ import com.qq.connect.javabeans.qzone.PageFansBean;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
 import com.qq.connect.javabeans.weibo.Company;
 import com.qq.connect.oauth.Oauth;
+import com.weishengming.commom.ajax.AjaxOutputTool;
+import com.weishengming.common.constant.KeHuZhuangTaiConstant;
+import com.weishengming.common.util.CalendarUtil;
 import com.weishengming.dao.entity.KeHuDO;
-import com.weishengming.dao.query.KeHuQuery;
 import com.weishengming.service.KeHuService;
-import com.weishengming.service.query.ResultPage;
-import com.weishengming.utils.CalendarUtil;
-import com.weishengming.utils.constant.KeHuZhuangTaiConstant;
-import com.weishengming.web.ajax.AjaxOutputTool;
 
 /**
  * @author 杨天赐

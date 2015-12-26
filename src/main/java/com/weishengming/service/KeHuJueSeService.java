@@ -7,12 +7,12 @@ import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.weishengming.commom.validate.ValidationService;
 import com.weishengming.dao.entity.KeHuJueSeDO;
 import com.weishengming.dao.mapper.KeHuJueSeMapper;
 import com.weishengming.dao.param.KeHuJueSeParam;
 import com.weishengming.dao.query.KeHuJueSeQuery;
 import com.weishengming.service.query.ResultPage;
-import com.weishengming.service.validate.ValidationService;
 
 @Service
 public class KeHuJueSeService {
