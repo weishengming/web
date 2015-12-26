@@ -10,6 +10,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.weishengming.common.util.DateUtil;
+import com.weishengming.common.util.NullUtil;
 import com.weishengming.common.validate.ValidationService;
 import com.weishengming.dao.entity.KeHuDO;
 import com.weishengming.dao.mapper.KeHuMapper;
@@ -99,6 +101,9 @@ public class KeHuService {
     }
     
     private void mergeEntity(KeHuDO source,KeHuDO target){
-    	//TODO 
+    	target.setUpdateDate(DateUtil.getCurrentDate());
+    	target.setXingming(source.getXingming());
+    	target.setShoujihao(source.getShoujihao());
+    	target.setQq(source.getQq());
     }
 }

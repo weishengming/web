@@ -23,7 +23,7 @@ import com.qq.connect.javabeans.weibo.Company;
 import com.qq.connect.oauth.Oauth;
 import com.weishengming.common.ajax.AjaxOutputTool;
 import com.weishengming.common.constant.KeHuZhuangTaiConstant;
-import com.weishengming.common.util.CalendarUtil;
+import com.weishengming.common.util.DateUtil;
 import com.weishengming.dao.entity.KeHuDO;
 import com.weishengming.service.KeHuService;
 
@@ -132,8 +132,8 @@ public class IndexController extends SecurityController{
 		kehuDo.setEnabled(true);
 		kehuDo.setZhuangtai(KeHuZhuangTaiConstant.REG);
 		kehuDo.setZhuangtaistring(KeHuZhuangTaiConstant.REG_STRING);//注册状态
-		kehuDo.setCreateDate(CalendarUtil.getCurrentDate());
-		kehuDo.setUpdateDate(CalendarUtil.getCurrentDate());
+		kehuDo.setCreateDate(DateUtil.getCurrentDate());
+		kehuDo.setUpdateDate(DateUtil.getCurrentDate());
 		keHuService.create(kehuDo);
 		logger.info("注册用户名:{}与密码:{}",zhanghao,mima);
 		return "/index/login";

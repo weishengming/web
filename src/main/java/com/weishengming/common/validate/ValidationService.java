@@ -10,12 +10,14 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import com.weishengming.common.exception.ServiceException;
+import com.weishengming.common.util.NullUtil;
 
 public class ValidationService {
 	@Resource
 	private Validator validator ;
 
 	public ValidationResult validate(Object param, boolean fastMode) {
+		
 		ValidationResult result = new ValidationResult();
 
 		Set violations = this.validator.validate(param, new Class[0]);
@@ -39,6 +41,7 @@ public class ValidationService {
 	}
 
 	public void validate(Object param) throws ServiceException {
+		NullUtil.kongzifuchuanToNull(param);
 		if (param == null) {
 			throw createServiceException("参数为空");
 		}

@@ -9,7 +9,7 @@
 		</encoder>
 	</appender>
 	
-	<logger name="dao" level="INFO">  
+	<logger name="dao" level="DEBUG">  
     <!--daoFILE为实际定义的appender-->  
 	    <appender-ref ref="daoFILE" />  
 	</logger> 
@@ -17,21 +17,21 @@
 	<!-- logback为java中的包 -->
 	<!-- <logger name="logback" /> -->
 	<!--logback.LogbackDemo：类的全路径 -->
-	<logger name="org.springframework" level="INFO">
+	<logger name="org.springframework" level="DEBUG">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<logger name="org.mybatis" level="INFO">
+	<logger name="org.mybatis" level="DEBUG">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<logger name="java.sql" level="INFO">
+	<logger name="java.sql" level="DEBUG">
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<logger name="org.apache.ibatis" level="INFO">
+	<logger name="org.apache.ibatis" level="DEBUG">
 		<appender-ref ref="STDOUT" />
 	</logger>
 
 
-	<root level="INFO">
+	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />
 	</root>
 </configuration>  

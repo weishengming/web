@@ -9,10 +9,50 @@
 </head>
 <body>
 #parse("/common/nav.html") <!-- 引入导航 -->
+<br>
+<div class="container">
+<form class="form-inline" action="" method="get">
+  <div class="form-group">
+    <input type="text" class="form-control form-control-sm" name="xingming" id="xingming" value="$!query.xingming" placeholder="姓名">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control form-control-sm" name="shoujihao" id="shoujihao" value="$!query.shoujihao"   placeholder="手机号">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control form-control-sm" name="qq" id="qq" value="$!query.qq"  placeholder="QQ">
+  </div>
+  <div class="form-group">
+  <button type="submit" class="btn btn-success btn-sm">查询</button>
+  <button type="button" class="btn btn-info btn-sm">添加</button>
+  </div>
+</form>
+<br>
 
-#foreach($kehu in $kehulist)
-    $kehu.id
- #end
+<table class="table table-striped table-bordered table-hover table-sm">
+   <thead class="table-success">
+     <tr>
+       <th>姓名</th>
+       <th>qq</th>
+       <th>手机号</th>
+       <th>操作</th>
+     </tr>
+   </thead>
+  <tbody>
+     #foreach($!model in $!resultViewList)
+     <tr>
+         <td>$!model.xingming</td>
+         <td>$!model.qq</td>
+         <td>$!model.shoujihao</td>
+         <td>
+            #if($!model.zhanghao == $!zhanghao)
+            <a class="btn btn-sm btn-success-outline" href="/kehu/edit/$!{model.id}">编辑</a>
+            #end
+         </td>
+     </tr>
+     #end
+  </tbody>
+</table>
+</div>
 
 </body>
 </html>

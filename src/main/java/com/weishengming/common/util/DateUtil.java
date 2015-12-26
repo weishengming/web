@@ -12,10 +12,10 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CalendarUtil {
+public class DateUtil {
 	public static final int LAST_BILL_DATE = 28;
 	public static final int BILL_REPAYMENT_DAYS = 18;
-	private static final Logger logger = LoggerFactory.getLogger(CalendarUtil.class);
+	private static final Logger logger = LoggerFactory.getLogger(DateUtil.class);
 	static GregorianCalendar cldr = new GregorianCalendar();
 	public static final long DAYMILLI = 86400000L;
 	public static final long HOURMILLI = 3600000L;
