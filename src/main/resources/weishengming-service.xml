@@ -29,7 +29,7 @@
     </tx:advice>
     
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-	<bean id="validationService" class="com.weishengming.service.validate.ValidationService" />
+	<bean id="validationService" class="com.weishengming.common.validate.ValidationService" />
     
     <!-- 配置AOP -->
     <aop:config proxy-target-class="true">

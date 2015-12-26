@@ -23,7 +23,7 @@
 	<!-- 配置模板引擎 -->
 	 <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 	  <property name="contentType" value="text/html;charset=UTF-8" />
-	  <property name="viewClass" value="com.weishengming.web.velocity.WebVelocityView"/>
+	  <property name="viewClass" value="com.weishengming.common.velocity.WebVelocityView"/>
 	  <property name="suffix" value=".html" />
 	  	<!-- <property name="requestContextAttribute" value="rc"/>
         <property name="dateToolAttribute" value="dateTool" />

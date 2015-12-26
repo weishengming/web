@@ -23,7 +23,7 @@
         <param-value>classpath:logback.xml</param-value>
     </context-param>
     <listener>
-        <listener-class>com.weishengming.logback.LogbackConfigListener</listener-class>
+        <listener-class>com.weishengming.common.logback.LogbackConfigListener</listener-class>
     </listener>
     <!-- logback-end -->
  
