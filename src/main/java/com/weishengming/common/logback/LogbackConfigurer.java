@@ -1,4 +1,4 @@
-package com.weishengming.commom.logback;
+package com.weishengming.common.logback;
 
 import java.io.File;
 import java.io.FileNotFoundException;

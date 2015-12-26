@@ -1,4 +1,4 @@
-package com.weishengming.commom.validate;
+package com.weishengming.common.validate;
 
 import java.io.Serializable;
 import java.util.List;

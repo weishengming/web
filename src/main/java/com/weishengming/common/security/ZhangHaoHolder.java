@@ -1,4 +1,4 @@
-package com.weishengming.commom.security;
+package com.weishengming.common.security;
 
 /**
  * @author 杨天赐

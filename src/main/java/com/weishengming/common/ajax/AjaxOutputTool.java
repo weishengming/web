@@ -1,4 +1,4 @@
-package com.weishengming.commom.ajax;
+package com.weishengming.common.ajax;
 
 import java.io.IOException;
 

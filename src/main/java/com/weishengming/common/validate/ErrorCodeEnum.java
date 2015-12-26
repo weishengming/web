@@ -1,4 +1,4 @@
-package com.weishengming.commom.validate;
+package com.weishengming.common.validate;
 
 public class ErrorCodeEnum {
 	public static final String NULL_PARAM = "参数为空";

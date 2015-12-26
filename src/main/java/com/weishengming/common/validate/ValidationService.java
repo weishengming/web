@@ -1,4 +1,4 @@
-package com.weishengming.commom.validate;
+package com.weishengming.common.validate;
 
 import java.util.ArrayList;
 import java.util.Iterator;

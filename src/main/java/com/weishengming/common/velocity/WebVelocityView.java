@@ -1,4 +1,4 @@
-package com.weishengming.commom.velocity;
+package com.weishengming.common.velocity;
 
 import java.util.Map;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.view.velocity.VelocityView;
 
-import com.weishengming.commom.properties.CustomizedPropertyPlaceholderConfigurer;
+import com.weishengming.common.properties.CustomizedPropertyPlaceholderConfigurer;
 
 public class WebVelocityView extends VelocityView {
 	public static final String CONTEXT_PATH = "static_resource";

@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import com.weishengming.commom.validate.ValidationService;
+import com.weishengming.common.validate.ValidationService;
 import com.weishengming.dao.entity.JueSeDO;
 import com.weishengming.dao.mapper.JueSeMapper;
 import com.weishengming.dao.param.JueSeParam;

@@ -1,4 +1,4 @@
-package com.weishengming.commom.security;
+package com.weishengming.common.security;
 
 import java.util.HashSet;
 import java.util.List;

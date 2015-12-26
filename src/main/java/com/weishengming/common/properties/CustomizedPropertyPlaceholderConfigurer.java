@@ -1,4 +1,4 @@
-package com.weishengming.commom.properties;
+package com.weishengming.common.properties;
 
 import java.util.HashMap;
 import java.util.Iterator;

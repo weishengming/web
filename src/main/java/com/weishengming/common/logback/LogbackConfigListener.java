@@ -1,4 +1,4 @@
-package com.weishengming.commom.logback;
+package com.weishengming.common.logback;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

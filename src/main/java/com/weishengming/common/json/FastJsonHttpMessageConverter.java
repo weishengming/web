@@ -1,4 +1,4 @@
-package com.weishengming.commom.json;
+package com.weishengming.common.json;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -21,7 +21,7 @@ import com.qq.connect.javabeans.qzone.PageFansBean;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
 import com.qq.connect.javabeans.weibo.Company;
 import com.qq.connect.oauth.Oauth;
-import com.weishengming.commom.ajax.AjaxOutputTool;
+import com.weishengming.common.ajax.AjaxOutputTool;
 import com.weishengming.common.constant.KeHuZhuangTaiConstant;
 import com.weishengming.common.util.CalendarUtil;
 import com.weishengming.dao.entity.KeHuDO;
