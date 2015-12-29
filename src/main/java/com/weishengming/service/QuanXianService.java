@@ -12,7 +12,7 @@ import com.weishengming.dao.entity.QuanXianDO;
 import com.weishengming.dao.mapper.QuanXianMapper;
 import com.weishengming.dao.param.QuanXianParam;
 import com.weishengming.dao.query.QuanXianQuery;
-import com.weishengming.service.query.ResultPage;
+import com.weishengming.dao.query.ResultPage;
 
 @Service
 public class QuanXianService {

@@ -12,7 +12,7 @@ import com.weishengming.dao.entity.KeHuJueSeDO;
 import com.weishengming.dao.mapper.KeHuJueSeMapper;
 import com.weishengming.dao.param.KeHuJueSeParam;
 import com.weishengming.dao.query.KeHuJueSeQuery;
-import com.weishengming.service.query.ResultPage;
+import com.weishengming.dao.query.ResultPage;
 
 @Service
 public class KeHuJueSeService {

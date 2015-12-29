@@ -12,7 +12,7 @@ import com.weishengming.dao.entity.JueSeDO;
 import com.weishengming.dao.mapper.JueSeMapper;
 import com.weishengming.dao.param.JueSeParam;
 import com.weishengming.dao.query.JueSeQuery;
-import com.weishengming.service.query.ResultPage;
+import com.weishengming.dao.query.ResultPage;
 
 @Service
 public class JueSeService {

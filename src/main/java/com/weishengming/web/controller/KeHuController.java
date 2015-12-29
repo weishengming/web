@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.dao.entity.KeHuDO;
 import com.weishengming.dao.query.KeHuQuery;
+import com.weishengming.dao.query.ResultPage;
 import com.weishengming.service.KeHuService;
-import com.weishengming.service.query.ResultPage;
 import com.weishengming.web.view.KeHuView;
 
 /**

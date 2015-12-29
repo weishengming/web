@@ -1,4 +1,4 @@
-package com.weishengming.service.query;
+package com.weishengming.dao.query;
 
 import java.util.ArrayList;
 import java.util.List;

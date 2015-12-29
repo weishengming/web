@@ -11,13 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.weishengming.common.util.DateUtil;
-import com.weishengming.common.util.NullUtil;
 import com.weishengming.common.validate.ValidationService;
 import com.weishengming.dao.entity.KeHuDO;
 import com.weishengming.dao.mapper.KeHuMapper;
 import com.weishengming.dao.param.KeHuParam;
 import com.weishengming.dao.query.KeHuQuery;
-import com.weishengming.service.query.ResultPage;
+import com.weishengming.dao.query.ResultPage;
 
 @Service
 public class KeHuService {

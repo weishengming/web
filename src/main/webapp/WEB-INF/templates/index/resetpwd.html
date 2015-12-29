@@ -13,7 +13,16 @@
 <link rel="stylesheet" href="resources/css/index/reg.css">
 </head>
 <body>
-#parse("/common/returnlogin.html")
+  <nav class="navbar navbar-light bg-faded">
+   <a class="btn btn-sm navbar-brand active" href="/loginPage"><img alt="" src="${static_resource}/resources/images/index/left.png"></a>
+   <ul class="nav navbar-nav">
+    <li class="nav-item active pull-right">
+       <a class="nav-link" href="http://www.weishengming.com">
+         <img alt="" src="${static_resource}/resources/images/index/weishengming.png">
+        </a> 
+    </li>
+   </ul>
+  </nav>
  <div class="container">
       <form class="form-signin" method="post" action="doReg">
         <h4>请重置密码</h4>
