@@ -14,7 +14,7 @@ import org.eclipse.jetty.server.handler.RequestLogHandler;
 import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-public class SimpleHttpServer {
+public class WebHttpServer {
 	Server server;
 	int port;
 	final int DEFAULTPORT = 9999;
@@ -24,11 +24,11 @@ public class SimpleHttpServer {
 	RequestLogHandler requestLogHandler = new RequestLogHandler();
 	WebAppContext context;
 
-	public SimpleHttpServer() throws IOException {
+	public WebHttpServer() throws IOException {
 		initialize(null, 0, null, null);
 	}
 
-	public SimpleHttpServer(File webAppDir, int port, String host, File logFile)
+	public WebHttpServer(File webAppDir, int port, String host, File logFile)
 			throws IOException {
 		initialize(webAppDir, port, host, logFile);
 	}
@@ -65,7 +65,7 @@ public class SimpleHttpServer {
 	}
 
 	public static void main(String[] args) throws Exception {
-		SimpleHttpServer server = new SimpleHttpServer(new File("src/main/webapp"),9999, null, null);
+		WebHttpServer server = new WebHttpServer(new File("src/main/webapp"),9999, null, null);
 		server.start();
 	}
 

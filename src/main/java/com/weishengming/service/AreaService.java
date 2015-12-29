@@ -75,7 +75,7 @@ public class AreaService {
 	}
 
     public List<Long> findChildIdListByParentId(long parentId) {
-        List<Long> idList = new ArrayList<>();
+        List<Long> idList = new ArrayList<Long>();
         List<AreaDO> list = this.findByParentId(parentId);
         for (AreaDO areaDO : list) {
             idList.add(areaDO.getId());
