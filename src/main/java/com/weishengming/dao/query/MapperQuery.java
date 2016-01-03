@@ -6,7 +6,7 @@ public class MapperQuery implements Serializable {
 
     private static final long serialVersionUID    = -4045214226807657088L;
 
-    private static int        DEFAULT_PAGE_SIZE   = 15;
+    private static int        DEFAULT_PAGE_SIZE   = 10;
     private static int        DEFAULT_PAGE_NUMBER = 1;
     public static String      ORDER_TYPE_ASC      = "ASC";
     public static String      ORDER_TYPE_DESC     = "DESC";

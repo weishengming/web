@@ -20,7 +20,7 @@
 					<div class="row">
 						<div class="col-md-4 col-md-offset-4">
 							<div id="logo">
-								<a href="index.html"><img src="${static_resource}/resources/img/logo/logo-alt.png" height="40" alt="logo name" /></a>
+								  <a href="index.html"><img src="${static_resource}/resources/img/logo/logo3.png" height="40" alt="logo name" /></a>  
 							</div>
 						</div>
 					</div>
@@ -34,7 +34,6 @@
 					<div class="row">
 						<div class="col-md-4 col-md-offset-4">
 							<div class="login-box-plain">
-								<h2 class="bigintro">登录</h2>
 								<form id="kehuLoginForm" class="form-signin" method="post" action="/j_spring_security_check">
 								  <div class="form-group">
 									<label for="exampleInputEmail1">账号</label>
@@ -46,13 +45,11 @@
 									<i class="fa fa-lock"></i>
 									<input type="password" id="j_password" class="form-control" name="j_password" placeholder="密码" required >
 								  </div>
-								  <div class="form-actions">
 									 <button class="btn btn-lg btn-primary btn-block" type="button" onclick="WeiShengMingIndex.login()">立即登陆</button>
-								  </div>
 								</form>
 								<div class="login-helpers">
-									<a href="#" onclick="swapScreen('forgot');return false;">忘记密码?</a> <br>
-									没有帐号? <a href="#" onclick="swapScreen('register');return false;">立即注册</a>
+									<h5><a href="#" onclick="swapScreen('forgot');return false;">忘记密码?</a></h5>
+									<h5>没有帐号? <a href="#" onclick="swapScreen('register');return false;">立即注册</a></h5>
 								</div>
 							</div>
 						</div>
@@ -66,34 +63,28 @@
 					<div class="row">
 						<div class="col-md-4 col-md-offset-4">
 							<div class="login-box-plain">
-								<h2 class="bigintro">注册</h2>
-								<form role="form">
+								 <form id="keHuRegForm" class="form" method="post" action="doReg">
 								  <div class="form-group">
 									<label for="exampleInputName">姓名</label>
 									<i class="fa fa-font"></i>
-									<input type="text" class="form-control" id="exampleInputName" >
+									<input type="text" class="form-control" name="xingming"  id="xingming" placeholder="真实姓名" >
 								  </div>
 								  <div class="form-group">
 									<label for="exampleInputUsername">账号</label>
 									<i class="fa fa-user"></i>
-									<input type="text" class="form-control" id="exampleInputUsername" >
+									 <input type="text" id="zhanghao" class="form-control" name="zhanghao" placeholder="QQ号/手机号" required>
 								  </div>
 								  <div class="form-group"> 
 									<label for="exampleInputPassword1">密码</label>
 									<i class="fa fa-lock"></i>
-									<input type="password" class="form-control" id="exampleInputPassword1" >
+									 <input type="password" id="mima" class="form-control" name="mima" placeholder="密码" required>
+       								 <input type="hidden" id="mimamd5" class="form-control" name="mimamd5">
 								  </div>
-								  <div class="form-group"> 
-									<label for="exampleInputPassword2">再次输入</label>
-									<i class="fa fa-check-square-o"></i>
-									<input type="password" class="form-control" id="exampleInputPassword2" >
-								  </div>
-								  <div class="form-actions">
-									<button type="submit" class="btn btn-success">立即注册</button>
-								  </div>
+									<input type="hidden" id="check_zhanghao" class="form-control"  >
+                                    <button class="btn btn-lg btn-success btn-block" type="button" onclick="WeiShengMingReg.reg();">立即注册</button>
 								</form>
 								<div class="login-helpers">
-									<a href="#" onclick="swapScreen('login');return false;"> 返回登录</a> <br>
+									<h5><a href="#" onclick="swapScreen('login');return false;"> 返回登录</a> <br></h5>
 								</div>
 							</div>
 						</div>
@@ -107,19 +98,16 @@
 					<div class="row">
 						<div class="col-md-4 col-md-offset-4">
 							<div class="login-box-plain">
-								<h2 class="bigintro">重置密码</h2>
 								<form role="form">
 								  <div class="form-group">
 									<label for="exampleInputEmail1">输入你的账号</label>
 									<i class="fa fa-envelope"></i>
 									<input type="email" class="form-control" id="exampleInputEmail1" >
 								  </div>
-								  <div class="form-actions">
 									<button type="submit" class="btn btn-info">立即重置密码</button>
-								  </div>
 								</form>
 								<div class="login-helpers">
-									<a href="#" onclick="swapScreen('login');return false;">返回登录</a> <br>
+									<h5><a href="#" onclick="swapScreen('login');return false;">返回登录</a> <br></h5>
 								</div>
 							</div>
 						</div>
@@ -133,6 +121,7 @@
 	<!-- CUSTOM SCRIPT -->
 	<script src="${static_resource}/resources/js/script.js"></script>
 	<script src="${static_resource}/resources/js/index/login.js"></script>
+	<script src="${static_resource}/resources/js/index/reg.js"></script>
     <script src="${static_resource}/resources/js/common/md5.js"></script>
 	<script>
 		jQuery(document).ready(function() {		

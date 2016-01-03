@@ -92,13 +92,7 @@ public class IndexController extends SecurityController{
 		model.addAttribute("zhanghao",getZhangHao());
 		return "/index/index";
 	}
-/*	@RequestMapping(method = RequestMethod.GET, value = "/checkzhanghao_ajax")
-	public void checkZhanghao(String zhanghao,HttpServletResponse response){
-		//如果账号 没有存在,  验证成功.  
-		AjaxOutputTool.writeData(response, "没有问题！");
-		AjaxOutputTool.writeErrorMsg(response,"验证失败");
-	}*/
-	
+
     @RequestMapping(method = RequestMethod.POST, value = "check_zhanghao_unique_ajax")
     public void checkZhanghaoUnique(HttpServletRequest request,HttpServletResponse response) {
     	logger.info("进入验证");
@@ -122,10 +116,11 @@ public class IndexController extends SecurityController{
 	 * @return
 	 */
 	@RequestMapping(value="doReg",method=RequestMethod.POST) 
-	public String doReg(String zhanghao,String mima,String mimamd5,Model model){
+	public String doReg(String xingming,String zhanghao,String mima,String mimamd5,Model model){
 		//获得用户的 账号和密码
 		KeHuDO kehuDo =new KeHuDO();
 		kehuDo.setZhanghao(zhanghao);
+		kehuDo.setXingming(xingming);
 		kehuDo.setMima(mima);
 		kehuDo.setMimamd5(mimamd5);
 		kehuDo.setEnabled(true);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -43,7 +44,7 @@ public class KeHuController extends SecurityController{
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET,value="/kehulist")
-    public String list(Model model, KeHuQuery query,Integer changePageSize,Integer pn) {
+    public String list(HttpServletResponse response,Model model, KeHuQuery query,Integer changePageSize,Integer pn) {
 		logger.info("进入到客户列表页面");
         query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
@@ -55,6 +56,7 @@ public class KeHuController extends SecurityController{
             BeanUtils.copyProperties(sourceKeHu, targetKeHu);
             keHuViewList.add(targetKeHu);
         }
+        response.setContentType("charset=UTF-8");
         String pageUrl = "/kehu/kehulist?" + Converter.covertToQueryStr(query);
         model.addAttribute("pageUrl", pageUrl);
         model.addAttribute("resultViewList", keHuViewList);
