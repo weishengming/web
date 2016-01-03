@@ -25,7 +25,7 @@ import com.weishengming.web.view.KeHuView;
 
 /**
  * @author 杨天赐
- * 客户控制[暂时没有加入分页控制]
+ * 客户控制 
  */
 @Controller
 @RequestMapping(value="kehu")

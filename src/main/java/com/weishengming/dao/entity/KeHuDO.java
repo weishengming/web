@@ -37,12 +37,12 @@ public class KeHuDO extends BaseDO{
 	private String weixinhao; //微信号
 	private String weibohao; // 微博号
 	
-	private String    zhuangtai;        //客户状态  注册  基本信息提交   基本信息认证 通过
+	private String zhuangtai;        //客户状态  注册  基本信息提交   基本信息认证 通过
 	private String zhuangtaistring;  //状态字符串
 	
     private Boolean  enabled;   // 是否有效
 	
-	private String    leixing; //客户类型  [参考kehuliexing枚举]
+	private String leixing; //客户类型  [参考kehuliexing枚举]
 	private String leixingstring; 
 	private String beizhu;  //客户的自己备注信息 
 	

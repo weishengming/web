@@ -4,7 +4,7 @@ WeiShengMingReg.validator = {};
 WeiShengMingReg.initRegFormValidator = function () {
 	WeiShengMingReg.validator = new Clover.validator.Validator("#keHuRegForm");
 	WeiShengMingReg.validator.addValidation("#xingming", "required", "请输入真实姓名");
-	WeiShengMingReg.validator.addValidation("#zhanghao", "required", "请输入手机号或邮箱");
+	WeiShengMingReg.validator.addValidation("#zhanghao", "required", "请输入QQ号或手机号");
 	WeiShengMingReg.validator.addValidation("#mima", "required", "请输入密码");
 	
 	WeiShengMingReg.validator.addAsyncValidation("#zhanghao", function (target, inform) {
