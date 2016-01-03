@@ -1,43 +1,151 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_CN">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>登录微生命</title>
-<meta property="qc:admins" content="364425770767513056751676375" />
-<meta property="wb:webmaster" content="c870d1270a3de2dc" />
-<meta name="description" content="生命的意义">
-<meta name="keywords" content="">
-<meta name="author" content="微生命">
-#parse("/common/css-js.html")
-<link rel="stylesheet" href="resources/css/index/login.css">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>微生命</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	#parse("common/css-js.html")
+    <link rel="stylesheet" type="text/css" href="${static_resource}/resources/js/uniform/css/uniform.default.min.css" />
 </head>
-<body>
- <div class="container">
-      <form id="kehuLoginForm" class="form-signin" method="post" action="/j_spring_security_check">
-        <h4>请登录</h4>
-        <label for="aa" class="sr-only">账号</label>
-        <input type="text" id="j_username" class="form-control" name="j_username" placeholder="邮箱/手机号" required autofocus>
-        <label for="bb" class="sr-only">Password</label>
-        <input type="password" id="j_password" class="form-control" name="j_password" placeholder="密码" required >
-        <!-- <input type="hidden" id="mima_md5" class="form-control" name="mima_md5"   placeholder="密码" > -->
-        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="WeiShengMingIndex.login()">立即登陆</button>
-	    <br>
-	    <!-- 
-	      <h5>快速通道:&nbsp;
-	      <a href="/qqLogin"><span><img alt="qq" src="resources/images/index/qq.png"></span></a>&nbsp;&nbsp;
-          <a href="/weiboLogin"><span><img alt="weibo" src="resources/images/index/weibo.png"></span></a>
-	      </h5>
-	      <br>
-	       -->
-	      <div>
-	           <a href="/regPage" style="float:left;" class="btn btn-sm btn-success">快速注册</a>
-	           <a href="/resetPwdPage" style="float:right;"class="btn btn-sm btn-danger">找回密码</a>
-	      </div>
-      </form>
- </div>
-<script src="${static_resource}/resources/js/index/login.js"></script>
-<script src="${static_resource}/resources/js/common/md5.js"></script>
+<body class="login">	
+	<!-- PAGE -->
+	<section id="page">
+			<!-- HEADER -->
+			<header>
+				<!-- NAV-BAR -->
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div id="logo">
+								<a href="index.html"><img src="${static_resource}/resources/img/logo/logo-alt.png" height="40" alt="logo name" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--/NAV-BAR -->
+			</header>
+			<!--/HEADER -->
+			<!-- LOGIN -->
+			<section id="login" class="visible">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div class="login-box-plain">
+								<h2 class="bigintro">登录</h2>
+								<form id="kehuLoginForm" class="form-signin" method="post" action="/j_spring_security_check">
+								  <div class="form-group">
+									<label for="exampleInputEmail1">账号</label>
+									<i class="fa fa-user"></i>
+									<input type="text" id="j_username" class="form-control" name="j_username" placeholder="邮箱/手机号" required autofocus>
+								  </div>
+								  <div class="form-group"> 
+									<label for="exampleInputPassword1">密码</label>
+									<i class="fa fa-lock"></i>
+									<input type="password" id="j_password" class="form-control" name="j_password" placeholder="密码" required >
+								  </div>
+								  <div class="form-actions">
+									 <button class="btn btn-lg btn-primary btn-block" type="button" onclick="WeiShengMingIndex.login()">立即登陆</button>
+								  </div>
+								</form>
+								<div class="login-helpers">
+									<a href="#" onclick="swapScreen('forgot');return false;">忘记密码?</a> <br>
+									没有帐号? <a href="#" onclick="swapScreen('register');return false;">立即注册</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--/LOGIN -->
+			<!-- REGISTER -->
+			<section id="register">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div class="login-box-plain">
+								<h2 class="bigintro">注册</h2>
+								<form role="form">
+								  <div class="form-group">
+									<label for="exampleInputName">姓名</label>
+									<i class="fa fa-font"></i>
+									<input type="text" class="form-control" id="exampleInputName" >
+								  </div>
+								  <div class="form-group">
+									<label for="exampleInputUsername">账号</label>
+									<i class="fa fa-user"></i>
+									<input type="text" class="form-control" id="exampleInputUsername" >
+								  </div>
+								  <div class="form-group"> 
+									<label for="exampleInputPassword1">密码</label>
+									<i class="fa fa-lock"></i>
+									<input type="password" class="form-control" id="exampleInputPassword1" >
+								  </div>
+								  <div class="form-group"> 
+									<label for="exampleInputPassword2">再次输入</label>
+									<i class="fa fa-check-square-o"></i>
+									<input type="password" class="form-control" id="exampleInputPassword2" >
+								  </div>
+								  <div class="form-actions">
+									<button type="submit" class="btn btn-success">立即注册</button>
+								  </div>
+								</form>
+								<div class="login-helpers">
+									<a href="#" onclick="swapScreen('login');return false;"> 返回登录</a> <br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--/REGISTER -->
+			<!-- FORGOT PASSWORD -->
+			<section id="forgot">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div class="login-box-plain">
+								<h2 class="bigintro">重置密码</h2>
+								<form role="form">
+								  <div class="form-group">
+									<label for="exampleInputEmail1">输入你的账号</label>
+									<i class="fa fa-envelope"></i>
+									<input type="email" class="form-control" id="exampleInputEmail1" >
+								  </div>
+								  <div class="form-actions">
+									<button type="submit" class="btn btn-info">立即重置密码</button>
+								  </div>
+								</form>
+								<div class="login-helpers">
+									<a href="#" onclick="swapScreen('login');return false;">返回登录</a> <br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- FORGOT PASSWORD -->
+	</section>
+	<!-- UNIFORM -->
+    <script type="text/javascript" src="${static_resource}/resources/js/uniform/jquery.uniform.min.js"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script src="${static_resource}/resources/js/script.js"></script>
+	<script src="${static_resource}/resources/js/index/login.js"></script>
+    <script src="${static_resource}/resources/js/common/md5.js"></script>
+	<script>
+		jQuery(document).ready(function() {		
+			App.setPage("login");  //Set current page
+			App.init(); //Initialise plugins and elements
+		});
+	</script>
+	<script type="text/javascript">
+		function swapScreen(id) {
+			jQuery('.visible').removeClass('visible animated fadeInUp');
+			jQuery('#'+id).addClass('visible animated fadeInUp');
+		}
+	</script>
+	<!-- /JAVASCRIPTS -->
 </body>
 </html>

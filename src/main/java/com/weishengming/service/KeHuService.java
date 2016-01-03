@@ -28,11 +28,21 @@ public class KeHuService {
     private ValidationService validationService;
 
     public ResultPage<KeHuDO> findPage(KeHuQuery query) {
-        validationService.validate(query);
+    	validationService.validate(query);
         KeHuParam param = new KeHuParam();
         BeanUtils.copyProperties(query, param);
         List<KeHuDO> list = mapper.findList(param);
-        return new ResultPage<KeHuDO>(list, query);
+        ResultPage<KeHuDO> result=new ResultPage<KeHuDO>(list, query);
+        Long count = this.countList(query);
+        int total = count.intValue();
+        int totalPage = total / result.getPageSize();
+        if (totalPage != 0 && total % result.getPageSize() != 0) {
+            totalPage += 1;
+        }
+        result.setCount(count); //设置总条数
+        result.setTotal(totalPage); //谁知总页数
+        
+        return result;
     }
     
     public boolean checkZhanghaoUnique(Long id, String zhanghao) {
@@ -105,4 +115,10 @@ public class KeHuService {
     	target.setShoujihao(source.getShoujihao());
     	target.setQq(source.getQq());
     }
+    public Long countList(KeHuQuery query){
+   	 KeHuParam partyParam = new KeHuParam();
+        BeanUtils.copyProperties(query, partyParam);
+        return mapper.countList(partyParam);
+   	
+   }
 }

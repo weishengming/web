@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.weishengming.common.converter.Converter;
 import com.weishengming.dao.entity.KeHuDO;
 import com.weishengming.dao.query.KeHuQuery;
 import com.weishengming.dao.query.ResultPage;
@@ -42,17 +43,24 @@ public class KeHuController extends SecurityController{
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET,value="/kehulist")
-    public String list(Model model, KeHuQuery query) {
+    public String list(Model model, KeHuQuery query,Integer changePageSize,Integer pn) {
 		logger.info("进入到客户列表页面");
+        query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
         ResultPage<KeHuDO> result = kehuService.findPage(query);
+
         List<KeHuView> keHuViewList = new ArrayList<KeHuView>();
         for (KeHuDO sourceKeHu : result.getResult()) {
         	KeHuView targetKeHu = new KeHuView();
             BeanUtils.copyProperties(sourceKeHu, targetKeHu);
             keHuViewList.add(targetKeHu);
         }
+        String pageUrl = "/kehu/kehulist?" + Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
         model.addAttribute("resultViewList", keHuViewList);
         model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
         model.addAttribute("zhanghao", getZhangHao());//把账号放到前台 用来编辑当前账号的人
         return KEHU_VIEW_PATH + "kehulist";
     }

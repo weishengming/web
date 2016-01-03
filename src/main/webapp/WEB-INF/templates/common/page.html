@@ -1,0 +1,88 @@
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<div class="msdn">
+<nav>
+  <ul class="pagination">
+#set($page=$result)
+#set($url=$pageUrl)
+#set($totalPages=$page.total)
+#set($curPageNo=$page.pageNumber)
+#set($start=2)
+#set($end=8)
+#if ($!totalPages && $!totalPages>1)
+
+	#if($end >= $totalPages)
+		#set($end=$totalPages)
+	#end
+	
+	#if($curPageNo > 7)
+		#set($start=$curPageNo - 2)
+		#set($end=$curPageNo + 2)
+	#end				
+			
+	#if($end >= $totalPages)
+		#set($start=$curPageNo - 5)
+		#set($end=$totalPages)
+	#end
+	#if($start <= 0) 
+		#set($start=2)
+	#end
+	## 上一页
+	#if ($curPageNo>1)
+		#set($pre_pageNo=($curPageNo - 1))
+	<li><a href="javascript:void(0);" onclick="jumpToPage('${pre_pageNo}');" aria-label="Previous"><i class="fa fa-backward"></i></a></li> 
+		#else
+    <li><a href="javascript: void(0);" aria-label="Previous"><i class="fa fa-backward"></i></a></li>
+		#end
+	<li><a href="javascript: void(0)"  onclick="jumpToPage('1');">1</a></li> 
+		#if($curPageNo > 5) 
+	<li><a href="javascript: void(0)" >...</a></li>
+		#end
+		## 中间页
+ 		#foreach ($pageNumber in [$start..$end])
+			#if ($pageNumber == $curPageNo)
+	<li><a href="javascript: void(0)">${pageNumber}</a></li>
+		    #else
+				#if ($pageNumber < ($curPageNo - 3))
+				#else
+	<li><a href="javascript: void(0)" onclick="jumpToPage('${pageNumber}');">${pageNumber}</a></li>
+				#end
+		 #end
+	#end
+## 下一页
+#if($totalPages > $end)
+	<li><a href="javascript: void(0)" >...</a></li>
+	<li><a class="next" href="javascript:void(0);" onclick="jumpToPage('$!totalPages');">$!totalPages</a></li>
+	#end
+	#if ($curPageNo<$totalPages)
+		#set($next_pageNo=($curPageNo+1))
+	<li><a href="javascript:void(0);" onclick="jumpToPage('${next_pageNo}');" aria-label="Next"><i class="fa fa-forward"></i></a></li>
+	#else
+	<li><a href="javascript: void(0);" aria-label="Next"><i class="fa fa-forward"></i></a></li>
+	#end
+#else 
+	<li><a href="javascript: void(0);" aria-label="Previous"><i class="fa fa-backward"></i></a></li>
+	<li><a href="javascript: void(0)" >1</a></li>
+	<li><a  href="javascript: void(0);" aria-label="Next"><i class="fa fa-forward"></i></a></li>
+#end
+<li><a class='sumpage'>共 $page.count 条记录</a></li>
+<span></span>
+<input class="form-control " type='text' id='pageNumber' value="$curPageNo" style="width: 50px; float: left">
+<button type='button' class="btn btn-info " onclick='jumpToPage($("#pageNumber").val())'>GO</button>
+<select class="form-control" style="width: 80px; float: right" >
+  <option value="10"  #if($!changePageSize ==10) selected="selected" #end onclick="jumpToPage2(10)">10</option>
+  <option value="20"  #if($!changePageSize ==20) selected="selected" #end onclick="jumpToPage2(20)">20</option>
+  <option value="50"  #if($!changePageSize ==50) selected="selected" #end onclick="jumpToPage2(50)">50</option>
+</select>
+</ul></nav></div>
+<input id="changePageSize" type="hidden" value="$!changePageSize">
+<input value="$!queryString" name="queryString" id="queryString" type="hidden"/>
+<input #if($!dataContainer) value="$!dataContainer" #else value="data_table_list;page_common_nav"  #end name="dataContainer" id="dataContainer" type="hidden"/>
+<script>
+	function jumpToPage(pageNo){
+		window.location.href =  "${url}&pn=" + pageNo+"&changePageSize="+$("#changePageSize").val();
+	}
+	function jumpToPage2(changePageSize){
+		
+		window.location.href =  "${url}&changePageSize="+changePageSize;
+	}
+</script>

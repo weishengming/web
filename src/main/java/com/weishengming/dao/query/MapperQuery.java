@@ -20,6 +20,19 @@ public class MapperQuery implements Serializable {
 
     private Integer           offset;
     private Integer           size;
+    
+    public void putPnIntoPageNumber(Integer pn) {
+        if (null == pn) {
+            pn = DEFAULT_PAGE_NUMBER;
+        }
+        this.setPageNumber(pn);
+    }
+    public void putPnIntoPageSize(Integer ps) {
+        if (null == ps) {
+        	ps = DEFAULT_PAGE_SIZE;
+        }
+        this.setPageSize(ps);
+    }
 
     public Integer getPageSize() {
         return pageSize;
