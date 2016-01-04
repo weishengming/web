@@ -1,6 +1,7 @@
 // 获得省
 function getArea() {
 	$("#areaId").html("");
+	$("#area3Name").val("");
 	jQuery.get("/area/load_JD_Area_by_parent_id/0", null, function(result) {
 		if (result.data) {
 			var data = result.data;
@@ -19,6 +20,8 @@ function getArea() {
 function getArea1() {
 	$("#area1Id").html("");
 	var areaId = $("#areaId option:selected").val();
+	var areaName= $("#areaId option:selected").html();
+	$("#areaName").val(areaName);
 	jQuery.get("/area/load_JD_Area_by_parent_id/" + areaId, null, function(result) {
 		if (result.data) {
 			var data = result.data;
@@ -37,6 +40,8 @@ function getArea1() {
 function getArea2() {
 	$("#area2Id").html("");
 	var area1Id = $("#area1Id option:selected").val();
+	var area1Name= $("#area1Id option:selected").html();
+	$("#area1Name").val(area1Name);
 	jQuery.get("/area/load_JD_Area_by_parent_id/" + area1Id, null, function(result) {
 		if (result.data) {
 			var data = result.data;
@@ -50,10 +55,14 @@ function getArea2() {
 				$("#area2Span").show();
 				getArea3();
 			}else{
+				$("#area2Name").val("");
+				$("#area3Name").val("");
 				$("#area2Id").html("");
 				$("#area2Span").hide();
 			}
 		}else {
+			$("#area2Name").val("");
+			$("#area3Name").val("");
 			$("#area2Id").html("");
 			$("#area2Span").hide();
 		}
@@ -63,6 +72,9 @@ function getArea2() {
 // 获得乡、镇、街道
 function getArea3() {
 	var area2Id = $("#area2Id option:selected").val();
+	var area2Name= $("#area2Id option:selected").html();
+	$("#area3Name").val("");
+	$("#area2Name").val(area2Name);
 	jQuery.get("/area/load_JD_Area_by_parent_id/" + area2Id, null, function(result) {
 		if (result.data && result.data.length > 0) { 
 			var data = result.data;
@@ -74,11 +86,21 @@ function getArea3() {
 			$("#area3Id").html(html);
 			$("#area3Span").show();
 		} else {
+			$("#area3Name").val("");
 			$("#area3Id").html("");
 			$("#area3Span").hide();
 		}
 	}, "json");
-} 
+}
+//获得乡、镇、街道
+function getArea4(){
+	var area3Name= $("#area3Id option:selected").html();
+	$("#area3Name").val(area3Name);
+}
+function updateLeixingString(){
+	var leixingstring= $("#leixing option:selected").html();
+	$("#leixingstring").val(leixingstring);
+}
 
 function createOptionHtml(areas, areaId, areaSelId, areaSpanId) {
 	var html = "";

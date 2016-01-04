@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weishengming.dao.mapper.DiZhiMapper">
+	<sql id="all_columns">
+		ID,CREATEDATE,UPDATEDATE,VERSION,AREA1ID,AREA1NAME,AREA2ID,AREA2NAME,AREA3ID,AREA3NAME,AREAID,AREANAME,KEHUID,KEHUZHANGHAO,LEIXING,LEIXINGSTRING,XIANGXIDIZHI
+	</sql>
+	<sql id="where">
+		<where>
+			<if test="id != null">
+				and ID = #{id}
+			</if>
+			<if test="createDate != null">
+				and CREATEDATE = #{createDate}
+			</if>
+			<if test="updateDate != null">
+				and UPDATEDATE = #{updateDate}
+			</if>
+			<if test="version != null">
+				and VERSION = #{version}
+			</if>
+			<if test="area1Id != null">
+				and AREA1ID = #{area1Id}
+			</if>
+			<if test="area1Name != null">
+				and AREA1NAME = #{area1Name}
+			</if>
+			<if test="area2Id != null">
+				and AREA2ID = #{area2Id}
+			</if>
+			<if test="area2Name != null">
+				and AREA2NAME = #{area2Name}
+			</if>
+			<if test="area3Id != null">
+				and AREA3ID = #{area3Id}
+			</if>
+			<if test="area3Name != null">
+				and AREA3NAME = #{area3Name}
+			</if>
+			<if test="areaId != null">
+				and AREAID = #{areaId}
+			</if>
+			<if test="areaName != null">
+				and AREANAME = #{areaName}
+			</if>
+			<if test="kehuid != null">
+				and KEHUID = #{kehuid}
+			</if>
+			<if test="kehuzhanghao != null">
+				and KEHUZHANGHAO = #{kehuzhanghao}
+			</if>
+			<if test="leixing != null">
+				and LEIXING = #{leixing}
+			</if>
+			<if test="leixingstring != null">
+				and LEIXINGSTRING = #{leixingstring}
+			</if>
+			<if test="xiangxidizhi != null">
+				and XIANGXIDIZHI = #{xiangxidizhi}
+			</if>
+		</where>
+	</sql>
+	<sql id="orderById"> ORDER BY ID DESC </sql>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="DiZhiDO">
+		INSERT INTO dizhi (
+		<include refid="all_columns" />
+		) VALUES
+		(#{id},#{createDate},#{updateDate},#{version},#{area1Id},#{area1Name},#{area2Id},#{area2Name},#{area3Id},#{area3Name},#{areaId},#{areaName},#{kehuid},#{kehuzhanghao},#{leixing},#{leixingstring},#{xiangxidizhi})
+	</insert>
+	<update id="update" parameterType="DiZhiDO">
+		UPDATE dizhi SET
+                    <![CDATA[ ID = #{id}]]>,   
+                    <![CDATA[ CREATEDATE = #{createDate}]]>,   
+                    <![CDATA[ UPDATEDATE = #{updateDate}]]>,   
+                    <![CDATA[ VERSION = #{version}]]>,   
+                    <![CDATA[ AREA1ID = #{area1Id}]]>,   
+                    <![CDATA[ AREA1NAME = #{area1Name}]]>,   
+                    <![CDATA[ AREA2ID = #{area2Id}]]>,   
+                    <![CDATA[ AREA2NAME = #{area2Name}]]>,   
+                    <![CDATA[ AREA3ID = #{area3Id}]]>,   
+                    <![CDATA[ AREA3NAME = #{area3Name}]]>,   
+                    <![CDATA[ AREAID = #{areaId}]]>,   
+                    <![CDATA[ AREANAME = #{areaName}]]>,   
+                    <![CDATA[ KEHUID = #{kehuid}]]>,   
+                    <![CDATA[ KEHUZHANGHAO = #{kehuzhanghao}]]>,   
+                    <![CDATA[ LEIXING = #{leixing}]]>,   
+                    <![CDATA[ LEIXINGSTRING = #{leixingstring}]]>,   
+                    <![CDATA[ XIANGXIDIZHI = #{xiangxidizhi}]]>,
+		version = version+1 WHERE
+		id=#{id} and version = #{version}
+	</update>
+	<select id="findOne" parameterType="long" resultType="DiZhiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM dizhi WHERE ID=#{id}
+	</select>
+	<select id="findListByKehuZhangHao" resultType="DiZhiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM dizhi WHERE KEHUZHANGHAO = #{kehuzhanghao}
+	</select>
+	<select id="findAll" resultType="DiZhiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM dizhi
+	</select>
+	<delete id="delete" parameterType="long">
+		DELETE FROM dizhi WHERE id=#{id}
+	</delete>
+	<delete id="deleteByIds">
+		DELETE FROM dizhi
+		<where>
+			ID in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</where>
+	</delete>
+
+	<select id="findList" resultType="DiZhiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM dizhi
+		<include refid="where" />
+		<include refid="orderById" />
+		LIMIT #{offset}, #{size}
+	</select>
+	<select id="getByIds" parameterType="list" resultType="DiZhiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM dizhi
+		<where>
+			ID in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</where>
+	</select>
+	<select id="countList" resultType="long">
+		SELECT count(1) FROM dizhi
+		<include refid="where" />
+		<include refid="orderById" />
+	</select>
+	<select id="count" resultType="long">
+		SELECT count(1) FROM dizhi
+		<include refid="orderById" />
+	</select>
+</mapper>

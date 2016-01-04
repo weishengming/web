@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>我的地址</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+    #parse("common/css-js.html")
+</head>
+<body>
+	<!-- HEADER -->
+	#parse("common/head.html")
+	<!--/HEADER -->
+	<!-- PAGE -->
+	<section id="page">
+	   #parse("common/sidebar.html")
+	   	 <div id="main-content"><!-- MAIN-CONTENT -->
+			<div class="container"><!-- CONTAINER -->
+				<div class="row">  <!-- ROW -->
+					<div id="content" class="col-lg-12"><!-- CONTENT -->
+						<br>
+                       <div class="row">
+							<div class="col-md-12">
+								<!-- BOX -->
+								<div class="box border purple">
+									<div class="box-title">
+										<h4><i class="fa fa-map-marker"></i>$!kehu.xingming常用地址</h4>
+										<div class="tools hidden-xs">
+											<a href="javascript:;" class="collapse"><i class="fa fa-chevron-up"></i></a>
+											<a href="javascript:;" class="remove"><i class="fa fa-times"></i></a>
+										</div>
+									</div>								
+								<div class="box-body">
+									<br/>
+									<table class="table table-bordered">
+											<thead>
+												<tr class="success">
+												    <th>类型</th>
+													<th>省</th>
+													<th>市</th>
+													<th>县/区</th>
+													<th>乡/镇</th>
+													<th>详细地址</th>
+													<th>操作</th>
+												</tr>
+											</thead>
+										  	<tbody>
+										    #foreach($!model in $!resultViewList)  
+											<tr>
+											    <td>$!model.leixingstring</td>
+												<td>$!model.areaName</td>
+												<td>$!model.area1Name</td>
+												<td>$!model.area2Name</td>
+												<td>$!model.area3Name</td>
+												<td>$!model.xiangxidizhi</td>
+												<td>
+										            <a class="btn btn-sm btn-success" href="/kehu/edit/$!{model.id}">编辑</a>
+										            <a class="btn btn-sm btn-pink" href="/dizhi/delete/$!{model.id}">删除</a>
+										         </td>
+											</tr>
+											 #set($index=$index+1)
+											#end
+										</tbody>
+										</table> 
+										 <form action="/dizhi/insert" method="post" >
+										  <input type="hidden" name="kehuid" value="$!kehu.id">
+									      <input type="hidden" name="kehuzhanghao" value="$!kehu.zhanghao">
+										   <div class="form-group row">
+										    <label for="leixing" class="col-sm-2 form-control-label">地址类型</label>
+										    <div class="col-sm-10">
+											    <select class="form-control" name="leixing" id="leixing" onchange="updateLeixingString();">
+														   <option value="1" selected="selected">户口地址</option>
+														   <option value="2">工作地址</option>
+														   <option value="3">现住地址</option>
+														   <option value="4">学校地址</option>
+														   <option value="5">其他地址</option>
+											   </select>
+											   <input type="hidden" name="leixingstring" id="leixingstring" value="户口地址">
+										    </div>
+										  </div>
+										   <div class="form-group row">
+										    <label for="areaId" class="col-sm-2 form-control-label">省</label>
+										    <div class="col-sm-10">
+										      <select class="form-control first-label" name="areaId" id="areaId" onchange="getArea1()"></select>
+										    </div>
+										  </div>
+										  <div class="form-group row">
+										    <label for="area1Id" class="col-sm-2 form-control-label">市</label>
+										    <div class="col-sm-10">
+										      <select class="form-control" name="area1Id" id="area1Id" onchange="getArea2()"></select>
+										    </div>
+										  </div>
+										  <span id="area2Span" style="display: none;">
+											  <div class="form-group row">
+											    <label for="area2Id" class="col-sm-2 form-control-label">县/区</label>
+											    <div class="col-sm-10">
+											      <select class="form-control" name="area2Id" id="area2Id"  onchange="getArea3()"></select>
+											    </div>
+											  </div>
+										  </span>
+										  <span id="area3Span" style="display: none;">
+										    <div class="form-group row">
+										    <label for="area3Id" class="col-sm-2 form-control-label" >乡/镇</label>
+										    <div class="col-sm-10">
+										      <select class="form-control" name="area3Id" id="area3Id" onchange="getArea4()"></select> 
+										    </div>
+										   </div>
+										  </span> 
+										  <input type="hidden" id="areaName" name="areaName"   value=""> 
+										  <input type="hidden" id="area1Name" name="area1Name" value="">
+										  <input type="hidden" id="area2Name" name="area2Name" value="">
+										  <input type="hidden" id="area3Name" name="area3Name" value="">
+										  <div class="form-group row">
+										    <label for="xiangxidizhi" class="col-sm-2 form-control-label">详细</label>
+										    <div class="col-sm-10">
+										      <input type="text" class="form-control" name="xiangxidizhi" id="xiangxidizhi"  value="$!model.xiangxidizhi" placeholder="详细地址">
+										    </div>
+										  </div>
+										   <div class="form-group row">
+										    <div class="col-sm-offset-2 col-sm-10">
+										      <button type="submit" class="btn btn-danger">更新地址</button>
+										    </div>
+										  </div> 
+										  </form>
+									</div>
+							</div>
+						</div>
+					   </div>
+					   
+					   <div class="footer-tools">
+							<span class="go-top">
+								<i class="fa fa-chevron-up"></i> Top
+							</span>
+					   </div>
+					</div><!-- /CONTENT -->
+				</div><!-- ROW -->
+			</div><!-- /CONTAINER -->
+		</div><!-- /MAIN-CONTENT -->
+	</section>
+	<!-- /PAGE -->
+	<script type="text/javascript" src="${static_resource}/resources/js/dizhi/dizhi.js"></script>
+	<script>
+		jQuery(document).ready(function() {		
+			App.setPage("bb");  //Set current page
+			App.init(); //Initialise plugins and elements
+		});
+	</script>
+</body>
+</html>

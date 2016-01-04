@@ -54,6 +54,11 @@
 		<include refid="all_columns" />
 		FROM jd_area WHERE ID=#{id}
 	</select>
+	<select id="findOneByAreaId" parameterType="string" resultType="JDAreaDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM jd_area WHERE AREAID=#{areaId}
+	</select>
 	<select id="findAll" resultType="JDAreaDO">
 		SELECT
 		<include refid="all_columns" />

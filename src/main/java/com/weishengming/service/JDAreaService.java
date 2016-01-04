@@ -39,6 +39,9 @@ public class JDAreaService {
     public JDAreaDO findOne(Long id) {
         return mapper.findOne(id);
     }
+    public JDAreaDO findOneByAreaId(String areaId){
+    	return mapper.findOneByAreaId(areaId);
+    }
 
     public void create(JDAreaDO entity) {
         validationService.validate(entity);
