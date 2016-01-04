@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.weishengming.common.constant.KeHuZhuangTaiConstant;
 import com.weishengming.common.util.DateUtil;
 import com.weishengming.common.validate.ValidationService;
 import com.weishengming.dao.entity.KeHuDO;
@@ -111,9 +112,13 @@ public class KeHuService {
     
     private void mergeEntity(KeHuDO source,KeHuDO target){
     	target.setUpdateDate(DateUtil.getCurrentDate());
-    	target.setXingming(source.getXingming());
-    	target.setShoujihao(source.getShoujihao());
-    	target.setQq(source.getQq());
+    	target.setXingming(source.getXingming());//姓名
+    	target.setShoujihao(source.getShoujihao());//手机号
+    	target.setQq(source.getQq());  //QQ号
+    	target.setWeixinhao(source.getWeixinhao()); //微信号
+    	target.setXingbie(source.getXingbie());  //性别
+    	target.setShengri(source.getShengri()); //生日
+    	target.setShenfenzheng(source.getShenfenzheng());  //身份证
     }
     public Long countList(KeHuQuery query){
    	 KeHuParam partyParam = new KeHuParam();

@@ -7,9 +7,38 @@ public class KeHuView implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String xingming;
-	private String qq;
 	private String shoujihao;
+	private String qq;
+	private String weixinhao;
+	private String xingbie;
+	private String shengri;
+	private String shenfenzheng;
 	private String zhanghao;
+	
+	public String getWeixinhao() {
+		return weixinhao;
+	}
+	public void setWeixinhao(String weixinhao) {
+		this.weixinhao = weixinhao;
+	}
+	public String getXingbie() {
+		return xingbie;
+	}
+	public void setXingbie(String xingbie) {
+		this.xingbie = xingbie;
+	}
+	public String getShengri() {
+		return shengri;
+	}
+	public void setShengri(String shengri) {
+		this.shengri = shengri;
+	}
+	public String getShenfenzheng() {
+		return shenfenzheng;
+	}
+	public void setShenfenzheng(String shenfenzheng) {
+		this.shenfenzheng = shenfenzheng;
+	}
 	public String getZhanghao() {
 		return zhanghao;
 	}

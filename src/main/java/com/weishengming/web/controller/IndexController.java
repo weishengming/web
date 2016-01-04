@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -44,8 +46,7 @@ public class IndexController extends SecurityController{
 	 * @return
 	 */
 	@RequestMapping(value="index",method=RequestMethod.GET)  
-    public String indexPage(Model model){  
-		model.addAttribute("zhanghao",getZhangHao());
+    public String indexPage(Model model,HttpSession session){  
         return "/index/index";  
     } 
 	 
@@ -124,8 +125,6 @@ public class IndexController extends SecurityController{
 		kehuDo.setMima(mima);
 		kehuDo.setMimamd5(mimamd5);
 		kehuDo.setEnabled(true);
-		kehuDo.setZhuangtai(KeHuZhuangTaiConstant.REG);
-		kehuDo.setZhuangtaistring(KeHuZhuangTaiConstant.REG_STRING);//注册状态
 		kehuDo.setCreateDate(DateUtil.getCurrentDate());
 		kehuDo.setUpdateDate(DateUtil.getCurrentDate());
 		keHuService.create(kehuDo);

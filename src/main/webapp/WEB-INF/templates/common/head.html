@@ -69,12 +69,13 @@
 				    <li class="dropdown user" id="header-user">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img alt="" src="${static_resource}/resources/img/avatars/avatar3.jpg" />
-								<span class="username">杨天赐</span>
+								<span class="username">
+                                   $!userName 
+                                 </span>
 								<i class="fa fa-angle-down"></i>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-user"></i>我的账号</a></li>
-								<li><a href="#"><i class="fa fa-cog"></i>账号设置</a></li>
+								<li><a href="/kehu/editByZhanghao/$!userName"><i class="fa fa-user"></i>我的信息</a></li>
 								<li><a href="/j_spring_security_logout"><i class="fa fa-power-off"></i>退出</a></li>
 							</ul>
 					</li>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,7 @@ public class AreaController extends SecurityController{
      * @param response
      */
     @RequestMapping("/load_Area_by_parent_id/{parentId}")
-    public void loadArea(@PathVariable Long parentId, HttpServletResponse response) {
+    public void loadArea(@PathVariable Long parentId, HttpServletRequest request,HttpServletResponse response) {
         JSONObject json = new JSONObject();
         JSONArray array = new JSONArray();
         try {
@@ -48,7 +49,9 @@ public class AreaController extends SecurityController{
             }
             json.put("success", Boolean.TRUE);
             json.put("data", array);
-            response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("utf-8");  //这里不设置编码会有乱码
+            response.setContentType("text/html;charset=utf-8");
+            response.setHeader("Cache-Control", "no-cache");  
             response.getWriter().print(json.toJSONString());
         } catch (IOException e) {
         	logger.error("com.weishengming.web.controller.AreaController.loadArea", e);
@@ -62,7 +65,7 @@ public class AreaController extends SecurityController{
      * @param response
      */
     @RequestMapping("/load_JD_Area_by_parent_id/{parentId}")
-    public void loadJDArea(@PathVariable String parentId, HttpServletResponse response) {
+    public void loadJDArea(@PathVariable String parentId,  HttpServletRequest request,HttpServletResponse response) {
         JSONObject json = new JSONObject();
         JSONArray array = new JSONArray();
         try {
@@ -78,7 +81,9 @@ public class AreaController extends SecurityController{
             }
             json.put("success", Boolean.TRUE);
             json.put("data", array);
-            response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("utf-8");  //这里不设置编码会有乱码
+            response.setContentType("text/html;charset=utf-8");
+            response.setHeader("Cache-Control", "no-cache");  
             response.getWriter().print(json.toJSONString());
         } catch (IOException e) {
         	logger.error("com.weishengming.web.controller.AreaController.loadJDArea", e);

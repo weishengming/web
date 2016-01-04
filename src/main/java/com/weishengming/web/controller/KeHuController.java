@@ -81,6 +81,14 @@ public class KeHuController extends SecurityController{
         model.addAttribute("model", keHuView);
         return KEHU_VIEW_PATH+"kehuupdate";
     }
+	 @RequestMapping(method = RequestMethod.GET, value = "/editByZhanghao/{zhanghao}")
+	 public String eidtByZhanghao(@PathVariable String zhanghao, Model model) {
+	     final KeHuDO keHuDO = kehuService.findKeHuByZhangHao(zhanghao);
+	     KeHuView keHuView = new KeHuView();
+	     BeanUtils.copyProperties(keHuDO, keHuView);
+	     model.addAttribute("model", keHuView);
+	     return KEHU_VIEW_PATH+"kehuupdate";
+	 }
 	 /**
 	 * 更新
 	 * @param entity
@@ -88,7 +96,7 @@ public class KeHuController extends SecurityController{
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/update")
     public String put(KeHuDO entity) {
-		 kehuService.update(entity);
+		kehuService.update(entity);
         return LIST_ACTION;
     }
 

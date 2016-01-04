@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weishengming.dao.mapper.KeHuMapper">
 	<sql id="all_columns">
-		ID,CREATEDATE,UPDATEDATE,VERSION,AREAID,BEIZHU,EMAIL,ENABLED,LEIXING,LEIXINGSTRING,MIMA,MIMAMD5,NICHENG,QQ,QQ1,SHENFENZHENG,SHENGRI,SHOUJIHAO,SHOUJIHAO1,WEIBOHAO,WEIXINHAO,XINGBIE,XINGMING,ZHANGHAO,ZHIYE,ZHUANGTAI,ZHUANGTAISTRING
+		ID,CREATEDATE,UPDATEDATE,VERSION,ENABLED,MIMA,MIMAMD5,QQ,SHENFENZHENG,SHENGRI,SHOUJIHAO,WEIXINHAO,XINGBIE,XINGMING,ZHANGHAO
 	</sql>
 	<sql id="where">
 		<where>
@@ -18,23 +18,8 @@
 			<if test="version != null">
 				and VERSION = #{version}
 			</if>
-			<if test="areaid != null">
-				and AREAID = #{areaid}
-			</if>
-			<if test="beizhu != null">
-				and BEIZHU = #{beizhu}
-			</if>
-			<if test="email != null">
-				and EMAIL = #{email}
-			</if>
 			<if test="enabled != null">
 				and ENABLED = #{enabled}
-			</if>
-			<if test="leixing != null">
-				and LEIXING = #{leixing}
-			</if>
-			<if test="leixingstring != null">
-				and LEIXINGSTRING = #{leixingstring}
 			</if>
 			<if test="mima != null">
 				and MIMA = #{mima}
@@ -42,14 +27,8 @@
 			<if test="mimamd5 != null">
 				and MIMAMD5 = #{mimamd5}
 			</if>
-			<if test="nicheng != null">
-				and NICHENG = #{nicheng}
-			</if>
 			<if test="qq != null">
 				and QQ = #{qq}
-			</if>
-			<if test="qq1 != null">
-				and QQ1 = #{qq1}
 			</if>
 			<if test="shenfenzheng != null">
 				and SHENFENZHENG = #{shenfenzheng}
@@ -59,12 +38,6 @@
 			</if>
 			<if test="shoujihao != null">
 				and SHOUJIHAO = #{shoujihao}
-			</if>
-			<if test="shoujihao1 != null">
-				and SHOUJIHAO1 = #{shoujihao1}
-			</if>
-			<if test="weibohao != null">
-				and WEIBOHAO = #{weibohao}
 			</if>
 			<if test="weixinhao != null">
 				and WEIXINHAO = #{weixinhao}
@@ -78,15 +51,6 @@
 			<if test="zhanghao != null">
 				and ZHANGHAO = #{zhanghao}
 			</if>
-			<if test="zhiye != null">
-				and ZHIYE = #{zhiye}
-			</if>
-			<if test="zhuangtai != null">
-				and ZHUANGTAI = #{zhuangtai}
-			</if>
-			<if test="zhuangtaistring != null">
-				and ZHUANGTAISTRING = #{zhuangtaistring}
-			</if>
 		</where>
 	</sql>
 	<sql id="orderById"> ORDER BY ID DESC </sql>
@@ -95,7 +59,7 @@
 		INSERT INTO kehu (
 		<include refid="all_columns" />
 		) VALUES
-		(#{id},#{createDate},#{updateDate},#{version},#{areaid},#{beizhu},#{email},#{enabled},#{leixing},#{leixingstring},#{mima},#{mimamd5},#{nicheng},#{qq},#{qq1},#{shenfenzheng},#{shengri},#{shoujihao},#{shoujihao1},#{weibohao},#{weixinhao},#{xingbie},#{xingming},#{zhanghao},#{zhiye},#{zhuangtai},#{zhuangtaistring})
+		(#{id},#{createDate},#{updateDate},#{version},#{enabled},#{mima},#{mimamd5},#{qq},#{shenfenzheng},#{shengri},#{shoujihao},#{weixinhao},#{xingbie},#{xingming},#{zhanghao})
 	</insert>
 	<update id="update" parameterType="KeHuDO">
 		UPDATE kehu SET
@@ -103,29 +67,17 @@
                     <![CDATA[ CREATEDATE = #{createDate}]]>,   
                     <![CDATA[ UPDATEDATE = #{updateDate}]]>,   
                     <![CDATA[ VERSION = #{version}]]>,   
-                    <![CDATA[ AREAID = #{areaid}]]>,   
-                    <![CDATA[ BEIZHU = #{beizhu}]]>,   
-                    <![CDATA[ EMAIL = #{email}]]>,   
                     <![CDATA[ ENABLED = #{enabled}]]>,   
-                    <![CDATA[ LEIXING = #{leixing}]]>,   
-                    <![CDATA[ LEIXINGSTRING = #{leixingstring}]]>,   
                     <![CDATA[ MIMA = #{mima}]]>,   
                     <![CDATA[ MIMAMD5 = #{mimamd5}]]>,   
-                    <![CDATA[ NICHENG = #{nicheng}]]>,   
                     <![CDATA[ QQ = #{qq}]]>,   
-                    <![CDATA[ QQ1 = #{qq1}]]>,   
                     <![CDATA[ SHENFENZHENG = #{shenfenzheng}]]>,   
                     <![CDATA[ SHENGRI = #{shengri}]]>,   
                     <![CDATA[ SHOUJIHAO = #{shoujihao}]]>,   
-                    <![CDATA[ SHOUJIHAO1 = #{shoujihao1}]]>,   
-                    <![CDATA[ WEIBOHAO = #{weibohao}]]>,   
                     <![CDATA[ WEIXINHAO = #{weixinhao}]]>,   
                     <![CDATA[ XINGBIE = #{xingbie}]]>,   
                     <![CDATA[ XINGMING = #{xingming}]]>,   
-                    <![CDATA[ ZHANGHAO = #{zhanghao}]]>,   
-                    <![CDATA[ ZHIYE = #{zhiye}]]>,   
-                    <![CDATA[ ZHUANGTAI = #{zhuangtai}]]>,   
-                    <![CDATA[ ZHUANGTAISTRING = #{zhuangtaistring}]]>,
+                    <![CDATA[ ZHANGHAO = #{zhanghao}]]>,
 		version = version+1 WHERE
 		id=#{id} and version = #{version}
 	</update>

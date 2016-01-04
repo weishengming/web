@@ -12,29 +12,17 @@ public class KeHuParam extends MapperQuery{
         private Date createDate;
         private Date updateDate;
         private Long version;
-        private Long areaid;
-        private String beizhu;
-        private String email;
         private Boolean enabled;
-        private String leixing;
-        private String leixingstring;
         private String mima;
         private String mimamd5;
-        private String nicheng;
         private String qq;
-        private String qq1;
         private String shenfenzheng;
         private String shengri;
         private String shoujihao;
-        private String shoujihao1;
-        private String weibohao;
         private String weixinhao;
         private String xingbie;
         private String xingming;
         private String zhanghao;
-        private String zhiye;
-        private String zhuangtai;
-        private String zhuangtaistring;
         
     
         public void  setId(Long id){
@@ -65,47 +53,12 @@ public class KeHuParam extends MapperQuery{
     public Long getVersion(){
     	return version;
     }
-        public void  setAreaid(Long areaid){
-    	this.areaid=areaid;
-    }
-    
-    public Long getAreaid(){
-    	return areaid;
-    }
-        public void  setBeizhu(String beizhu){
-    	this.beizhu=beizhu;
-    }
-    
-    public String getBeizhu(){
-    	return beizhu;
-    }
-        public void  setEmail(String email){
-    	this.email=email;
-    }
-    
-    public String getEmail(){
-    	return email;
-    }
         public void  setEnabled(Boolean enabled){
     	this.enabled=enabled;
     }
     
     public Boolean getEnabled(){
     	return enabled;
-    }
-        public void  setLeixing(String leixing){
-    	this.leixing=leixing;
-    }
-    
-    public String getLeixing(){
-    	return leixing;
-    }
-        public void  setLeixingstring(String leixingstring){
-    	this.leixingstring=leixingstring;
-    }
-    
-    public String getLeixingstring(){
-    	return leixingstring;
     }
         public void  setMima(String mima){
     	this.mima=mima;
@@ -121,26 +74,12 @@ public class KeHuParam extends MapperQuery{
     public String getMimamd5(){
     	return mimamd5;
     }
-        public void  setNicheng(String nicheng){
-    	this.nicheng=nicheng;
-    }
-    
-    public String getNicheng(){
-    	return nicheng;
-    }
         public void  setQq(String qq){
     	this.qq=qq;
     }
     
     public String getQq(){
     	return qq;
-    }
-        public void  setQq1(String qq1){
-    	this.qq1=qq1;
-    }
-    
-    public String getQq1(){
-    	return qq1;
     }
         public void  setShenfenzheng(String shenfenzheng){
     	this.shenfenzheng=shenfenzheng;
@@ -162,20 +101,6 @@ public class KeHuParam extends MapperQuery{
     
     public String getShoujihao(){
     	return shoujihao;
-    }
-        public void  setShoujihao1(String shoujihao1){
-    	this.shoujihao1=shoujihao1;
-    }
-    
-    public String getShoujihao1(){
-    	return shoujihao1;
-    }
-        public void  setWeibohao(String weibohao){
-    	this.weibohao=weibohao;
-    }
-    
-    public String getWeibohao(){
-    	return weibohao;
     }
         public void  setWeixinhao(String weixinhao){
     	this.weixinhao=weixinhao;
@@ -204,26 +129,5 @@ public class KeHuParam extends MapperQuery{
     
     public String getZhanghao(){
     	return zhanghao;
-    }
-        public void  setZhiye(String zhiye){
-    	this.zhiye=zhiye;
-    }
-    
-    public String getZhiye(){
-    	return zhiye;
-    }
-        public void  setZhuangtai(String zhuangtai){
-    	this.zhuangtai=zhuangtai;
-    }
-    
-    public String getZhuangtai(){
-    	return zhuangtai;
-    }
-        public void  setZhuangtaistring(String zhuangtaistring){
-    	this.zhuangtaistring=zhuangtaistring;
-    }
-    
-    public String getZhuangtaistring(){
-    	return zhuangtaistring;
     }
     }
