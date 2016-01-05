@@ -69,8 +69,8 @@
 										  <div class="form-group row">
 										     <label class="col-sm-2 form-control-label">性别</label> 
 											 <div class="col-sm-10"> 
-												 <label class="radio-inline"><span class="checked"><input checked="checked"  name="xingbie" value="男" type="radio"></span>男</label> 
-												 <label class="radio-inline"><span class=""><input  name="xingbie" value="女"  type="radio"></span>女</label>
+												 <label class="radio-inline"><input checked="checked"  name="xingbie" value="男" type="radio">男</label> 
+												 <label class="radio-inline"><input #if($!model.xingbie=='女') checked="checked" #end name="xingbie" value="女"  type="radio">女</label>
 											 </div>
 										  </div>
 										  
