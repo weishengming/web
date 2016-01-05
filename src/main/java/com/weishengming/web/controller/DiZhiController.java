@@ -56,7 +56,7 @@ public class DiZhiController extends SecurityController{
      * @return
      */
     @RequestMapping(method = RequestMethod.GET, value = "/editByZhanghao/{zhanghao}")
-    public String edit(@PathVariable String zhanghao, Model model) {
+    public String editByZhanghao(@PathVariable String zhanghao, Model model) {
     	final KeHuDO keHuDO = kehuService.findKeHuByZhangHao(zhanghao);
         KeHuView keHuView = new KeHuView();
         BeanUtils.copyProperties(keHuDO, keHuView);
@@ -66,18 +66,18 @@ public class DiZhiController extends SecurityController{
         return DIZHI_VIEW_PATH+"dizhilist";
     }
     
-    @RequestMapping(method = RequestMethod.POST,value = "/insert")
-    public String post(DiZhiDO entity){
-    	entity.setCreateDate(DateUtil.getCurrentDate());
-    	entity.setUpdateDate(DateUtil.getCurrentDate());
-    	if(StringUtils.isBlank(entity.getArea3Name())&&StringUtils.isNotBlank(entity.getArea3Id())){
-    		JDAreaDO jdarea=jdAreaService.findOneByAreaId(entity.getArea3Id());
-    		if(jdarea!=null){
-    			entity.setArea3Name(jdarea.getAreaName());
-    		}
-    	}
-    	dizhiService.create(entity);
-        return LIST_ACTION;
+    @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) {
+    	final DiZhiDO dizhiDO=dizhiService.findOne(id);
+    	model.addAttribute("model",dizhiDO);
+    	
+    	final KeHuDO keHuDO = kehuService.findKeHuByZhangHao(dizhiDO.getKehuzhanghao());
+        KeHuView keHuView = new KeHuView();
+        BeanUtils.copyProperties(keHuDO, keHuView);
+        model.addAttribute("kehu", keHuView);
+    	List<DiZhiDO> dizhiViewList=dizhiService.findListByKehuZhangHao(dizhiDO.getKehuzhanghao());
+        model.addAttribute("resultViewList", dizhiViewList);
+        return DIZHI_VIEW_PATH+"dizhilist";
     }
     
 	 /**
@@ -87,28 +87,27 @@ public class DiZhiController extends SecurityController{
 	 */
    @RequestMapping(method = RequestMethod.POST, value = "/update")
    public String put(DiZhiDO entity) {
-	   if(StringUtils.isBlank(entity.getId()+"")){
+	   if(StringUtils.isBlank(entity.getArea3Name())&&StringUtils.isNotBlank(entity.getArea3Id())){
+	   		JDAreaDO jdarea=jdAreaService.findOneByAreaId(entity.getArea3Id());
+	   		if(jdarea!=null){
+	   			entity.setArea3Name(jdarea.getAreaName());
+	   		}
+   	   }
+	   if(entity.getId()==null){
 		    entity.setCreateDate(DateUtil.getCurrentDate());
 	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	if(StringUtils.isBlank(entity.getArea3Name())&&StringUtils.isNotBlank(entity.getArea3Id())){
-	    		JDAreaDO jdarea=jdAreaService.findOneByAreaId(entity.getArea3Id());
-	    		if(jdarea!=null){
-	    			entity.setArea3Name(jdarea.getAreaName());
-	    		}
-	    	}
 	    	dizhiService.create(entity);
 	   }else{
-		   entity.setUpdateDate(DateUtil.getCurrentDate());
 		   dizhiService.update(entity);
 	   }
 	
-       return LIST_ACTION;
+	   return "redirect:/dizhi/editByZhanghao/"+getZhangHao();
    }
    
    @RequestMapping(value = "/delete/{id}")
    public String delete(@PathVariable Long id) {
 	   dizhiService.delete(id);
-       return LIST_ACTION;
+       return "redirect:/dizhi/editByZhanghao/"+getZhangHao();
    }
     
     public KeHuService getKehuService() {

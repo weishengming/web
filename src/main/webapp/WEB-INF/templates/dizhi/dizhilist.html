@@ -56,7 +56,7 @@
 												<td>$!model.area3Name</td>
 												<td>$!model.xiangxidizhi</td>
 												<td>
-										            <a class="btn btn-sm btn-success" href="/kehu/edit/$!{model.id}">编辑</a>
+										            <a class="btn btn-sm btn-success" href="/dizhi/edit/$!{model.id}">编辑</a>
 										            <a class="btn btn-sm btn-pink" href="/dizhi/delete/$!{model.id}">删除</a>
 										         </td>
 											</tr>
@@ -64,7 +64,7 @@
 											#end
 										</tbody>
 										</table> 
-										 <form action="/dizhi/insert" method="post" >
+										 <form action="/dizhi/update" method="post" >
 										  <input type="hidden" name="kehuid" value="$!kehu.id">
 									      <input type="hidden" name="kehuzhanghao" value="$!kehu.zhanghao">
 										   <div class="form-group row">
@@ -72,31 +72,35 @@
 										    <div class="col-sm-10">
 											    <select class="form-control" name="leixing" id="leixing" onchange="updateLeixingString();">
 														   <option value="1" selected="selected">户口地址</option>
-														   <option value="2">工作地址</option>
-														   <option value="3">现住地址</option>
-														   <option value="4">学校地址</option>
-														   <option value="5">其他地址</option>
+														   <option value="2" #if($!model.leixing==2) selected="selected" #end>工作地址</option>
+														   <option value="3" #if($!model.leixing==3) selected="selected" #end>现住地址</option>
+														   <option value="4" #if($!model.leixing==4) selected="selected" #end>学校地址</option>
+														   <option value="5" #if($!model.leixing==5) selected="selected" #end>其他地址</option>
 											   </select>
-											   <input type="hidden" name="leixingstring" id="leixingstring" value="户口地址">
+											   <input type="hidden" name="leixingstring" id="leixingstring" value="$!model.leixingstring">
+											   <input type="hidden" name="id" id="id" value="$!model.id">
 										    </div>
 										  </div>
 										   <div class="form-group row">
 										    <label for="areaId" class="col-sm-2 form-control-label">省</label>
 										    <div class="col-sm-10">
-										      <select class="form-control first-label" name="areaId" id="areaId" onchange="getArea1()"></select>
+										      <select class="form-control first-label" name="areaId" id="areaId" onchange="getArea1()">
+										      </select>
 										    </div>
 										  </div>
 										  <div class="form-group row">
 										    <label for="area1Id" class="col-sm-2 form-control-label">市</label>
 										    <div class="col-sm-10">
-										      <select class="form-control" name="area1Id" id="area1Id" onchange="getArea2()"></select>
+										      <select class="form-control" name="area1Id" id="area1Id" onchange="getArea2()">
+										      </select>
 										    </div>
 										  </div>
 										  <span id="area2Span" style="display: none;">
 											  <div class="form-group row">
 											    <label for="area2Id" class="col-sm-2 form-control-label">县/区</label>
 											    <div class="col-sm-10">
-											      <select class="form-control" name="area2Id" id="area2Id"  onchange="getArea3()"></select>
+											      <select class="form-control" name="area2Id" id="area2Id"  onchange="getArea3()">
+											      </select>
 											    </div>
 											  </div>
 										  </span>
@@ -104,14 +108,15 @@
 										    <div class="form-group row">
 										    <label for="area3Id" class="col-sm-2 form-control-label" >乡/镇</label>
 										    <div class="col-sm-10">
-										      <select class="form-control" name="area3Id" id="area3Id" onchange="getArea4()"></select> 
+										      <select class="form-control" name="area3Id" id="area3Id" onchange="getArea4()">
+										      </select> 
 										    </div>
 										   </div>
 										  </span> 
-										  <input type="hidden" id="areaName" name="areaName"   value=""> 
-										  <input type="hidden" id="area1Name" name="area1Name" value="">
-										  <input type="hidden" id="area2Name" name="area2Name" value="">
-										  <input type="hidden" id="area3Name" name="area3Name" value="">
+										  <input type="hidden" id="areaName"  name="areaName"   value="$!model.areaName"> 
+										  <input type="hidden" id="area1Name" name="area1Name" value="$!model.area1Name">
+										  <input type="hidden" id="area2Name" name="area2Name" value="$!model.area2Name">
+										  <input type="hidden" id="area3Name" name="area3Name" value="$!model.area3Name">
 										  <div class="form-group row">
 										    <label for="xiangxidizhi" class="col-sm-2 form-control-label">详细</label>
 										    <div class="col-sm-10">

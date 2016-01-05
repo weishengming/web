@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.weishengming.common.util.DateUtil;
 import com.weishengming.common.validate.ValidationService;
 import com.weishengming.dao.entity.DiZhiDO;
 import com.weishengming.dao.mapper.DiZhiMapper;
@@ -27,7 +28,6 @@ public class DiZhiService {
         DiZhiParam param = new DiZhiParam();
         BeanUtils.copyProperties(query, param);
         List<DiZhiDO> list = mapper.findList(param);
-
         return new ResultPage<DiZhiDO>(list, query);
     }
     
@@ -52,6 +52,7 @@ public class DiZhiService {
         validationService.validate(entity);
         DiZhiDO oldEntity=mapper.findOne(entity.getId());
         mergeEntity(entity,oldEntity);
+        oldEntity.setUpdateDate(DateUtil.getCurrentDate());
         mapper.update(oldEntity);
     }
 
@@ -60,6 +61,17 @@ public class DiZhiService {
     }
     
     private void mergeEntity(DiZhiDO source,DiZhiDO target){
-    	//TODO 
+    	target.setLeixing(source.getLeixing());
+    	target.setLeixingstring(source.getLeixingstring());
+    	target.setAreaId(source.getAreaId());
+    	target.setArea1Id(source.getArea1Id());
+    	target.setArea2Id(source.getArea2Id());
+    	target.setArea3Id(source.getArea3Id());
+    	target.setAreaName(source.getAreaName());
+    	target.setArea1Name(source.getArea1Name());
+    	target.setArea2Name(source.getArea2Name());
+    	target.setArea3Name(source.getArea3Name());
+    	target.setXiangxidizhi(source.getXiangxidizhi());
+    	
     }
 }
