@@ -13,7 +13,7 @@ public class WenTiDO extends BaseDO{
 	private static final long serialVersionUID = 1L;
 	private Long   kehuid;//客户的id
 	private String kehuzhanghao; //客户账号
-	private String wenti;
+	private String wenti; //问题
 	
 	public Long getKehuid() {
 		return kehuid;

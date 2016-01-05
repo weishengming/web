@@ -64,6 +64,11 @@
 		<include refid="all_columns" />
 		FROM wenti WHERE KEHUZHANGHAO = #{kehuzhanghao}
 	</select>
+		<select id="findListByNotKehuZhangHao" parameterType="string" resultType="WenTiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM wenti WHERE KEHUZHANGHAO != #{kehuzhanghao}
+	</select>
 	<delete id="delete" parameterType="long">
 		DELETE FROM wenti WHERE id=#{id}
 	</delete>

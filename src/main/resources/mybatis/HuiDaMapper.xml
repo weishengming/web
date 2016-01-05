@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weishengming.dao.mapper.HuiDaMapper">
+	<sql id="all_columns">
+		ID,CREATEDATE,UPDATEDATE,VERSION,HUIDA,HUIDAKEHUID,HUIDAKEHUZHANGHAO,WENTI,WENTIID,WENTIKEHUID,WENTIKEHUZHANGHAO
+	</sql>
+	<sql id="where">
+		<where>
+			<if test="id != null">
+				and ID = #{id}
+			</if>
+			<if test="createDate != null">
+				and CREATEDATE = #{createDate}
+			</if>
+			<if test="updateDate != null">
+				and UPDATEDATE = #{updateDate}
+			</if>
+			<if test="version != null">
+				and VERSION = #{version}
+			</if>
+			<if test="huida != null">
+				and HUIDA = #{huida}
+			</if>
+			<if test="huidakehuid != null">
+				and HUIDAKEHUID = #{huidakehuid}
+			</if>
+			<if test="huidakehuzhanghao != null">
+				and HUIDAKEHUZHANGHAO = #{huidakehuzhanghao}
+			</if>
+			<if test="wenti != null">
+				and WENTI = #{wenti}
+			</if>
+			<if test="wentiid != null">
+				and WENTIID = #{wentiid}
+			</if>
+			<if test="wentikehuid != null">
+				and WENTIKEHUID = #{wentikehuid}
+			</if>
+			<if test="wentikehuzhanghao != null">
+				and WENTIKEHUZHANGHAO = #{wentikehuzhanghao}
+			</if>
+		</where>
+	</sql>
+	<sql id="orderById"> ORDER BY ID DESC </sql>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="HuiDaDO">
+		INSERT INTO huida (
+		<include refid="all_columns" />
+		) VALUES
+		(#{id},#{createDate},#{updateDate},#{version},#{huida},#{huidakehuid},#{huidakehuzhanghao},#{wenti},#{wentiid},#{wentikehuid},#{wentikehuzhanghao})
+	</insert>
+	<update id="update" parameterType="HuiDaDO">
+		UPDATE huida SET
+                    <![CDATA[ ID = #{id}]]>,   
+                    <![CDATA[ CREATEDATE = #{createDate}]]>,   
+                    <![CDATA[ UPDATEDATE = #{updateDate}]]>,   
+                    <![CDATA[ VERSION = #{version}]]>,   
+                    <![CDATA[ HUIDA = #{huida}]]>,   
+                    <![CDATA[ HUIDAKEHUID = #{huidakehuid}]]>,   
+                    <![CDATA[ HUIDAKEHUZHANGHAO = #{huidakehuzhanghao}]]>,   
+                    <![CDATA[ WENTI = #{wenti}]]>,   
+                    <![CDATA[ WENTIID = #{wentiid}]]>,   
+                    <![CDATA[ WENTIKEHUID = #{wentikehuid}]]>,   
+                    <![CDATA[ WENTIKEHUZHANGHAO = #{wentikehuzhanghao}]]>,
+		version = version+1 WHERE
+		id=#{id} and version = #{version}
+	</update>
+	<select id="findOne" parameterType="long" resultType="HuiDaDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM huida WHERE ID=#{id}
+	</select>
+	<select id="findAll" resultType="HuiDaDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM huida
+	</select>
+	<delete id="delete" parameterType="long">
+		DELETE FROM huida WHERE id=#{id}
+	</delete>
+	<delete id="deleteByIds">
+		DELETE FROM huida
+		<where>
+			ID in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</where>
+	</delete>
+
+	<select id="findList" resultType="HuiDaDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM huida
+		<include refid="where" />
+		<include refid="orderById" />
+		LIMIT #{offset}, #{size}
+	</select>
+	<select id="getByIds" parameterType="list" resultType="HuiDaDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM huida
+		<where>
+			ID in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</where>
+	</select>
+	<select id="countList" resultType="long">
+		SELECT count(1) FROM huida
+		<include refid="where" />
+		<include refid="orderById" />
+	</select>
+	<select id="count" resultType="long">
+		SELECT count(1) FROM huida
+		<include refid="orderById" />
+	</select>
+</mapper>

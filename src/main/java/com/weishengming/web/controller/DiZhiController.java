@@ -44,7 +44,7 @@ public class DiZhiController extends SecurityController{
 	private DiZhiService dizhiService;
     
     @RequestMapping(method = RequestMethod.GET,value="/dizhilist")
-    public String list(HttpServletResponse response,Model model, KeHuQuery query,Integer changePageSize,Integer pn) {
+    public String list(HttpServletResponse response,Model model) {
 		logger.info("进入到地址列表页面");
 		return DIZHI_VIEW_PATH+"dizhilist";
     }

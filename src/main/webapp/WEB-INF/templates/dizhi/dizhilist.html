@@ -34,36 +34,21 @@
 									</div>								
 								<div class="box-body">
 									<br/>
-									<table class="table table-bordered">
-											<thead>
-												<tr class="success">
-												    <th>类型</th>
-													<th>省</th>
-													<th>市</th>
-													<th>县/区</th>
-													<th>乡/镇</th>
-													<th>详细地址</th>
-													<th>操作</th>
-												</tr>
-											</thead>
-										  	<tbody>
-										    #foreach($!model in $!resultViewList)  
-											<tr>
-											    <td>$!model.leixingstring</td>
-												<td>$!model.areaName</td>
-												<td>$!model.area1Name</td>
-												<td>$!model.area2Name</td>
-												<td>$!model.area3Name</td>
-												<td>$!model.xiangxidizhi</td>
-												<td>
-										            <a class="btn btn-sm btn-success" href="/dizhi/edit/$!{model.id}">编辑</a>
-										            <a class="btn btn-sm btn-pink" href="/dizhi/delete/$!{model.id}">删除</a>
-										         </td>
-											</tr>
-											 #set($index=$index+1)
+								          #foreach($!model in $!resultViewList)  
+												<div class="alert alert-block alert-success fade in">
+											       <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+											     <p><h4>$!model.leixingstring
+											           <a class="btn btn-xs btn-success" href="/dizhi/edit/$!{model.id}">编辑</a>
+										               <a class="btn btn-xs btn-info" href="/dizhi/delete/$!{model.id}">删除</a>
+											          </h4>
+											 		  $!model.areaName
+											 		  $!model.area1Name
+											 		  $!model.area2Name
+											 		  $!model.area3Name
+											 		  $!model.xiangxidizhi
+											    </p>
+										        </div>
 											#end
-										</tbody>
-										</table> 
 										 <form action="/dizhi/update" method="post" >
 										  <input type="hidden" name="kehuid" value="$!kehu.id">
 									      <input type="hidden" name="kehuzhanghao" value="$!kehu.zhanghao">
@@ -125,7 +110,7 @@
 										  </div>
 										   <div class="form-group row">
 										    <div class="col-sm-offset-2 col-sm-10">
-										      <button type="submit" class="btn btn-danger">更新地址</button>
+										      <button type="submit" class="btn btn-block btn-success">更新地址</button>
 										    </div>
 										  </div> 
 										  </form>

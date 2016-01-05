@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>我的问题</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+    #parse("common/css-js.html")
+</head>
+<body>
+	<!-- HEADER -->
+	#parse("common/head.html")
+	<!--/HEADER -->
+	<!-- PAGE -->
+	<section id="page">
+	   #parse("common/sidebar.html")
+	   	 <div id="main-content"><!-- MAIN-CONTENT -->
+			<div class="container"><!-- CONTAINER -->
+				<div class="row">  <!-- ROW -->
+					<div id="content" class="col-lg-12"><!-- CONTENT -->
+						<br>
+                       <div class="row">
+							<div class="col-md-12">
+								<!-- BOX -->
+								<div class="box border red">
+									<div class="box-title">
+										<h4><i class="fa fa-fighter-jet"></i>问题列表</h4>
+										<div class="tools hidden-xs">
+											<a href="javascript:;" class="collapse"><i class="fa fa-chevron-up"></i></a>
+											<a href="javascript:;" class="remove"><i class="fa fa-times"></i></a>
+										</div>
+									</div>								
+								<div class="box-body">
+									<br/>
+									<table class="table table-bordered">
+											<thead>
+												<tr class="success">
+												    <th>账号</th>
+												    <th>问题</th>
+													<th>操作</th>
+												</tr>
+											</thead>
+										  	<tbody>
+										    #foreach($!model in $!resultViewList)  
+											<tr>
+											    <td>$!model.kehuzhanghao</td>
+											    <td>$!model.wenti</td>
+												<td>
+										            <a class="btn btn-sm btn-danger" href="/wenti/edit/$!{model.id}">编辑</a>&nbsp;
+										            <a class="btn btn-sm btn-pink" href="/wenti/delete/$!{model.id}">删除</a>&nbsp;
+										            <a class="btn btn-sm btn-success" href="">查看答案</a>
+										         </td>
+											</tr>
+											 #set($index=$index+1)
+											#end  
+										</tbody>
+										</table> 
+										
+										<form action="/huida/update" method="post" role="form">
+						 		          <input type="hidden" name="id"  value="$!model.id"  >
+										  <input type="hidden" name="kehuid" value="$!kehu.id">
+									      <input type="hidden" name="kehuzhanghao" value="$!kehu.zhanghao">
+										  <div class="form-group">
+											<textarea  name="editor1"></textarea>
+										  </div>
+										  <div style="text-align: right">
+									      <button type="submit" class="btn btn-danger">提交</button>
+									     </div>
+									</form>
+								</div>
+							</div>
+						  </div>
+						</div>
+						
+					   </div>
+					   <div class="footer-tools">
+							<span class="go-top">
+								<i class="fa fa-chevron-up"></i> Top
+							</span>
+					   </div>
+					</div><!-- /CONTENT -->
+				</div><!-- ROW -->
+			</div><!-- /CONTAINER -->
+		</div><!-- /MAIN-CONTENT -->
+	</section>
+	<!-- /PAGE -->
+	<script type="text/javascript" src="${static_resource}/resources/js/ckeditor/ckeditor.js"></script>
+	<script>
+		jQuery(document).ready(function() {		
+			App.setPage("bb");  //Set current page
+			App.init(); //Initialise plugins and elements
+		});
+	</script>
+</body>
+</html>

@@ -52,8 +52,21 @@ public class WenTiService {
         mapper.update(oldEntity);
     }
     
+    /**
+     * 查看自己的问题
+     * @param kehuZhanghao
+     * @return
+     */
     public List<WenTiDO> findListByKehuZhangHao(String kehuZhanghao){
     	return mapper.findListByKehuZhangHao(kehuZhanghao);
+    }
+    /**
+     * 查看别人的问题
+     * @param kehuZhanghao
+     * @return
+     */
+    public List<WenTiDO> findListByNotKehuZhangHao(String kehuZhanghao){
+    	return mapper.findListByNotKehuZhangHao(kehuZhanghao);
     }
 
     public void delete(Long id) {
