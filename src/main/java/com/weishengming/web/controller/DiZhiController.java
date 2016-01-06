@@ -33,7 +33,6 @@ import com.weishengming.web.view.KeHuView;
 @RequestMapping(value="dizhi")
 public class DiZhiController extends SecurityController{
 	Logger  logger = LoggerFactory.getLogger(DiZhiController.class);
-    private final String LIST_ACTION = "redirect:/dizhi/dizhilist";
     private final String DIZHI_VIEW_PATH = "/dizhi/";
     @Resource
 	private KeHuService kehuService;
@@ -43,11 +42,7 @@ public class DiZhiController extends SecurityController{
 	@Resource
 	private DiZhiService dizhiService;
     
-    @RequestMapping(method = RequestMethod.GET,value="/dizhilist")
-    public String list(HttpServletResponse response,Model model) {
-		logger.info("进入到地址列表页面");
-		return DIZHI_VIEW_PATH+"dizhilist";
-    }
+
     
     /**
      * 通过id 
@@ -55,15 +50,15 @@ public class DiZhiController extends SecurityController{
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/editByZhanghao/{zhanghao}")
-    public String editByZhanghao(@PathVariable String zhanghao, Model model) {
-    	final KeHuDO keHuDO = kehuService.findKeHuByZhangHao(zhanghao);
+    @RequestMapping(method = RequestMethod.GET, value = "/editByZhanghao")
+    public String editByZhanghao(Model model) {
+    	final KeHuDO keHuDO = kehuService.findKeHuByZhangHao(getZhangHao());
         KeHuView keHuView = new KeHuView();
         BeanUtils.copyProperties(keHuDO, keHuView);
         model.addAttribute("kehu", keHuView);
-        List<DiZhiDO> dizhiViewList=dizhiService.findListByKehuZhangHao(zhanghao);
+        List<DiZhiDO> dizhiViewList=dizhiService.findListByKehuZhangHao(getZhangHao());
         model.addAttribute("resultViewList", dizhiViewList);
-        return DIZHI_VIEW_PATH+"dizhilist";
+        return DIZHI_VIEW_PATH+"dizhiupdate";
     }
     
     @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
@@ -77,8 +72,9 @@ public class DiZhiController extends SecurityController{
         model.addAttribute("kehu", keHuView);
     	List<DiZhiDO> dizhiViewList=dizhiService.findListByKehuZhangHao(dizhiDO.getKehuzhanghao());
         model.addAttribute("resultViewList", dizhiViewList);
-        return DIZHI_VIEW_PATH+"dizhilist";
+        return DIZHI_VIEW_PATH+"dizhiupdate";
     }
+
     
 	 /**
 	 * 更新
@@ -101,13 +97,13 @@ public class DiZhiController extends SecurityController{
 		   dizhiService.update(entity);
 	   }
 	
-	   return "redirect:/dizhi/editByZhanghao/"+getZhangHao();
+	   return "redirect:/dizhi/editByZhanghao";
    }
    
    @RequestMapping(value = "/delete/{id}")
    public String delete(@PathVariable Long id) {
 	   dizhiService.delete(id);
-       return "redirect:/dizhi/editByZhanghao/"+getZhangHao();
+       return "redirect:/dizhi/editByZhanghao";
    }
     
     public KeHuService getKehuService() {

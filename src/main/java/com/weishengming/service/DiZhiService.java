@@ -34,6 +34,9 @@ public class DiZhiService {
     public List<DiZhiDO> findListByKehuZhangHao(String kehuZhanghao){
     	return mapper.findListByKehuZhangHao(kehuZhanghao);
     }
+    public List<DiZhiDO> findListByKehuid(Long kehuid){
+    	return mapper.findListByKehuid(kehuid);
+    }
 
     public List<DiZhiDO> findAll() {
         return mapper.findAll();

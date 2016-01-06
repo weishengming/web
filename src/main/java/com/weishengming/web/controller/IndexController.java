@@ -1,13 +1,12 @@
 package com.weishengming.web.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,10 +23,11 @@ import com.qq.connect.javabeans.qzone.UserInfoBean;
 import com.qq.connect.javabeans.weibo.Company;
 import com.qq.connect.oauth.Oauth;
 import com.weishengming.common.ajax.AjaxOutputTool;
-import com.weishengming.common.constant.KeHuZhuangTaiConstant;
 import com.weishengming.common.util.DateUtil;
 import com.weishengming.dao.entity.KeHuDO;
+import com.weishengming.dao.entity.WenTiDO;
 import com.weishengming.service.KeHuService;
+import com.weishengming.service.WenTiService;
 
 /**
  * @author 杨天赐
@@ -38,6 +38,9 @@ public class IndexController extends SecurityController{
 	Logger  logger = LoggerFactory.getLogger(IndexController.class);
 	@Resource
 	private KeHuService keHuService;
+	@Resource
+	private WenTiService wentiService;
+	
 	
 
 	/**
@@ -46,7 +49,9 @@ public class IndexController extends SecurityController{
 	 * @return
 	 */
 	@RequestMapping(value="index",method=RequestMethod.GET)  
-    public String indexPage(Model model,HttpSession session){  
+    public String indexPage(Model model){
+		List<WenTiDO> wentiViewList= wentiService.findAll();
+		model.addAttribute("resultViewList", wentiViewList);
         return "/index/index";  
     } 
 	 
@@ -250,6 +255,14 @@ public class IndexController extends SecurityController{
 
 	public void setKeHuService(KeHuService keHuService) {
 		this.keHuService = keHuService;
+	}
+	
+	public WenTiService getWentiService() {
+		return wentiService;
+	}
+
+	public void setWentiService(WenTiService wentiService) {
+		this.wentiService = wentiService;
 	}
 	
 	

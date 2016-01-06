@@ -20,32 +20,76 @@
 			<div class="container"><!-- CONTAINER -->
 				<div class="row">  <!-- ROW -->
 					<div id="content" class="col-lg-12"><!-- CONTENT -->
-						<!-- PAGE HEADER-->
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="page-header">
-									<ul class="breadcrumb">
-										<li><i class="fa fa-home"></i><a href="/index">主页</a></li>
-									</ul>
-									<!-- /BREADCRUMBS -->
-									<div class="clearfix">
-										<h3 class="content-title pull-left">首页</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- PAGE HEADER-->
-					   
+					   <br/>
+						   #foreach($!model in $!resultViewList)  
+								<div class="alert alert-block alert-success fade in">
+							       <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+							     <p><h4>
+					              <button class="btn btn-link btn-lg" id="showModel" data-toggle="modal" data-target="#myModal" onclick="show('$!model.kehuzhanghao');">$!model.kehuzhanghao</button>
+							          $!model.wenti</h4>
+						              <a class="btn btn-link" href="/wenti/delete/$!{model.id}">我要回答</a>&nbsp;
+							    </p>
+						        </div>
+							#end
+					<input type="hidden" value="" id="kehuzhaohao">
 					</div><!-- /CONTENT -->
 				</div><!-- ROW -->
 			</div><!-- /CONTAINER -->
 		</div><!-- /MAIN-CONTENT -->
 	</section>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">客户基本信息</h4>
+         </div>
+         <div class="modal-body">
+                  <div id="baseInfo"></div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+         </div>
+      </div><!-- /.modal-content -->
+    </div>
+</div>
 	<!-- /PAGE -->
 	<script>
+	     function show(kehuzhaohao){
+	    	 $("#kehuzhaohao").val(kehuzhaohao);
+	    	 
+	     }
 		jQuery(document).ready(function() {		
 			App.setPage("cc");  //Set current page
 			App.init(); //Initialise plugins and elements
+			$('#myModal').on('show.bs.modal', function () {
+				var kehuzhaohao=$("#kehuzhaohao").val();
+				jQuery.get("/kehu/kehuinfo/"+kehuzhaohao, null, function(result) {
+					var html="";
+					if (result.kehu) {
+						var kehu = result.kehu;
+						 html+="<h4>"+"姓名:"+kehu.xingming+"</h4>";
+						 html+="<h4>"+"qq:"+kehu.qq+"</h4>"
+						 html+="<h4>"+"手机号:"+kehu.shoujihao+"</h4>";
+						 html+="<h4>"+"微信号:"+kehu.weixinhao+"</h4>";
+						 
+					}
+					if (result.dizhi) {
+						var dizhi=result.dizhi;
+						for (var i = 0; i < dizhi.length; i++) {
+							html+="<h4>"+dizhi[i].leixingstring + ":"+
+							       dizhi[i].areaName+ "&nbsp;" +
+							       dizhi[i].area1Name+ "&nbsp;" +
+							       dizhi[i].area2Name+ "&nbsp;" +
+							       dizhi[i].area3Name+ "&nbsp;" +
+							       dizhi[i].xiangxidizhi+ "&nbsp;" +
+							      "</h4>";
+						}
+					}
+					$("#baseInfo").html(html);
+				}, "json");
+				  
+			})
 		});
 	</script>
 </body>

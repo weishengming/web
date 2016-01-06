@@ -99,6 +99,11 @@
 		<include refid="all_columns" />
 		FROM dizhi WHERE KEHUZHANGHAO = #{kehuzhanghao}
 	</select>
+	<select id="findListByKehuid"  parameterType="long" resultType="DiZhiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM dizhi WHERE KEHUID = #{kehuid}
+	</select>
 	<select id="findAll" resultType="DiZhiDO">
 		SELECT
 		<include refid="all_columns" />
