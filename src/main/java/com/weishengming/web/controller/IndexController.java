@@ -242,8 +242,10 @@ public class IndexController extends SecurityController{
 	             }
 	             logger.info("<p> end -----------------------------------利用获取到的accessToken,openid 去获取用户在微博的昵称等信息 ---------------------------- end </p>");
 	             m.addAttribute("name", userInfoBean.getNickname());
-	         }
+	        }
+	         
 			} catch (Exception e) {
+				
 			}
 		 
 		return "index/index";
