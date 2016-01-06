@@ -39,7 +39,7 @@ public class WenTiController extends SecurityController {
 	@Resource
 	private WenTiService wentiService;
 
-	@RequestMapping(method = RequestMethod.GET, value = "/wentilist")
+	/*@RequestMapping(method = RequestMethod.GET, value = "/wentilist")
 	public String list(HttpServletResponse response, Model model) {
 		logger.info("进入到问题列表页面");
 		final KeHuDO keHuDO = kehuService.findKeHuByZhangHao(getZhangHao());
@@ -49,9 +49,9 @@ public class WenTiController extends SecurityController {
 		List<WenTiDO> weiTiViewList = wentiService.findListByKehuZhangHao(getZhangHao());
 		model.addAttribute("resultViewList", weiTiViewList);
 		return WENTI_VIEW_PATH + "wentilist";
-	}
+	}*/
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/wentilistother")
+	/*@RequestMapping(method = RequestMethod.GET, value = "/wentilistother")
 	public String listother(HttpServletResponse response, Model model,
 			KeHuQuery query, Integer changePageSize, Integer pn) {
 		logger.info("进入到问题列表页面");
@@ -62,10 +62,10 @@ public class WenTiController extends SecurityController {
 		List<WenTiDO> weiTiViewList = wentiService.findListByNotKehuZhangHao(getZhangHao());
 		model.addAttribute("resultViewList", weiTiViewList);
 		return WENTI_VIEW_PATH + "wentilistother";
-	}
+	}*/
 	
 	
-	 @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
+	/* @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
 	    public String edit(@PathVariable Long id, Model model) {
 	    	final WenTiDO wentiDO=wentiService.findOne(id);
 	    	model.addAttribute("model",wentiDO);
@@ -78,7 +78,7 @@ public class WenTiController extends SecurityController {
 			model.addAttribute("resultViewList", weiTiViewList);
 			
 	        return WENTI_VIEW_PATH+"wentilist";
-	    }
+	    }*/
 	    
 		 /**
 		 * 更新

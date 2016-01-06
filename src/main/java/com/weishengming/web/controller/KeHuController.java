@@ -46,14 +46,14 @@ public class KeHuController extends SecurityController{
 	private DiZhiService dizhiService;
 	
 
-	@RequestMapping(method = RequestMethod.GET, value = "/editByZhanghao")
+	/*@RequestMapping(method = RequestMethod.GET, value = "/editByZhanghao")
 	 public String eidtByZhanghao(Model model) {
 	     final KeHuDO keHuDO = kehuService.findKeHuByZhangHao(getZhangHao());
 	     KeHuView keHuView = new KeHuView();
 	     BeanUtils.copyProperties(keHuDO, keHuView);
 	     model.addAttribute("model", keHuView);
 	     return KEHU_VIEW_PATH+"kehuupdate";
-	 }
+	 }*/
 	 
 	 /**
 	  * ajax 请求

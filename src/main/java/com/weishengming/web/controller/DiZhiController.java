@@ -50,7 +50,7 @@ public class DiZhiController extends SecurityController{
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/editByZhanghao")
+   /* @RequestMapping(method = RequestMethod.GET, value = "/editByZhanghao")
     public String editByZhanghao(Model model) {
     	final KeHuDO keHuDO = kehuService.findKeHuByZhangHao(getZhangHao());
         KeHuView keHuView = new KeHuView();
@@ -59,7 +59,7 @@ public class DiZhiController extends SecurityController{
         List<DiZhiDO> dizhiViewList=dizhiService.findListByKehuZhangHao(getZhangHao());
         model.addAttribute("resultViewList", dizhiViewList);
         return DIZHI_VIEW_PATH+"dizhiupdate";
-    }
+    }*/
     
     @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {

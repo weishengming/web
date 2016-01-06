@@ -2,20 +2,14 @@ package com.weishengming.common.velocity;
 
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.view.velocity.VelocityView;
 
 import com.weishengming.common.properties.CustomizedPropertyPlaceholderConfigurer;
-import com.weishengming.service.KeHuService;
 
 public class WebVelocityView extends VelocityView {
-	private KeHuService kehuService=new KeHuService();
 
 	public static final String CONTEXT_PATH = "static_resource";
 
@@ -30,8 +24,10 @@ public class WebVelocityView extends VelocityView {
 			HttpServletRequest request) throws Exception {
 		super.exposeHelpers(model, request);
 		model.put(CONTEXT_PATH, getPropString("static_resource"));// 静态资源的路径
-		if (isLogin().booleanValue()) {
-			model.put("userName", getUserName());
+		if (isLogin(request).booleanValue()) {
+			model.put("name",request.getSession().getAttribute("name"));
+			model.put("imgsrc", request.getSession().getAttribute("imgsrc"));
+			model.put("openId", request.getSession().getAttribute("openId"));
 			request.getSession().setAttribute("ERROR_COUNT", Integer.valueOf(0));
 		}
 
@@ -43,18 +39,20 @@ public class WebVelocityView extends VelocityView {
 				.getContextProperty(key)).trim();
 	}
 
-	protected Boolean isLogin() {
-		String userName = getUserName();
+	protected Boolean isLogin(HttpServletRequest request) {
+		String userName = getName(request);
 		if ((userName == null) || (userName.equals("")))
 			return Boolean.valueOf(false);
 
 		return Boolean.valueOf(true);
 	}
 
-	protected String getUserName() {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if ((auth != null) && (!(auth instanceof AnonymousAuthenticationToken)))
-			return auth.getName();
+	protected String getName(HttpServletRequest request) {
+		if(request.getSession()!=null){
+			if(request.getSession().getAttribute("name")!=null){
+				return request.getSession().getAttribute("name").toString();
+			}
+		}
 		return null;
 	}
 
