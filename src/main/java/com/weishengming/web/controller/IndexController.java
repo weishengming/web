@@ -25,6 +25,21 @@ public class IndexController extends SecurityController{
 	Logger  logger = LoggerFactory.getLogger(IndexController.class);
 	@Resource
 	private KeHuService keHuService;
+	
+	/**
+	 * 默认进入到首页
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="info",method=RequestMethod.GET)  
+    public String info(HttpServletRequest request,Model model){
+		request.getSession().setAttribute("redirectURL", "/info");
+        if(getName(request)!=null){
+        	return "/index/info";
+        }
+        return "redirect:/qqLogin";
+    } 
+	
 	/**
 	 * 默认进入到首页
 	 * @param model
@@ -92,8 +107,16 @@ public class IndexController extends SecurityController{
 	             request.getSession().setAttribute("openID", openID);
 	          }
 			} catch (Exception e) {
+				logger.info("{}",e);
 			}
 		 
-		return "index/index";
+		 String redirectURL=null;
+		 if(request.getSession().getAttribute("redirectURL")!=null){
+			 redirectURL=request.getSession().getAttribute("redirectURL").toString();
+		 }else{
+			 redirectURL="/index";
+		 }
+		return "redirect:"+redirectURL;
 	}
+	
 }
