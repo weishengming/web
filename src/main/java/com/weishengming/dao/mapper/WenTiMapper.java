@@ -12,13 +12,6 @@ public interface WenTiMapper extends BaseMapper<WenTiDO, Long> {
 	 * @param kehuZhanghao
 	 * @return
 	 */
-	List<WenTiDO> findListByKehuZhangHao(String kehuZhanghao);
-	
-	/**
-	 * 别人的问题
-	 * @param kehuZhanghao
-	 * @return
-	 */
-	List<WenTiDO> findListByNotKehuZhangHao(String kehuZhanghao);
+	List<WenTiDO> findListByOpenID(String openID);
 
 }

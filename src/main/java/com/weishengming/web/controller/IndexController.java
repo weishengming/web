@@ -2,6 +2,7 @@ package com.weishengming.web.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,9 @@ import com.qq.connect.api.qzone.UserInfo;
 import com.qq.connect.javabeans.AccessToken;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
 import com.qq.connect.oauth.Oauth;
-import com.weishengming.service.KeHuService;
+import com.weishengming.common.util.DateUtil;
+import com.weishengming.dao.entity.QQDO;
+import com.weishengming.service.QQService;
 
 /**
  * @author 杨天赐
@@ -24,8 +27,8 @@ import com.weishengming.service.KeHuService;
 public class IndexController extends SecurityController{
 	Logger  logger = LoggerFactory.getLogger(IndexController.class);
 	@Resource
-	private KeHuService keHuService;
-	
+	private QQService qqService;
+
 	/**
 	 * 默认进入到首页
 	 * @param model
@@ -33,11 +36,11 @@ public class IndexController extends SecurityController{
 	 */
 	@RequestMapping(value="info",method=RequestMethod.GET)  
     public String info(HttpServletRequest request,Model model){
-		request.getSession().setAttribute("redirectURL", "/info");
-        if(getName(request)!=null){
-        	return "/index/info";
+        if(getName(request)==null){
+        	request.getSession().setAttribute("redirectURL", "/info");
+        	return "redirect:/qqLogin";
         }
-        return "redirect:/qqLogin";
+        return "/index/info";
     } 
 	
 	/**
@@ -87,17 +90,14 @@ public class IndexController extends SecurityController{
 	             // 利用获取到的accessToken 去获取当前用的openid -------- start
 	             OpenID openIDObj =  new OpenID(accessToken);
 	             openID = openIDObj.getUserOpenID();
-	             logger.info("欢迎你，代号为 " + openID + " 的用户!");
 	             request.getSession().setAttribute("demo_openid", openID);
 	             // 利用获取到的accessToken 去获取当前用户的openid --------- end
-	             logger.info("<p> start -----------------------------------利用获取到的accessToken,openid 去获取用户在Qzone的昵称等信息 ---------------------------- start </p>");
 	             UserInfo qzoneUserInfo = new UserInfo(accessToken, openID);
 	             UserInfoBean userInfoBean = qzoneUserInfo.getUserInfo();
-	             logger.info("<br/>");
 	             if (userInfoBean.getRet() == 0) {
-	                 logger.info(userInfoBean.getNickname() + "<br/>");
-	                 logger.info(userInfoBean.getGender() + "<br/>");
-	                 logger.info("<image src=" + userInfoBean.getAvatar().getAvatarURL30() + "/><br/>");
+	                 logger.info(userInfoBean.getNickname());
+	                 logger.info(userInfoBean.getGender());
+	                 logger.info(userInfoBean.getAvatar().getAvatarURL30());
 	             } else {
 	                 logger.info("很抱歉，我们没能正确获取到您的信息，原因是： " + userInfoBean.getMsg());
 	             }
@@ -105,6 +105,20 @@ public class IndexController extends SecurityController{
 	             request.getSession().setAttribute("imgsrc", userInfoBean.getAvatar().getAvatarURL30());
 	             request.getSession().setAttribute("name", userInfoBean.getNickname());
 	             request.getSession().setAttribute("openID", openID);
+	             QQDO qqDO=qqService.findOpenID(openID);
+	             logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>{}",openID);
+	             logger.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<{}",qqDO);
+	             if(qqDO==null){
+	            	 QQDO entity=new QQDO();
+	            	 entity.setCreateDate(DateUtil.getCurrentDate());
+	            	 entity.setUpdateDate(DateUtil.getCurrentDate());
+	            	 entity.setNickname(userInfoBean.getNickname());
+	            	 entity.setOpenID(openID);
+	            	 entity.setImgsrc30(userInfoBean.getAvatar().getAvatarURL30());
+	            	 entity.setGender(userInfoBean.getGender());
+	            	 qqService.create(entity);
+	             }
+	             
 	          }
 			} catch (Exception e) {
 				logger.info("{}",e);
@@ -117,6 +131,14 @@ public class IndexController extends SecurityController{
 			 redirectURL="/index";
 		 }
 		return "redirect:"+redirectURL;
+	}
+	
+	public QQService getQqService() {
+		return qqService;
+	}
+
+	public void setQqService(QQService qqService) {
+		this.qqService = qqService;
 	}
 	
 }

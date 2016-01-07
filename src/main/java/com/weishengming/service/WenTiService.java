@@ -57,17 +57,10 @@ public class WenTiService {
      * @param kehuZhanghao
      * @return
      */
-    public List<WenTiDO> findListByKehuZhangHao(String kehuZhanghao){
-    	return mapper.findListByKehuZhangHao(kehuZhanghao);
+    public List<WenTiDO> findListByOpenID(String OpenID){
+    	return mapper.findListByOpenID(OpenID);
     }
-    /**
-     * 查看别人的问题
-     * @param kehuZhanghao
-     * @return
-     */
-    public List<WenTiDO> findListByNotKehuZhangHao(String kehuZhanghao){
-    	return mapper.findListByNotKehuZhangHao(kehuZhanghao);
-    }
+ 
 
     public void delete(Long id) {
         mapper.delete(id);

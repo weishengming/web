@@ -27,7 +27,7 @@ public class WebVelocityView extends VelocityView {
 		if (isLogin(request).booleanValue()) {
 			model.put("name",request.getSession().getAttribute("name"));
 			model.put("imgsrc", request.getSession().getAttribute("imgsrc"));
-			model.put("openId", request.getSession().getAttribute("openId"));
+			model.put("openID", request.getSession().getAttribute("openID"));
 			request.getSession().setAttribute("ERROR_COUNT", Integer.valueOf(0));
 		}
 

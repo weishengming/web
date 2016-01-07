@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.weishengming.dao.mapper.WenTiMapper">
+<mapper namespace="com.weishengming.dao.mapper.QQMapper">
 	<sql id="all_columns">
-		ID,CREATEDATE,UPDATEDATE,VERSION,NICKNAME,OPENID,WENTI
+		ID,CREATEDATE,UPDATEDATE,VERSION,GENDER,IMGSRC30,NICKNAME,OPENID
 	</sql>
 	<sql id="where">
 		<where>
@@ -18,57 +18,61 @@
 			<if test="version != null">
 				and VERSION = #{version}
 			</if>
+			<if test="gender != null">
+				and GENDER = #{gender}
+			</if>
+			<if test="imgsrc30 != null">
+				and IMGSRC30 = #{imgsrc30}
+			</if>
 			<if test="nickname != null">
 				and NICKNAME = #{nickname}
 			</if>
 			<if test="openID != null">
 				and OPENID = #{openID}
 			</if>
-			<if test="wenti != null">
-				and WENTI = #{wenti}
-			</if>
 		</where>
 	</sql>
 	<sql id="orderById"> ORDER BY ID DESC </sql>
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
-		parameterType="WenTiDO">
-		INSERT INTO wenti (
+		parameterType="QQDO">
+		INSERT INTO qq (
 		<include refid="all_columns" />
 		) VALUES
-		(#{id},#{createDate},#{updateDate},#{version},#{nickname},#{openID},#{wenti})
+		(#{id},#{createDate},#{updateDate},#{version},#{gender},#{imgsrc30},#{nickname},#{openID})
 	</insert>
-	<update id="update" parameterType="WenTiDO">
-		UPDATE wenti SET
+	<update id="update" parameterType="QQDO">
+		UPDATE qq SET
                     <![CDATA[ ID = #{id}]]>,   
                     <![CDATA[ CREATEDATE = #{createDate}]]>,   
                     <![CDATA[ UPDATEDATE = #{updateDate}]]>,   
                     <![CDATA[ VERSION = #{version}]]>,   
+                    <![CDATA[ GENDER = #{gender}]]>,   
+                    <![CDATA[ IMGSRC30 = #{imgsrc30}]]>,   
                     <![CDATA[ NICKNAME = #{nickname}]]>,   
-                    <![CDATA[ OPENID = #{openID}]]>,   
-                    <![CDATA[ WENTI = #{wenti}]]>,
+                    <![CDATA[ OPENID = #{openID}]]>,
 		version = version+1 WHERE
 		id=#{id} and version = #{version}
 	</update>
-	<select id="findOne" parameterType="long" resultType="WenTiDO">
+	<select id="findOne" parameterType="long" resultType="QQDO">
 		SELECT
 		<include refid="all_columns" />
-		FROM wenti WHERE ID=#{id}
+		FROM qq WHERE ID=#{id}
 	</select>
-	<select id="findAll" resultType="WenTiDO">
+	<select id="findOpenID" parameterType="string" resultType="QQDO">
 		SELECT
 		<include refid="all_columns" />
-		FROM wenti
+		FROM qq WHERE OPENID = #{openID}
 	</select>
-	<select id="findListByOpenID" resultType="WenTiDO">
+	<select id="findAll" resultType="QQDO">
 		SELECT
 		<include refid="all_columns" />
-		FROM wenti WHERE OPENID = #{openID}
+		FROM qq
 	</select>
 	<delete id="delete" parameterType="long">
-		DELETE FROM wenti WHERE id=#{id}
+		DELETE FROM qq WHERE id=#{id}
 	</delete>
 	<delete id="deleteByIds">
-		DELETE FROM wenti
+		DELETE FROM qq
 		<where>
 			ID in
 			<foreach item="item" index="index" collection="list" open="("
@@ -78,18 +82,18 @@
 		</where>
 	</delete>
 
-	<select id="findList" resultType="WenTiDO">
+	<select id="findList" resultType="QQDO">
 		SELECT
 		<include refid="all_columns" />
-		FROM wenti
+		FROM qq
 		<include refid="where" />
 		<include refid="orderById" />
 		LIMIT #{offset}, #{size}
 	</select>
-	<select id="getByIds" parameterType="list" resultType="WenTiDO">
+	<select id="getByIds" parameterType="list" resultType="QQDO">
 		SELECT
 		<include refid="all_columns" />
-		FROM wenti
+		FROM qq
 		<where>
 			ID in
 			<foreach item="item" index="index" collection="list" open="("
@@ -99,12 +103,12 @@
 		</where>
 	</select>
 	<select id="countList" resultType="long">
-		SELECT count(1) FROM wenti
+		SELECT count(1) FROM qq
 		<include refid="where" />
 		<include refid="orderById" />
 	</select>
 	<select id="count" resultType="long">
-		SELECT count(1) FROM wenti
+		SELECT count(1) FROM qq
 		<include refid="orderById" />
 	</select>
 </mapper>

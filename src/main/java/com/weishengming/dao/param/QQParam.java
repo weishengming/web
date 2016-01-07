@@ -5,16 +5,17 @@ import java.util.Date;
 import com.weishengming.dao.query.MapperQuery;
 
 
-public class WenTiParam extends MapperQuery{
+public class QQParam extends MapperQuery{
     private static final long serialVersionUID = 0L;
 
 	    private Long id;
         private Date createDate;
         private Date updateDate;
         private Long version;
+        private String gender;
+        private String imgsrc30;
         private String nickname;
         private String openID;
-        private String wenti;
         
     
         public void  setId(Long id){
@@ -45,6 +46,20 @@ public class WenTiParam extends MapperQuery{
     public Long getVersion(){
     	return version;
     }
+        public void  setGender(String gender){
+    	this.gender=gender;
+    }
+    
+    public String getGender(){
+    	return gender;
+    }
+        public void  setImgsrc30(String imgsrc30){
+    	this.imgsrc30=imgsrc30;
+    }
+    
+    public String getImgsrc30(){
+    	return imgsrc30;
+    }
         public void  setNickname(String nickname){
     	this.nickname=nickname;
     }
@@ -58,12 +73,5 @@ public class WenTiParam extends MapperQuery{
     
     public String getOpenID(){
     	return openID;
-    }
-        public void  setWenti(String wenti){
-    	this.wenti=wenti;
-    }
-    
-    public String getWenti(){
-    	return wenti;
     }
     }

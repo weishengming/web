@@ -11,21 +11,22 @@ import javax.persistence.Table;
 @Table(name = "wenti")
 public class WenTiDO extends BaseDO{
 	private static final long serialVersionUID = 1L;
-	private Long   kehuid;//客户的id
-	private String kehuzhanghao; //客户账号
+	private String openID;
+	private String nickname;
 	private String wenti; //问题
 	
-	public Long getKehuid() {
-		return kehuid;
+	
+	public String getOpenID() {
+		return openID;
 	}
-	public void setKehuid(Long kehuid) {
-		this.kehuid = kehuid;
+	public void setOpenID(String openID) {
+		this.openID = openID;
 	}
-	public String getKehuzhanghao() {
-		return kehuzhanghao;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setKehuzhanghao(String kehuzhanghao) {
-		this.kehuzhanghao = kehuzhanghao;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getWenti() {
 		return wenti;

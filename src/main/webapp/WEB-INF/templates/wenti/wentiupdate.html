@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    #parse("common/bootstrap-css-js.html")
+    <title>微生命</title>
+  </head>
+  <body>
+   <nav class="navbar navbar-default" role="navigation">
+	   <div class="navbar-header">
+	     <button type="button" class="navbar-toggle" data-toggle="collapse" 
+	         data-target="#example-navbar-collapse">
+	         <span class="sr-only">切换导航</span>
+	         <span class="icon-bar"></span>
+	         <span class="icon-bar"></span>
+	         <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/index">微生命</a>
+	   </div>
+	   
+	   <div class="collapse navbar-collapse" id="example-navbar-collapse">
+	      <ul class="nav navbar-nav">
+	         <li><a href="/info">我的信息</a></li>
+	         <li class="active"><a href="/wenti/wentiupdate">我的问题</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a></a></li>
+            <li>
+             #if(! $!name) <a href="/qqLogin">QQ登陆</a>  #else <a href="#"><img alt="" width="20px" height="18px" src="$!imgsrc">&nbsp;$!name</a> #end
+             </li>
+          </ul>
+	   </div>
+   </nav>
+   
+   <div class="container">
+    
+    #foreach($!model in $!resultViewList) 
+  	<div class="alert alert-success alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <p>
+		  <h4>$!model.wenti</h4>
+		  <a class="btn btn-xs btn-success" href="/wenti/edit/$!{model.id}">编辑</a>&nbsp;
+		  <a class="btn btn-xs btn-info" href="/wenti/delete/$!{model.id}">删除</a>&nbsp;
+	  </p>
+	</div>
+    #end
+    
+	<form action="/wenti/update" method="post" role="form">
+        <input type="hidden" name="id"  value="$!model.id"  >
+        <input type="hidden" name="openID" value="$!openID">
+        <input type="hidden" name="nickname" value="$!name">
+        <div class="form-group">
+           <input class="form-control" id="wenti" name="wenti" value="$!model.wenti" placeholder="问题" type="text">
+        </div>
+        <div style="text-align: right">
+           <button type="submit" class="btn btn-danger">提交</button>
+        </div>
+</form>
+    
+   </div>
+   
+   
+  
+  
+  
+  </body>
+</html>
