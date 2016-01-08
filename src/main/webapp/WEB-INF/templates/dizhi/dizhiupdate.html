@@ -1,141 +1,132 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<title>我的地址</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-    #parse("common/css-js.html")
-</head>
-<body>
-	<!-- HEADER -->
-	#parse("common/head.html")
-	<!--/HEADER -->
-	<!-- PAGE -->
-	<section id="page">
-	   #parse("common/sidebar.html")
-	   	 <div id="main-content"><!-- MAIN-CONTENT -->
-			<div class="container"><!-- CONTAINER -->
-				<div class="row">  <!-- ROW -->
-					<div id="content" class="col-lg-12"><!-- CONTENT -->
-						<br>
-                       <div class="row">
-							<div class="col-md-12">
-								<!-- BOX -->
-								<div class="box border purple">
-									<div class="box-title">
-										<h4><i class="fa fa-map-marker"></i>$!kehu.xingming常用地址</h4>
-										<div class="tools hidden-xs">
-											<a href="javascript:;" class="collapse"><i class="fa fa-chevron-up"></i></a>
-											<a href="javascript:;" class="remove"><i class="fa fa-times"></i></a>
-										</div>
-									</div>								
-								<div class="box-body">
-									<br/>
-								          #foreach($!model in $!resultViewList)  
-												<div class="alert alert-block alert-success fade in">
-											       <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-											     <p><h4>$!model.leixingstring
-											           <a class="btn btn-xs btn-success" href="/dizhi/edit/$!{model.id}">编辑</a>
-										               <a class="btn btn-xs btn-info" href="/dizhi/delete/$!{model.id}">删除</a>
-											          </h4>
-											 		  $!model.areaName
-											 		  $!model.area1Name
-											 		  $!model.area2Name
-											 		  $!model.area3Name
-											 		  $!model.xiangxidizhi
-											    </p>
-										        </div>
-											#end
-										 <form action="/dizhi/update" method="post" >
-										  <input type="hidden" name="kehuid" value="$!kehu.id">
-									      <input type="hidden" name="kehuzhanghao" value="$!kehu.zhanghao">
-										   <div class="form-group row">
-										    <label for="leixing" class="col-sm-2 form-control-label">地址类型</label>
-										    <div class="col-sm-10">
-											    <select class="form-control" name="leixing" id="leixing" onchange="updateLeixingString();">
-														   <option value="1" selected="selected">户口地址</option>
-														   <option value="2" #if($!model.leixing==2) selected="selected" #end>工作地址</option>
-														   <option value="3" #if($!model.leixing==3) selected="selected" #end>现住地址</option>
-														   <option value="4" #if($!model.leixing==4) selected="selected" #end>学校地址</option>
-														   <option value="5" #if($!model.leixing==5) selected="selected" #end>其他地址</option>
-											   </select>
-											   <input type="hidden" name="leixingstring" id="leixingstring" value="$!model.leixingstring">
-											   <input type="hidden" name="id" id="id" value="$!model.id">
-										    </div>
-										  </div>
-										   <div class="form-group row">
-										    <label for="areaId" class="col-sm-2 form-control-label">省</label>
-										    <div class="col-sm-10">
-										      <select class="form-control first-label" name="areaId" id="areaId" onchange="getArea1()">
-										      </select>
-										    </div>
-										  </div>
-										  <div class="form-group row">
-										    <label for="area1Id" class="col-sm-2 form-control-label">市</label>
-										    <div class="col-sm-10">
-										      <select class="form-control" name="area1Id" id="area1Id" onchange="getArea2()">
-										      </select>
-										    </div>
-										  </div>
-										  <span id="area2Span" style="display: none;">
-											  <div class="form-group row">
-											    <label for="area2Id" class="col-sm-2 form-control-label">县/区</label>
-											    <div class="col-sm-10">
-											      <select class="form-control" name="area2Id" id="area2Id"  onchange="getArea3()">
-											      </select>
-											    </div>
-											  </div>
-										  </span>
-										  <span id="area3Span" style="display: none;">
-										    <div class="form-group row">
-										    <label for="area3Id" class="col-sm-2 form-control-label" >乡/镇</label>
-										    <div class="col-sm-10">
-										      <select class="form-control" name="area3Id" id="area3Id" onchange="getArea4()">
-										      </select> 
-										    </div>
-										   </div>
-										  </span> 
-										  <input type="hidden" id="areaName"  name="areaName"   value="$!model.areaName"> 
-										  <input type="hidden" id="area1Name" name="area1Name" value="$!model.area1Name">
-										  <input type="hidden" id="area2Name" name="area2Name" value="$!model.area2Name">
-										  <input type="hidden" id="area3Name" name="area3Name" value="$!model.area3Name">
-										  <div class="form-group row">
-										    <label for="xiangxidizhi" class="col-sm-2 form-control-label">详细</label>
-										    <div class="col-sm-10">
-										      <input type="text" class="form-control" name="xiangxidizhi" id="xiangxidizhi"  value="$!model.xiangxidizhi" placeholder="详细地址">
-										    </div>
-										  </div>
-										   <div class="form-group row">
-										    <div class="col-sm-offset-2 col-sm-10">
-										      <button type="submit" class="btn btn-block btn-success">更新地址</button>
-										    </div>
-										  </div> 
-										  </form>
-									</div>
-							</div>
-						</div>
-					   </div>
-					   
-					   <div class="footer-tools">
-							<span class="go-top">
-								<i class="fa fa-chevron-up"></i> Top
-							</span>
-					   </div>
-					</div><!-- /CONTENT -->
-				</div><!-- ROW -->
-			</div><!-- /CONTAINER -->
-		</div><!-- /MAIN-CONTENT -->
-	</section>
-	<!-- /PAGE -->
-	<script type="text/javascript" src="${static_resource}/resources/js/dizhi/dizhi.js"></script>
-	<script>
-		jQuery(document).ready(function() {		
-			App.setPage("bb");  //Set current page
-			App.init(); //Initialise plugins and elements
-		});
-	</script>
-</body>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    #parse("common/bootstrap-css-js.html")
+    <title>微生命|地址</title>
+  </head>
+  <body>
+   <nav class="navbar navbar-default" role="navigation">
+	   <div class="navbar-header">
+	     <button type="button" class="navbar-toggle" data-toggle="collapse" 
+	         data-target="#example-navbar-collapse">
+	         <span class="sr-only">切换导航</span>
+	         <span class="icon-bar"></span>
+	         <span class="icon-bar"></span>
+	         <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/index">微生命</a>
+	   </div>
+	   
+	   <div class="collapse navbar-collapse" id="example-navbar-collapse">
+	      <ul class="nav navbar-nav">
+	         <li><a href="/kehu/kehuupdate">我的信息</a></li>
+	         <li><a href="/wenti/wentiupdate">我的问题</a></li>
+	         <li><a href="/ziyuan/ziyuanupdate">我的资源</a></li>
+	         <li class="active"><a href="/dizhi/dizhiupdate">我的地址</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a></a></li>
+            <li>
+             #if(! $!name) <a href="/qqLogin">QQ登陆</a>  #else <a href="#"><img alt="" width="20px" height="18px" src="$!imgsrc">&nbsp;$!name</a> #end
+             </li>
+          </ul>
+	   </div>
+   </nav>
+   
+   <div class="container">
+    
+    #foreach($!model in $!resultViewList) 
+  	<div class="alert alert-success alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <p><h4>$!model.leixingstring
+           <a class="btn btn-xs btn-success" href="/dizhi/edit/$!{model.id}">编辑</a>
+              <a class="btn btn-xs btn-info" href="/dizhi/delete/$!{model.id}">删除</a>
+         </h4>
+		 $!model.areaName
+		 $!model.area1Name
+		 $!model.area2Name
+		 $!model.area3Name
+		 $!model.xiangxidizhi
+      </p>
+	</div>
+    #end
+    <div class="panel panel-success">
+      
+      <div class="panel-heading">维护地址</div>
+	    <div class="panel-body">
+		 <form action="/dizhi/update" method="post" >
+		  <input type="hidden" name="id"  value="$!model.id"  >
+	      <input type="hidden" name="openID" value="$!openID">
+	      <input type="hidden" name="nickname" value="$!name">
+		  <div class="form-group row">
+		    <label for="leixing" class="col-sm-2 form-control-label">地址类型</label>
+		    <div class="col-sm-10">
+			    <select class="form-control" name="leixing" id="leixing" onchange="updateLeixingString();">
+						   <option value="1" #if($!model.leixing == 1) selected="selected" #end>户口地址</option>
+						   <option value="2" #if($!model.leixing == 2) selected="selected" #end>工作地址</option>
+						   <option value="3" #if($!model.leixing == 3) selected="selected" #end>现住地址</option>
+						   <option value="4" #if($!model.leixing == 4) selected="selected" #end>学校地址</option>
+						   <option value="5" #if($!model.leixing == 5) selected="selected" #end>其他地址</option>
+			   </select>
+			   <input type="hidden" name="leixingstring" id="leixingstring" value="$!model.leixingstring">
+		    </div>
+		  </div>
+		   <div class="form-group row">
+		    <label for="areaId" class="col-sm-2 form-control-label">省</label>
+		    <div class="col-sm-10">
+		      <select class="form-control first-label" name="areaId" id="areaId" onchange="getArea1()">
+		      </select>
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="area1Id" class="col-sm-2 form-control-label">市</label>
+		    <div class="col-sm-10">
+		      <select class="form-control" name="area1Id" id="area1Id" onchange="getArea2()">
+		      </select>
+		    </div>
+		  </div>
+		  <span id="area2Span" style="display: none;">
+			  <div class="form-group row">
+			    <label for="area2Id" class="col-sm-2 form-control-label">县/区</label>
+			    <div class="col-sm-10">
+			      <select class="form-control" name="area2Id" id="area2Id"  onchange="getArea3()">
+			      </select>
+			    </div>
+			  </div>
+		  </span>
+		  <span id="area3Span" style="display: none;">
+		    <div class="form-group row">
+		    <label for="area3Id" class="col-sm-2 form-control-label" >乡/镇</label>
+		    <div class="col-sm-10">
+		      <select class="form-control" name="area3Id" id="area3Id" onchange="getArea4()">
+		      </select> 
+		    </div>
+		   </div>
+		  </span> 
+		  <input type="hidden" id="areaName"  name="areaName"   value="$!model.areaName"> 
+		  <input type="hidden" id="area1Name" name="area1Name" value="$!model.area1Name">
+		  <input type="hidden" id="area2Name" name="area2Name" value="$!model.area2Name">
+		  <input type="hidden" id="area3Name" name="area3Name" value="$!model.area3Name">
+		  <div class="form-group row">
+		    <label for="xiangxidizhi" class="col-sm-2 form-control-label">详细</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" name="xiangxidizhi" id="xiangxidizhi"  value="$!model.xiangxidizhi" placeholder="详细地址">
+		    </div>
+		  </div>
+		   <div class="form-group row">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-block btn-success">更新地址</button>
+		    </div>
+		  </div> 
+		  </form>
+	   </div>
+	 </div>
+   </div>
+   <script type="text/javascript" src="${static_resource}/resources/js/dizhi/dizhi.js"></script>
+  
+  
+  </body>
 </html>

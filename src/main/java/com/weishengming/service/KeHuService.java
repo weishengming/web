@@ -46,45 +46,12 @@ public class KeHuService {
         return result;
     }
     
-    public boolean checkZhanghaoUnique(Long id, String zhanghao) {
-        if (id != null && !StringUtils.isEmpty(zhanghao)) {
-        	KeHuDO kehu = mapper.findOne(id);
-            if (!zhanghao.equals(kehu.getZhanghao())) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return checkZhanghaoUnique(zhanghao);
-        }
-    }
-    public KeHuDO findKeHuByZhangHao(String zhanghao){
-    	if (!StringUtils.isEmpty(zhanghao)) {
-            KeHuParam param = new KeHuParam();
-            param.setZhanghao(zhanghao);
-            List<KeHuDO> list = mapper.findList(param);
-            if (null == list || list.size() == 0) {
-            	logger.info("找不到信息");
-            	return null;
-            }else{
-            	return list.get(0);
-            }
-        }
-    	return null;
+    
+    public KeHuDO findOneByOpenID(String openID){
+    	return mapper.findOneByOpenID(openID);
     }
     
-    public boolean checkZhanghaoUnique(String zhanghao) {
-        boolean zhanghaoUnique = false;
-        if (!StringUtils.isEmpty(zhanghao)) {
-            KeHuParam param = new KeHuParam();
-            param.setZhanghao(zhanghao);
-            List<KeHuDO> list = mapper.findList(param);
-            if (null == list || list.size() == 0) {
-            	zhanghaoUnique = true;
-            }
-        }
-        return zhanghaoUnique;
-    }
+     
 
     public List<KeHuDO> findAll() {
         return mapper.findAll();
@@ -116,12 +83,9 @@ public class KeHuService {
     	target.setShoujihao(source.getShoujihao());//手机号
     	target.setQq(source.getQq());  //QQ号
     	target.setWeixinhao(source.getWeixinhao()); //微信号
-    	target.setXingbie(source.getXingbie());  //性别
-    	target.setShengri(source.getShengri()); //生日
-    	target.setShenfenzheng(source.getShenfenzheng());  //身份证
     }
     public Long countList(KeHuQuery query){
-   	 KeHuParam partyParam = new KeHuParam();
+   	    KeHuParam partyParam = new KeHuParam();
         BeanUtils.copyProperties(query, partyParam);
         return mapper.countList(partyParam);
    	

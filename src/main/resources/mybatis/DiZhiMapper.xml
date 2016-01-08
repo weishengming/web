@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weishengming.dao.mapper.DiZhiMapper">
 	<sql id="all_columns">
-		ID,CREATEDATE,UPDATEDATE,VERSION,AREA1ID,AREA1NAME,AREA2ID,AREA2NAME,AREA3ID,AREA3NAME,AREAID,AREANAME,KEHUID,KEHUZHANGHAO,LEIXING,LEIXINGSTRING,XIANGXIDIZHI
+		ID,CREATEDATE,UPDATEDATE,VERSION,AREA1ID,AREA1NAME,AREA2ID,AREA2NAME,AREA3ID,AREA3NAME,AREAID,AREANAME,LEIXING,LEIXINGSTRING,NICKNAME,OPENID,XIANGXIDIZHI
 	</sql>
 	<sql id="where">
 		<where>
@@ -42,17 +42,17 @@
 			<if test="areaName != null">
 				and AREANAME = #{areaName}
 			</if>
-			<if test="kehuid != null">
-				and KEHUID = #{kehuid}
-			</if>
-			<if test="kehuzhanghao != null">
-				and KEHUZHANGHAO = #{kehuzhanghao}
-			</if>
 			<if test="leixing != null">
 				and LEIXING = #{leixing}
 			</if>
 			<if test="leixingstring != null">
 				and LEIXINGSTRING = #{leixingstring}
+			</if>
+			<if test="nickname != null">
+				and NICKNAME = #{nickname}
+			</if>
+			<if test="openID != null">
+				and OPENID = #{openID}
 			</if>
 			<if test="xiangxidizhi != null">
 				and XIANGXIDIZHI = #{xiangxidizhi}
@@ -65,7 +65,7 @@
 		INSERT INTO dizhi (
 		<include refid="all_columns" />
 		) VALUES
-		(#{id},#{createDate},#{updateDate},#{version},#{area1Id},#{area1Name},#{area2Id},#{area2Name},#{area3Id},#{area3Name},#{areaId},#{areaName},#{kehuid},#{kehuzhanghao},#{leixing},#{leixingstring},#{xiangxidizhi})
+		(#{id},#{createDate},#{updateDate},#{version},#{area1Id},#{area1Name},#{area2Id},#{area2Name},#{area3Id},#{area3Name},#{areaId},#{areaName},#{leixing},#{leixingstring},#{nickname},#{openID},#{xiangxidizhi})
 	</insert>
 	<update id="update" parameterType="DiZhiDO">
 		UPDATE dizhi SET
@@ -81,10 +81,10 @@
                     <![CDATA[ AREA3NAME = #{area3Name}]]>,   
                     <![CDATA[ AREAID = #{areaId}]]>,   
                     <![CDATA[ AREANAME = #{areaName}]]>,   
-                    <![CDATA[ KEHUID = #{kehuid}]]>,   
-                    <![CDATA[ KEHUZHANGHAO = #{kehuzhanghao}]]>,   
                     <![CDATA[ LEIXING = #{leixing}]]>,   
                     <![CDATA[ LEIXINGSTRING = #{leixingstring}]]>,   
+                    <![CDATA[ NICKNAME = #{nickname}]]>,   
+                    <![CDATA[ OPENID = #{openID}]]>,   
                     <![CDATA[ XIANGXIDIZHI = #{xiangxidizhi}]]>,
 		version = version+1 WHERE
 		id=#{id} and version = #{version}
@@ -94,20 +94,15 @@
 		<include refid="all_columns" />
 		FROM dizhi WHERE ID=#{id}
 	</select>
-	<select id="findListByKehuZhangHao" resultType="DiZhiDO">
-		SELECT
-		<include refid="all_columns" />
-		FROM dizhi WHERE KEHUZHANGHAO = #{kehuzhanghao}
-	</select>
-	<select id="findListByKehuid"  parameterType="long" resultType="DiZhiDO">
-		SELECT
-		<include refid="all_columns" />
-		FROM dizhi WHERE KEHUID = #{kehuid}
-	</select>
 	<select id="findAll" resultType="DiZhiDO">
 		SELECT
 		<include refid="all_columns" />
 		FROM dizhi
+	</select>
+	<select id="findListByOpenID" parameterType="string" resultType="DiZhiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM dizhi  WHERE OPENID = #{openID}
 	</select>
 	<delete id="delete" parameterType="long">
 		DELETE FROM dizhi WHERE id=#{id}

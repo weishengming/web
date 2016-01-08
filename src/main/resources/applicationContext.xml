@@ -35,7 +35,7 @@
    
    
   
-    <import resource="classpath*:applicationContext-security.xml"/>
+    <!-- <import resource="classpath*:applicationContext-security.xml"/> -->
     <import resource="classpath*:weishengming-dao.xml"/>
     <import resource="classpath*:weishengming-service.xml"/>
 </beans:beans>

@@ -4,7 +4,7 @@ import com.weishengming.dao.entity.KeHuDO;
 
 
 public interface KeHuMapper extends BaseMapper<KeHuDO, Long> {
-	public KeHuDO findKeHuByZhangHao(String zhanghao);
+	public KeHuDO findOneByOpenID(String openID);
 	
 
 }

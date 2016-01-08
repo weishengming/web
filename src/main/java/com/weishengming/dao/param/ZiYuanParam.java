@@ -5,19 +5,18 @@ import java.util.Date;
 import com.weishengming.dao.query.MapperQuery;
 
 
-public class KeHuParam extends MapperQuery{
+public class ZiYuanParam extends MapperQuery{
     private static final long serialVersionUID = 0L;
 
 	    private Long id;
         private Date createDate;
         private Date updateDate;
         private Long version;
+        private String beizhu;
+        private String dizhi;
         private String nickname;
         private String openID;
-        private String qq;
-        private String shoujihao;
-        private String weixinhao;
-        private String xingming;
+        private String type;
         
     
         public void  setId(Long id){
@@ -48,6 +47,20 @@ public class KeHuParam extends MapperQuery{
     public Long getVersion(){
     	return version;
     }
+        public void  setBeizhu(String beizhu){
+    	this.beizhu=beizhu;
+    }
+    
+    public String getBeizhu(){
+    	return beizhu;
+    }
+        public void  setDizhi(String dizhi){
+    	this.dizhi=dizhi;
+    }
+    
+    public String getDizhi(){
+    	return dizhi;
+    }
         public void  setNickname(String nickname){
     	this.nickname=nickname;
     }
@@ -62,32 +75,11 @@ public class KeHuParam extends MapperQuery{
     public String getOpenID(){
     	return openID;
     }
-        public void  setQq(String qq){
-    	this.qq=qq;
+        public void  setType(String type){
+    	this.type=type;
     }
     
-    public String getQq(){
-    	return qq;
-    }
-        public void  setShoujihao(String shoujihao){
-    	this.shoujihao=shoujihao;
-    }
-    
-    public String getShoujihao(){
-    	return shoujihao;
-    }
-        public void  setWeixinhao(String weixinhao){
-    	this.weixinhao=weixinhao;
-    }
-    
-    public String getWeixinhao(){
-    	return weixinhao;
-    }
-        public void  setXingming(String xingming){
-    	this.xingming=xingming;
-    }
-    
-    public String getXingming(){
-    	return xingming;
+    public String getType(){
+    	return type;
     }
     }

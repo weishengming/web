@@ -1,121 +1,85 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<title>客户管理</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-    #parse("common/css-js.html")
-</head>
-<body>
-	<!-- HEADER -->
-	#parse("common/head.html")
-	<!--/HEADER -->
-	<!-- PAGE -->
-	<section id="page">
-	   #parse("common/sidebar.html")
-	   	 <div id="main-content"><!-- MAIN-CONTENT -->
-			<div class="container"><!-- CONTAINER -->
-				<div class="row">  <!-- ROW -->
-					<div id="content" class="col-lg-12"><!-- CONTENT -->
-						<br>
-                       <div class="row">
-							<div class="col-md-12">
-							    <div class="box border orange">
-											<div class="box-title">
-												<h4><i class="fa fa-male"></i>$!model.xingming基本信息</h4>
-												<div class="tools hidden-xs">
-													<a href="javascript:;" class="collapse">
-														<i class="fa fa-chevron-up"></i>
-													</a>
-													<a href="javascript:;" class="remove">
-														<i class="fa fa-times"></i>
-													</a>
-												</div>
-											</div>
-											<div class="box-body big">
-										 <form action="/kehu/update" method="post" >
-										  <input type="hidden" name="id"  value="$!model.id">
-										  <div class="form-group row">
-										    <label for="xingming" class="col-sm-2 form-control-label">姓名</label>
-										    <div class="col-sm-10">
-										      <input type="text" class="form-control" name="xingming" id="xingming" value="$!model.xingming" placeholder="姓名">
-										    </div>
-										  </div>
-										  
-										  <div class="form-group row">
-										    <label for="shoujihao" class="col-sm-2 form-control-label">手机<span class="required">*</span></label>
-										    <div class="col-sm-10">
-										      <input type="text" class="form-control" name="shoujihao" id="shoujihao" value="$!model.shoujihao" placeholder="手机号">
-										    </div>
-										  </div>
-										  
-										  
-										  <div class="form-group row">
-										    <label for="qq" class="col-sm-2 form-control-label">QQ<span class="required">*</span></label>
-										    <div class="col-sm-10">
-										      <input type="text" class="form-control" name="qq" id="qq"  value="$!model.qq" placeholder="qq">
-										    </div>
-										  </div>
-										  <div class="form-group row">
-										    <label for="weixinhao" class="col-sm-2 form-control-label">微信</label>
-										    <div class="col-sm-10">
-										      <input type="text" class="form-control" name="weixinhao" id="weixinhao"  value="$!model.weixinhao" placeholder="微信号">
-										    </div>
-										  </div>
-										  
-										  <div class="form-group row">
-										     <label class="col-sm-2 form-control-label">性别</label> 
-											 <div class="col-sm-10"> 
-												 <label class="radio-inline"><input checked="checked"  name="xingbie" value="男" type="radio">男</label> 
-												 <label class="radio-inline"><input #if($!model.xingbie=='女') checked="checked" #end name="xingbie" value="女"  type="radio">女</label>
-											 </div>
-										  </div>
-										  
-										  <div class="form-group row">
-										    <label for="shengri" class="col-sm-2 form-control-label">生日</label>
-										    <div class="col-sm-10">
-										      <input type="text" class="form-control" name="shengri" id="shengri" value="$!model.shengri" placeholder="生日"    onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" >
-										    </div>
-										  </div>
-										  
-										  <div class="form-group row">
-										    <label for="shenfenzheng" class="col-sm-2 form-control-label">身份</label>
-										    <div class="col-sm-10">
-										      <input type="text" class="form-control" name="shenfenzheng" id="shenfenzheng"  value="$!model.shenfenzheng" placeholder="身份证号">
-										    </div>
-										  </div>
-										  <div class="form-group row">
-										    <div class="col-sm-offset-2 col-sm-10">
-										      <button type="submit" class="btn btn-block btn-yellow">更新</button>
-										    </div>
-										  </div>  
-										  
-										  </form>
-										 </div>
-								 </div>
-							</div>
-						</div>
-					   
-					   <div class="footer-tools">
-							<span class="go-top">
-								<i class="fa fa-chevron-up"></i> Top
-							</span>
-					   </div>
-					 
-					</div><!-- /CONTENT -->
-				</div><!-- ROW -->
-			</div><!-- /CONTAINER -->
-		</div><!-- /MAIN-CONTENT -->
-	</section>
-	<!-- /PAGE -->
-	<script>
-		jQuery(document).ready(function() {		
-			App.setPage("bb");  //Set current page
-			App.init(); //Initialise plugins and elements
-		});
-	</script>
-</body>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    #parse("common/bootstrap-css-js.html")
+    <title>微生命|联系方式</title>
+  </head>
+  <body>
+   <nav class="navbar navbar-default" role="navigation">
+	   <div class="navbar-header">
+	     <button type="button" class="navbar-toggle" data-toggle="collapse" 
+	         data-target="#example-navbar-collapse">
+	         <span class="sr-only">切换导航</span>
+	         <span class="icon-bar"></span>
+	         <span class="icon-bar"></span>
+	         <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/index">微生命</a>
+	   </div>
+	   
+	   <div class="collapse navbar-collapse" id="example-navbar-collapse">
+	      <ul class="nav navbar-nav">
+	         <li class="active"><a href="/kehu/kehuupdate">我的信息</a></li>
+	         <li><a href="/wenti/wentiupdate">我的问题</a></li>
+	         <li><a href="/ziyuan/ziyuanupdate">我的资源</a></li>
+	         <li><a href="/dizhi/dizhiupdate">我的地址</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a></a></li>
+            <li>
+             #if(! $!name) <a href="/qqLogin">QQ登陆</a>  #else <a href="#"><img alt="" width="20px" height="18px" src="$!imgsrc">&nbsp;$!name</a> #end
+             </li>
+          </ul>
+	   </div>
+   </nav>
+   
+   <div class="container">
+    <div class="panel panel-info">
+      <div class="panel-heading">维护联系方式</div>
+	    <div class="panel-body">
+		 <form action="/kehu/update" method="post" >
+		  <input type="hidden" name="id"  value="$!model.id">
+		  <input type="hidden" name="openID" value="$!openID">
+	      <input type="hidden" name="nickname" value="$!name">
+		  <div class="form-group row">
+		    <label for="xingming" class="col-sm-2 form-control-label">姓名</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" name="xingming" id="xingming" value="$!model.xingming" placeholder="姓名">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label for="shoujihao" class="col-sm-2 form-control-label">手机<span class="required">*</span></label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" name="shoujihao" id="shoujihao" value="$!model.shoujihao" placeholder="手机号">
+		    </div>
+		  </div>
+		  
+		  
+		  <div class="form-group row">
+		    <label for="qq" class="col-sm-2 form-control-label">QQ<span class="required">*</span></label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" name="qq" id="qq"  value="$!model.qq" placeholder="qq">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="weixinhao" class="col-sm-2 form-control-label">微信</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" name="weixinhao" id="weixinhao"  value="$!model.weixinhao" placeholder="微信号">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-block btn-info">更新</button>
+		    </div>
+		  </div>  
+		 </form>
+	   </div>
+	 </div>
+   </div>
+  </body>
 </html>

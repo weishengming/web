@@ -42,20 +42,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String zhanghao)throws UsernameNotFoundException {
 		logger.info("认证用户" + zhanghao);// 查询数据库获取改账号的信息
-		KeHuDO keHuDO = keHuMapper.findKeHuByZhangHao(zhanghao); // 通过账号 查询
+//		KeHuDO keHuDO = keHuMapper.findKeHuByZhangHao(zhanghao); // 通过账号 查询
+		KeHuDO keHuDO=new KeHuDO();
 		if (null == keHuDO) {
 			throw new UsernameNotFoundException("账号" + zhanghao + "不存在");
 		}
 		Set quanxian = getQuanXians(keHuDO); // 将没有使用到的属性设置为true
-		UserDetails userDetails = new User(keHuDO.getZhanghao(),keHuDO.getMima(),keHuDO.getEnabled(), true, true, true, quanxian);
-		return userDetails;
+//		UserDetails userDetails = new User(keHuDO.getZhanghao(),keHuDO.getMima(),keHuDO.getEnabled(), true, true, true, quanxian);
+//		return userDetails;
+		return null;
 	}
 
 	// 获得客户所有角色的所有权限
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Set getQuanXians(KeHuDO keHuDO) {
 		KeHuJueSeParam keHuJueSeParam=new KeHuJueSeParam();
-		keHuJueSeParam.setKehuzhanghao(keHuDO.getZhanghao());
+//		keHuJueSeParam.setKehuzhanghao(keHuDO.getZhanghao());
 		List<KeHuJueSeDO> keHuJueSes=keHuJueSeMapper.findList(keHuJueSeParam);
 		Set authoritySet = new HashSet(); // 默认所有的用户有浏览用户的权利
 		authoritySet.add(new SimpleGrantedAuthority("ROLE_WEB")); // 依次添加

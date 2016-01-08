@@ -29,6 +29,7 @@ import com.weishengming.web.view.KeHuView;
 @RequestMapping(value = "wenti")
 public class WenTiController extends SecurityController {
 	Logger logger = LoggerFactory.getLogger(WenTiController.class);
+	private final String UPDATE_ACTION = "redirect:/wenti/wentiupdate";
 	private final String WENTI_VIEW_PATH = "/wenti/";
 	@Resource
 	private WenTiService wentiService;
@@ -73,13 +74,13 @@ public class WenTiController extends SecurityController {
 		    wentiService.update(entity);
 	   }
 	
-	   return "redirect:"+ WENTI_VIEW_PATH+"wentiupdate";
+	   return UPDATE_ACTION;
    }
 	   
    @RequestMapping(value = "/delete/{id}")
    public String delete(@PathVariable Long id) {
 	   wentiService.delete(id);
-	   return "redirect:" +WENTI_VIEW_PATH+"wentiupdate";
+	   return UPDATE_ACTION;
    }
 	
 

@@ -20,10 +20,10 @@ public class DiZhiParam extends MapperQuery{
         private String area3Name;
         private String areaId;
         private String areaName;
-        private Long kehuid;
-        private String kehuzhanghao;
         private String leixing;
         private String leixingstring;
+        private String nickname;
+        private String openID;
         private String xiangxidizhi;
         
     
@@ -111,20 +111,6 @@ public class DiZhiParam extends MapperQuery{
     public String getAreaName(){
     	return areaName;
     }
-        public void  setKehuid(Long kehuid){
-    	this.kehuid=kehuid;
-    }
-    
-    public Long getKehuid(){
-    	return kehuid;
-    }
-        public void  setKehuzhanghao(String kehuzhanghao){
-    	this.kehuzhanghao=kehuzhanghao;
-    }
-    
-    public String getKehuzhanghao(){
-    	return kehuzhanghao;
-    }
         public void  setLeixing(String leixing){
     	this.leixing=leixing;
     }
@@ -138,6 +124,20 @@ public class DiZhiParam extends MapperQuery{
     
     public String getLeixingstring(){
     	return leixingstring;
+    }
+        public void  setNickname(String nickname){
+    	this.nickname=nickname;
+    }
+    
+    public String getNickname(){
+    	return nickname;
+    }
+        public void  setOpenID(String openID){
+    	this.openID=openID;
+    }
+    
+    public String getOpenID(){
+    	return openID;
     }
         public void  setXiangxidizhi(String xiangxidizhi){
     	this.xiangxidizhi=xiangxidizhi;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weishengming.dao.mapper.KeHuMapper">
 	<sql id="all_columns">
-		ID,CREATEDATE,UPDATEDATE,VERSION,ENABLED,MIMA,MIMAMD5,QQ,SHENFENZHENG,SHENGRI,SHOUJIHAO,WEIXINHAO,XINGBIE,XINGMING,ZHANGHAO
+		ID,CREATEDATE,UPDATEDATE,VERSION,NICKNAME,OPENID,QQ,SHOUJIHAO,WEIXINHAO,XINGMING
 	</sql>
 	<sql id="where">
 		<where>
@@ -18,23 +18,14 @@
 			<if test="version != null">
 				and VERSION = #{version}
 			</if>
-			<if test="enabled != null">
-				and ENABLED = #{enabled}
+			<if test="nickname != null">
+				and NICKNAME = #{nickname}
 			</if>
-			<if test="mima != null">
-				and MIMA = #{mima}
-			</if>
-			<if test="mimamd5 != null">
-				and MIMAMD5 = #{mimamd5}
+			<if test="openID != null">
+				and OPENID = #{openID}
 			</if>
 			<if test="qq != null">
 				and QQ = #{qq}
-			</if>
-			<if test="shenfenzheng != null">
-				and SHENFENZHENG = #{shenfenzheng}
-			</if>
-			<if test="shengri != null">
-				and SHENGRI = #{shengri}
 			</if>
 			<if test="shoujihao != null">
 				and SHOUJIHAO = #{shoujihao}
@@ -42,14 +33,8 @@
 			<if test="weixinhao != null">
 				and WEIXINHAO = #{weixinhao}
 			</if>
-			<if test="xingbie != null">
-				and XINGBIE = #{xingbie}
-			</if>
 			<if test="xingming != null">
 				and XINGMING = #{xingming}
-			</if>
-			<if test="zhanghao != null">
-				and ZHANGHAO = #{zhanghao}
 			</if>
 		</where>
 	</sql>
@@ -59,7 +44,7 @@
 		INSERT INTO kehu (
 		<include refid="all_columns" />
 		) VALUES
-		(#{id},#{createDate},#{updateDate},#{version},#{enabled},#{mima},#{mimamd5},#{qq},#{shenfenzheng},#{shengri},#{shoujihao},#{weixinhao},#{xingbie},#{xingming},#{zhanghao})
+		(#{id},#{createDate},#{updateDate},#{version},#{nickname},#{openID},#{qq},#{shoujihao},#{weixinhao},#{xingming})
 	</insert>
 	<update id="update" parameterType="KeHuDO">
 		UPDATE kehu SET
@@ -67,17 +52,12 @@
                     <![CDATA[ CREATEDATE = #{createDate}]]>,   
                     <![CDATA[ UPDATEDATE = #{updateDate}]]>,   
                     <![CDATA[ VERSION = #{version}]]>,   
-                    <![CDATA[ ENABLED = #{enabled}]]>,   
-                    <![CDATA[ MIMA = #{mima}]]>,   
-                    <![CDATA[ MIMAMD5 = #{mimamd5}]]>,   
+                    <![CDATA[ NICKNAME = #{nickname}]]>,   
+                    <![CDATA[ OPENID = #{openID}]]>,   
                     <![CDATA[ QQ = #{qq}]]>,   
-                    <![CDATA[ SHENFENZHENG = #{shenfenzheng}]]>,   
-                    <![CDATA[ SHENGRI = #{shengri}]]>,   
                     <![CDATA[ SHOUJIHAO = #{shoujihao}]]>,   
                     <![CDATA[ WEIXINHAO = #{weixinhao}]]>,   
-                    <![CDATA[ XINGBIE = #{xingbie}]]>,   
-                    <![CDATA[ XINGMING = #{xingming}]]>,   
-                    <![CDATA[ ZHANGHAO = #{zhanghao}]]>,
+                    <![CDATA[ XINGMING = #{xingming}]]>,
 		version = version+1 WHERE
 		id=#{id} and version = #{version}
 	</update>
@@ -86,10 +66,10 @@
 		<include refid="all_columns" />
 		FROM kehu WHERE ID=#{id}
 	</select>
-	<select id="findKeHuByZhangHao" parameterType="string" resultType="KeHuDO">
+	<select id="findOneByOpenID" parameterType="string" resultType="KeHuDO">
 		SELECT
 		<include refid="all_columns" />
-		FROM kehu WHERE ZHANGHAO=#{zhanghao}
+		FROM kehu WHERE OPENID = #{openID}
 	</select>
 	<select id="findAll" resultType="KeHuDO">
 		SELECT

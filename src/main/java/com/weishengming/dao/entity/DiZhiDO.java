@@ -12,8 +12,8 @@ import javax.persistence.Table;
 public class DiZhiDO extends BaseDO{
 
 	private static final long serialVersionUID = 1L;
-	private Long   kehuid;//客户的id
-	private String kehuzhanghao; //客户账号
+	private String openID;//客户的id
+	private String nickname;//客户账号
 
 	private String leixing;
 	private String leixingstring; //工作地址,现住址,故乡地址
@@ -32,20 +32,22 @@ public class DiZhiDO extends BaseDO{
 	
 	private String xiangxidizhi;//详细地址
 	
-	public String getKehuzhanghao() {
-		return kehuzhanghao;
+	
+
+	public String getOpenID() {
+		return openID;
 	}
 
-	public void setKehuzhanghao(String kehuzhanghao) {
-		this.kehuzhanghao = kehuzhanghao;
+	public void setOpenID(String openID) {
+		this.openID = openID;
 	}
 
-	public Long getKehuid() {
-		return kehuid;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setKehuid(Long kehuid) {
-		this.kehuid = kehuid;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getLeixing() {

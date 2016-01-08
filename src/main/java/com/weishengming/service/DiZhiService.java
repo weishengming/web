@@ -31,12 +31,12 @@ public class DiZhiService {
         return new ResultPage<DiZhiDO>(list, query);
     }
     
-    public List<DiZhiDO> findListByKehuZhangHao(String kehuZhanghao){
-    	return mapper.findListByKehuZhangHao(kehuZhanghao);
+   
+    
+    public List<DiZhiDO> findListByOpenID(String openID){
+    	return mapper.findListByOpenID(openID);
     }
-    public List<DiZhiDO> findListByKehuid(Long kehuid){
-    	return mapper.findListByKehuid(kehuid);
-    }
+    
 
     public List<DiZhiDO> findAll() {
         return mapper.findAll();

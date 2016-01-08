@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     #parse("common/bootstrap-css-js.html")
-    <title>微生命</title>
+    <title>微生命|问题</title>
   </head>
   <body>
    <nav class="navbar navbar-default" role="navigation">
@@ -22,8 +22,10 @@
 	   
 	   <div class="collapse navbar-collapse" id="example-navbar-collapse">
 	      <ul class="nav navbar-nav">
-	         <li><a href="/info">我的信息</a></li>
+	         <li><a href="/kehu/kehuupdate">我的信息</a></li>
 	         <li class="active"><a href="/wenti/wentiupdate">我的问题</a></li>
+	         <li><a href="/ziyuan/ziyuanupdate">我的资源</a></li>
+	         <li><a href="/dizhi/dizhiupdate">我的地址</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a></a></li>
@@ -46,21 +48,23 @@
 	  </p>
 	</div>
     #end
-    
-	<form action="/wenti/update" method="post" role="form">
-        <input type="hidden" name="id"  value="$!model.id"  >
-        <input type="hidden" name="openID" value="$!openID">
-        <input type="hidden" name="nickname" value="$!name">
-        <div class="form-group">
-           <input class="form-control" id="wenti" name="wenti" value="$!model.wenti" placeholder="问题" type="text">
+    <div class="panel panel-danger">
+      <div class="panel-heading">维护联系方式</div>
+	    <div class="panel-body">
+			<form action="/wenti/update" method="post" role="form">
+		        <input type="hidden" name="id"  value="$!model.id"  >
+		        <input type="hidden" name="openID" value="$!openID">
+		        <input type="hidden" name="nickname" value="$!name">
+		        <div class="form-group">
+		           <input class="form-control" id="wenti" name="wenti" value="$!model.wenti" placeholder="问题" type="text">
+		        </div>
+		        <div style="text-align: right">
+		           <button type="submit" class="btn btn-block btn-danger">提交</button>
+		        </div>
+		    </form>
         </div>
-        <div style="text-align: right">
-           <button type="submit" class="btn btn-danger">提交</button>
-        </div>
-</form>
-    
+      </div>
    </div>
-   
    
   
   
