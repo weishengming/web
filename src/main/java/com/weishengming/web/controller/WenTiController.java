@@ -4,11 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.util.DateUtil;
-import com.weishengming.dao.entity.KeHuDO;
 import com.weishengming.dao.entity.WenTiDO;
-import com.weishengming.service.KeHuService;
 import com.weishengming.service.WenTiService;
-import com.weishengming.web.view.KeHuView;
 
 /**
  * @author 杨天赐 问题控制层接口

@@ -8,9 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
-import com.weishengming.common.constant.KeHuZhuangTaiConstant;
 import com.weishengming.common.util.DateUtil;
 import com.weishengming.common.validate.ValidationService;
 import com.weishengming.dao.entity.KeHuDO;
