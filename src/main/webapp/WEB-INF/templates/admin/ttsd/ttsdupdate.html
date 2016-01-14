@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    #parse("common/bootstrap-css-js.html")
+    <title>谈天说地|编辑</title>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+      <li><h4><b><a href="/admin/adminindex">微生命后台</a></b></h4></li>
+	  <li><b><a href="/admin/ttsd/ttsdlist" style="font-size: 18px">谈天说地</a></b></li>
+	</ol> 
+   <div class="container">
+    <form action="/admin/ttsd/ttsdupdate" method="post" >
+	  <input type="hidden" name="id"  value="$!model.id">
+	  <div class="form-group row">
+	    <label for="xingming" class="col-sm-2 form-control-label">父标题<span class="required">*</span></label>
+	    <div class="col-sm-10">
+		     <select class="form-control" name="fubiaoti" id="fubiaoti" >
+		       <option #if($!model.fubiaoti=='智慧人生') selected #end value="智慧人生">一- 智慧人生[1-48]</option>
+		       <option #if($!model.fubiaoti=='人际金律') selected #end value="人际金律">二-人际金律[49-93]</option>
+		       <option #if($!model.fubiaoti=='心灵故事') selected #end value="心灵故事">三-心灵故事[94-137]</option>
+		       <option #if($!model.fubiaoti=='爱的诗歌') selected #end value="爱的诗歌">四-爱的诗歌[138-185]</option>
+		       <option #if($!model.fubiaoti=='伊甸风云') selected #end value="伊甸风云">五-伊甸风云[164-183]</option>
+		       <option #if($!model.fubiaoti=='欲海警笛') selected #end value="欲海警笛">六-欲海警笛[186-207]</option>
+		       <option #if($!model.fubiaoti=='夜半歌声') selected #end value="夜半歌声">七-夜半歌声[208-229]</option>
+		       <option #if($!model.fubiaoti=='与神同行') selected #end value="与神同行">八-与神同行[230-244]</option>
+		       <option #if($!model.fubiaoti=='尽忠天职') selected #end value="尽忠天职">九-尽忠天职[245-266]</option>
+		       <option #if($!model.fubiaoti=='溪边捡石') selected #end value="溪边捡石">十-溪边捡石[267-290]</option>
+		       <option #if($!model.fubiaoti=='心海拾贝') selected #end value="心海拾贝">十一-心海拾贝[291-341]</option>
+		       <option #if($!model.fubiaoti=='永恒之恋') selected #end value="永恒之恋">十二-永恒之恋[342-365]</option>
+	        </select>
+	    </div>
+	  </div>
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">第几个<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="dijige" id="dijige" value="$!model.dijige" placeholder="第几个">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">标题<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="biaoti" id="biaoti" value="$!model.biaoti" placeholder="标题">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">锚记<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="maoji" id="maoji" value="$!model.maoji" placeholder="锚记">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">内容<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <textarea class="form-control" rows="10" name="neirong" id="neirong"   placeholder="内容">$!model.neirong</textarea>
+	    </div>
+	  </div>
+	   
+	  <div class="form-group row">
+	    <div class="col-sm-offset-2 col-sm-10">
+	      <button type="submit" class="btn btn-block btn-primary">更新</button>
+	    </div>
+	  </div>  
+	 </form>
+     
+   </div><!-- .container -->
+  </body>
+</html>

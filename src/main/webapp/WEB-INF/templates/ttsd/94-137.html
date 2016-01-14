@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    #parse("common/bootstrap-css-js.html")
+    <title>心灵故事</title>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+      <li><h4><b><a href="/index">微生命</a></b></h4></li>
+	  <li><a href="/aishangdi">爱上帝</a></li>
+	  <li><a href="/aitaren">爱他人</a></li>
+	  <li><a href="/aiziji">爱自己</a></li>
+	</ol> 
+   <div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">菜单</button>
+          </p>
+          <div class="jumbotron">
+            <h1>心灵故事</h1>
+          </div>
+        <div class="row">
+          #foreach($!model in $!resultList)
+           <div class="col-xs-12 col-lg-12">
+             <h3>$!model.dijige . $!model.biaoti</h3>
+             <div>
+              $!model.neirong
+             <hr>
+             </div>
+            </div>
+            #end
+            
+          </div><!--/row--> 
+       </div><!--/.col-xs-12.col-sm-9-->
+      
+	   <div class="col-sm-12 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="/ttsd/ttsdindex" class="list-group-item">前言</a>
+            <a href="/ttsd/1-48" class="list-group-item">一- 智慧人生[1-48]</a>
+            <a href="/ttsd/49-93" class="list-group-item">二-人际金律[49-93]</a>
+            <a href="/ttsd/94-137" class="list-group-item active">三-心灵故事[94-137]</a>
+            <a href="/ttsd/138-185" class="list-group-item">四-爱的诗歌[138-185]</a>
+            <a href="/ttsd/164-183" class="list-group-item">五-伊甸风云[164-183]</a>
+            <a href="/ttsd/186-207" class="list-group-item">六-欲海警笛[186-207]</a>
+            <a href="/ttsd/208-229" class="list-group-item">七-夜半歌声[208-229]</a>
+            <a href="/ttsd/230-244" class="list-group-item">八-与神同行[230-244]</a>
+            <a href="/ttsd/245-266" class="list-group-item">九-尽忠天职[245-266]</a>
+            <a href="/ttsd/267-290" class="list-group-item">十-溪边捡石[267-290]</a>
+            <a href="/ttsd/291-341" class="list-group-item">十一-心海拾贝[291-341]</a>
+            <a href="/ttsd/342-365" class="list-group-item">十二-永恒之恋[342-365]</a>
+            <a href="/ttsd/ttsdend" class="list-group-item">后记</a>
+          </div>
+	   </div><!-- 6 -3 -->
+	   
+	 </div><!-- .row -->
+   </div><!-- .container -->
+  </body>
+</html>
