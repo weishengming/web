@@ -29,10 +29,10 @@ public class ZiYuanController  extends SecurityController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/ziyuanupdate")
 	public String update(HttpServletRequest request, Model model) {
-        if(getName(request)==null){
+       if(getName(request)==null){
         	request.getSession().setAttribute("redirectURL", "/ziyuan/ziyuanupdate");
         	return "redirect:/qqLogin";
-        } 
+        }
         logger.info("进入到资源页面");
 		List<ZiYuanDO> ziYuanViewList = ziyuanService.findAll();
 		model.addAttribute("resultViewList", ziYuanViewList);

@@ -28,20 +28,6 @@ public class IndexController extends SecurityController{
 	Logger  logger = LoggerFactory.getLogger(IndexController.class);
 	@Resource
 	private QQService qqService;
-
-	/**
-	 * 默认进入到首页
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value="info",method=RequestMethod.GET)  
-    public String info(HttpServletRequest request,Model model){
-        if(getName(request)==null){
-        	request.getSession().setAttribute("redirectURL", "/info");
-        	return "redirect:/qqLogin";
-        }
-        return "/index/info";
-    } 
 	
 	/**
 	 * 默认进入到首页
@@ -51,7 +37,36 @@ public class IndexController extends SecurityController{
 	@RequestMapping(value="index",method=RequestMethod.GET)  
     public String indexPage(Model model){
         return "/index/index";  
+    }
+	/**
+	 * 爱上帝
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="aishangdi",method=RequestMethod.GET)  
+    public String aishangdiPage(Model model){
+        return "/index/aishangdi";  
     } 
+	/**
+	 * 爱他人
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="aitaren",method=RequestMethod.GET)  
+    public String aitarenPage(Model model){
+        return "/index/aitaren";  
+    }
+	/**
+	 * 爱自己
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="aiziji",method=RequestMethod.GET)  
+    public String aizijiPage(Model model){
+        return "/index/aiziji";  
+    }
+
+ 
 	/**
 	 * 进入QQ登陆
 	 * @param request

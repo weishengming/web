@@ -30,7 +30,7 @@ public class KeHuController extends SecurityController{
 	private KeHuService kehuService;
 	@RequestMapping(method = RequestMethod.GET, value = "/kehuupdate")
 	public String update(HttpServletRequest request, Model model) {
-        if(getName(request)==null){
+       if(getName(request)==null){
         	request.getSession().setAttribute("redirectURL", "/kehu/kehuupdate");
         	return "redirect:/qqLogin";
         }
