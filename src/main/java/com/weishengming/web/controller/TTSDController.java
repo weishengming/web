@@ -21,8 +21,6 @@ import com.weishengming.service.TTSDService;
 @RequestMapping(value = "ttsd")
 public class TTSDController  extends SecurityController {
 	Logger logger = LoggerFactory.getLogger(TTSDController.class);
-	private final String UPDATE_ACTION = "redirect:/ttsd/ttsdupdate";
-	private final String TTSD_VIEW_PATH = "/ttsd/";
 	@Resource
 	private TTSDService ttsdService;
 

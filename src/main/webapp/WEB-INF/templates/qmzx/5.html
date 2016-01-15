@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    #parse("common/bootstrap-css-js.html")
+    <title>信仰方程式</title>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+      <li><h4><b><a href="/index">微生命</a></b></h4></li>
+	  <li><a href="/aishangdi">爱上帝</a></li>
+	  <li><a href="/aitaren">爱他人</a></li>
+	  <li><a href="/aiziji">爱自己</a></li>
+	</ol> 
+   <div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs fixed-top">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">菜单</button>
+          </p>
+          <div class="jumbotron">
+            <h1>信仰方程式</h1>
+          </div>
+            <div class="row">
+              #foreach($!model in $!resultList)
+			  <div class="col-xs-12 col-lg-4">
+			    <div class="thumbnail">
+			    <embed src="$!model.tudousrc" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="100%" height="100%"></embed>
+			      <div class="caption">
+			        <h3>$!model.dijige . $!model.biaoti</h3>
+			        <p>$!model.miaoshu</p>
+			      </div>
+			    </div>
+			  </div>
+			  #end
+			</div><!-- .row -->
+       </div><!--/.col-xs-12.col-sm-9-->
+      
+	   <div class="col-sm-12 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="/qmzx/qmzxindex" class="list-group-item">前言</a>
+            <a href="/qmzx/1" class="list-group-item">一-宇宙之战</a>
+            <a href="/qmzx/2" class="list-group-item">二-最重要的问题</a>
+            <a href="/qmzx/3" class="list-group-item">三-最高的目标</a>
+            <a href="/qmzx/4" class="list-group-item">四-奇妙探险</a>
+            <a href="/qmzx/5" class="list-group-item active">五-信仰方程式</a>
+            <a href="/qmzx/6" class="list-group-item">六-永远的福音I</a>
+            <a href="/qmzx/7" class="list-group-item">七-永远的福音II</a>
+            <a href="/qmzx/8" class="list-group-item">八-十诫系列</a>
+            <a href="/qmzx/9" class="list-group-item">九-亲近上帝</a>
+            <a href="/qmzx/10" class="list-group-item">十-最奇妙的圣经预言</a>
+            <a href="/qmzx/11" class="list-group-item">十一-天启概要</a>
+            <a href="/qmzx/12" class="list-group-item">十二-预言的地标</a>
+            <a href="/qmzx/qmzxend" class="list-group-item">后记</a>
+         </div>
+	   </div><!-- 6 -3 -->
+	   
+	 </div><!-- .row -->
+   </div><!-- .container -->
+  </body>
+</html>

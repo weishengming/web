@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    #parse("common/bootstrap-css-js.html")
+    <title>奇妙真相|编辑</title>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+      <li><h4><b><a href="/admin/adminindex">微生命后台</a></b></h4></li>
+	  <li><a href="/admin/ttsd/ttsdlist">谈天说地</a></li>
+	  <li><b><a href="/admin/qmzx/qmzxlist"  style="font-size: 18px">奇妙真相</a></b></li>
+	</ol> 
+   <div class="container">
+    <form action="/admin/qmzx/qmzxupdate" method="post" >
+	  <input type="hidden" name="id"  value="$!model.id">
+	  <div class="form-group row">
+	    <label for="xingming" class="col-sm-2 form-control-label">父标题<span class="required">*</span></label>
+	    <div class="col-sm-10">
+		     <select class="form-control" name="fubiaoti" id="fubiaoti" >
+		       <option #if($!model.fubiaoti=='宇宙之战') selected #end value="宇宙之战">一-宇宙之战</option>
+		       <option #if($!model.fubiaoti=='最重要的问题') selected #end value="最重要的问题">二-最重要的问题</option>
+		       <option #if($!model.fubiaoti=='最高的目标') selected #end value="最高的目标">三-最高的目标</option>
+		       <option #if($!model.fubiaoti=='奇妙探险') selected #end value="奇妙探险">四-奇妙探险</option>
+		       <option #if($!model.fubiaoti=='信仰方程式') selected #end value="信仰方程式">五-信仰方程式</option>
+		       <option #if($!model.fubiaoti=='永远的福音I') selected #end value="永远的福音I">六-永远的福音I</option>
+		       <option #if($!model.fubiaoti=='永远的福音II') selected #end value="永远的福音II">七-永远的福音II</option>
+		       <option #if($!model.fubiaoti=='十诫系列') selected #end value="十诫系列">八-十诫系列</option>
+		       <option #if($!model.fubiaoti=='亲近上帝') selected #end value="亲近上帝">九-亲近上帝</option>
+		       <option #if($!model.fubiaoti=='最奇妙的圣经预言') selected #end value="最奇妙的圣经预言">十-最奇妙的圣经预言</option>
+		       <option #if($!model.fubiaoti=='天启概要') selected #end value="天启概要">十一-天启概要</option>
+		       <option #if($!model.fubiaoti=='预言的地标') selected #end value="预言的地标">十二-预言的地标</option>
+	        </select>
+	    </div>
+	  </div>
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">第几个<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="dijige" id="dijige" value="$!model.dijige" placeholder="第几个">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">标题<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="biaoti" id="biaoti" value="$!model.biaoti" placeholder="标题">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">土豆地址<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="tudousrc" id="tudousrc" value="$!model.tudousrc" placeholder="土豆地址">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">视频描述<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <textarea class="form-control" rows="10" name="miaoshu" id="miaoshu"   placeholder="视频描述">$!model.miaoshu</textarea>
+	    </div>
+	  </div>
+	   
+	  <div class="form-group row">
+	    <div class="col-sm-offset-2 col-sm-10">
+	      <button type="submit" class="btn btn-block btn-primary">更新</button>
+	    </div>
+	  </div>  
+	 </form>
+     
+   </div><!-- .container -->
+  </body>
+</html>

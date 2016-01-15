@@ -5,30 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     #parse("common/bootstrap-css-js.html")
-    <title>谈天说地管理</title>
+    <title>奇妙真相管理</title>
   </head>
   <body>
     <ol class="breadcrumb">
       <li><h4><b><a href="/admin/adminindex">微生命后台</a></b></h4></li>
-	  <li><b><a href="/admin/ttsd/ttsdlist" style="font-size: 18px">谈天说地</a></b></li>
-	  <li><a href="/admin/qmzx/qmzxlist">奇妙真相</a></li>
+	  <li><a href="/admin/ttsd/ttsdlist">谈天说地</a></li>
+	  <li><b><a href="/admin/qmzx/qmzxlist" style="font-size: 18px">奇妙真相</a></b></li>
 	</ol> 
    <div class="container">
      <form class="form-inline" action="" method="get">
 	  <div class="form-group">
 	     <select class="form-control" name="fubiaoti" id="fubiaoti" >
-		       <option value="智慧人生">一- 智慧人生[1-48]</option>
-		       <option value="人际金律">二-人际金律[49-93]</option>
-		       <option value="心灵故事">三-心灵故事[94-137]</option>
-		       <option value="爱的诗歌">四-爱的诗歌[138-185]</option>
-		       <option value="伊甸风云">五-伊甸风云[164-183]</option>
-		       <option value="欲海警笛">六-欲海警笛[186-207]</option>
-		       <option value="夜半歌声">七-夜半歌声[208-229]</option>
-		       <option value="与神同行">八-与神同行[230-244]</option>
-		       <option value="尽忠天职">九-尽忠天职[245-266]</option>
-		       <option value="溪边捡石">十-溪边捡石[267-290]</option>
-		       <option value="心海拾贝">十一-心海拾贝[291-341]</option>
-		       <option value="永恒之恋">十二-永恒之恋[342-365]</option>
+		       <option value="宇宙之战">一-宇宙之战</option>
+		       <option value="最重要的问题">二-最重要的问题</option>
+		       <option value="最高的目标">三-最高的目标</option>
+		       <option value="奇妙探险">四-奇妙探险</option>
+		       <option value="信仰方程式">五-信仰方程式</option>
+		       <option value="永远的福音I">六-永远的福音I</option>
+		       <option value="永远的福音II">七-永远的福音II</option>
+		       <option value="十诫系列">八-十诫系列</option>
+		       <option value="亲近上帝">九-亲近上帝</option>
+		       <option value="最奇妙的圣经预言">十-最奇妙的圣经预言</option>
+		       <option value="天启概要">十一-天启概要</option>
+		       <option value="预言的地标">十二-预言的地标</option>
 	        </select>
 	  </div>
 	  <div class="form-group">
@@ -36,7 +36,7 @@
 	  </div>
 	  <div class="form-group">
 	  <button type="submit" class="btn btn-success">查询</button>
-	  <a class="btn btn-primary" href="/admin/ttsd/ttsdedit/-1">添加</a>
+	  <a class="btn btn-primary" href="/admin/qmzx/qmzxedit/-1">添加</a>
 	  </div>
 	</form> 
     <br/> 
@@ -44,10 +44,10 @@
 	<thead>
 		<tr class="success">
 		    <th>序号</th>
-		    <th>第几个</th>
 		    <th>父标题</th>
+		    <th>第几个</th>
 			<th>标题</th>
-			<th>锚记</th>
+			<th>土豆地址</th>
 			<th>操作</th>
 		</tr>
 	</thead>
@@ -56,12 +56,12 @@
 	    #foreach($!model in $!resultViewList)  
 		<tr>
 		    <td class="align-center">$index</td>
-		    <td>$!model.dijige</td>
 		    <td>$!model.fubiaoti</td>
+		    <td>$!model.dijige</td>
 			<td>$!model.biaoti</td>
-			<td>$!model.maoji</td>
+			<td>$!model.tudousrc</td>
 			<td>
-	            <a class="btn btn-success" href="/admin/ttsd/ttsdedit/$!{model.id}">编辑</a>
+	            <a class="btn btn-success" href="/admin/qmzx/qmzxedit/$!{model.id}">编辑</a>
 	        </td>
 		</tr>
 		 #set($index=$index+1)

@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
+import com.weishengming.dao.entity.QMZXDO;
 import com.weishengming.dao.entity.TTSDDO;
+import com.weishengming.dao.query.QMZXQuery;
 import com.weishengming.dao.query.ResultPage;
 import com.weishengming.dao.query.TTSDQuery;
+import com.weishengming.service.QMZXService;
 import com.weishengming.service.TTSDService;
 /**
  * @author 杨天赐
@@ -23,11 +26,11 @@ import com.weishengming.service.TTSDService;
 @RequestMapping(value = "admin")
 public class AdminController  extends SecurityController {
 	Logger logger = LoggerFactory.getLogger(AdminController.class);
-	private final String UPDATE_ACTION = "redirect:/admin/adminlist";
-	private final String ADMIN_VIEW_PATH = "/admin/";
-	
 	@Resource
 	private TTSDService ttsdService;
+	
+	@Resource
+	private QMZXService qmzxService;
 	
 	/**
 	 * 进入到后台首页
@@ -38,26 +41,86 @@ public class AdminController  extends SecurityController {
 		return "/admin/adminindex";
 	}
 	
+	
+	/**********奇妙真相管理START**************/
+	
 	/**
-	 * 进入到客户列表页面
+	 * 进入到奇妙真相列表页面
+	 * @param model
+	 * @param query
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET,value="/qmzx/qmzxlist")
+    public String qmzxlist(Model model, QMZXQuery query,Integer changePageSize,Integer pn) {
+		logger.info("进入到奇妙真相列表页面");
+        query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        ResultPage<QMZXDO> result = qmzxService.findPage(query);
+        String pageUrl = "/admin/qmzx/qmzxlist?" + Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultViewList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
+        return "/admin/qmzx/qmzxlist";
+    }
+	
+	 /**
+     * 通过id 
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/qmzx/qmzxedit/{id}")
+    public String qmzxedit(@PathVariable Long id, Model model) {
+        final QMZXDO qmzxDO = qmzxService.findOne(id);
+        model.addAttribute("model", qmzxDO);
+        return "/admin/qmzx/qmzxupdate";
+    }
+	 
+ 
+    /**
+   	 * 更新
+   	 * @param entity
+   	 * @return
+   	 */
+   	@RequestMapping(method = RequestMethod.POST, value = "/qmzx/qmzxupdate")
+    public String qmzxupdate(QMZXDO entity) {
+   		if(entity.getId()==null){
+		    entity.setCreateDate(DateUtil.getCurrentDate());
+	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	qmzxService.create(entity);
+	   }else{
+		    qmzxService.update(entity);
+	   }
+   		return "redirect:/admin/qmzx/qmzxlist";
+    }
+	
+	public QMZXService getQmzxService() {
+		return qmzxService;
+	}
+
+	public void setQmzxService(QMZXService qmzxService) {
+		this.qmzxService = qmzxService;
+	}
+	
+	/**********奇妙真相管理END**************/
+	
+	/**********谈天说地管理 START***************/
+
+	/**
+	 * 进入到谈天说地列表页面
 	 * @param model
 	 * @param query
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET,value="/ttsd/ttsdlist")
     public String ttsdlist(Model model, TTSDQuery query,Integer changePageSize,Integer pn) {
-		logger.info("进入到客户列表页面");
+		logger.info("进入到谈天说地列表页面");
         query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
         ResultPage<TTSDDO> result = ttsdService.findPage(query);
-
-       /* List<KeHuView> keHuViewList = new ArrayList<KeHuView>();
-        for (KeHuDO sourceKeHu : result.getResult()) {
-        	KeHuView targetKeHu = new KeHuView();
-            BeanUtils.copyProperties(sourceKeHu, targetKeHu);
-            keHuViewList.add(targetKeHu);
-        }*/
-        String pageUrl = "/admin/ttsdttsd/list?" + Converter.covertToQueryStr(query);
+        String pageUrl = "/admin/ttsd/ttsdlist?" + Converter.covertToQueryStr(query);
         model.addAttribute("pageUrl", pageUrl);
         model.addAttribute("resultViewList", result.getResult());
         model.addAttribute("query", query);
@@ -96,6 +159,16 @@ public class AdminController  extends SecurityController {
 	   }
    		return "redirect:/admin/ttsd/ttsdlist";
     }
+
+	public TTSDService getTtsdService() {
+		return ttsdService;
+	}
+
+	public void setTtsdService(TTSDService ttsdService) {
+		this.ttsdService = ttsdService;
+	}
+   	
+   	/**********谈天说地管理 END***************/
 	
 
 }
