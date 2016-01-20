@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
 import com.weishengming.dao.entity.QMZXDO;
+import com.weishengming.dao.entity.ShiPinDO;
 import com.weishengming.dao.entity.TTSDDO;
 import com.weishengming.dao.query.QMZXQuery;
 import com.weishengming.dao.query.ResultPage;
+import com.weishengming.dao.query.ShiPinQuery;
 import com.weishengming.dao.query.TTSDQuery;
 import com.weishengming.service.QMZXService;
+import com.weishengming.service.ShiPinService;
 import com.weishengming.service.TTSDService;
 /**
  * @author 杨天赐
@@ -32,6 +35,9 @@ public class AdminController  extends SecurityController {
 	@Resource
 	private QMZXService qmzxService;
 	
+	@Resource
+	private ShiPinService shipinService;
+	
 	/**
 	 * 进入到后台首页
 	 * @return
@@ -40,6 +46,70 @@ public class AdminController  extends SecurityController {
 	public String adminindex(){
 		return "/admin/adminindex";
 	}
+	
+	/***********视频管理START****************/
+	/**
+	 * 进入到视频列表页面
+	 * @param model
+	 * @param query
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET,value="/shipin/shipinlist")
+    public String shipinlist(Model model, ShiPinQuery query,Integer changePageSize,Integer pn) {
+		logger.info("进入到视频列表页面");
+        query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        ResultPage<ShiPinDO> result = shipinService.findPage(query);
+        String pageUrl = "/admin/shipin/shipinlist?" + Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultViewList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
+        return "/admin/shipin/shipinlist";
+    }
+	
+	 /**
+     * 通过id 
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/shipin/shipinedit/{id}")
+    public String shipinedit(@PathVariable Long id, Model model) {
+        final ShiPinDO shipinDO = shipinService.findOne(id);
+        model.addAttribute("model", shipinDO);
+        return "/admin/shipin/shipinupdate";
+    }
+	 
+ 
+    /**
+   	 * 更新
+   	 * @param entity
+   	 * @return
+   	 */
+   	@RequestMapping(method = RequestMethod.POST, value = "/shipin/shipinupdate")
+    public String shipinupdate(ShiPinDO entity) {
+   		if(entity.getId()==null){
+		    entity.setCreateDate(DateUtil.getCurrentDate());
+	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	shipinService.create(entity);
+	   }else{
+		    shipinService.update(entity);
+	   }
+   		return "redirect:/admin/shipin/shipinlist";
+    }
+   	
+   	public ShiPinService getShipinService() {
+		return shipinService;
+	}
+
+	public void setShipinService(ShiPinService shipinService) {
+		this.shipinService = shipinService;
+	}
+	
+	 
+	/***********视频管理END***************/
 	
 	
 	/**********奇妙真相管理START**************/

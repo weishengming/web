@@ -5,34 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     #parse("common/bootstrap-css-js.html")
-    <title>奇妙真相|编辑</title>
+    <title>视频管理|编辑</title>
   </head>
   <body>
     <ol class="breadcrumb">
       <li><h4><b><a href="/admin/adminindex">微生命后台</a></b></h4></li>
 	  <li><a href="/admin/ttsd/ttsdlist">谈天说地</a></li>
-	  <li><b><a href="/admin/qmzx/qmzxlist"  style="font-size: 18px">奇妙真相</a></b></li>
-	  <li><a href="/admin/shipin/shipinlist">视频管理</a></li>
+	  <li><a href="/admin/qmzx/qmzxlist">奇妙真相</a></li>
+	   <li><b><a href="/admin/shipin/shipinlist" style="font-size: 18px">视频管理</a></b></li>
 	</ol> 
    <div class="container">
-    <form action="/admin/qmzx/qmzxupdate" method="post" >
+    <form action="/admin/shipin/shipinupdate" method="post" >
 	  <input type="hidden" name="id"  value="$!model.id">
 	  <div class="form-group row">
 	    <label for="xingming" class="col-sm-2 form-control-label">父标题<span class="required">*</span></label>
 	    <div class="col-sm-10">
 		     <select class="form-control" name="fubiaoti" id="fubiaoti" >
-		       <option #if($!model.fubiaoti=='宇宙之战') selected #end value="宇宙之战">一-宇宙之战</option>
-		       <option #if($!model.fubiaoti=='最重要的问题') selected #end value="最重要的问题">二-最重要的问题</option>
-		       <option #if($!model.fubiaoti=='最高的目标') selected #end value="最高的目标">三-最高的目标</option>
-		       <option #if($!model.fubiaoti=='奇妙探险') selected #end value="奇妙探险">四-奇妙探险</option>
-		       <option #if($!model.fubiaoti=='信仰方程式') selected #end value="信仰方程式">五-信仰方程式</option>
-		       <option #if($!model.fubiaoti=='永远的福音I') selected #end value="永远的福音I">六-永远的福音I</option>
-		       <option #if($!model.fubiaoti=='永远的福音II') selected #end value="永远的福音II">七-永远的福音II</option>
-		       <option #if($!model.fubiaoti=='十诫系列') selected #end value="十诫系列">八-十诫系列</option>
-		       <option #if($!model.fubiaoti=='亲近上帝') selected #end value="亲近上帝">九-亲近上帝</option>
-		       <option #if($!model.fubiaoti=='最奇妙的圣经预言') selected #end value="最奇妙的圣经预言">十-最奇妙的圣经预言</option>
-		       <option #if($!model.fubiaoti=='天启概要') selected #end value="天启概要">十一-天启概要</option>
-		       <option #if($!model.fubiaoti=='预言的地标') selected #end value="预言的地标">十二-预言的地标</option>
+		       <option #if($!model.fubiaoti=='光明人生') selected #end value="光明人生">一-光明人生</option>
+		       <option #if($!model.fubiaoti=='幸福人生') selected #end value="幸福人生">二-幸福人生</option>
+		       <option #if($!model.fubiaoti=='丰富人生') selected #end value="丰富人生">三-丰富人生</option>
 	        </select>
 	    </div>
 	  </div>

@@ -5,11 +5,11 @@ import javax.persistence.Table;
 
 /**
  * @author 杨天赐
- * 奇妙真相DO
+ * 视频DO
  */
 @Entity
-@Table(name = "qmzx")
-public class QMZXDO extends BaseDO{
+@Table(name = "shipin")
+public class ShiPinDO extends BaseDO{
 	private static final long serialVersionUID = 1L;
 	private String tudousrc;// 土豆地址
 	private String fubiaoti;//父标题
@@ -47,4 +47,5 @@ public class QMZXDO extends BaseDO{
 		this.dijige = dijige;
 	}
     
+
 }
