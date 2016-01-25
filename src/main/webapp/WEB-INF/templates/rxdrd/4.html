@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    #parse("common/bootstrap-css-js.html")
+    <title>待人的基本技巧</title>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+      <li><h4><b><a href="/index">微生命</a></b></h4></li>
+	  <li><a href="/aishangdi">爱上帝</a></li>
+	  <li><a href="/aitaren">爱他人</a></li>
+	  <li><a href="/aiziji">爱自己</a></li>
+	</ol> 
+   <div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">菜单</button>
+          </p>
+          <div class="jumbotron">
+            <h1>待人的基本技巧</h1>
+          </div>
+        <div class="row">
+          #foreach($!model in $!resultList)
+           <div class="col-xs-12 col-lg-12">
+             <h3>$!model.dijige . $!model.biaoti</h3>
+             <div>
+              $!model.neirong
+             <hr>
+             </div>
+            </div>
+            #end
+            
+          </div><!--/row--> 
+       </div><!--/.col-xs-12.col-sm-9-->
+      
+	   <div class="col-sm-12 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="/rxdrd/rxdrdindex" class="list-group-item">前言</a>
+            <a href="/rxdrd/1" class="list-group-item  active">一-待人的基本技巧</a>
+            <a href="/rxdrd/2" class="list-group-item">二-使人喜欢你的六种方法</a>
+            <a href="/rxdrd/3" class="list-group-item">三-使得人同意于你的十二种方法 </a>
+            <a href="/rxdrd/4" class="list-group-item">四-使人同意你的九种方法</a>
+            <a href="/rxdrd/5" class="list-group-item">五-创造奇迹的信件</a>
+            <a href="/rxdrd/6" class="list-group-item">六-使你的家庭和睦的七种方法</a>
+          </div>
+	   </div><!-- 6 -3 -->
+	   
+	 </div><!-- .row -->
+   </div><!-- .container -->
+  </body>
+</html>

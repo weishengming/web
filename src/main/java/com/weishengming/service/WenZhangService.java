@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.weishengming.common.util.DateUtil;
 import com.weishengming.common.validate.ValidationService;
 import com.weishengming.dao.entity.WenZhangDO;
 import com.weishengming.dao.mapper.WenZhangMapper;
@@ -77,6 +78,10 @@ public class WenZhangService {
     }
     
     private void mergeEntity(WenZhangDO source,WenZhangDO target){
-    	//TODO 
+    	target.setUpdateDate(DateUtil.getCurrentDate());
+    	target.setDijige(source.getDijige());
+    	target.setFubiaoti(source.getFubiaoti());
+    	target.setBiaoti(source.getBiaoti());
+    	target.setNeirong(source.getNeirong());
     }
 }
