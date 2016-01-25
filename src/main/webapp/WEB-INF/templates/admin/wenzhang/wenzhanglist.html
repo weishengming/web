@@ -5,23 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     #parse("common/bootstrap-css-js.html")
-    <title>视频管理</title>
+    <title>文章管理</title>
   </head>
   <body>
     <ol class="breadcrumb">
       <li><h4><b><a href="/admin/adminindex">微生命后台</a></b></h4></li>
-	  <li><a href="/admin/ttsd/ttsdlist">谈天说地</a></li>
-	  <li><a href="/admin/wenzhang/wenzhanglist">文章管理</a></li>
+	  <li><a href="/admin/ttsd/ttsdlist" >谈天说地</a></li>
+	  <li><b><a href="/admin/wenzhang/wenzhanglist" style="font-size: 18px">文章管理</a></b></li>
 	  <li><a href="/admin/qmzx/qmzxlist">奇妙真相</a></li>
-	  <li><b><a href="/admin/shipin/shipinlist" style="font-size: 18px">视频管理</a></b></li>
+	  <li><a href="/admin/shipin/shipinlist">视频管理</a></li>
 	</ol> 
    <div class="container">
      <form class="form-inline" action="" method="get">
 	  <div class="form-group">
 	     <select class="form-control" name="fubiaoti" id="fubiaoti" >
-		       <option value="光明人生">一-光明人生</option>
-		       <option value="幸福人生">二-幸福人生</option>
-		       <option value="丰富人生">三-丰富人生</option>
+		       <option value="智慧人生">一- 智慧人生[1-48]</option>
 	        </select>
 	  </div>
 	  <div class="form-group">
@@ -29,7 +27,7 @@
 	  </div>
 	  <div class="form-group">
 	  <button type="submit" class="btn btn-success">查询</button>
-	  <a class="btn btn-primary" href="/admin/shipin/shipinedit/-1">添加</a>
+	  <a class="btn btn-primary" href="/admin/wenzhang/wenzhangedit/-1">添加</a>
 	  </div>
 	</form> 
     <br/> 
@@ -37,10 +35,9 @@
 	<thead>
 		<tr class="success">
 		    <th>序号</th>
-		    <th>父标题</th>
 		    <th>第几个</th>
+		    <th>父标题</th>
 			<th>标题</th>
-			<th>土豆地址</th>
 			<th>操作</th>
 		</tr>
 	</thead>
@@ -49,12 +46,11 @@
 	    #foreach($!model in $!resultViewList)  
 		<tr>
 		    <td class="align-center">$index</td>
-		    <td>$!model.fubiaoti</td>
 		    <td>$!model.dijige</td>
+		    <td>$!model.fubiaoti</td>
 			<td>$!model.biaoti</td>
-			<td>$!model.tudousrc</td>
 			<td>
-	            <a class="btn btn-success" href="/admin/shipin/shipinedit/$!{model.id}">编辑</a>
+	            <a class="btn btn-success" href="/admin/wenzhang/wenzhangedit/$!{model.id}">编辑</a>
 	        </td>
 		</tr>
 		 #set($index=$index+1)

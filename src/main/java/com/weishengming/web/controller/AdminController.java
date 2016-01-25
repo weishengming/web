@@ -14,13 +14,16 @@ import com.weishengming.common.util.DateUtil;
 import com.weishengming.dao.entity.QMZXDO;
 import com.weishengming.dao.entity.ShiPinDO;
 import com.weishengming.dao.entity.TTSDDO;
+import com.weishengming.dao.entity.WenZhangDO;
 import com.weishengming.dao.query.QMZXQuery;
 import com.weishengming.dao.query.ResultPage;
 import com.weishengming.dao.query.ShiPinQuery;
 import com.weishengming.dao.query.TTSDQuery;
+import com.weishengming.dao.query.WenZhangQuery;
 import com.weishengming.service.QMZXService;
 import com.weishengming.service.ShiPinService;
 import com.weishengming.service.TTSDService;
+import com.weishengming.service.WenZhangService;
 /**
  * @author 杨天赐
  * web控制数据接口  只有 OPENID=杨天赐 才可以访问这个功能
@@ -31,6 +34,9 @@ public class AdminController  extends SecurityController {
 	Logger logger = LoggerFactory.getLogger(AdminController.class);
 	@Resource
 	private TTSDService ttsdService;
+	
+	@Resource
+	private WenZhangService wenzhangService;
 	
 	@Resource
 	private QMZXService qmzxService;
@@ -176,7 +182,73 @@ public class AdminController  extends SecurityController {
 	
 	/**********奇妙真相管理END**************/
 	
+	/**********文章管理 START***************/
+
+	/**
+	 * 进入到文章列表页面
+	 * @param model
+	 * @param query
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET,value="/wenzhang/wenzhanglist")
+    public String wenzhanglist(Model model, WenZhangQuery query,Integer changePageSize,Integer pn) {
+		logger.info("进入到文章列表页面");
+        query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        ResultPage<WenZhangDO> result = wenzhangService.findPage(query);
+        String pageUrl = "/admin/wenzhang/wenzhanglist?" + Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultViewList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
+        return "/admin/wenzhang/wenzhanglist";
+    }
+	
+	 /**
+     * 通过id 
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/wenzhang/wenzhangedit/{id}")
+    public String wenzhangedit(@PathVariable Long id, Model model) {
+        final WenZhangDO wenzhangDO = wenzhangService.findOne(id);
+        model.addAttribute("model", wenzhangDO);
+        return "/admin/wenzhang/wenzhangupdate";
+    }
+	 
+ 
+    /**
+   	 * 更新
+   	 * @param entity
+   	 * @return
+   	 */
+   	@RequestMapping(method = RequestMethod.POST, value = "/wenzhang/wenzhangupdate")
+    public String wenzhangupdate(WenZhangDO entity) {
+   		if(entity.getId()==null){
+		    entity.setCreateDate(DateUtil.getCurrentDate());
+	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	wenzhangService.create(entity);
+	   }else{
+		    wenzhangService.update(entity);
+	   }
+   		return "redirect:/admin/wenzhang/wenzhanglist";
+    }
+   	
+	public WenZhangService getWenzhangService() {
+		return wenzhangService;
+	}
+
+	public void setWenzhangService(WenZhangService wenzhangService) {
+		this.wenzhangService = wenzhangService;
+	}
+   	
+   	/**********文章管理 END***************/
+	
 	/**********谈天说地管理 START***************/
+
+
 
 	/**
 	 * 进入到谈天说地列表页面
