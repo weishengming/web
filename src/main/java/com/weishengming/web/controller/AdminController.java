@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
+import com.weishengming.dao.entity.JiaoTangDO;
 import com.weishengming.dao.entity.QMZXDO;
 import com.weishengming.dao.entity.ShiPinDO;
 import com.weishengming.dao.entity.TTSDDO;
 import com.weishengming.dao.entity.WenZhangDO;
+import com.weishengming.dao.query.JiaoTangQuery;
 import com.weishengming.dao.query.QMZXQuery;
 import com.weishengming.dao.query.ResultPage;
 import com.weishengming.dao.query.ShiPinQuery;
 import com.weishengming.dao.query.TTSDQuery;
 import com.weishengming.dao.query.WenZhangQuery;
+import com.weishengming.service.JiaoTangService;
 import com.weishengming.service.QMZXService;
 import com.weishengming.service.ShiPinService;
 import com.weishengming.service.TTSDService;
@@ -44,6 +47,9 @@ public class AdminController  extends SecurityController {
 	@Resource
 	private ShiPinService shipinService;
 	
+	@Resource
+	private JiaoTangService jiaotangService;
+	
 	/**
 	 * 进入到后台首页
 	 * @return
@@ -53,6 +59,74 @@ public class AdminController  extends SecurityController {
 		return "/admin/adminindex";
 	}
 	
+	/***********教堂管理START****************/
+	/**
+	 * 进入到视频列表页面
+	 * @param model
+	 * @param query
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET,value="/jiaotang/jiaotanglist")
+    public String jiaotanglist(Model model, JiaoTangQuery query,Integer changePageSize,Integer pn) {
+		logger.info("进入到教堂列表页面");
+        query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        ResultPage<JiaoTangDO> result = jiaotangService.findPage(query);
+        String pageUrl = "/admin/jiaotang/jiaotanglist?" + Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultViewList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
+        return "/admin/jiaotang/jiaotanglist";
+    }
+	
+	 /**
+     * 通过id 
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/jiaotang/jiaotangedit/{id}")
+    public String jiaotangedit(@PathVariable Long id, Model model) {
+        final JiaoTangDO jiaotangDO = jiaotangService.findOne(id);
+        model.addAttribute("model", jiaotangDO);
+        return "/admin/jiaotang/jiaotangupdate";
+    }
+	 
+ 
+    /**
+   	 * 更新
+   	 * @param entity
+   	 * @return
+   	 */
+   	@RequestMapping(method = RequestMethod.POST, value = "/jiaotang/jiaotangupdate")
+    public String jiaotangupdate(JiaoTangDO entity) {
+   		if(entity.getId()==null){
+		    entity.setCreateDate(DateUtil.getCurrentDate());
+	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	jiaotangService.create(entity);
+	   }else{
+		   jiaotangService.update(entity);
+	   }
+   		return "redirect:/admin/jiaotang/jiaotanglist";
+    }
+   	
+   	public JiaoTangService getJiaotangService() {
+		return jiaotangService;
+	}
+
+	public void setJiaotangService(JiaoTangService jiaotangService) {
+		this.jiaotangService = jiaotangService;
+	}
+	
+	 
+	/***********教堂管理END***************/
+	
+	
+	
+	
+
 	/***********视频管理START****************/
 	/**
 	 * 进入到视频列表页面

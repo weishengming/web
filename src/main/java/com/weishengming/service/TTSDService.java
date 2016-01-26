@@ -47,9 +47,9 @@ public class TTSDService {
     }
     
     public Long countList(TTSDQuery query){
-	   TTSDParam partyParam = new TTSDParam();
-       BeanUtils.copyProperties(query, partyParam);
-       return mapper.countList(partyParam);
+	   TTSDParam param = new TTSDParam();
+       BeanUtils.copyProperties(query, param);
+       return mapper.countList(param);
       	
     }
 

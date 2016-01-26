@@ -71,9 +71,9 @@ public class QMZXService {
         mapper.delete(id);
     }
     public Long countList(QMZXQuery query){
-    	QMZXParam partyParam = new QMZXParam();
-       BeanUtils.copyProperties(query, partyParam);
-       return mapper.countList(partyParam);
+       QMZXParam param = new QMZXParam();
+       BeanUtils.copyProperties(query, param);
+       return mapper.countList(param);
       	
     }
     

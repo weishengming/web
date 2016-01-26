@@ -60,9 +60,9 @@ public class WenZhangService {
     }
     
     public Long countList(WenZhangQuery query){
- 	    WenZhangParam partyParam = new WenZhangParam();
-        BeanUtils.copyProperties(query, partyParam);
-        return mapper.countList(partyParam);
+ 	    WenZhangParam param = new WenZhangParam();
+        BeanUtils.copyProperties(query, param);
+        return mapper.countList(param);
        	
      }
 

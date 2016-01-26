@@ -83,9 +83,9 @@ public class KeHuService {
     	target.setWeixinhao(source.getWeixinhao()); //微信号
     }
     public Long countList(KeHuQuery query){
-   	    KeHuParam partyParam = new KeHuParam();
-        BeanUtils.copyProperties(query, partyParam);
-        return mapper.countList(partyParam);
+   	    KeHuParam param = new KeHuParam();
+        BeanUtils.copyProperties(query, param);
+        return mapper.countList(param);
    	
    }
 }

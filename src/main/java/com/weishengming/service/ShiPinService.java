@@ -74,9 +74,9 @@ public class ShiPinService {
     }
     
     public Long countList(ShiPinQuery query){
-       ShiPinParam partyParam = new ShiPinParam();
-       BeanUtils.copyProperties(query, partyParam);
-       return mapper.countList(partyParam);
+       ShiPinParam param = new ShiPinParam();
+       BeanUtils.copyProperties(query, param);
+       return mapper.countList(param);
     }
     
     private void mergeEntity(ShiPinDO source,ShiPinDO target){
