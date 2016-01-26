@@ -16,17 +16,32 @@ public class DiXiongZiMeiDO extends BaseDO{
 	private String openID;           //openID
 	private String nickname;
 	
+	private String xingbie; //性别
+	private String shengri; //生日
 	private String shoujihao;
 	private String xingming;
 	private String qq;
 	private String weixinhao;
 	private String weibohao;
-	
-	private String leixing;
-	private String leixingstring; //程度
-	
+	private String leixing; //程度
 	
 	private String beizhu;
+	
+	public String getXingbie() {
+		return xingbie;
+	}
+
+	public void setXingbie(String xingbie) {
+		this.xingbie = xingbie;
+	}
+
+	public String getShengri() {
+		return shengri;
+	}
+
+	public void setShengri(String shengri) {
+		this.shengri = shengri;
+	}
 
 	public String getOpenID() {
 		return openID;
@@ -90,14 +105,6 @@ public class DiXiongZiMeiDO extends BaseDO{
 
 	public void setLeixing(String leixing) {
 		this.leixing = leixing;
-	}
-
-	public String getLeixingstring() {
-		return leixingstring;
-	}
-
-	public void setLeixingstring(String leixingstring) {
-		this.leixingstring = leixingstring;
 	}
 
 	public String getBeizhu() {
