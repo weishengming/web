@@ -17,9 +17,11 @@ public class DiXiongZiMeiParam extends MapperQuery{
         private String nickname;
         private String openID;
         private String qq;
+        private String shengri;
         private String shoujihao;
         private String weibohao;
         private String weixinhao;
+        private String xingbie;
         private String xingming;
         
     
@@ -86,6 +88,13 @@ public class DiXiongZiMeiParam extends MapperQuery{
     public String getQq(){
     	return qq;
     }
+        public void  setShengri(String shengri){
+    	this.shengri=shengri;
+    }
+    
+    public String getShengri(){
+    	return shengri;
+    }
         public void  setShoujihao(String shoujihao){
     	this.shoujihao=shoujihao;
     }
@@ -106,6 +115,13 @@ public class DiXiongZiMeiParam extends MapperQuery{
     
     public String getWeixinhao(){
     	return weixinhao;
+    }
+        public void  setXingbie(String xingbie){
+    	this.xingbie=xingbie;
+    }
+    
+    public String getXingbie(){
+    	return xingbie;
     }
         public void  setXingming(String xingming){
     	this.xingming=xingming;

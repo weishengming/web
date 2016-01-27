@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
+import com.weishengming.dao.entity.DiXiongZiMeiDO;
 import com.weishengming.dao.entity.JiaoTangDO;
 import com.weishengming.dao.entity.LeiXingDO;
 import com.weishengming.dao.entity.QMZXDO;
 import com.weishengming.dao.entity.ShiPinDO;
 import com.weishengming.dao.entity.TTSDDO;
 import com.weishengming.dao.entity.WenZhangDO;
+import com.weishengming.dao.query.DiXiongZiMeiQuery;
 import com.weishengming.dao.query.JiaoTangQuery;
 import com.weishengming.dao.query.LeiXingQuery;
 import com.weishengming.dao.query.QMZXQuery;
@@ -24,6 +26,7 @@ import com.weishengming.dao.query.ResultPage;
 import com.weishengming.dao.query.ShiPinQuery;
 import com.weishengming.dao.query.TTSDQuery;
 import com.weishengming.dao.query.WenZhangQuery;
+import com.weishengming.service.DiXiongZiMeiService;
 import com.weishengming.service.JiaoTangService;
 import com.weishengming.service.LeiXingService;
 import com.weishengming.service.QMZXService;
@@ -56,6 +59,9 @@ public class AdminController  extends SecurityController {
 	@Resource
 	private LeiXingService leixingService;
 	
+	@Resource
+	private DiXiongZiMeiService dixiongzimeiService;
+	
 	/**
 	 * 进入到后台首页
 	 * @return
@@ -65,6 +71,72 @@ public class AdminController  extends SecurityController {
 		return "/admin/adminindex";
 	}
 	
+	/***********弟兄姊妹管理START****************/
+	/**
+	 * 进入到弟兄姊妹列表页面
+	 * @param model
+	 * @param query
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET,value="/dixiongzimei/dixiongzimeilist")
+    public String dixiongzimeilist(Model model, DiXiongZiMeiQuery query,Integer changePageSize,Integer pn) {
+		logger.info("进入到教堂列表页面");
+        query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        ResultPage<DiXiongZiMeiDO> result = dixiongzimeiService.findPage(query);
+        String pageUrl = "/admin/dixiongzimei/dixiongzimeilist?" + Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultViewList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
+        return "/admin/dixiongzimei/dixiongzimeilist";
+    }
+	
+	 /**
+     * 通过id 
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/dixiongzimei/dixiongzimeiedit/{id}")
+    public String dixiongzimeiedit(@PathVariable Long id, Model model) {
+        final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(id);
+        model.addAttribute("model", dixiongzimeiDO);
+        return "/admin/dixiongzimei/dixiongzimeiupdate";
+    }
+	 
+ 
+    /**
+   	 * 更新
+   	 * @param entity
+   	 * @return
+   	 */
+   	@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei/dixiongzimeiupdate")
+    public String dixiongzimeiupdate(DiXiongZiMeiDO entity) {
+   		if(entity.getId()==null){
+		    entity.setCreateDate(DateUtil.getCurrentDate());
+	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	dixiongzimeiService.create(entity);
+	   }else{
+		    dixiongzimeiService.update(entity);
+	   }
+   		return "redirect:/admin/dixiongzimei/dixiongzimeilist";
+    }
+   	
+   	public DiXiongZiMeiService getDixiongzimeiService() {
+		return dixiongzimeiService;
+	}
+
+	public void setDixiongzimeiService(DiXiongZiMeiService dixiongzimeiService) {
+		this.dixiongzimeiService = dixiongzimeiService;
+	}
+	 
+	/***********弟兄姊妹管理END***************/
+	
+	
+	
+
 	/***********类型管理START****************/
 	/**
 	 * 进入到视频列表页面
