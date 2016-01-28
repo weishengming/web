@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     #parse("common/bootstrap-css-js.html")
-    <title>类型管理</title>
+    <title>弟兄姊妹管理</title>
   </head>
   <body>
     <ol class="breadcrumb">
@@ -19,13 +19,14 @@
    <div class="container">
      <form class="form-inline" action="" method="get">
 	  <div class="form-group">
-	      
+	    <input type="text" class="form-control" name="xingming" id="xingming" value="$!query.xingming"   placeholder="姓名">
 	  </div>
 	  <div class="form-group">
-	    <input type="text" class="form-control" name="fumingcheng" id="fumingcheng" value="$!query.fumingcheng"   placeholder="父名称">
+	    <input type="text" class="form-control" name="shoujihao" id="shoujihao" value="$!query.shoujihao"   placeholder="手机号">
 	  </div>
 	  <div class="form-group">
-	  <button type="submit" class="btn btn-success">查询</button>
+	      <button type="submit" class="btn btn-success">查询</button>
+	      <a class="btn btn-primary" href="/admin/dixiongzimei/dixiongzimeiedit/-1">添加</a>
 	  </div>
 	</form> 
     <br/> 
@@ -33,10 +34,13 @@
 	<thead>
 		<tr class="success">
 		    <th>序号</th>
-			<th>父类型名称</th>
-		    <th>类型名称</th>
-		    <th>级别</th>
-		    <th>排序</th>
+			<th>姓名</th>
+		    <th>性别</th>
+		    <th>生日</th>
+		    <th>qq号</th>
+			<th>微信号</th>
+			<th>微博号</th>
+			<th>手机号</th>
 			<th>操作</th>
 		</tr>
 	</thead>
@@ -45,14 +49,15 @@
 	    #foreach($!model in $!resultViewList)  
 		<tr>
 		    <td class="align-center">$index</td>
-		    <td>$!model.fumingcheng</td>
-		    <td>$!model.mingcheng</td>
-		    <td>$!model.jibie</td>
-			<td>$!model.paixu</td>
+		    <td>$!model.xingming</td>
+		    <td>$!model.xingbie</td>
+		    <td>$!model.shengri</td>
+			<td>$!model.qq</td>
+			<td>$!model.weixinhao</td>
+			<td>$!model.weibohao</td>
+			<td>$!model.shoujihao</td>
 			<td>
-			    <!-- 这个就是编辑 子类型 -->
-	            <a class="btn btn-success" href="/admin/wenzhang/wenzhangedit/$!{model.id}">编辑</a>
-	            <!-- <a class="btn btn-primary" href="/admin/wenzhang/wenzhangedit/$!{model.id}">查看子类型</a> -->
+	            <a class="btn btn-success" href="/admin/dixiongzimei/dixiongzimeiedit/$!{model.id}">编辑</a>
 	        </td>
 		</tr>
 		 #set($index=$index+1)
