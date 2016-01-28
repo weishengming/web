@@ -171,6 +171,33 @@ public class AdminController  extends SecurityController {
         model.addAttribute("model", leixingDO);
         return "/admin/leixing/leixingupdate";
     }
+    
+    /**
+     * 
+     * 编辑子类型 
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/leixing/zileixingedit/{id}")
+    public String zileixingedit(@PathVariable Long id, Model model) {
+        final LeiXingDO leixingDO = leixingService.findOne(id);
+        model.addAttribute("model", leixingDO);
+        return "/admin/leixing/zileixingupdate";
+    }
+    
+    /**
+     * 删除类型
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/leixing/leixingdelete/{id}")
+    public String leixingdelete(@PathVariable Long id){
+   		if(id!=null){
+   			leixingService.delete(id);
+   			return "redirect:/admin/leixing/leixinglist";
+   		}
+   		return null;
+   	}
 	 
  
     /**
@@ -189,6 +216,24 @@ public class AdminController  extends SecurityController {
 	   }
    		return "redirect:/admin/leixing/leixinglist";
     }
+    /**
+   	 * 添加子类型
+   	 * @param entity
+   	 * @return
+   	 */
+   	@RequestMapping(method = RequestMethod.POST, value = "/leixing/zileixingupdate")
+    public String zileixingupdate(LeiXingDO entity) {
+   		if(entity.getId()==null){
+		    entity.setCreateDate(DateUtil.getCurrentDate());
+	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	leixingService.create(entity);
+	   }else{
+		   leixingService.update(entity);
+	   }
+   		return "redirect:/admin/leixing/leixinglist";
+    }
+   	
+   	
    	
    	public LeiXingService getLeixingService() {
 		return leixingService;

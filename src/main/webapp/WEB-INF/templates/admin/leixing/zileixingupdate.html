@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     #parse("common/bootstrap-css-js.html")
-    <title>类型管理|编辑</title>
+    <title>类型管理|子类型编辑</title>
   </head>
   <body>
     <ol class="breadcrumb">
@@ -17,34 +17,35 @@
 	  <li><a href="/admin/dixiongzimei/dixiongzimeilist">弟兄姊妹管理</a></li>
 	</ol>
    <div class="container">
-    <form action="/admin/leixing/leixingupdate" method="post" >
-	  <input type="hidden" name="id"  value="$!model.id">
-	  <input type="hidden" name="fuid"  value="$!model.fuid">
+    <form action="/admin/leixing/zileixingupdate" method="post" >
+	  <input type="hidden" name="id"  value="">
+	  <input type="hidden" name="fuid"  value="$!model.id">
 	  
 	   <div class="form-group row">
 	    <label for="fumingcheng" class="col-sm-2 form-control-label">父类型名称<span class="required">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="fumingcheng" id="fumingcheng" value="$!model.fumingcheng" placeholder="父类型名称">
+	      <input type="text" class="form-control" readonly="readonly"  name="fumingcheng" id="fumingcheng" value="$!model.mingcheng" placeholder="父类型名称">
 	    </div>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <label for="mingcheng" class="col-sm-2 form-control-label">类型名称<span class="required">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="mingcheng" id="mingcheng" value="$!model.mingcheng" placeholder="名称">
+	      <input type="text" class="form-control" name="mingcheng" id="mingcheng" value="" placeholder="名称">
 	    </div>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <label for="paixu" class="col-sm-2 form-control-label">排序<span class="required">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="paixu" id="paixu" value="$!model.paixu" placeholder="排序">
+	      <input type="text" class="form-control" name="paixu" id="paixu" value="" placeholder="排序">
 	    </div>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <label for="jibie" class="col-sm-2 form-control-label">级别<span class="required">*</span></label>
-		 <div class="col-sm-10">
+	    <div class="form-group">
+	     <div class="col-sm-10">
 		  <select class="form-control" name="jibie" id="jibie" >
 		       <option  value="">全部</option>
 		       <option  #if($!model.jibie=='1') selected #end value="1">父类型</option>
@@ -52,11 +53,12 @@
 		       <option  #if($!model.jibie=='3') selected #end value="3">孙子类型</option>
 		   </select>
 		   </div>
+	   </div>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <div class="col-sm-offset-2 col-sm-10">
-	      <button type="submit" class="btn btn-block btn-primary">更新</button>
+	      <button type="submit" class="btn btn-block btn-primary">添加</button>
 	    </div>
 	  </div>  
 	 </form>
