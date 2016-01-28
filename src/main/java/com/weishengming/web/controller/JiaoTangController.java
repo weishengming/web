@@ -22,7 +22,7 @@ import com.weishengming.service.JDAreaService;
 
 /**
  * @author 杨天赐
- * 教堂的控制层接口
+ * 教堂地址管理控制层接口
  */
 @Controller
 @RequestMapping(value="jiaotang")

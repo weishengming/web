@@ -139,14 +139,14 @@ public class AdminController  extends SecurityController {
 
 	/***********类型管理START****************/
 	/**
-	 * 进入到视频列表页面
+	 * 进入到类型列表页面
 	 * @param model
 	 * @param query
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET,value="/leixing/leixinglist")
     public String leixinglist(Model model, LeiXingQuery query,Integer changePageSize,Integer pn) {
-		logger.info("进入到教堂列表页面");
+		logger.info("进入到类型列表页面");
         query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
         ResultPage<LeiXingDO> result = leixingService.findPage(query);

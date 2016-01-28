@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     #parse("common/bootstrap-css-js.html")
-    <title>文章管理</title>
+    <title>教堂地址管理</title>
   </head>
   <body>
     <ol class="breadcrumb">
@@ -13,22 +13,22 @@
       <li><a href="/admin/leixing/leixinglist">类型管理</a></li>
 	  <li><a href="/admin/wenzhang/wenzhanglist">文章管理</a></li>
 	  <li><a href="/admin/shipin/shipinlist">视频管理</a></li>
-	  <li><b><a href="/admin/jiaotang/jiaotanglist" style="font-size: 18px">教堂管理</a></b></li>
+	  <li><b><a href="/admin/jiaotang/jiaotanglist" style="font-size: 18px">教堂地址管理</a></b></li>
 	  <li><a href="/admin/dixiongzimei/dixiongzimeilist">弟兄姊妹管理</a></li>
 	</ol> 
    <div class="container">
      <form class="form-inline" action="" method="get">
 	  <div class="form-group">
-	     <select class="form-control" name="fubiaoti" id="fubiaoti" >
+	    <!--  <select class="form-control" name="fubiaoti" id="fubiaoti" >
 		       <option value="智慧人生">一- 智慧人生[1-48]</option>
-	        </select>
+	        </select> -->
 	  </div>
 	  <div class="form-group">
-	    <input type="text" class="form-control" name="biaoti" id="biaoti" value="$!query.biaoti"   placeholder="标题">
+	    <!-- <input type="text" class="form-control" name="biaoti" id="biaoti" value="$!query.biaoti"   placeholder="标题"> -->
 	  </div>
 	  <div class="form-group">
 	  <button type="submit" class="btn btn-success">查询</button>
-	  <a class="btn btn-primary" href="/admin/wenzhang/wenzhangedit/-1">添加</a>
+	  <a class="btn btn-primary" href="/admin/jiaotang/jiaotangedit/-1">添加</a>
 	  </div>
 	</form> 
     <br/> 
@@ -36,9 +36,13 @@
 	<thead>
 		<tr class="success">
 		    <th>序号</th>
-		    <th>第几个</th>
-		    <th>父标题</th>
-			<th>标题</th>
+		    <th>名称</th>
+		    <th>类型</th>
+		    <th>省</th>
+		    <th>市</th>
+			<th>县/区</th>
+			<th>镇</th>
+			<th>详细地址</th>
 			<th>操作</th>
 		</tr>
 	</thead>
@@ -47,11 +51,16 @@
 	    #foreach($!model in $!resultViewList)  
 		<tr>
 		    <td class="align-center">$index</td>
-		    <td>$!model.dijige</td>
-		    <td>$!model.fubiaoti</td>
-			<td>$!model.biaoti</td>
+		    <td>$!model.name</td>
+		    <td>$!model.leixingstring</td>
+		    <td>$!model.areaName</td>
+		    <td>$!model.area1Name</td>
+		    <td>$!model.area2Name</td>
+		    <td>$!model.area3Name</td>
+		    <td>$!model.xiangxidizhi</td>
 			<td>
-	            <a class="btn btn-success" href="/admin/wenzhang/wenzhangedit/$!{model.id}">编辑</a>
+	            <a class="btn btn-success" href="/admin/jiaotang/jiaotangedit/$!{model.id}">编辑</a>
+	            <a class="btn btn-danger" href="/admin/jiaotang/jiaotangdelete/$!{model.id}">删除</a>
 	        </td>
 		</tr>
 		 #set($index=$index+1)
