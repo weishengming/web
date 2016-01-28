@@ -75,6 +75,16 @@ public class DiXiongZiMeiService {
     }
     
     private void mergeEntity(DiXiongZiMeiDO source,DiXiongZiMeiDO target){
+    	target.setOpenID(source.getOpenID());
+    	target.setNickname(source.getNickname());
+    	target.setXingbie(source.getXingbie());
+    	target.setShengri(source.getShengri());
+    	target.setXingbie(source.getXingming());
+    	target.setQq(source.getQq());
+    	target.setWeixinhao(source.getWeixinhao());
+    	target.setWeibohao(source.getWeibohao());
+    	target.setLeixing(source.getLeixing());  // 信仰程度
+    	target.setBeizhu(source.getBeizhu());
     	 
     }
 }
