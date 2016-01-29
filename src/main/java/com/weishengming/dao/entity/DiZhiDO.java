@@ -14,6 +14,9 @@ public class DiZhiDO extends BaseDO{
 	private static final long serialVersionUID = 1L;
 	private String openID;//客户的id
 	private String nickname;//客户账号
+	
+	private Long dixiongzimeiid;
+	private String dixiongzimeixingming;
 
 	private String leixing;
 	private String leixingstring; //工作地址,现住址,故乡地址
@@ -32,7 +35,22 @@ public class DiZhiDO extends BaseDO{
 	
 	private String xiangxidizhi;//详细地址
 	
-	
+
+	public Long getDixiongzimeiid() {
+		return dixiongzimeiid;
+	}
+
+	public void setDixiongzimeiid(Long dixiongzimeiid) {
+		this.dixiongzimeiid = dixiongzimeiid;
+	}
+
+	public String getDixiongzimeixingming() {
+		return dixiongzimeixingming;
+	}
+
+	public void setDixiongzimeixingming(String dixiongzimeixingming) {
+		this.dixiongzimeixingming = dixiongzimeixingming;
+	}
 
 	public String getOpenID() {
 		return openID;

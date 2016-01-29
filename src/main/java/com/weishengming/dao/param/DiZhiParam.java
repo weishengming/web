@@ -20,6 +20,8 @@ public class DiZhiParam extends MapperQuery{
         private String area3Name;
         private String areaId;
         private String areaName;
+        private String dixiongzimeiid;
+        private String dixiongzimeixingming;
         private String leixing;
         private String leixingstring;
         private String nickname;
@@ -110,6 +112,20 @@ public class DiZhiParam extends MapperQuery{
     
     public String getAreaName(){
     	return areaName;
+    }
+        public void  setDixiongzimeiid(String dixiongzimeiid){
+    	this.dixiongzimeiid=dixiongzimeiid;
+    }
+    
+    public String getDixiongzimeiid(){
+    	return dixiongzimeiid;
+    }
+        public void  setDixiongzimeixingming(String dixiongzimeixingming){
+    	this.dixiongzimeixingming=dixiongzimeixingming;
+    }
+    
+    public String getDixiongzimeixingming(){
+    	return dixiongzimeixingming;
     }
         public void  setLeixing(String leixing){
     	this.leixing=leixing;

@@ -1,6 +1,9 @@
 package com.weishengming.web.controller;
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
 import com.weishengming.dao.entity.DiXiongZiMeiDO;
+import com.weishengming.dao.entity.DiZhiDO;
+import com.weishengming.dao.entity.JDAreaDO;
 import com.weishengming.dao.entity.JiaoTangDO;
 import com.weishengming.dao.entity.LeiXingDO;
 import com.weishengming.dao.entity.QMZXDO;
@@ -27,6 +32,8 @@ import com.weishengming.dao.query.ShiPinQuery;
 import com.weishengming.dao.query.TTSDQuery;
 import com.weishengming.dao.query.WenZhangQuery;
 import com.weishengming.service.DiXiongZiMeiService;
+import com.weishengming.service.DiZhiService;
+import com.weishengming.service.JDAreaService;
 import com.weishengming.service.JiaoTangService;
 import com.weishengming.service.LeiXingService;
 import com.weishengming.service.QMZXService;
@@ -62,6 +69,13 @@ public class AdminController  extends SecurityController {
 	@Resource
 	private DiXiongZiMeiService dixiongzimeiService;
 	
+	@Resource
+	private DiZhiService dizhiService;
+	
+	@Resource
+	private JDAreaService jdAreaService;
+	
+
 	/**
 	 * 进入到后台首页
 	 * @return
@@ -70,6 +84,74 @@ public class AdminController  extends SecurityController {
 	public String adminindex(){
 		return "/admin/adminindex";
 	}
+	
+	/***********弟兄姊妹地址管理START****************/
+	
+	 /**
+     * 通过id 
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/dixiongzimei/dixiongzimeidizhiedit/{id}")
+    public String dixiongzimeidizhiedit(@PathVariable Long id, Model model) {
+        DiZhiDO dizhiDO=dizhiService.findOne(id);
+        model.addAttribute("dizhi", dizhiDO);
+        final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(dizhiDO.getDixiongzimeiid());
+        model.addAttribute("model", dixiongzimeiDO);
+      //还需要做一件事  查出来  这个 弟兄姊妹的地址信息
+        List<DiZhiDO> dizhiList=dizhiService.findListByDixiongzimeiid(dixiongzimeiDO.getId());
+        model.addAttribute("resultViewDiZhiList", dizhiList);
+        return "/admin/dixiongzimei/dixiongzimeiupdate";
+    }
+    
+    /**
+   	 * 更新
+   	 * @param entity
+   	 * @return
+   	 */
+   	@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei/dixiongzimeidizhiupdate")
+    public String dixiongzimeidizhiupdate(DiZhiDO entity) {
+   	    if(StringUtils.isBlank(entity.getArea3Name())&&StringUtils.isNotBlank(entity.getArea3Id())){
+	   		JDAreaDO jdarea=jdAreaService.findOneByAreaId(entity.getArea3Id());
+	   		if(jdarea!=null){
+	   			entity.setArea3Name(jdarea.getAreaName());
+	   		}
+	    }
+   		if(entity.getId()==null){
+		    entity.setCreateDate(DateUtil.getCurrentDate());
+	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	dizhiService.create(entity);
+	   }else{
+		   dizhiService.update(entity);
+	   }
+   		return "redirect:/admin/dixiongzimei/dixiongzimeidizhiedit/"+entity.getId();
+    }
+   	
+   	@RequestMapping(value = "/dixiongzimei/dixiongzimeidizhidelete/{id}")
+    public String dixiongzimeidizhidelete(@PathVariable Long id) {
+   	   DiZhiDO dizhiDO=dizhiService.findOne(id);
+ 	   dizhiService.delete(id);
+ 	   return "redirect:/admin/dixiongzimei/dixiongzimeiedit/"+dizhiDO.getDixiongzimeiid();
+    }
+   	
+   	public DiZhiService getDizhiService() {
+		return dizhiService;
+	}
+
+	public void setDizhiService(DiZhiService dizhiService) {
+		this.dizhiService = dizhiService;
+	}
+
+	public JDAreaService getJdAreaService() {
+		return jdAreaService;
+	}
+
+	public void setJdAreaService(JDAreaService jdAreaService) {
+		this.jdAreaService = jdAreaService;
+	}
+   	
+	/***********弟兄姊妹地址管理END***************/
 	
 	/***********弟兄姊妹管理START****************/
 	/**
@@ -80,7 +162,7 @@ public class AdminController  extends SecurityController {
 	 */
 	@RequestMapping(method = RequestMethod.GET,value="/dixiongzimei/dixiongzimeilist")
     public String dixiongzimeilist(Model model, DiXiongZiMeiQuery query,Integer changePageSize,Integer pn) {
-		logger.info("进入到教堂列表页面");
+		logger.info("进入到弟兄姊妹管理列表页面");
         query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
         ResultPage<DiXiongZiMeiDO> result = dixiongzimeiService.findPage(query);
@@ -103,6 +185,9 @@ public class AdminController  extends SecurityController {
     public String dixiongzimeiedit(@PathVariable Long id, Model model) {
         final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(id);
         model.addAttribute("model", dixiongzimeiDO);
+        //还需要做一件事  查出来  这个 弟兄姊妹的地址信息
+        List<DiZhiDO> dizhiList=dizhiService.findListByDixiongzimeiid(dixiongzimeiDO.getId());
+        model.addAttribute("resultViewDiZhiList", dizhiList);
         return "/admin/dixiongzimei/dixiongzimeiupdate";
     }
 	 
@@ -122,6 +207,16 @@ public class AdminController  extends SecurityController {
 		    dixiongzimeiService.update(entity);
 	   }
    		return "redirect:/admin/dixiongzimei/dixiongzimeilist";
+    }
+   	
+	@RequestMapping(value = "/dixiongzimei/dixiongzimeidelete/{id}")
+    public String dixiongzimeidelete(@PathVariable Long id) {
+	   dixiongzimeiService.delete(id);
+   	   List<DiZhiDO> dizhiList=dizhiService.findListByDixiongzimeiid(id);
+   	   for (DiZhiDO diZhiDO2 : dizhiList) {
+   		dizhiService.delete(diZhiDO2.getId());
+	   }
+   	   return "redirect:/admin/dixiongzimei/dixiongzimeilist";
     }
    	
    	public DiXiongZiMeiService getDixiongzimeiService() {

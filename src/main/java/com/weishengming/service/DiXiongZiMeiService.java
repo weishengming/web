@@ -79,7 +79,7 @@ public class DiXiongZiMeiService {
     	target.setNickname(source.getNickname());
     	target.setXingbie(source.getXingbie());
     	target.setShengri(source.getShengri());
-    	target.setXingbie(source.getXingming());
+    	target.setXingming(source.getXingming());
     	target.setQq(source.getQq());
     	target.setWeixinhao(source.getWeixinhao());
     	target.setWeibohao(source.getWeibohao());
