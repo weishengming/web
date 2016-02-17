@@ -38,7 +38,6 @@ public class KeHuController extends SecurityController{
 		KeHuDO kehuDO = kehuService.findOneByOpenID(getOpenID(request));
 		model.addAttribute("model", kehuDO);
 		return KEHU_VIEW_PATH + "kehuupdate";
-        
 		
 	}
 	 /**

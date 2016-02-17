@@ -21,7 +21,7 @@ import com.weishengming.service.QQService;
 
 /**
  * @author 杨天赐
- * indexController 负责 登陆 注册 重置密码 
+ * indexController 
  */
 @Controller
 public class IndexController extends SecurityController{
@@ -44,7 +44,11 @@ public class IndexController extends SecurityController{
 	 * @return
 	 */
 	@RequestMapping(value="aishangdi",method=RequestMethod.GET)  
-    public String aishangdiPage(Model model){
+    public String aishangdiPage(HttpServletRequest request,Model model){
+        if(getName(request)==null){
+        	request.getSession().setAttribute("redirectURL", "/aishangdi");
+        	return "redirect:/qqLogin";
+        }
         return "/index/aishangdi";  
     } 
 	/**
@@ -53,7 +57,11 @@ public class IndexController extends SecurityController{
 	 * @return
 	 */
 	@RequestMapping(value="aitaren",method=RequestMethod.GET)  
-    public String aitarenPage(Model model){
+    public String aitarenPage(HttpServletRequest request,Model model){
+		if(getName(request)==null){
+        	request.getSession().setAttribute("redirectURL", "/aitaren");
+        	return "redirect:/qqLogin";
+        }
         return "/index/aitaren";  
     }
 	/**
@@ -62,11 +70,13 @@ public class IndexController extends SecurityController{
 	 * @return
 	 */
 	@RequestMapping(value="aiziji",method=RequestMethod.GET)  
-    public String aizijiPage(Model model){
+    public String aizijiPage(HttpServletRequest request,Model model){
+		if(getName(request)==null){
+        	request.getSession().setAttribute("redirectURL", "/aiziji");
+        	return "redirect:/qqLogin";
+        }
         return "/index/aiziji";  
     }
-
- 
 	/**
 	 * 进入QQ登陆
 	 * @param request
@@ -133,12 +143,10 @@ public class IndexController extends SecurityController{
 	            	 entity.setGender(userInfoBean.getGender());
 	            	 qqService.create(entity);
 	             }
-	             
 	          }
 			} catch (Exception e) {
 				logger.info("{}",e);
 			}
-		 
 		 String redirectURL=null;
 		 if(request.getSession().getAttribute("redirectURL")!=null){
 			 redirectURL=request.getSession().getAttribute("redirectURL").toString();

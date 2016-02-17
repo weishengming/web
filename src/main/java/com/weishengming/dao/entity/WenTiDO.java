@@ -5,7 +5,7 @@ import javax.persistence.Table;
 
 /**
  * @author 杨天赐
- * 问题
+ * 问题<需要把问题反馈给微生命系统>
  */
 @Entity
 @Table(name = "wenti")

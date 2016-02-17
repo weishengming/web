@@ -86,6 +86,11 @@
 		<include refid="all_columns" />
 		FROM dixiongzimei WHERE ID=#{id}
 	</select>
+	<select id="findOneByOpenID" parameterType="string" resultType="DiXiongZiMeiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM dixiongzimei WHERE OPENID = #{openID}
+	</select>
 	<select id="findAll" resultType="DiXiongZiMeiDO">
 		SELECT
 		<include refid="all_columns" />

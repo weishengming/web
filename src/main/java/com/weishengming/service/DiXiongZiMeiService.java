@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.weishengming.common.validate.ValidationService;
 import com.weishengming.dao.entity.DiXiongZiMeiDO;
 import com.weishengming.dao.entity.JiaoTangDO;
+import com.weishengming.dao.entity.KeHuDO;
 import com.weishengming.dao.mapper.DiXiongZiMeiMapper;
 import com.weishengming.dao.param.DiXiongZiMeiParam;
 import com.weishengming.dao.param.JiaoTangParam;
@@ -46,6 +47,10 @@ public class DiXiongZiMeiService {
 
     public List<DiXiongZiMeiDO> findAll() {
         return mapper.findAll();
+    }
+    
+    public DiXiongZiMeiDO findOneByOpenID(String openID){
+    	return mapper.findOneByOpenID(openID);
     }
 
     public DiXiongZiMeiDO findOne(Long id) {
@@ -85,6 +90,5 @@ public class DiXiongZiMeiService {
     	target.setWeibohao(source.getWeibohao());
     	target.setLeixing(source.getLeixing());  // 信仰程度
     	target.setBeizhu(source.getBeizhu());
-    	 
     }
 }

@@ -30,24 +30,15 @@ public class SecurityController implements QQHolder {
 		this.logger = LoggerFactory.getLogger(super.getClass());
 	}
 
-	 
-
-	 
-
 	@ExceptionHandler({ Throwable.class })
 	public ModelAndView handleException(Model m,HttpServletRequest request, HttpServletResponse response, Object handler, Throwable ex) {
 		this.logger.error("访问页面 " + request.getRequestURI() + " 时发生异常，信息如下：",ex);
 		ModelAndView view = new ModelAndView();
 		m.addAttribute("ex", ex);
-		
 		view.setViewName("/index/error");
 		return view;
 	}
-
-
-
-
-
+	
 	@Override
 	public String getName(HttpServletRequest request) {
 		if(request.getSession()!=null){
@@ -58,10 +49,6 @@ public class SecurityController implements QQHolder {
 		return null;
 	}
 
-
-
-
-
 	@Override
 	public String getOpenID(HttpServletRequest request) {
 		if(request.getSession()!=null){
@@ -71,6 +58,5 @@ public class SecurityController implements QQHolder {
 		}
 		return null;
 	}
-
 	 
 }

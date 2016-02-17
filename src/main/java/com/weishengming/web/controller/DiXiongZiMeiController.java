@@ -7,12 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.util.DateUtil;
+import com.weishengming.dao.entity.DiXiongZiMeiDO;
 import com.weishengming.dao.entity.KeHuDO;
+import com.weishengming.service.DiXiongZiMeiService;
 import com.weishengming.service.KeHuService;
 
 /**
@@ -23,21 +24,21 @@ import com.weishengming.service.KeHuService;
 @RequestMapping(value="dixiongzimei")
 public class DiXiongZiMeiController extends SecurityController{
 	Logger  logger = LoggerFactory.getLogger(DiXiongZiMeiController.class);
-    private final String UPDATE_ACTION = "redirect:/kehu/kehuupdate";
-    private final String KEHU_VIEW_PATH = "/kehu/";
+    private final String UPDATE_ACTION = "redirect:/dixiongzimei/dixiongzimeiupdate";
+    private final String DIXIONGZIMEI_VIEW_PATH = "/dixiongzimei/";
 	
 	@Resource
-	private KeHuService kehuService;
-	@RequestMapping(method = RequestMethod.GET, value = "/kehuupdate")
+	private DiXiongZiMeiService dixiongzimeiService;
+	@RequestMapping(method = RequestMethod.GET, value = "/dixiongzimeiupdate")
 	public String update(HttpServletRequest request, Model model) {
-       if(getName(request)==null){
-        	request.getSession().setAttribute("redirectURL", "/kehu/kehuupdate");
+        if(getName(request)==null){
+        	request.getSession().setAttribute("redirectURL", "/dixiongzimei/dixiongzimeiupdate");
         	return "redirect:/qqLogin";
         }
-        logger.info("进入到客户页面");
-		KeHuDO kehuDO = kehuService.findOneByOpenID(getOpenID(request));
-		model.addAttribute("model", kehuDO);
-		return KEHU_VIEW_PATH + "kehuupdate";
+        logger.info("进入到弟兄姊妹页面");
+		DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOneByOpenID(getOpenID(request));
+		model.addAttribute("model", dixiongzimeiDO);
+		return DIXIONGZIMEI_VIEW_PATH + "dixiongzimeiupdate";
         
 		
 	}
@@ -47,24 +48,21 @@ public class DiXiongZiMeiController extends SecurityController{
 	 * @return
 	 */
    @RequestMapping(method = RequestMethod.POST, value = "/update")
-   public String put(KeHuDO entity) {
+   public String put(DiXiongZiMeiDO entity) {
 	   if(entity.getId()==null){
 		    entity.setCreateDate(DateUtil.getCurrentDate());
 	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	kehuService.create(entity);
+	    	dixiongzimeiService.create(entity);
 	   }else{
-		   kehuService.update(entity);
+		    dixiongzimeiService.update(entity);
 	   }
 	
 	   return UPDATE_ACTION;
    }
-
-	public KeHuService getKehuService() {
-		return kehuService;
+	public DiXiongZiMeiService getDixiongzimeiService() {
+		return dixiongzimeiService;
 	}
-
-	public void setKehuService(KeHuService kehuService) {
-		this.kehuService = kehuService;
+	public void setDixiongzimeiService(DiXiongZiMeiService dixiongzimeiService) {
+		this.dixiongzimeiService = dixiongzimeiService;
 	}
-
 }
