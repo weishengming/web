@@ -12,6 +12,12 @@ import javax.persistence.Table;
 public class JiaoTangDO extends BaseDO{
 	private static final long serialVersionUID = 1L;
 	
+	private String openID;           //openID
+	private String nickname;         // 这两个字段代表 前台人员维护数据
+	
+	private Long dixiongzimeiid;
+	private String dixiongzimeixingming; //这两个字段 代表 后台人员维护数据
+	
 	private String leixing;
 	private String leixingstring; //三级教堂
 	
@@ -136,5 +142,39 @@ public class JiaoTangDO extends BaseDO{
 	public void setBeizhu(String beizhu) {
 		this.beizhu = beizhu;
 	}
+
+	public String getOpenID() {
+		return openID;
+	}
+
+	public void setOpenID(String openID) {
+		this.openID = openID;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public Long getDixiongzimeiid() {
+		return dixiongzimeiid;
+	}
+
+	public void setDixiongzimeiid(Long dixiongzimeiid) {
+		this.dixiongzimeiid = dixiongzimeiid;
+	}
+
+	public String getDixiongzimeixingming() {
+		return dixiongzimeixingming;
+	}
+
+	public void setDixiongzimeixingming(String dixiongzimeixingming) {
+		this.dixiongzimeixingming = dixiongzimeixingming;
+	}
+	
+	
 
 }

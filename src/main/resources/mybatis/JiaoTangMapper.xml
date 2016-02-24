@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weishengming.dao.mapper.JiaoTangMapper">
 	<sql id="all_columns">
-		ID,CREATEDATE,UPDATEDATE,VERSION,AREA1ID,AREA1NAME,AREA2ID,AREA2NAME,AREA3ID,AREA3NAME,AREAID,AREANAME,BEIZHU,LEIXING,LEIXINGSTRING,NAME,XIANGXIDIZHI
+		ID,CREATEDATE,UPDATEDATE,VERSION,AREA1ID,AREA1NAME,AREA2ID,AREA2NAME,AREA3ID,AREA3NAME,AREAID,AREANAME,BEIZHU,DIXIONGZIMEIID,DIXIONGZIMEIXINGMING,LEIXING,LEIXINGSTRING,NAME,NICKNAME,OPENID,XIANGXIDIZHI
 	</sql>
 	<sql id="where">
 		<where>
@@ -45,6 +45,12 @@
 			<if test="beizhu != null">
 				and BEIZHU = #{beizhu}
 			</if>
+			<if test="dixiongzimeiid != null">
+				and DIXIONGZIMEIID = #{dixiongzimeiid}
+			</if>
+			<if test="dixiongzimeixingming != null">
+				and DIXIONGZIMEIXINGMING = #{dixiongzimeixingming}
+			</if>
 			<if test="leixing != null">
 				and LEIXING = #{leixing}
 			</if>
@@ -53,6 +59,12 @@
 			</if>
 			<if test="name != null">
 				and NAME = #{name}
+			</if>
+			<if test="nickname != null">
+				and NICKNAME = #{nickname}
+			</if>
+			<if test="openID != null">
+				and OPENID = #{openID}
 			</if>
 			<if test="xiangxidizhi != null">
 				and XIANGXIDIZHI = #{xiangxidizhi}
@@ -65,7 +77,7 @@
 		INSERT INTO jiaotang (
 		<include refid="all_columns" />
 		) VALUES
-		(#{id},#{createDate},#{updateDate},#{version},#{area1Id},#{area1Name},#{area2Id},#{area2Name},#{area3Id},#{area3Name},#{areaId},#{areaName},#{beizhu},#{leixing},#{leixingstring},#{name},#{xiangxidizhi})
+		(#{id},#{createDate},#{updateDate},#{version},#{area1Id},#{area1Name},#{area2Id},#{area2Name},#{area3Id},#{area3Name},#{areaId},#{areaName},#{beizhu},#{dixiongzimeiid},#{dixiongzimeixingming},#{leixing},#{leixingstring},#{name},#{nickname},#{openID},#{xiangxidizhi})
 	</insert>
 	<update id="update" parameterType="JiaoTangDO">
 		UPDATE jiaotang SET
@@ -82,9 +94,13 @@
                     <![CDATA[ AREAID = #{areaId}]]>,   
                     <![CDATA[ AREANAME = #{areaName}]]>,   
                     <![CDATA[ BEIZHU = #{beizhu}]]>,   
+                    <![CDATA[ DIXIONGZIMEIID = #{dixiongzimeiid}]]>,   
+                    <![CDATA[ DIXIONGZIMEIXINGMING = #{dixiongzimeixingming}]]>,   
                     <![CDATA[ LEIXING = #{leixing}]]>,   
                     <![CDATA[ LEIXINGSTRING = #{leixingstring}]]>,   
                     <![CDATA[ NAME = #{name}]]>,   
+                    <![CDATA[ NICKNAME = #{nickname}]]>,   
+                    <![CDATA[ OPENID = #{openID}]]>,   
                     <![CDATA[ XIANGXIDIZHI = #{xiangxidizhi}]]>,
 		version = version+1 WHERE
 		id=#{id} and version = #{version}

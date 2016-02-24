@@ -85,5 +85,9 @@ public class JiaoTangService {
     	target.setXiangxidizhi(source.getXiangxidizhi());
     	target.setName(source.getName());
     	target.setBeizhu(source.getBeizhu());
+    	target.setOpenID(source.getOpenID());
+    	target.setNickname(source.getNickname());
+    	target.setDixiongzimeiid(source.getDixiongzimeiid());
+    	target.setDixiongzimeixingming(source.getDixiongzimeixingming());
     }
 }
