@@ -99,7 +99,7 @@ public class AdminController  extends SecurityController {
         model.addAttribute("dizhi", dizhiDO);
         final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(dizhiDO.getDixiongzimeiid());
         model.addAttribute("model", dixiongzimeiDO);
-      //还需要做一件事  查出来  这个 弟兄姊妹的地址信息
+        //还需要做一件事  查出来  这个 弟兄姊妹的地址信息
         List<DiZhiDO> dizhiList=dizhiService.findListByDixiongzimeiid(dixiongzimeiDO.getId());
         model.addAttribute("resultViewDiZhiList", dizhiList);
         return "/admin/dixiongzimei/dixiongzimeiupdate";
