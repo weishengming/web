@@ -30,6 +30,13 @@ public class JiaoHuiDiZhiService {
 
         return new ResultPage<JiaoHuiDiZhiDO>(list, query);
     }
+    
+    public List<JiaoHuiDiZhiDO> findListByOpenID(String openID){
+    	return mapper.findListByOpenID(openID);
+    }
+    public List<JiaoHuiDiZhiDO> findListByDixiongzimeiid(Long dixiongzimeiid){
+    	return mapper.findListByDixiongzimeiid(dixiongzimeiid);
+    }
 
     public List<JiaoHuiDiZhiDO> findAll() {
         return mapper.findAll();
@@ -56,6 +63,19 @@ public class JiaoHuiDiZhiService {
     }
     
     private void mergeEntity(JiaoHuiDiZhiDO source,JiaoHuiDiZhiDO target){
-    	//TODO 
+    	target.setMingzi(source.getMingzi());
+    	target.setAreaId(source.getAreaId());
+    	target.setArea1Id(source.getArea1Id());
+    	target.setArea2Id(source.getArea2Id());
+    	target.setArea3Id(source.getArea3Id());
+    	target.setAreaName(source.getAreaName());
+    	target.setArea1Name(source.getArea1Name());
+    	target.setArea2Name(source.getArea2Name());
+    	target.setArea3Name(source.getArea3Name());
+    	target.setXiangxidizhi(source.getXiangxidizhi());
+    	target.setDixiongzimeiid(source.getDixiongzimeiid());
+    	target.setDixiongzimeixingming(source.getDixiongzimeixingming());
+    	target.setOpenID(source.getOpenID());
+    	target.setNickname(source.getNickname());
     }
 }

@@ -103,6 +103,16 @@
 		<include refid="all_columns" />
 		FROM jiaohuidizhi
 	</select>
+	<select id="findListByDixiongzimeiid" parameterType="long" resultType="JiaoHuiDiZhiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM jiaohuidizhi  WHERE dixiongzimeiid = #{DIXIONGZIMEIID}
+	</select>
+	<select id="findListByOpenID" parameterType="string" resultType="JiaoHuiDiZhiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM jiaohuidizhi  WHERE OPENID = #{openID}
+	</select>
 	<delete id="delete" parameterType="long">
 		DELETE FROM jiaohuidizhi WHERE id=#{id}
 	</delete>

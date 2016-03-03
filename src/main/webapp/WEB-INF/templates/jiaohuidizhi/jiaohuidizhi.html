@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     #parse("common/bootstrap-css-js.html")
-    <title>爱自己|信息</title>
+    <title>爱自己|常去教会</title>
   </head>
   <body>
     <ol class="breadcrumb">
@@ -22,37 +22,31 @@
          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">菜单</button>
        </p>
        <div class="jumbotron" data-toggle="offcanvas">
-            <h1>常用地址</h1>
+            <h1>常去的教会地址</h1>
        </div>
-       #foreach($!dizhi in $!resultViewDiZhiList) 
+       #foreach($!jiaohuidizhi in $!resultViewJiaoHuiDiZhiList) 
 	  	<div class="alert alert-success alert-dismissible" role="alert">
 		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		  <p><h4>$!dizhi.leixing
-	           <a class="btn btn-xs btn-link" href="/dixiongzimeidizhi/dixiongzimeidizhidelete/$!{dizhi.id}">删除</a>
+		  <p><h4>$!jiaohuidizhi.mingzi
+	           <a class="btn btn-xs btn-link" href="/jiaohuidizhi/jiaohuidizhidelete/$!{jiaohuidizhi.id}">删除</a>
 	         </h4>
-			 $!dizhi.areaName
-			 $!dizhi.area1Name
-			 $!dizhi.area2Name
-			 $!dizhi.area3Name
-			 $!dizhi.xiangxidizhi
+			 $!jiaohuidizhi.areaName
+			 $!jiaohuidizhi.area1Name
+			 $!jiaohuidizhi.area2Name
+			 $!jiaohuidizhi.area3Name
+			 $!jiaohuidizhi.xiangxidizhi
 	      </p>
 		</div>
 	    #end
-	 <form action="/dixiongzimeidizhi/dixiongzimeidizhigengxin" method="post" >
+	 <form action="/jiaohuidizhi/jiaohuidizhigengxin" method="post" >
       <input type="hidden" name="openID" value="$!dixiongzimei.openID">
       <input type="hidden" name="nickname" value="$!dixiongzimei.nickname">
       <input type="hidden" name="dixiongzimeiid" value="$!dixiongzimei.id">
       <input type="hidden" name="dixiongzimeixingming" value="$!dixiongzimei.xingming">
 	  <div class="form-group row">
-	    <label for="leixing" class="col-sm-2 form-control-label">地址类型</label>
+	    <label for="leixing" class="col-sm-2 form-control-label">教会名字</label>
 	    <div class="col-sm-10">
-		   <input type="radio" name="leixing" #if($!dizhi.leixing=='原籍') checked="checked" #end id="leixing" value="原籍"> 原籍
-		   &nbsp;&nbsp;&nbsp;
-		   <input type="radio" name="leixing" #if($!dizhi.leixing=='现住址') checked="checked" #end id="leixing" value="现住址"> 现住址
-		   &nbsp;&nbsp;&nbsp;
-		   <input type="radio" name="leixing" #if($!dizhi.leixing=='工作') checked="checked" #end id="leixing" value="工作"> 工作
-		   &nbsp;&nbsp;&nbsp;
-		   <input type="radio" name="leixing" #if($!dizhi.leixing=='学校') checked="checked" #end id="leixing" value="学校"> 学校
+	      <input class="form-control" type="text" name="mingzi" value="">
 	    </div>
 	  </div>
 	   <div class="form-group row">
@@ -108,8 +102,8 @@
           <div class="list-group">
              <a href="/aiziji" class="list-group-item">爱自己首页</a>
              <a href="/dixiongzimei/dixiongzimei" class="list-group-item">我的基本信息</a>
-             <a href="/dixiongzimeidizhi/dixiongzimeidizhi" class="list-group-item active">我的常用地址</a>
-                          <a href="/jiaohuidizhi/jiaohuidizhi" class="list-group-item">我常去的教会</a>
+             <a href="/dixiongzimeidizhi/dixiongzimeidizhi" class="list-group-item">我的常用地址</a>
+             <a href="/jiaohuidizhi/jiaohuidizhi" class="list-group-item  active">我常去的教会</a>
          </div>
 	   </div><!-- 6 -3 -->
 	 </div><!-- .row -->
