@@ -34,20 +34,17 @@ public class DiXiongZiMeiController extends SecurityController{
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/dixiongzimei")
 	public String dixiongzimei(HttpServletRequest request, Model model) {
-//        if(getName(request)==null){
-//        	request.getSession().setAttribute("redirectURL", "/dixiongzimei/dixiongzimei");
-//        	return "redirect:/qqLogin";
-//        }
+        if(getName(request)==null){
+        	request.getSession().setAttribute("redirectURL", "/dixiongzimei/dixiongzimei");
+        	return "redirect:/qqLogin";
+        }
         logger.info("进入到弟兄姊妹页面");
-//		DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOneByOpenID(getOpenID(request));
-		DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOneByOpenID("EBEDEDF615FEE34A4DCCA75BEE2EAAA3");
+		DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOneByOpenID(getOpenID(request));
 		model.addAttribute("model", dixiongzimeiDO);
         if(dixiongzimeiDO==null){
         	dixiongzimeiDO=new DiXiongZiMeiDO();
-//        	dixiongzimeiDO.setNickname(getName(request));
-//        	dixiongzimeiDO.setOpenID(getOpenID(request));
-        	dixiongzimeiDO.setNickname("微生命");
-        	dixiongzimeiDO.setOpenID("EBEDEDF615FEE34A4DCCA75BEE2EAAA3");
+        	dixiongzimeiDO.setNickname(getName(request));
+        	dixiongzimeiDO.setOpenID(getOpenID(request));
         	model.addAttribute("model", dixiongzimeiDO);
         }
         return "/dixiongzimei/dixiongzimei";

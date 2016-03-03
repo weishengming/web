@@ -11,7 +11,6 @@ import com.weishengming.common.validate.ValidationService;
 import com.weishengming.dao.entity.JDAreaDO;
 import com.weishengming.dao.mapper.JDAreaMapper;
 import com.weishengming.dao.param.JDAreaParam;
-import com.weishengming.dao.query.AreaQuery;
 import com.weishengming.dao.query.JDAreaQuery;
 import com.weishengming.dao.query.ResultPage;
 
@@ -67,7 +66,7 @@ public class JDAreaService {
 	public List<JDAreaDO> findByParentId(String parentId) {
 		JDAreaQuery query = new JDAreaQuery();
 		query.setParentId(parentId);
-		query.setOrderOperator(AreaQuery.ORDER_TYPE_ASC);
+		query.setOrderOperator("ASC");
 		query.setPageNumber(1);
         query.setPageSize(Integer.MAX_VALUE);
         ResultPage<JDAreaDO> resultPage = findPage(query);

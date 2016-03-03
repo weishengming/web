@@ -8,45 +8,45 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.weishengming.common.validate.ValidationService;
-import com.weishengming.dao.entity.JTDXZMDO;
-import com.weishengming.dao.mapper.JTDXZMMapper;
-import com.weishengming.dao.param.JTDXZMParam;
-import com.weishengming.dao.query.JTDXZMQuery;
+import com.weishengming.dao.entity.JiaoHuiDiZhiDO;
+import com.weishengming.dao.mapper.JiaoHuiDiZhiMapper;
+import com.weishengming.dao.param.JiaoHuiDiZhiParam;
+import com.weishengming.dao.query.JiaoHuiDiZhiQuery;
 import com.weishengming.dao.query.ResultPage;
 
 @Service
-public class JTDXZMService {
+public class JiaoHuiDiZhiService {
 
     @Resource
-    private JTDXZMMapper mapper;
+    private JiaoHuiDiZhiMapper mapper;
     @Resource
     private ValidationService validationService;
 
-    public ResultPage<JTDXZMDO> findPage(JTDXZMQuery query) {
+    public ResultPage<JiaoHuiDiZhiDO> findPage(JiaoHuiDiZhiQuery query) {
         validationService.validate(query);
-        JTDXZMParam param = new JTDXZMParam();
+        JiaoHuiDiZhiParam param = new JiaoHuiDiZhiParam();
         BeanUtils.copyProperties(query, param);
-        List<JTDXZMDO> list = mapper.findList(param);
+        List<JiaoHuiDiZhiDO> list = mapper.findList(param);
 
-        return new ResultPage<JTDXZMDO>(list, query);
+        return new ResultPage<JiaoHuiDiZhiDO>(list, query);
     }
 
-    public List<JTDXZMDO> findAll() {
+    public List<JiaoHuiDiZhiDO> findAll() {
         return mapper.findAll();
     }
 
-    public JTDXZMDO findOne(Long id) {
+    public JiaoHuiDiZhiDO findOne(Long id) {
         return mapper.findOne(id);
     }
 
-    public void create(JTDXZMDO entity) {
+    public void create(JiaoHuiDiZhiDO entity) {
         validationService.validate(entity);
         mapper.insert(entity);
     }
 
-    public void update(JTDXZMDO entity) {
+    public void update(JiaoHuiDiZhiDO entity) {
         validationService.validate(entity);
-        JTDXZMDO oldEntity=mapper.findOne(entity.getId());
+        JiaoHuiDiZhiDO oldEntity=mapper.findOne(entity.getId());
         mergeEntity(entity,oldEntity);
         mapper.update(oldEntity);
     }
@@ -55,7 +55,7 @@ public class JTDXZMService {
         mapper.delete(id);
     }
     
-    private void mergeEntity(JTDXZMDO source,JTDXZMDO target){
+    private void mergeEntity(JiaoHuiDiZhiDO source,JiaoHuiDiZhiDO target){
     	//TODO 
     }
 }

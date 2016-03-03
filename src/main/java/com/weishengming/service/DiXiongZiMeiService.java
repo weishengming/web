@@ -9,13 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.weishengming.common.validate.ValidationService;
 import com.weishengming.dao.entity.DiXiongZiMeiDO;
-import com.weishengming.dao.entity.JiaoTangDO;
-import com.weishengming.dao.entity.KeHuDO;
 import com.weishengming.dao.mapper.DiXiongZiMeiMapper;
 import com.weishengming.dao.param.DiXiongZiMeiParam;
-import com.weishengming.dao.param.JiaoTangParam;
 import com.weishengming.dao.query.DiXiongZiMeiQuery;
-import com.weishengming.dao.query.JiaoTangQuery;
 import com.weishengming.dao.query.ResultPage;
 
 @Service
