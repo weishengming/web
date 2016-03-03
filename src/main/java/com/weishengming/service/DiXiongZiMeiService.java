@@ -83,12 +83,12 @@ public class DiXiongZiMeiService {
     	target.setOpenID(source.getOpenID());
     	target.setNickname(source.getNickname());
     	target.setXingbie(source.getXingbie());
-    	target.setShengri(source.getShengri());
+    	target.setNianling(source.getNianling());
     	target.setXingming(source.getXingming());
     	target.setQq(source.getQq());
     	target.setWeixinhao(source.getWeixinhao());
-    	target.setWeibohao(source.getWeibohao());
-    	target.setLeixing(source.getLeixing());  // 信仰程度
-    	target.setBeizhu(source.getBeizhu());
+    	target.setShenfen(source.getShenfen());
+    	target.setQita(source.getQita());
+    	target.setSuoding(source.getSuoding());
     }
 }

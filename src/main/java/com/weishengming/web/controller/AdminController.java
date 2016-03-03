@@ -185,12 +185,6 @@ public class AdminController  extends SecurityController {
     public String dixiongzimeiedit(@PathVariable Long id, Model model) {
         final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(id);
         model.addAttribute("model", dixiongzimeiDO);
-        if(dixiongzimeiDO==null){
-        	return "/admin/dixiongzimei/dixiongzimeiupdate";
-        }
-        //还需要做一件事  查出来  这个 弟兄姊妹的地址信息
-        List<DiZhiDO> dizhiList=dizhiService.findListByDixiongzimeiid(dixiongzimeiDO.getId());
-        model.addAttribute("resultViewDiZhiList", dizhiList);
         return "/admin/dixiongzimei/dixiongzimeiupdate";
     }
 	 

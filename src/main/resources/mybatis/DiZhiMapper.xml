@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weishengming.dao.mapper.DiZhiMapper">
 	<sql id="all_columns">
-		ID,CREATEDATE,UPDATEDATE,VERSION,AREA1ID,AREA1NAME,AREA2ID,AREA2NAME,AREA3ID,AREA3NAME,AREAID,AREANAME,DIXIONGZIMEIID,DIXIONGZIMEIXINGMING,LEIXING,LEIXINGSTRING,NICKNAME,OPENID,XIANGXIDIZHI
+		ID,CREATEDATE,UPDATEDATE,VERSION,AREA1ID,AREA1NAME,AREA2ID,AREA2NAME,AREA3ID,AREA3NAME,AREAID,AREANAME,DIXIONGZIMEIID,DIXIONGZIMEIXINGMING,LEIXING,NICKNAME,OPENID,XIANGXIDIZHI
 	</sql>
 	<sql id="where">
 		<where>
@@ -51,9 +51,6 @@
 			<if test="leixing != null">
 				and LEIXING = #{leixing}
 			</if>
-			<if test="leixingstring != null">
-				and LEIXINGSTRING = #{leixingstring}
-			</if>
 			<if test="nickname != null">
 				and NICKNAME = #{nickname}
 			</if>
@@ -71,7 +68,7 @@
 		INSERT INTO dizhi (
 		<include refid="all_columns" />
 		) VALUES
-		(#{id},#{createDate},#{updateDate},#{version},#{area1Id},#{area1Name},#{area2Id},#{area2Name},#{area3Id},#{area3Name},#{areaId},#{areaName},#{dixiongzimeiid},#{dixiongzimeixingming},#{leixing},#{leixingstring},#{nickname},#{openID},#{xiangxidizhi})
+		(#{id},#{createDate},#{updateDate},#{version},#{area1Id},#{area1Name},#{area2Id},#{area2Name},#{area3Id},#{area3Name},#{areaId},#{areaName},#{dixiongzimeiid},#{dixiongzimeixingming},#{leixing},#{nickname},#{openID},#{xiangxidizhi})
 	</insert>
 	<update id="update" parameterType="DiZhiDO">
 		UPDATE dizhi SET
@@ -90,7 +87,6 @@
                     <![CDATA[ DIXIONGZIMEIID = #{dixiongzimeiid}]]>,   
                     <![CDATA[ DIXIONGZIMEIXINGMING = #{dixiongzimeixingming}]]>,   
                     <![CDATA[ LEIXING = #{leixing}]]>,   
-                    <![CDATA[ LEIXINGSTRING = #{leixingstring}]]>,   
                     <![CDATA[ NICKNAME = #{nickname}]]>,   
                     <![CDATA[ OPENID = #{openID}]]>,   
                     <![CDATA[ XIANGXIDIZHI = #{xiangxidizhi}]]>,

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weishengming.dao.mapper.DiXiongZiMeiMapper">
 	<sql id="all_columns">
-		ID,CREATEDATE,UPDATEDATE,VERSION,BEIZHU,LEIXING,NICKNAME,OPENID,QQ,SHENGRI,SHOUJIHAO,WEIBOHAO,WEIXINHAO,XINGBIE,XINGMING
+		ID,CREATEDATE,UPDATEDATE,VERSION,NIANLING,NICKNAME,OPENID,QITA,QQ,SHENFEN,SHOUJIHAO,SUODING,WEIXINHAO,XINGBIE,XINGMING
 	</sql>
 	<sql id="where">
 		<where>
@@ -18,11 +18,8 @@
 			<if test="version != null">
 				and VERSION = #{version}
 			</if>
-			<if test="beizhu != null">
-				and BEIZHU = #{beizhu}
-			</if>
-			<if test="leixing != null">
-				and LEIXING = #{leixing}
+			<if test="nianling != null">
+				and NIANLING = #{nianling}
 			</if>
 			<if test="nickname != null">
 				and NICKNAME = #{nickname}
@@ -30,17 +27,20 @@
 			<if test="openID != null">
 				and OPENID = #{openID}
 			</if>
+			<if test="qita != null">
+				and QITA = #{qita}
+			</if>
 			<if test="qq != null">
 				and QQ = #{qq}
 			</if>
-			<if test="shengri != null">
-				and SHENGRI = #{shengri}
+			<if test="shenfen != null">
+				and SHENFEN = #{shenfen}
 			</if>
 			<if test="shoujihao != null">
 				and SHOUJIHAO = #{shoujihao}
 			</if>
-			<if test="weibohao != null">
-				and WEIBOHAO = #{weibohao}
+			<if test="suoding != null">
+				and SUODING = #{suoding}
 			</if>
 			<if test="weixinhao != null">
 				and WEIXINHAO = #{weixinhao}
@@ -59,7 +59,7 @@
 		INSERT INTO dixiongzimei (
 		<include refid="all_columns" />
 		) VALUES
-		(#{id},#{createDate},#{updateDate},#{version},#{beizhu},#{leixing},#{nickname},#{openID},#{qq},#{shengri},#{shoujihao},#{weibohao},#{weixinhao},#{xingbie},#{xingming})
+		(#{id},#{createDate},#{updateDate},#{version},#{nianling},#{nickname},#{openID},#{qita},#{qq},#{shenfen},#{shoujihao},#{suoding},#{weixinhao},#{xingbie},#{xingming})
 	</insert>
 	<update id="update" parameterType="DiXiongZiMeiDO">
 		UPDATE dixiongzimei SET
@@ -67,14 +67,14 @@
                     <![CDATA[ CREATEDATE = #{createDate}]]>,   
                     <![CDATA[ UPDATEDATE = #{updateDate}]]>,   
                     <![CDATA[ VERSION = #{version}]]>,   
-                    <![CDATA[ BEIZHU = #{beizhu}]]>,   
-                    <![CDATA[ LEIXING = #{leixing}]]>,   
+                    <![CDATA[ NIANLING = #{nianling}]]>,   
                     <![CDATA[ NICKNAME = #{nickname}]]>,   
                     <![CDATA[ OPENID = #{openID}]]>,   
+                    <![CDATA[ QITA = #{qita}]]>,   
                     <![CDATA[ QQ = #{qq}]]>,   
-                    <![CDATA[ SHENGRI = #{shengri}]]>,   
+                    <![CDATA[ SHENFEN = #{shenfen}]]>,   
                     <![CDATA[ SHOUJIHAO = #{shoujihao}]]>,   
-                    <![CDATA[ WEIBOHAO = #{weibohao}]]>,   
+                    <![CDATA[ SUODING = #{suoding}]]>,   
                     <![CDATA[ WEIXINHAO = #{weixinhao}]]>,   
                     <![CDATA[ XINGBIE = #{xingbie}]]>,   
                     <![CDATA[ XINGMING = #{xingming}]]>,
@@ -85,11 +85,6 @@
 		SELECT
 		<include refid="all_columns" />
 		FROM dixiongzimei WHERE ID=#{id}
-	</select>
-	<select id="findOneByOpenID" parameterType="string" resultType="DiXiongZiMeiDO">
-		SELECT
-		<include refid="all_columns" />
-		FROM dixiongzimei WHERE OPENID = #{openID}
 	</select>
 	<select id="findAll" resultType="DiXiongZiMeiDO">
 		SELECT
@@ -117,6 +112,11 @@
 		<include refid="where" />
 		<include refid="orderById" />
 		LIMIT #{offset}, #{size}
+	</select>
+	<select id="findOneByOpenID" parameterType="string" resultType="DiXiongZiMeiDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM dixiongzimei WHERE OPENID = #{openID}
 	</select>
 	<select id="getByIds" parameterType="list" resultType="DiXiongZiMeiDO">
 		SELECT

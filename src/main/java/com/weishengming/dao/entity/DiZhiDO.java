@@ -19,7 +19,6 @@ public class DiZhiDO extends BaseDO{
 	private String dixiongzimeixingming;
 
 	private String leixing;
-	private String leixingstring; //工作地址,现住址,故乡地址
 	
 	private String areaId;   //省
 	private String areaName;
@@ -76,13 +75,6 @@ public class DiZhiDO extends BaseDO{
 		this.leixing = leixing;
 	}
 
-	public String getLeixingstring() {
-		return leixingstring;
-	}
-
-	public void setLeixingstring(String leixingstring) {
-		this.leixingstring = leixingstring;
-	}
 
 	public String getAreaId() {
 		return areaId;

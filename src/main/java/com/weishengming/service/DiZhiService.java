@@ -68,7 +68,6 @@ public class DiZhiService {
     
     private void mergeEntity(DiZhiDO source,DiZhiDO target){
     	target.setLeixing(source.getLeixing());
-    	target.setLeixingstring(source.getLeixingstring());
     	target.setAreaId(source.getAreaId());
     	target.setArea1Id(source.getArea1Id());
     	target.setArea2Id(source.getArea2Id());
@@ -80,6 +79,8 @@ public class DiZhiService {
     	target.setXiangxidizhi(source.getXiangxidizhi());
     	target.setDixiongzimeiid(source.getDixiongzimeiid());
     	target.setDixiongzimeixingming(source.getDixiongzimeixingming());
+    	target.setOpenID(source.getOpenID());
+    	target.setNickname(source.getNickname());
     	
     }
 }

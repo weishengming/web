@@ -12,14 +12,14 @@ public class DiXiongZiMeiParam extends MapperQuery{
         private Date createDate;
         private Date updateDate;
         private Long version;
-        private String beizhu;
-        private String leixing;
+        private String nianling;
         private String nickname;
         private String openID;
+        private String qita;
         private String qq;
-        private String shengri;
+        private String shenfen;
         private String shoujihao;
-        private String weibohao;
+        private String suoding;
         private String weixinhao;
         private String xingbie;
         private String xingming;
@@ -53,19 +53,12 @@ public class DiXiongZiMeiParam extends MapperQuery{
     public Long getVersion(){
     	return version;
     }
-        public void  setBeizhu(String beizhu){
-    	this.beizhu=beizhu;
+        public void  setNianling(String nianling){
+    	this.nianling=nianling;
     }
     
-    public String getBeizhu(){
-    	return beizhu;
-    }
-        public void  setLeixing(String leixing){
-    	this.leixing=leixing;
-    }
-    
-    public String getLeixing(){
-    	return leixing;
+    public String getNianling(){
+    	return nianling;
     }
         public void  setNickname(String nickname){
     	this.nickname=nickname;
@@ -81,6 +74,13 @@ public class DiXiongZiMeiParam extends MapperQuery{
     public String getOpenID(){
     	return openID;
     }
+        public void  setQita(String qita){
+    	this.qita=qita;
+    }
+    
+    public String getQita(){
+    	return qita;
+    }
         public void  setQq(String qq){
     	this.qq=qq;
     }
@@ -88,12 +88,12 @@ public class DiXiongZiMeiParam extends MapperQuery{
     public String getQq(){
     	return qq;
     }
-        public void  setShengri(String shengri){
-    	this.shengri=shengri;
+        public void  setShenfen(String shenfen){
+    	this.shenfen=shenfen;
     }
     
-    public String getShengri(){
-    	return shengri;
+    public String getShenfen(){
+    	return shenfen;
     }
         public void  setShoujihao(String shoujihao){
     	this.shoujihao=shoujihao;
@@ -102,12 +102,12 @@ public class DiXiongZiMeiParam extends MapperQuery{
     public String getShoujihao(){
     	return shoujihao;
     }
-        public void  setWeibohao(String weibohao){
-    	this.weibohao=weibohao;
+        public void  setSuoding(String suoding){
+    	this.suoding=suoding;
     }
     
-    public String getWeibohao(){
-    	return weibohao;
+    public String getSuoding(){
+    	return suoding;
     }
         public void  setWeixinhao(String weixinhao){
     	this.weixinhao=weixinhao;

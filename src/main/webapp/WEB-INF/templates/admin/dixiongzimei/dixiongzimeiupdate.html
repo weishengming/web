@@ -18,9 +18,6 @@
 	  <li><b><a href="/admin/dixiongzimei/dixiongzimeilist" style="font-size: 18px">弟兄姊妹管理</a></b></li>
 	</ol>
    <div class="container">
-    <div class="page-header">
-	  <h3>弟兄姊妹基本信息</h3>
-	</div>
     <form action="/admin/dixiongzimei/dixiongzimeiupdate" method="post" >
 	  <input type="hidden" name="id"  value="$!model.id">
 	  
@@ -34,17 +31,16 @@
 	  <div class="form-group row">
 	    <label for="shoujihao" class="col-sm-2 form-control-label">性别<span class="required">*</span></label>
 	    <div class="col-sm-10">
-	       <select class="form-control" name="xingbie">
-	          <option #if($!model.xingbie =='男') selected="selected" #end value="男">男</option>
-	          <option #if($!model.xingbie =='女') selected="selected" #end value="女">女</option>
-	       </select>
+	       <input type="radio" #if($!model.xingbie =='男') checked="checked" #end  name="xingbie" value="男"> 男
+	       &nbsp;&nbsp;&nbsp;
+	       <input type="radio" #if($!model.xingbie =='女') checked="checked" #end  name="xingbie" value="女"> 女
 	    </div>
 	  </div>
 	  
 	   <div class="form-group row">
-	    <label for="shoujihao" class="col-sm-2 form-control-label">生日<span class="required">*</span></label>
+	    <label for="shoujihao" class="col-sm-2 form-control-label">年龄<span class="required">*</span></label>
 	    <div class="col-sm-10">
-	      <input class="form-control Wdate"  placeholder="生日" type="text" name="shengri" value="$!model.shengri" id="shengri"   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" >
+	      <input class="form-control"  placeholder="年龄" type="text" name="nianling" value="$!model.nianling" id="nianling" >
 	    </div>
 	  </div>
 	  
@@ -70,28 +66,27 @@
 	  </div>
 	  
 	   <div class="form-group row">
-	    <label for="shoujihao" class="col-sm-2 form-control-label">微博号<span class="required">*</span></label>
+	    <label for="shoujihao" class="col-sm-2 form-control-label">身份<span class="required">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="weibohao" id="weibohao" value="$!model.weibohao" placeholder="微博">
-	    </div>
-	  </div>
-	  
-	   <div class="form-group row">
-	    <label for="shoujihao" class="col-sm-2 form-control-label">信仰程度<span class="required">*</span></label>
-	    <div class="col-sm-10">
-	      <select class="form-control" name="leixing">
-	          <option #if($!model.leixing =='初级') selected="selected" #end value="初级">初级</option>
-	          <option #if($!model.leixing =='中级') selected="selected" #end value="中级">中级</option>
-	          <option #if($!model.leixing =='高级') selected="selected" #end value="高级">高级</option>
-	          <option #if($!model.leixing =='不信') selected="selected" #end value="不信">不信</option>
-	       </select>
+	       <input type="radio" #if($!model.shenfen =='成人') checked="checked" #end  name="shenfen" value="成人"> 成人
+	       &nbsp;&nbsp;&nbsp;
+	       <input type="radio" #if($!model.shenfen =='学生') checked="checked" #end  name="shenfen" value="学生"> 学生
 	    </div>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <label for="shoujihao" class="col-sm-2 form-control-label">其他信息<span class="required">*</span></label>
 	    <div class="col-sm-10">
-	      <textarea class="form-control" rows="2" name="beizhu" id="beizhu"   placeholder="其他信息">$!model.beizhu</textarea>
+	      <textarea class="form-control" rows="2" name="qita" id="qita"   placeholder="其他信息">$!model.qita</textarea>
+	    </div>
+	  </div>
+	  
+	 <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">锁定<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	       <input type="radio" #if($!model.suoding =='锁定') checked="checked" #end  name="suoding" value="锁定"> 锁定
+	       &nbsp;&nbsp;&nbsp;
+	       <input type="radio" #if($!model.suoding =='解锁') checked="checked" #end  name="suoding" value="解锁"> 解锁
 	    </div>
 	  </div>
 	  
@@ -102,99 +97,6 @@
 	    </div>
 	  </div>  
 	 </form>
-	 <hr>
-	 <div class="page-header">
-	  <h3>弟兄姊妹经常去的教堂</h3>
-	</div>
-	  等多段时间在开发. 
-	 <hr>
-	<div class="page-header">
-	  <h3>弟兄姊妹地址信息</h3>
-	</div>
-	   #foreach($!dizhi in $!resultViewDiZhiList) 
-	  	<div class="alert alert-success alert-dismissible" role="alert">
-		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		  <p><h4>$!dizhi.leixingstring
-	           <a class="btn btn-xs btn-success" href="/admin/dixiongzimei/dixiongzimeidizhiedit/$!{dizhi.id}">编辑</a>
-	           <a class="btn btn-xs btn-info" href="/admin/dixiongzimei/dixiongzimeidizhidelete/$!{dizhi.id}">删除</a>
-	         </h4>
-			 $!dizhi.areaName
-			 $!dizhi.area1Name
-			 $!dizhi.area2Name
-			 $!dizhi.area3Name
-			 $!dizhi.xiangxidizhi
-	      </p>
-		</div>
-	    #end
-	    
-	 <form action="/admin/dixiongzimei/dixiongzimeidizhiupdate" method="post" >
-	  <input type="hidden" name="id"  value="$!dizhi.id"  >
-      <input type="hidden" name="openID" value="$!openID">
-      <input type="hidden" name="nickname" value="$!name">
-      <input type="hidden" name="dixiongzimeiid" value="$!model.id">
-      <input type="hidden" name="dixiongzimeixingming" value="$!model.xingming">
-	  <div class="form-group row">
-	    <label for="leixing" class="col-sm-2 form-control-label">地址类型</label>
-	    <div class="col-sm-10">
-		    <select class="form-control" name="leixing" id="leixing" onchange="updateLeixingString();">
-					   <option value="1" #if($!dizhi.leixing == 1) selected="selected" #end>户口地址</option>
-					   <option value="2" #if($!dizhi.leixing == 2) selected="selected" #end>工作地址</option>
-					   <option value="3" #if($!dizhi.leixing == 3) selected="selected" #end>现住地址</option>
-					   <option value="4" #if($!dizhi.leixing == 4) selected="selected" #end>学校地址</option>
-					   <option value="5" #if($!dizhi.leixing == 5) selected="selected" #end>其他地址</option>
-		   </select>
-		   <input type="hidden" name="leixingstring" id="leixingstring" value="$!dizhi.leixingstring">
-	    </div>
-	  </div>
-	   <div class="form-group row">
-	    <label for="areaId" class="col-sm-2 form-control-label">省</label>
-	    <div class="col-sm-10">
-	      <select class="form-control first-label" name="areaId" id="areaId" onchange="getArea1()">
-	      </select>
-	    </div>
-	  </div>
-	  <div class="form-group row">
-	    <label for="area1Id" class="col-sm-2 form-control-label">市</label>
-	    <div class="col-sm-10">
-	      <select class="form-control" name="area1Id" id="area1Id" onchange="getArea2()">
-	      </select>
-	    </div>
-	  </div>
-	  <span id="area2Span" style="display: none;">
-		  <div class="form-group row">
-		    <label for="area2Id" class="col-sm-2 form-control-label">县/区</label>
-		    <div class="col-sm-10">
-		      <select class="form-control" name="area2Id" id="area2Id"  onchange="getArea3()">
-		      </select>
-		    </div>
-		  </div>
-	  </span>
-	  <span id="area3Span" style="display: none;">
-	    <div class="form-group row">
-	    <label for="area3Id" class="col-sm-2 form-control-label" >乡/镇</label>
-	    <div class="col-sm-10">
-	      <select class="form-control" name="area3Id" id="area3Id" onchange="getArea4()">
-	      </select> 
-	    </div>
-	   </div>
-	  </span> 
-	  <input type="hidden" id="areaName"  name="areaName"   value="$!dizhi.areaName"> 
-	  <input type="hidden" id="area1Name" name="area1Name" value="$!dizhi.area1Name">
-	  <input type="hidden" id="area2Name" name="area2Name" value="$!dizhi.area2Name">
-	  <input type="hidden" id="area3Name" name="area3Name" value="$!dizhi.area3Name">
-	  <div class="form-group row">
-	    <label for="xiangxidizhi" class="col-sm-2 form-control-label">详细</label>
-	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="xiangxidizhi" id="xiangxidizhi"  value="$!dizhi.xiangxidizhi" placeholder="详细地址">
-	    </div>
-	  </div>
-	   <div class="form-group row">
-	    <div class="col-sm-offset-2 col-sm-10">
-	      <button type="submit" class="btn btn-block btn-success">更新地址</button>
-	    </div>
-	  </div> 
-	  </form>
    </div><!-- .container -->
-   <script type="text/javascript" src="${static_resource}/resources/js/dizhi/dizhi.js"></script>
   </body>
 </html>

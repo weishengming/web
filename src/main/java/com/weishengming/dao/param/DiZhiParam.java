@@ -23,7 +23,6 @@ public class DiZhiParam extends MapperQuery{
         private String dixiongzimeiid;
         private String dixiongzimeixingming;
         private String leixing;
-        private String leixingstring;
         private String nickname;
         private String openID;
         private String xiangxidizhi;
@@ -134,13 +133,7 @@ public class DiZhiParam extends MapperQuery{
     public String getLeixing(){
     	return leixing;
     }
-        public void  setLeixingstring(String leixingstring){
-    	this.leixingstring=leixingstring;
-    }
-    
-    public String getLeixingstring(){
-    	return leixingstring;
-    }
+ 
         public void  setNickname(String nickname){
     	this.nickname=nickname;
     }

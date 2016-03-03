@@ -25,10 +25,6 @@ public class DiXiongZiMeiController extends SecurityController{
 	
 	@Resource
 	private DiXiongZiMeiService dixiongzimeiService;
-	@Resource
-	private DiZhiService dizhiService;
-	@Resource
-	private JDAreaService jdAreaService;
 	
 	/**
 	 * 进入弟兄姊妹页面
@@ -37,18 +33,21 @@ public class DiXiongZiMeiController extends SecurityController{
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/dixiongzimei")
-	public String update(HttpServletRequest request, Model model) {
-        if(getName(request)==null){
-        	request.getSession().setAttribute("redirectURL", "/dixiongzimei/dixiongzimeiedit");
-        	return "redirect:/qqLogin";
-        }
+	public String dixiongzimei(HttpServletRequest request, Model model) {
+//        if(getName(request)==null){
+//        	request.getSession().setAttribute("redirectURL", "/dixiongzimei/dixiongzimei");
+//        	return "redirect:/qqLogin";
+//        }
         logger.info("进入到弟兄姊妹页面");
-		DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOneByOpenID(getOpenID(request));
+//		DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOneByOpenID(getOpenID(request));
+		DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOneByOpenID("EBEDEDF615FEE34A4DCCA75BEE2EAAA3");
 		model.addAttribute("model", dixiongzimeiDO);
         if(dixiongzimeiDO==null){
         	dixiongzimeiDO=new DiXiongZiMeiDO();
-        	dixiongzimeiDO.setNickname(getName(request));
-        	dixiongzimeiDO.setOpenID(getOpenID(request));
+//        	dixiongzimeiDO.setNickname(getName(request));
+//        	dixiongzimeiDO.setOpenID(getOpenID(request));
+        	dixiongzimeiDO.setNickname("微生命");
+        	dixiongzimeiDO.setOpenID("EBEDEDF615FEE34A4DCCA75BEE2EAAA3");
         	model.addAttribute("model", dixiongzimeiDO);
         }
         return "/dixiongzimei/dixiongzimei";
