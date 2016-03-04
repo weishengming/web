@@ -16,6 +16,7 @@ import com.weishengming.dao.entity.DiXiongZiMeiDO;
 import com.weishengming.dao.query.DiXiongZiMeiQuery;
 import com.weishengming.dao.query.ResultPage;
 import com.weishengming.service.DiXiongZiMeiService;
+import com.weishengming.web.controller.SecurityController;
 
 /**
  * @author 杨天赐
@@ -23,7 +24,7 @@ import com.weishengming.service.DiXiongZiMeiService;
  */
 @Controller
 @RequestMapping(value = "/admin/dixiongzimei")
-public class AdminDiXiongZiMeiController {
+public class AdminDiXiongZiMeiController extends SecurityController{
 	Logger logger = LoggerFactory.getLogger(AdminDiXiongZiMeiController.class);
 
 	@Resource

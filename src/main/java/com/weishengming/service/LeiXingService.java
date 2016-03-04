@@ -8,12 +8,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.weishengming.common.validate.ValidationService;
-import com.weishengming.dao.entity.JiaoTangDO;
 import com.weishengming.dao.entity.LeiXingDO;
 import com.weishengming.dao.mapper.LeiXingMapper;
-import com.weishengming.dao.param.JiaoTangParam;
 import com.weishengming.dao.param.LeiXingParam;
-import com.weishengming.dao.query.JiaoTangQuery;
 import com.weishengming.dao.query.LeiXingQuery;
 import com.weishengming.dao.query.ResultPage;
 

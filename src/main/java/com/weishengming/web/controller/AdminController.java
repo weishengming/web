@@ -1,6 +1,4 @@
 package com.weishengming.web.controller;
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
@@ -14,32 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
-import com.weishengming.dao.entity.DiXiongZiMeiDO;
 import com.weishengming.dao.entity.DiZhiDO;
 import com.weishengming.dao.entity.JDAreaDO;
-import com.weishengming.dao.entity.JiaoTangDO;
-import com.weishengming.dao.entity.LeiXingDO;
 import com.weishengming.dao.entity.QMZXDO;
-import com.weishengming.dao.entity.ShiPinDO;
 import com.weishengming.dao.entity.TTSDDO;
-import com.weishengming.dao.entity.WenZhangDO;
-import com.weishengming.dao.query.DiXiongZiMeiQuery;
-import com.weishengming.dao.query.JiaoTangQuery;
-import com.weishengming.dao.query.LeiXingQuery;
 import com.weishengming.dao.query.QMZXQuery;
 import com.weishengming.dao.query.ResultPage;
-import com.weishengming.dao.query.ShiPinQuery;
 import com.weishengming.dao.query.TTSDQuery;
-import com.weishengming.dao.query.WenZhangQuery;
-import com.weishengming.service.DiXiongZiMeiService;
 import com.weishengming.service.DiZhiService;
 import com.weishengming.service.JDAreaService;
-import com.weishengming.service.JiaoTangService;
 import com.weishengming.service.LeiXingService;
 import com.weishengming.service.QMZXService;
-import com.weishengming.service.ShiPinService;
 import com.weishengming.service.TTSDService;
-import com.weishengming.service.WenZhangService;
 /**
  * @author 杨天赐
  * web控制数据接口  只有 OPENID=杨天赐 才可以访问这个功能
@@ -52,19 +36,7 @@ public class AdminController  extends SecurityController {
 	private TTSDService ttsdService;
 	
 	@Resource
-	private WenZhangService wenzhangService;
-	
-	@Resource
 	private QMZXService qmzxService;
-	
-	@Resource
-	private ShiPinService shipinService;
-	
-	@Resource
-	private JiaoTangService jiaotangService;
-	
-	@Resource
-	private LeiXingService leixingService;
 	
 	@Resource
 	private DiZhiService dizhiService;
@@ -152,235 +124,12 @@ public class AdminController  extends SecurityController {
 	
 	
 
-	/***********类型管理START****************/
-	/**
-	 * 进入到类型列表页面
-	 * @param model
-	 * @param query
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.GET,value="/leixing/leixinglist")
-    public String leixinglist(Model model, LeiXingQuery query,Integer changePageSize,Integer pn) {
-		logger.info("进入到类型列表页面");
-        query.putPnIntoPageNumber(pn);
-        query.putPnIntoPageSize(changePageSize);
-        ResultPage<LeiXingDO> result = leixingService.findPage(query);
-        String pageUrl = "/admin/leixing/leixinglist?" + Converter.covertToQueryStr(query);
-        model.addAttribute("pageUrl", pageUrl);
-        model.addAttribute("resultViewList", result.getResult());
-        model.addAttribute("query", query);
-        model.addAttribute("result", result);
-        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
-        return "/admin/leixing/leixinglist";
-    }
 	
-	 /**
-     * 通过id 
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/leixing/leixingedit/{id}")
-    public String leixingedit(@PathVariable Long id, Model model) {
-        final LeiXingDO leixingDO = leixingService.findOne(id);
-        model.addAttribute("model", leixingDO);
-        return "/admin/leixing/leixingupdate";
-    }
-    
-    /**
-     * 
-     * 编辑子类型 
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/leixing/zileixingedit/{id}")
-    public String zileixingedit(@PathVariable Long id, Model model) {
-        final LeiXingDO leixingDO = leixingService.findOne(id);
-        model.addAttribute("model", leixingDO);
-        return "/admin/leixing/zileixingupdate";
-    }
-    
-    /**
-     * 删除类型
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/leixing/leixingdelete/{id}")
-    public String leixingdelete(@PathVariable Long id){
-   		if(id!=null){
-   			leixingService.delete(id);
-   			return "redirect:/admin/leixing/leixinglist";
-   		}
-   		return null;
-   	}
-	 
- 
-    /**
-   	 * 更新
-   	 * @param entity
-   	 * @return
-   	 */
-   	@RequestMapping(method = RequestMethod.POST, value = "/leixing/leixingupdate")
-    public String leixingupdate(LeiXingDO entity) {
-   		if(entity.getId()==null){
-		    entity.setCreateDate(DateUtil.getCurrentDate());
-	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	leixingService.create(entity);
-	   }else{
-		   leixingService.update(entity);
-	   }
-   		return "redirect:/admin/leixing/leixinglist";
-    }
-    /**
-   	 * 添加子类型
-   	 * @param entity
-   	 * @return
-   	 */
-   	@RequestMapping(method = RequestMethod.POST, value = "/leixing/zileixingupdate")
-    public String zileixingupdate(LeiXingDO entity) {
-   		if(entity.getId()==null){
-		    entity.setCreateDate(DateUtil.getCurrentDate());
-	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	leixingService.create(entity);
-	   }else{
-		   leixingService.update(entity);
-	   }
-   		return "redirect:/admin/leixing/leixinglist";
-    }
-   	public LeiXingService getLeixingService() {
-		return leixingService;
-	}
-
-	public void setLeixingService(LeiXingService leixingService) {
-		this.leixingService = leixingService;
-	}
-	/***********类型管理END***************/
 	
 
-	/***********教堂管理START****************/
-	/**
-	 * 进入到视频列表页面
-	 * @param model
-	 * @param query
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.GET,value="/jiaotang/jiaotanglist")
-    public String jiaotanglist(Model model, JiaoTangQuery query,Integer changePageSize,Integer pn) {
-		logger.info("进入到教堂列表页面");
-        query.putPnIntoPageNumber(pn);
-        query.putPnIntoPageSize(changePageSize);
-        ResultPage<JiaoTangDO> result = jiaotangService.findPage(query);
-        String pageUrl = "/admin/jiaotang/jiaotanglist?" + Converter.covertToQueryStr(query);
-        model.addAttribute("pageUrl", pageUrl);
-        model.addAttribute("resultViewList", result.getResult());
-        model.addAttribute("query", query);
-        model.addAttribute("result", result);
-        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
-        return "/admin/jiaotang/jiaotanglist";
-    }
 	
-	 /**
-     * 通过id 
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/jiaotang/jiaotangedit/{id}")
-    public String jiaotangedit(@PathVariable Long id, Model model) {
-        final JiaoTangDO jiaotangDO = jiaotangService.findOne(id);
-        model.addAttribute("model", jiaotangDO);
-        return "/admin/jiaotang/jiaotangupdate";
-    }
-	 
- 
-    /**
-   	 * 更新
-   	 * @param entity
-   	 * @return
-   	 */
-   	@RequestMapping(method = RequestMethod.POST, value = "/jiaotang/jiaotangupdate")
-    public String jiaotangupdate(JiaoTangDO entity) {
-   		if(entity.getId()==null){
-		    entity.setCreateDate(DateUtil.getCurrentDate());
-	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	jiaotangService.create(entity);
-	   }else{
-		   jiaotangService.update(entity);
-	   }
-   		return "redirect:/admin/jiaotang/jiaotanglist";
-    }
-   	
-   	public JiaoTangService getJiaotangService() {
-		return jiaotangService;
-	}
 
-	public void setJiaotangService(JiaoTangService jiaotangService) {
-		this.jiaotangService = jiaotangService;
-	}
-	
-	 
-	/***********教堂管理END***************/
 
-	/***********视频管理START****************/
-	/**
-	 * 进入到视频列表页面
-	 * @param model
-	 * @param query
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.GET,value="/shipin/shipinlist")
-    public String shipinlist(Model model, ShiPinQuery query,Integer changePageSize,Integer pn) {
-		logger.info("进入到视频列表页面");
-        query.putPnIntoPageNumber(pn);
-        query.putPnIntoPageSize(changePageSize);
-        ResultPage<ShiPinDO> result = shipinService.findPage(query);
-        String pageUrl = "/admin/shipin/shipinlist?" + Converter.covertToQueryStr(query);
-        model.addAttribute("pageUrl", pageUrl);
-        model.addAttribute("resultViewList", result.getResult());
-        model.addAttribute("query", query);
-        model.addAttribute("result", result);
-        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
-        return "/admin/shipin/shipinlist";
-    }
-	
-	 /**
-     * 通过id 
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/shipin/shipinedit/{id}")
-    public String shipinedit(@PathVariable Long id, Model model) {
-        final ShiPinDO shipinDO = shipinService.findOne(id);
-        model.addAttribute("model", shipinDO);
-        return "/admin/shipin/shipinupdate";
-    }
-    /**
-   	 * 更新
-   	 * @param entity
-   	 * @return
-   	 */
-   	@RequestMapping(method = RequestMethod.POST, value = "/shipin/shipinupdate")
-    public String shipinupdate(ShiPinDO entity) {
-   		if(entity.getId()==null){
-		    entity.setCreateDate(DateUtil.getCurrentDate());
-	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	shipinService.create(entity);
-	   }else{
-		    shipinService.update(entity);
-	   }
-   		return "redirect:/admin/shipin/shipinlist";
-    }
-   	
-   	public ShiPinService getShipinService() {
-		return shipinService;
-	}
-
-	public void setShipinService(ShiPinService shipinService) {
-		this.shipinService = shipinService;
-	}
-	 
-	/***********视频管理END***************/
 	
 	
 	/**********奇妙真相管理START**************/
@@ -444,67 +193,7 @@ public class AdminController  extends SecurityController {
 	
 	/**********奇妙真相管理END**************/
 	
-	/**********文章管理 START***************/
-
-	/**
-	 * 进入到文章列表页面
-	 * @param model
-	 * @param query
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.GET,value="/wenzhang/wenzhanglist")
-    public String wenzhanglist(Model model, WenZhangQuery query,Integer changePageSize,Integer pn) {
-		logger.info("进入到文章列表页面");
-        query.putPnIntoPageNumber(pn);
-        query.putPnIntoPageSize(changePageSize);
-        ResultPage<WenZhangDO> result = wenzhangService.findPage(query);
-        String pageUrl = "/admin/wenzhang/wenzhanglist?" + Converter.covertToQueryStr(query);
-        model.addAttribute("pageUrl", pageUrl);
-        model.addAttribute("resultViewList", result.getResult());
-        model.addAttribute("query", query);
-        model.addAttribute("result", result);
-        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
-        return "/admin/wenzhang/wenzhanglist";
-    }
 	
-	 /**
-     * 通过id 
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/wenzhang/wenzhangedit/{id}")
-    public String wenzhangedit(@PathVariable Long id, Model model) {
-        final WenZhangDO wenzhangDO = wenzhangService.findOne(id);
-        model.addAttribute("model", wenzhangDO);
-        return "/admin/wenzhang/wenzhangupdate";
-    }
-    /**
-   	 * 更新
-   	 * @param entity
-   	 * @return
-   	 */
-   	@RequestMapping(method = RequestMethod.POST, value = "/wenzhang/wenzhangupdate")
-    public String wenzhangupdate(WenZhangDO entity) {
-   		if(entity.getId()==null){
-		    entity.setCreateDate(DateUtil.getCurrentDate());
-	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	wenzhangService.create(entity);
-	   }else{
-		    wenzhangService.update(entity);
-	   }
-   		return "redirect:/admin/wenzhang/wenzhanglist";
-    }
-   	
-	public WenZhangService getWenzhangService() {
-		return wenzhangService;
-	}
-
-	public void setWenzhangService(WenZhangService wenzhangService) {
-		this.wenzhangService = wenzhangService;
-	}
-   	
-   	/**********文章管理 END***************/
 	
 	/**********谈天说地管理 START***************/
 	/**
