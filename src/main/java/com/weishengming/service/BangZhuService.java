@@ -34,6 +34,10 @@ public class BangZhuService {
     public List<BangZhuDO> findAll() {
         return mapper.findAll();
     }
+    
+    public List<BangZhuDO> findListByOpenID(String openID){
+    	return mapper.findListByOpenID(openID);
+    }
 
     public BangZhuDO findOne(Long id) {
         return mapper.findOne(id);

@@ -79,6 +79,11 @@
 		<include refid="all_columns" />
 		FROM bangzhu
 	</select>
+	<select id="findListByOpenID" parameterType="string" resultType="BangZhuDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM bangzhu WHERE OPENID = #{openID}
+	</select>
 	<delete id="delete" parameterType="long">
 		DELETE FROM bangzhu WHERE id=#{id}
 	</delete>

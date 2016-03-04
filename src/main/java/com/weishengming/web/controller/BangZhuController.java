@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,12 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.util.DateUtil;
+import com.weishengming.dao.entity.BangZhuDO;
 import com.weishengming.dao.entity.DiXiongZiMeiDO;
-import com.weishengming.dao.entity.DiZhiDO;
-import com.weishengming.dao.entity.JDAreaDO;
+import com.weishengming.service.BangZhuService;
 import com.weishengming.service.DiXiongZiMeiService;
-import com.weishengming.service.DiZhiService;
-import com.weishengming.service.JDAreaService;
 
 /**
  * @author 杨天赐
@@ -30,10 +27,10 @@ import com.weishengming.service.JDAreaService;
 @RequestMapping(value="bangzhu")
 public class BangZhuController extends SecurityController{
 	Logger  logger = LoggerFactory.getLogger(BangZhuController.class);
+	
 	@Resource
-	private DiZhiService dizhiService;
-	@Resource
-	private JDAreaService jdAreaService;
+	private BangZhuService bangzhuService;
+	
 	@Resource
 	private DiXiongZiMeiService dixiongzimeiService;
 	
@@ -43,19 +40,21 @@ public class BangZhuController extends SecurityController{
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.GET, value = "/dixiongzimeidizhi")
-	public String dixiongzimeidizhi(HttpServletRequest request, Model model) {
-        if(getName(request)==null){
-        	request.getSession().setAttribute("redirectURL", "/dixiongzimeidizhi/dixiongzimeidizhi");
-        	return "redirect:/qqLogin";
-        }
-        logger.info("进入到弟兄姊妹地址页面");
-        //还需要做一件事  查出来  这个 弟兄姊妹的地址信息
-        List<DiZhiDO> dizhiList=dizhiService.findListByOpenID(getOpenID(request));
-        model.addAttribute("resultViewDiZhiList", dizhiList);
-        DiXiongZiMeiDO dixiongzimeiDO=dixiongzimeiService.findOneByOpenID(getOpenID(request));
+	@RequestMapping(method = RequestMethod.GET, value = "/bangzhu")
+	public String bangzhu(HttpServletRequest request, Model model) {
+//        if(getName(request)==null){
+//        	request.getSession().setAttribute("redirectURL", "/bangzhu/bangzhu");
+//        	return "redirect:/qqLogin";
+//        }
+        logger.info("进入帮助页面");
+        //EBEDEDF615FEE34A4DCCA75BEE2EAAA3
+//        List<BangZhuDO> bangzhuList=bangzhuService.findListByOpenID(getOpenID(request));
+        List<BangZhuDO> bangzhuList=bangzhuService.findListByOpenID("EBEDEDF615FEE34A4DCCA75BEE2EAAA3");
+        model.addAttribute("resultViewList", bangzhuList);
+//        DiXiongZiMeiDO dixiongzimeiDO=dixiongzimeiService.findOneByOpenID(getOpenID(request));
+        DiXiongZiMeiDO dixiongzimeiDO=dixiongzimeiService.findOneByOpenID("EBEDEDF615FEE34A4DCCA75BEE2EAAA3");
         model.addAttribute("dixiongzimei", dixiongzimeiDO);
-        return "/dixiongzimeidizhi/dixiongzimeidizhi";
+        return "/bangzhu/bangzhu";
 	}
     
     /**
@@ -63,52 +62,45 @@ public class BangZhuController extends SecurityController{
    	 * @param entity
    	 * @return
    	 */
-   	@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeidizhigengxin")
-    public String dixiongzimeidizhiupdate(DiZhiDO entity) {
-   	    if(StringUtils.isBlank(entity.getArea3Name())&&StringUtils.isNotBlank(entity.getArea3Id())){
-	   		JDAreaDO jdarea=jdAreaService.findOneByAreaId(entity.getArea3Id());
-	   		if(jdarea!=null){
-	   			entity.setArea3Name(jdarea.getAreaName());
-	   		}
-	    }
+   	@RequestMapping(method = RequestMethod.POST, value = "/bangzhugengxin")
+    public String bangzhugengxin(BangZhuDO entity) {
    		if(entity.getId()==null){
 		    entity.setCreateDate(DateUtil.getCurrentDate());
 	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	dizhiService.create(entity);
+	    	bangzhuService.create(entity);
 	   }else{
-		   dizhiService.update(entity);
+		    bangzhuService.update(entity);
 	   }
-   	   return "redirect:/dixiongzimeidizhi/dixiongzimeidizhi";
+   	   return "redirect:/bangzhu/bangzhu";
     }
    	
-   	@RequestMapping(value = "/dixiongzimeidizhidelete/{id}")
-    public String dixiongzimeidizhidelete(@PathVariable Long id) {
- 	   dizhiService.delete(id);
- 	  return "redirect:/dixiongzimeidizhi/dixiongzimeidizhi";
+   	/**
+   	 * 删除
+   	 * @param id
+   	 * @return
+   	 */
+   	@RequestMapping(value = "/bangzhudelete/{id}")
+    public String bangzhudelete(@PathVariable Long id) {
+   		bangzhuService.delete(id);
+ 	  return "redirect:/bangzhu/bangzhu";
     }
-   	
-   	public DiZhiService getDizhiService() {
-		return dizhiService;
+
+	public BangZhuService getBangzhuService() {
+		return bangzhuService;
 	}
 
-	public void setDizhiService(DiZhiService dizhiService) {
-		this.dizhiService = dizhiService;
+	public void setBangzhuService(BangZhuService bangzhuService) {
+		this.bangzhuService = bangzhuService;
 	}
 
-	public Logger getLogger() {
-		return logger;
+	public DiXiongZiMeiService getDixiongzimeiService() {
+		return dixiongzimeiService;
 	}
 
-	public void setLogger(Logger logger) {
-		this.logger = logger;
+	public void setDixiongzimeiService(DiXiongZiMeiService dixiongzimeiService) {
+		this.dixiongzimeiService = dixiongzimeiService;
 	}
-
-	public JDAreaService getJdAreaService() {
-		return jdAreaService;
-	}
-
-	public void setJdAreaService(JDAreaService jdAreaService) {
-		this.jdAreaService = jdAreaService;
-	}
+	
+	
 	 
 }
