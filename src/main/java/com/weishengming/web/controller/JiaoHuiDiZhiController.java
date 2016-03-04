@@ -47,18 +47,15 @@ public class JiaoHuiDiZhiController extends SecurityController{
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/jiaohuidizhi")
 	public String jiaohuidizhi(HttpServletRequest request, Model model) {
-//        if(getName(request)==null){
-//        	request.getSession().setAttribute("redirectURL", "/jiaohuidizhi/jiaohuidizhi");
-//        	return "redirect:/qqLogin";
-//        }
-        logger.info("进入到弟兄姊妹地址页面");
-//        List<JiaoHuiDiZhiDO> jiaohuidizhiList=jiaohuidizhiService.findListByOpenID(getOpenID(request));
-        List<JiaoHuiDiZhiDO> jiaohuidizhiList=jiaohuidizhiService.findListByOpenID("EBEDEDF615FEE34A4DCCA75BEE2EAAA3");
+        if(getName(request)==null){
+        	request.getSession().setAttribute("redirectURL", "/jiaohuidizhi/jiaohuidizhi");
+        	return "redirect:/qqLogin";
+        }
+        logger.info("进入到教会地址页面");
+        List<JiaoHuiDiZhiDO> jiaohuidizhiList=jiaohuidizhiService.findListByOpenID(getOpenID(request));
         
         model.addAttribute("resultViewJiaoHuiDiZhiList", jiaohuidizhiList);
-//        DiXiongZiMeiDO dixiongzimeiDO=dixiongzimeiService.findOneByOpenID(getOpenID(request));
-        DiXiongZiMeiDO dixiongzimeiDO=dixiongzimeiService.findOneByOpenID("EBEDEDF615FEE34A4DCCA75BEE2EAAA3");
-        
+        DiXiongZiMeiDO dixiongzimeiDO=dixiongzimeiService.findOneByOpenID(getOpenID(request));
         model.addAttribute("dixiongzimei", dixiongzimeiDO);
         return "/jiaohuidizhi/jiaohuidizhi";
 	}

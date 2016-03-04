@@ -67,9 +67,6 @@ public class AdminController  extends SecurityController {
 	private LeiXingService leixingService;
 	
 	@Resource
-	private DiXiongZiMeiService dixiongzimeiService;
-	
-	@Resource
 	private DiZhiService dizhiService;
 	
 	@Resource
@@ -95,13 +92,13 @@ public class AdminController  extends SecurityController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/dixiongzimei/dixiongzimeidizhiedit/{id}")
     public String dixiongzimeidizhiedit(@PathVariable Long id, Model model) {
-        DiZhiDO dizhiDO=dizhiService.findOne(id);
-        model.addAttribute("dizhi", dizhiDO);
-        final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(dizhiDO.getDixiongzimeiid());
-        model.addAttribute("model", dixiongzimeiDO);
-        //还需要做一件事  查出来  这个 弟兄姊妹的地址信息
-        List<DiZhiDO> dizhiList=dizhiService.findListByDixiongzimeiid(dixiongzimeiDO.getId());
-        model.addAttribute("resultViewDiZhiList", dizhiList);
+//        DiZhiDO dizhiDO=dizhiService.findOne(id);
+//        model.addAttribute("dizhi", dizhiDO);
+//        final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(dizhiDO.getDixiongzimeiid());
+//        model.addAttribute("model", dixiongzimeiDO);
+//        //还需要做一件事  查出来  这个 弟兄姊妹的地址信息
+//        List<DiZhiDO> dizhiList=dizhiService.findListByDixiongzimeiid(dixiongzimeiDO.getId());
+//        model.addAttribute("resultViewDiZhiList", dizhiList);
         return "/admin/dixiongzimei/dixiongzimeiupdate";
     }
     
@@ -152,80 +149,6 @@ public class AdminController  extends SecurityController {
 	}
    	
 	/***********弟兄姊妹地址管理END***************/
-	
-	/***********弟兄姊妹管理START****************/
-	/**
-	 * 进入到弟兄姊妹列表页面
-	 * @param model
-	 * @param query
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.GET,value="/dixiongzimei/dixiongzimeilist")
-    public String dixiongzimeilist(Model model, DiXiongZiMeiQuery query,Integer changePageSize,Integer pn) {
-		logger.info("进入到弟兄姊妹管理列表页面");
-        query.putPnIntoPageNumber(pn);
-        query.putPnIntoPageSize(changePageSize);
-        ResultPage<DiXiongZiMeiDO> result = dixiongzimeiService.findPage(query);
-        String pageUrl = "/admin/dixiongzimei/dixiongzimeilist?" + Converter.covertToQueryStr(query);
-        model.addAttribute("pageUrl", pageUrl);
-        model.addAttribute("resultViewList", result.getResult());
-        model.addAttribute("query", query);
-        model.addAttribute("result", result);
-        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
-        return "/admin/dixiongzimei/dixiongzimeilist";
-    }
-	
-	 /**
-     * 通过id 
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/dixiongzimei/dixiongzimeiedit/{id}")
-    public String dixiongzimeiedit(@PathVariable Long id, Model model) {
-        final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(id);
-        model.addAttribute("model", dixiongzimeiDO);
-        return "/admin/dixiongzimei/dixiongzimeiupdate";
-    }
-	 
- 
-    /**
-   	 * 更新
-   	 * @param entity
-   	 * @return
-   	 */
-   	@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei/dixiongzimeiupdate")
-    public String dixiongzimeiupdate(DiXiongZiMeiDO entity) {
-   		if(entity.getId()==null){
-		    entity.setCreateDate(DateUtil.getCurrentDate());
-	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	dixiongzimeiService.create(entity);
-	   }else{
-		    dixiongzimeiService.update(entity);
-	   }
-   		return "redirect:/admin/dixiongzimei/dixiongzimeilist";
-    }
-   	
-	@RequestMapping(value = "/dixiongzimei/dixiongzimeidelete/{id}")
-    public String dixiongzimeidelete(@PathVariable Long id) {
-	   dixiongzimeiService.delete(id);
-   	   List<DiZhiDO> dizhiList=dizhiService.findListByDixiongzimeiid(id);
-   	   for (DiZhiDO diZhiDO2 : dizhiList) {
-   		dizhiService.delete(diZhiDO2.getId());
-	   }
-   	   return "redirect:/admin/dixiongzimei/dixiongzimeilist";
-    }
-   	
-   	public DiXiongZiMeiService getDixiongzimeiService() {
-		return dixiongzimeiService;
-	}
-
-	public void setDixiongzimeiService(DiXiongZiMeiService dixiongzimeiService) {
-		this.dixiongzimeiService = dixiongzimeiService;
-	}
-	 
-	/***********弟兄姊妹管理END***************/
-	
 	
 	
 
@@ -324,9 +247,6 @@ public class AdminController  extends SecurityController {
 	   }
    		return "redirect:/admin/leixing/leixinglist";
     }
-   	
-   	
-   	
    	public LeiXingService getLeixingService() {
 		return leixingService;
 	}
@@ -334,8 +254,6 @@ public class AdminController  extends SecurityController {
 	public void setLeixingService(LeiXingService leixingService) {
 		this.leixingService = leixingService;
 	}
-	
-	 
 	/***********类型管理END***************/
 	
 
@@ -402,10 +320,6 @@ public class AdminController  extends SecurityController {
 	
 	 
 	/***********教堂管理END***************/
-	
-	
-	
-	
 
 	/***********视频管理START****************/
 	/**
@@ -441,8 +355,6 @@ public class AdminController  extends SecurityController {
         model.addAttribute("model", shipinDO);
         return "/admin/shipin/shipinupdate";
     }
-	 
- 
     /**
    	 * 更新
    	 * @param entity
@@ -467,13 +379,11 @@ public class AdminController  extends SecurityController {
 	public void setShipinService(ShiPinService shipinService) {
 		this.shipinService = shipinService;
 	}
-	
 	 
 	/***********视频管理END***************/
 	
 	
 	/**********奇妙真相管理START**************/
-	
 	/**
 	 * 进入到奇妙真相列表页面
 	 * @param model
@@ -507,8 +417,6 @@ public class AdminController  extends SecurityController {
         model.addAttribute("model", qmzxDO);
         return "/admin/qmzx/qmzxupdate";
     }
-	 
- 
     /**
    	 * 更新
    	 * @param entity
@@ -571,8 +479,6 @@ public class AdminController  extends SecurityController {
         model.addAttribute("model", wenzhangDO);
         return "/admin/wenzhang/wenzhangupdate";
     }
-	 
- 
     /**
    	 * 更新
    	 * @param entity
@@ -601,9 +507,6 @@ public class AdminController  extends SecurityController {
    	/**********文章管理 END***************/
 	
 	/**********谈天说地管理 START***************/
-
-
-
 	/**
 	 * 进入到谈天说地列表页面
 	 * @param model
@@ -637,8 +540,6 @@ public class AdminController  extends SecurityController {
         model.addAttribute("model", ttsdDO);
         return "/admin/ttsd/ttsdupdate";
     }
-	 
- 
     /**
    	 * 更新
    	 * @param entity
