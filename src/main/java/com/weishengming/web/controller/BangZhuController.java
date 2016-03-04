@@ -35,24 +35,21 @@ public class BangZhuController extends SecurityController{
 	private DiXiongZiMeiService dixiongzimeiService;
 	
 	/**
-	 * 进入弟兄姊妹地址页面
+	 * 进入帮助页面
 	 * @param request
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/bangzhu")
 	public String bangzhu(HttpServletRequest request, Model model) {
-//        if(getName(request)==null){
-//        	request.getSession().setAttribute("redirectURL", "/bangzhu/bangzhu");
-//        	return "redirect:/qqLogin";
-//        }
+        if(getName(request)==null){
+        	request.getSession().setAttribute("redirectURL", "/bangzhu/bangzhu");
+        	return "redirect:/qqLogin";
+        }
         logger.info("进入帮助页面");
-        //EBEDEDF615FEE34A4DCCA75BEE2EAAA3
-//        List<BangZhuDO> bangzhuList=bangzhuService.findListByOpenID(getOpenID(request));
-        List<BangZhuDO> bangzhuList=bangzhuService.findListByOpenID("EBEDEDF615FEE34A4DCCA75BEE2EAAA3");
+        List<BangZhuDO> bangzhuList=bangzhuService.findListByOpenID(getOpenID(request));
         model.addAttribute("resultViewList", bangzhuList);
-//        DiXiongZiMeiDO dixiongzimeiDO=dixiongzimeiService.findOneByOpenID(getOpenID(request));
-        DiXiongZiMeiDO dixiongzimeiDO=dixiongzimeiService.findOneByOpenID("EBEDEDF615FEE34A4DCCA75BEE2EAAA3");
+        DiXiongZiMeiDO dixiongzimeiDO=dixiongzimeiService.findOneByOpenID(getOpenID(request));
         model.addAttribute("dixiongzimei", dixiongzimeiDO);
         return "/bangzhu/bangzhu";
 	}

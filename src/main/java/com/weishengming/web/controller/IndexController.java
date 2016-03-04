@@ -1,6 +1,4 @@
 package com.weishengming.web.controller;
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +16,6 @@ import com.qq.connect.javabeans.AccessToken;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
 import com.qq.connect.oauth.Oauth;
 import com.weishengming.common.util.DateUtil;
-import com.weishengming.dao.entity.DiXiongZiMeiDO;
-import com.weishengming.dao.entity.DiZhiDO;
 import com.weishengming.dao.entity.QQDO;
 import com.weishengming.service.DiXiongZiMeiService;
 import com.weishengming.service.QQService;
@@ -53,10 +49,6 @@ public class IndexController extends SecurityController{
 	 */
 	@RequestMapping(value="aishangdi",method=RequestMethod.GET)  
     public String aishangdiPage(HttpServletRequest request,Model model){
-        if(getName(request)==null){
-        	request.getSession().setAttribute("redirectURL", "/aishangdi");
-        	return "redirect:/qqLogin";
-        }
         return "/index/aishangdi";  
     } 
 	/**
@@ -66,10 +58,6 @@ public class IndexController extends SecurityController{
 	 */
 	@RequestMapping(value="aitaren",method=RequestMethod.GET)  
     public String aitarenPage(HttpServletRequest request,Model model){
-		if(getName(request)==null){
-        	request.getSession().setAttribute("redirectURL", "/aitaren");
-        	return "redirect:/qqLogin";
-        }
         return "/index/aitaren";  
     }
 	/**
@@ -79,22 +67,6 @@ public class IndexController extends SecurityController{
 	 */
 	@RequestMapping(value="aiziji",method=RequestMethod.GET)  
     public String aizijiPage(HttpServletRequest request,Model model){
-//		if(getName(request)==null){
-//        	request.getSession().setAttribute("redirectURL", "/aiziji");
-//        	return "redirect:/qqLogin";
-//        }
-		
-		
-//		final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(id);
-//        model.addAttribute("model", dixiongzimeiDO);
-//        if(dixiongzimeiDO==null){
-//        	return "/admin/dixiongzimei/dixiongzimeiupdate";
-//        }
-//        //还需要做一件事  查出来  这个 弟兄姊妹的地址信息
-//        List<DiZhiDO> dizhiList=dizhiService.findListByDixiongzimeiid(dixiongzimeiDO.getId());
-//        model.addAttribute("resultViewDiZhiList", dizhiList);
-		
-		
         return "/index/aiziji";  
     }
 	/**
