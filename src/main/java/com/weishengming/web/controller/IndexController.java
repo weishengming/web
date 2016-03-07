@@ -139,25 +139,6 @@ public class IndexController extends SecurityController{
 		return "redirect:"+redirectURL;
 	}
 	
-	
-	
-	/**
-	 * 关于我们
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value="guanyuwomen",method=RequestMethod.GET)  
-    public String guanyuwomen(HttpServletRequest request,Model model){
-        return "/weishengming/guanyuwomen";  
-    }
-	
-	@RequestMapping(value="lianxiwomen",method=RequestMethod.GET)  
-    public String lianxiwomen(HttpServletRequest request,Model model){
-        return "/weishengming/lianxiwomen";  
-    }
-	
-	
 	public QQService getQqService() {
 		return qqService;
 	}
