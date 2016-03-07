@@ -61,15 +61,6 @@ public class IndexController extends SecurityController{
         return "/index/aitaren";  
     }
 	/**
-	 * 爱自己
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value="aiziji",method=RequestMethod.GET)  
-    public String aizijiPage(HttpServletRequest request,Model model){
-        return "/index/aiziji";  
-    }
-	/**
 	 * 进入QQ登陆
 	 * @param request
 	 * @param response
@@ -147,6 +138,25 @@ public class IndexController extends SecurityController{
 		 }
 		return "redirect:"+redirectURL;
 	}
+	
+	
+	
+	/**
+	 * 关于我们
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="guanyuwomen",method=RequestMethod.GET)  
+    public String guanyuwomen(HttpServletRequest request,Model model){
+        return "/weishengming/guanyuwomen";  
+    }
+	
+	@RequestMapping(value="lianxiwomen",method=RequestMethod.GET)  
+    public String lianxiwomen(HttpServletRequest request,Model model){
+        return "/weishengming/lianxiwomen";  
+    }
+	
 	
 	public QQService getQqService() {
 		return qqService;
