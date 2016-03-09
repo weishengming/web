@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    #parse("common/bootstrap-css-js.html")
+    <title>数据字典</title>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+      <li><h4><b><a href="/admin/adminindex">微生命后台</a></b></h4></li>
+      <li><b><a href="/admin/shujuzidian/shujuzidianlist" style="font-size: 18px">数据字典</a></b></li>
+	  <li><a href="/admin/wenzhang/wenzhanglist">文章管理</a></li>
+	  <li><a href="/admin/shipin/shipinlist">视频管理</a></li>
+	  <li><a href="/admin/dixiongzimei/dixiongzimeilist">弟兄姊妹管理</a></li>
+	</ol> 
+   <div class="container">
+     <form class="form-inline" action="" method="get">
+	  <div class="form-group">
+	    <input type="text" class="form-control" name="neirong" id="neirong" value="$!query.neirong"   placeholder="内容">
+	  </div>
+	  <div class="form-group">
+	      <button type="submit" class="btn btn-success">查询</button>
+	      <a class="btn btn-primary" onclick="AdminShuJuZiDian.shujuzidian_ajax('');" data-toggle="modal" data-target="#shujuzidianModal">添加</a>
+	  </div>
+	</form> 
+    <br/> 
+	<table class="datatable table table-bordered table-hover">
+	<thead>
+		<tr class="success">
+		    <th>序号</th>
+		    <th>ID</th>
+		    <th>内容</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+	    #set($index=$result.index)
+	    #foreach($!model in $!resultViewList)  
+		<tr>
+		    <td class="align-center">$index</td>
+		    <td>$!model.id</td>
+		    <td>$!model.neirong</td>
+			<td>
+	            <a class="btn btn-link" onclick="AdminShuJuZiDian.shujuzidian_ajax('$!{model.id}');" data-toggle="modal" data-target="#shujuzidianModal">编辑</a>
+	            <a class="btn btn-link" onclick="AdminShuJuZiDian.shujuzidian_zi_ajax('$!{model.id}','$!{model.neirong}');" data-toggle="modal" data-target="#shujuzidianziModal">子</a>
+	            <a class="btn btn-link" onclick="AdminShuJuZiDian.shujuzidian_delete_ajax('$!{model.id}');">删除</a>
+	        </td>
+		</tr>
+		 #set($index=$index+1)
+		#end
+	</tbody>
+</table> 
+  #parse ("/common/page.html")
+   </div><!-- .container -->
+
+<!-- 数据字典管理 -->
+<div class="modal fade" id="shujuzidianModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">更新数据字典信息</h4>
+         </div>
+         <div class="modal-body">
+             <div id="shujuzidian_div"></div>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal -->
+</div>
+
+<!-- 子 -->
+<div class="modal fade" id="shujuzidianziModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel"><span id="zileixingmingzi"></span></h4>
+         </div>
+         <div class="modal-body">
+             <div id="shujuzidian_zi_div"></div>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal -->
+</div>
+
+<script type="text/javascript" src="${static_resource}/resources/js/admin/adminshujuzidian.js"></script>
+  </body>
+</html>

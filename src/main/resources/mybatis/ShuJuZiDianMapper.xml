@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.weishengming.dao.mapper.LeiXingMapper">
+<mapper namespace="com.weishengming.dao.mapper.ShuJuZiDianMapper">
     <sql id="all_columns">
-        ID,CREATEDATE,UPDATEDATE,VERSION,FUID,FUMINGCHENG,JIBIE,MINGCHENG,PAIXU,SHIFOUQIYONG
+        ID,CREATEDATE,UPDATEDATE,VERSION,FUID,NEIRONG,PAIXU
     </sql>
     <sql id="where" >
         <where>
@@ -21,58 +21,51 @@
                 	<if test="fuid != null">
             	and FUID = #{fuid}
             </if>
-                	<if test="fumingcheng != null">
-            	and FUMINGCHENG = #{fumingcheng}
-            </if>
-                	<if test="jibie != null">
-            	and JIBIE = #{jibie}
-            </if>
-                	<if test="mingcheng != null">
-            	and MINGCHENG = #{mingcheng}
+                	<if test="neirong != null">
+            	and NEIRONG = #{neirong}
             </if>
                 	<if test="paixu != null">
             	and PAIXU = #{paixu}
             </if>
-                	<if test="shifouqiyong != null">
-            	and SHIFOUQIYONG = #{shifouqiyong}
-            </if>
                 </where>
     </sql>
     <sql id="orderById"> ORDER BY ID DESC </sql>
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="LeiXingDO">
-        INSERT INTO leixing (<include refid="all_columns"/>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="ShuJuZiDianDO">
+        INSERT INTO shujuzidian (<include refid="all_columns"/>
         ) VALUES 
-        (#{id},#{createDate},#{updateDate},#{version},#{fuid},#{fumingcheng},#{jibie},#{mingcheng},#{paixu},#{shifouqiyong})
+        (#{id},#{createDate},#{updateDate},#{version},#{fuid},#{neirong},#{paixu})
     </insert>
-    <update id="update" parameterType="LeiXingDO">
-        UPDATE leixing SET
+    <update id="update" parameterType="ShuJuZiDianDO">
+        UPDATE shujuzidian SET
                     <![CDATA[ ID = #{id}]]>,   
                     <![CDATA[ CREATEDATE = #{createDate}]]>,   
                     <![CDATA[ UPDATEDATE = #{updateDate}]]>,   
                     <![CDATA[ VERSION = #{version}]]>,   
                     <![CDATA[ FUID = #{fuid}]]>,   
-                    <![CDATA[ FUMINGCHENG = #{fumingcheng}]]>,   
-                    <![CDATA[ JIBIE = #{jibie}]]>,   
-                    <![CDATA[ MINGCHENG = #{mingcheng}]]>,   
+                    <![CDATA[ NEIRONG = #{neirong}]]>,   
                     <![CDATA[ PAIXU = #{paixu}]]>,   
-                    <![CDATA[ SHIFOUQIYONG = #{shifouqiyong}]]>,   
                 version = version+1 
         WHERE
         id=#{id} and version = #{version}
     </update>
-    <select id="findOne" parameterType="long" resultType="LeiXingDO">
+    <select id="findOne" parameterType="long" resultType="ShuJuZiDianDO">
         SELECT <include refid="all_columns"/>
-        FROM leixing WHERE ID=#{id}
+        FROM shujuzidian WHERE ID=#{id}
     </select>
-    <select id="findAll" resultType="LeiXingDO">
+    <select id="findAll" resultType="ShuJuZiDianDO">
         SELECT <include refid="all_columns"/>
-        FROM leixing
+        FROM shujuzidian
     </select>
+    <select id="findListByFuId" resultType="ShuJuZiDianDO" parameterType="long">
+		SELECT
+		<include refid="all_columns" />
+		FROM shujuzidian WHERE FUID = #{id}
+	</select>
     <delete id="delete" parameterType="long">
-        DELETE FROM leixing WHERE id=#{id}
+        DELETE FROM shujuzidian WHERE id=#{id}
     </delete>
     <delete id="deleteByIds">
-        DELETE FROM leixing
+        DELETE FROM shujuzidian
         <where>
             ID in
             <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
@@ -81,15 +74,15 @@
         </where>
     </delete>
     
-    <select id="findList" resultType="LeiXingDO">
+    <select id="findList" resultType="ShuJuZiDianDO">
         SELECT <include refid="all_columns"/>
-        FROM leixing
+        FROM shujuzidian
         <include refid="where"/> <include refid="orderById"/>
         LIMIT #{offset}, #{size}
     </select>
-    <select id="getByIds" parameterType="list" resultType="LeiXingDO">
+    <select id="getByIds" parameterType="list" resultType="ShuJuZiDianDO">
         SELECT <include refid="all_columns"/>
-        FROM leixing
+        FROM shujuzidian
         <where>
             ID in
             <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
@@ -98,9 +91,9 @@
         </where>
     </select>
     <select id="countList" resultType="long">
-        SELECT count(1) FROM leixing <include refid="where"/> <include refid="orderById"/>
+        SELECT count(1) FROM shujuzidian <include refid="where"/> <include refid="orderById"/>
     </select>
     <select id="count" resultType="long">
-        SELECT count(1) FROM leixing  <include refid="orderById"/>
+        SELECT count(1) FROM shujuzidian  <include refid="orderById"/>
     </select>
 </mapper>

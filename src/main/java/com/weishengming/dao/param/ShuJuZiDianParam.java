@@ -5,7 +5,7 @@ import java.util.Date;
 import com.weishengming.dao.query.MapperQuery;
 
 
-public class LeiXingParam extends MapperQuery{
+public class ShuJuZiDianParam extends MapperQuery{
     private static final long serialVersionUID = 0L;
 
 	    private Long id;
@@ -13,11 +13,8 @@ public class LeiXingParam extends MapperQuery{
         private Date updateDate;
         private Long version;
         private Long fuid;
-        private String fumingcheng;
-        private String jibie;
-        private String mingcheng;
+        private String neirong;
         private String paixu;
-        private String shifouqiyong;
         
     
         public void  setId(Long id){
@@ -55,26 +52,12 @@ public class LeiXingParam extends MapperQuery{
     public Long getFuid(){
     	return fuid;
     }
-        public void  setFumingcheng(String fumingcheng){
-    	this.fumingcheng=fumingcheng;
+        public void  setNeirong(String neirong){
+    	this.neirong=neirong;
     }
     
-    public String getFumingcheng(){
-    	return fumingcheng;
-    }
-        public void  setJibie(String jibie){
-    	this.jibie=jibie;
-    }
-    
-    public String getJibie(){
-    	return jibie;
-    }
-        public void  setMingcheng(String mingcheng){
-    	this.mingcheng=mingcheng;
-    }
-    
-    public String getMingcheng(){
-    	return mingcheng;
+    public String getNeirong(){
+    	return neirong;
     }
         public void  setPaixu(String paixu){
     	this.paixu=paixu;
@@ -82,12 +65,5 @@ public class LeiXingParam extends MapperQuery{
     
     public String getPaixu(){
     	return paixu;
-    }
-        public void  setShifouqiyong(String shifouqiyong){
-    	this.shifouqiyong=shifouqiyong;
-    }
-    
-    public String getShifouqiyong(){
-    	return shifouqiyong;
     }
     }
