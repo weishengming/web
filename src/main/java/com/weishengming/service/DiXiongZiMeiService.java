@@ -76,8 +76,8 @@ public class DiXiongZiMeiService {
     }
     
     private void mergeEntity(DiXiongZiMeiDO source,DiXiongZiMeiDO target){
-    	target.setOpenID(source.getOpenID());
-    	target.setNickname(source.getNickname());
+//    	target.setOpenID(source.getOpenID());
+//    	target.setNickname(source.getNickname());  //这个东西 不可以更新
     	target.setXingbie(source.getXingbie());
     	target.setNianling(source.getNianling());
     	target.setXingming(source.getXingming());

@@ -75,7 +75,7 @@ public class JiaoHuiDiZhiService {
     	target.setXiangxidizhi(source.getXiangxidizhi());
     	target.setDixiongzimeiid(source.getDixiongzimeiid());
     	target.setDixiongzimeixingming(source.getDixiongzimeixingming());
-    	target.setOpenID(source.getOpenID());
-    	target.setNickname(source.getNickname());
+//    	target.setOpenID(source.getOpenID());
+//    	target.setNickname(source.getNickname());
     }
 }
