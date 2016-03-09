@@ -10,22 +10,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.ajax.AjaxOutputTool;
-import com.weishengming.common.ajax.ErrorCode;
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
 import com.weishengming.dao.entity.DiXiongZiMeiDO;
 import com.weishengming.dao.entity.DiZhiDO;
 import com.weishengming.dao.entity.JDAreaDO;
+import com.weishengming.dao.entity.JiaoHuiDiZhiDO;
 import com.weishengming.dao.query.DiXiongZiMeiQuery;
 import com.weishengming.dao.query.ResultPage;
 import com.weishengming.service.DiXiongZiMeiService;
 import com.weishengming.service.DiZhiService;
 import com.weishengming.service.JDAreaService;
+import com.weishengming.service.JiaoHuiDiZhiService;
 import com.weishengming.web.controller.SecurityController;
 
 /**
@@ -46,6 +46,11 @@ public class AdminDiXiongZiMeiController extends SecurityController{
 	@Resource
 	private JDAreaService jdAreaService;
 	
+	@Resource
+	private JiaoHuiDiZhiService jiaohuidizhiService;
+	
+	
+	/**********弟兄姊妹管理 START****************/
 	/**
 	 * 进入到弟兄姊妹列表页面
 	 * @param model
@@ -100,7 +105,9 @@ public class AdminDiXiongZiMeiController extends SecurityController{
 	   }
     }
    	
-   	/*********弟兄姊妹地址管理*************/
+   	/**********弟兄姊妹管理 START****************/
+   	
+   	/*********弟兄姊妹地址管理 START*************/
    	
    	/**
    	 * 更新
@@ -147,10 +154,66 @@ public class AdminDiXiongZiMeiController extends SecurityController{
 	    	AjaxOutputTool.writeData(response, "删除弟兄姊妹地址成功");
   		}
     }
+  	
+  	/*********弟兄姊妹地址管理 END*************/
    	
+  	
+  	/*********教会地址START*************/
+  	/**
+   	 * 更新
+   	 * @param entity
+   	 * @return
+   	 */
+   	@RequestMapping(method = RequestMethod.POST, value = "/jiaohuidizhi_ajax")
+    public String jiaohuidizhi_ajax(String id, Model model) {
+   		if(StringUtils.isNotBlank(id)){
+   	        List<JiaoHuiDiZhiDO> jiaohuidizhiList=jiaohuidizhiService.findListByDixiongzimeiid(Long.parseLong(id));
+   	        model.addAttribute("resultViewJiaoHuiDiZhiList", jiaohuidizhiList);
+   	        DiXiongZiMeiDO dixiongzimeiDO=dixiongzimeiService.findOne(Long.parseLong(id));
+   	        model.addAttribute("dixiongzimei", dixiongzimeiDO);
+    	}
+        return "/admin/dixiongzimei/jiaohuidizhi_ajax";
+    }
+   	
+   	/**
+   	 * 更新
+   	 * @param entity
+   	 * @return
+   	 */
+   	@RequestMapping(method = RequestMethod.POST, value = "/jiaohuidizhi_update_ajax")
+    public void jiaohuidizhi_update_ajax(HttpServletResponse response,JiaoHuiDiZhiDO entity) {
+   	    if(StringUtils.isBlank(entity.getArea3Name())&&StringUtils.isNotBlank(entity.getArea3Id())){
+	   		JDAreaDO jdarea=jdAreaService.findOneByAreaId(entity.getArea3Id());
+	   		if(jdarea!=null){
+	   			entity.setArea3Name(jdarea.getAreaName());
+	   		}
+	    }
+   		if(entity.getId()==null){
+		    entity.setCreateDate(DateUtil.getCurrentDate());
+	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	jiaohuidizhiService.create(entity);
+	    	AjaxOutputTool.writeData(response, "添加教会地址成功");
+	   } 
+    }
+   	
+   	
+  	@RequestMapping(method = RequestMethod.POST, value = "/jiaohuidizhi_delete_ajax")
+    public void jiaohuidizhi_delete_ajax(HttpServletResponse response,String id) {
+  		if(StringUtils.isNotBlank(id)){
+  			jiaohuidizhiService.delete(Long.parseLong(id));
+	    	AjaxOutputTool.writeData(response, "删除教会地址成功");
+  		}
+    }
+  	
    	
    	public DiZhiService getDizhiService() {
 		return dizhiService;
+	}
+	public JiaoHuiDiZhiService getJiaohuidizhiService() {
+		return jiaohuidizhiService;
+	}
+	public void setJiaohuidizhiService(JiaoHuiDiZhiService jiaohuidizhiService) {
+		this.jiaohuidizhiService = jiaohuidizhiService;
 	}
 	public void setDizhiService(DiZhiService dizhiService) {
 		this.dizhiService = dizhiService;

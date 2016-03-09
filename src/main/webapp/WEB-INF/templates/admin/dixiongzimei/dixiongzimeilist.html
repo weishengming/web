@@ -61,7 +61,7 @@
 			<td>
 	            <a class="btn btn-link" onclick="AdminDiXiongZiMei.dixiongzimei_ajax('$!{model.id}');" data-toggle="modal" data-target="#jibenxinxiModal">编辑</a>
 	            <a class="btn btn-link" onclick="AdminDiXiongZiMei.dixiongzimeidizhi_ajax('$!{model.id}');" data-toggle="modal" data-target="#dizhixinxiModal">地址</a>
-	            <a class="btn btn-link" href="/admin/dixiongzimei/dixiongzimeiedit/$!{model.id}">教会</a>
+	            <a class="btn btn-link" onclick="AdminDiXiongZiMei.jiaohuidizhi_ajax('$!{model.id}');" data-toggle="modal" data-target="#jiaohuidizhixinxiModal">教会</a>
 	        </td>
 		</tr>
 		 #set($index=$index+1)
@@ -95,6 +95,21 @@
          </div>
          <div class="modal-body">
              <div id="dixiongzimeidizhi_div"></div>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal -->
+</div>
+
+<!-- 教会地址信息 -->
+<div class="modal fade" id="jiaohuidizhixinxiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">更新教会地址</h4>
+         </div>
+         <div class="modal-body">
+             <div id="jiaohuidizhi_div"></div>
          </div>
       </div><!-- /.modal-content -->
    </div><!-- /.modal -->
