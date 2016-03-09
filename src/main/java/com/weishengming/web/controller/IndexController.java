@@ -113,11 +113,11 @@ public class IndexController extends SecurityController{
 	             request.getSession().setAttribute("imgsrc", userInfoBean.getAvatar().getAvatarURL30());
 	             request.getSession().setAttribute("name", userInfoBean.getNickname());
 	             request.getSession().setAttribute("openID", openID);
-	             QQDO qqDO=qqService.findOpenID(openID);
+//	             QQDO qqDO=qqService.findOpenID(openID);
 	             logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>{}",openID);
-	             logger.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<{}",qqDO);
-	             if(qqDO==null){
-	            	 QQDO entity=new QQDO();
+//	             logger.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<{}",qqDO);
+//	             if(qqDO==null){
+	            	 QQDO entity=new QQDO(); //每登陆一次 创建一次
 	            	 entity.setCreateDate(DateUtil.getCurrentDate());
 	            	 entity.setUpdateDate(DateUtil.getCurrentDate());
 	            	 entity.setNickname(userInfoBean.getNickname());
@@ -125,7 +125,7 @@ public class IndexController extends SecurityController{
 	            	 entity.setImgsrc30(userInfoBean.getAvatar().getAvatarURL30());
 	            	 entity.setGender(userInfoBean.getGender());
 	            	 qqService.create(entity);
-	             }
+//	             }
 	          }
 			} catch (Exception e) {
 				logger.info("{}",e);
