@@ -1,6 +1,7 @@
 package com.weishengming.web.admin.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.weishengming.common.ajax.AjaxOutputTool;
+import com.weishengming.common.ajax.ErrorCode;
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
 import com.weishengming.dao.entity.DiXiongZiMeiDO;
@@ -58,7 +61,7 @@ public class AdminDiXiongZiMeiController extends SecurityController{
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei_ajax/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei_ajax")
     public String dixiongzimei_ajax(String id, Model model) {
         final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(Long.parseLong(id));
         model.addAttribute("model", dixiongzimeiDO);
@@ -86,16 +89,18 @@ public class AdminDiXiongZiMeiController extends SecurityController{
    	 * @param entity
    	 * @return
    	 */
-   	@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeiupdate")
-    public String dixiongzimeiupdate(DiXiongZiMeiDO entity) {
+   	@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei_update_ajax")
+    public void dixiongzimei_update_ajax(HttpServletResponse response,DiXiongZiMeiDO entity) {
    		if(entity.getId()==null){
 		    entity.setCreateDate(DateUtil.getCurrentDate());
 	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	entity.setSuoding("解锁");
 	    	dixiongzimeiService.create(entity);
+	    	AjaxOutputTool.writeData(response, "添加弟兄姊妹成功");
 	   }else{
 		    dixiongzimeiService.update(entity);
+		    AjaxOutputTool.writeData(response, "更新弟兄姊妹成功");
 	   }
-   		return "redirect:/admin/dixiongzimei/dixiongzimeilist";
     }
    	
 	@RequestMapping(value = "/dixiongzimeidelete/{id}")

@@ -25,6 +25,9 @@ public class ShiPinController extends SecurityController{
 	@Resource
 	private ShiPinService shipinService;
 	
+	
+	
+	/******麦希真牧师   START******/
 	@RequestMapping(value="shipingmrs",method=RequestMethod.GET)  
     public String shipingmrs(Model model){
 		List<ShiPinDO> resultList=shipinService.findListByFubiaoti("光明人生");
@@ -43,5 +46,6 @@ public class ShiPinController extends SecurityController{
 		model.addAttribute("resultList", resultList);
         return "/shipin/shipinffrs";  
     }
+	/******麦希真牧师   END******/
 
 }

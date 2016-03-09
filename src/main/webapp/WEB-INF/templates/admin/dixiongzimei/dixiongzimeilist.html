@@ -40,6 +40,8 @@
 		    <th>qq号</th>
 			<th>微信号</th>
 			<th>手机号</th>
+			<th>其他信息</th>
+			<th>锁定</th>
 			<th>操作</th>
 		</tr>
 	</thead>
@@ -54,12 +56,13 @@
 			<td>$!model.qq</td>
 			<td>$!model.weixinhao</td>
 			<td>$!model.shoujihao</td>
+			<td>$!model.qita</td>
+			<td>$!model.suoding</td>
 			<td>
 			<!-- href="/admin/dixiongzimei/dixiongzimeiedit/$!{model.id}" -->
-	            <a class="btn btn-success" onclick="AdminDiXiongZiMei.dixiongzimei_ajax('$!{model.id}');" data-toggle="modal" data-target="#jibenxinxiModal">基本信息</a>
-	            <a class="btn btn-primary" href="/admin/dixiongzimei/dixiongzimeiedit/$!{model.id}">常用的地址</a>
-	            <a class="btn btn-info" href="/admin/dixiongzimei/dixiongzimeiedit/$!{model.id}">常去的教堂</a>
-	            <a class="btn btn-danger" href="/admin/dixiongzimei/dixiongzimeidelete/$!{model.id}">删除</a>
+	            <a class="btn btn-link" onclick="AdminDiXiongZiMei.dixiongzimei_ajax('$!{model.id}');" data-toggle="modal" data-target="#jibenxinxiModal">编辑</a>
+	            <a class="btn btn-link" href="/admin/dixiongzimei/dixiongzimeiedit/$!{model.id}">地址</a>
+	            <a class="btn btn-link" href="/admin/dixiongzimei/dixiongzimeiedit/$!{model.id}">教会</a>
 	        </td>
 		</tr>
 		 #set($index=$index+1)
@@ -77,7 +80,7 @@
             <h4 class="modal-title" id="myModalLabel">更新基本信息</h4>
          </div>
          <div class="modal-body">
-            
+             <div id="dixiongzimei_div"></div>
          </div>
         <!--  <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

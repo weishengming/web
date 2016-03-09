@@ -86,5 +86,6 @@ public class DiXiongZiMeiService {
     	target.setShenfen(source.getShenfen());
     	target.setQita(source.getQita());
     	target.setSuoding(source.getSuoding());
+    	target.setShoujihao(source.getShoujihao());
     }
 }

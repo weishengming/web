@@ -60,6 +60,7 @@ public class DiXiongZiMeiController extends SecurityController{
 	   if(entity.getId()==null){
 		    entity.setCreateDate(DateUtil.getCurrentDate());
 	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	entity.setSuoding("解锁");
 	    	dixiongzimeiService.create(entity);
 	   }else{
 		    dixiongzimeiService.update(entity);
