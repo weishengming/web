@@ -77,8 +77,8 @@ public class DiZhiService {
     	target.setArea2Name(source.getArea2Name());
     	target.setArea3Name(source.getArea3Name());
     	target.setXiangxidizhi(source.getXiangxidizhi());
-    	target.setDixiongzimeiid(source.getDixiongzimeiid());
-    	target.setDixiongzimeixingming(source.getDixiongzimeixingming());
+//    	target.setDixiongzimeiid(source.getDixiongzimeiid());
+//    	target.setDixiongzimeixingming(source.getDixiongzimeixingming());
 //    	target.setOpenID(source.getOpenID());
 //    	target.setNickname(source.getNickname());
     	
