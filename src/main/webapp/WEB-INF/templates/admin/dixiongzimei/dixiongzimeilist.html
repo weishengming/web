@@ -26,7 +26,7 @@
 	  </div>
 	  <div class="form-group">
 	      <button type="submit" class="btn btn-success">查询</button>
-	      <a class="btn btn-primary" href="/admin/dixiongzimei/dixiongzimeiedit/-1">添加</a>
+	      <a class="btn btn-primary" onclick="AdminDiXiongZiMei.dixiongzimei_ajax('');" data-toggle="modal" data-target="#jibenxinxiModal">添加</a>
 	  </div>
 	</form> 
     <br/> 
@@ -59,9 +59,8 @@
 			<td>$!model.qita</td>
 			<td>$!model.suoding</td>
 			<td>
-			<!-- href="/admin/dixiongzimei/dixiongzimeiedit/$!{model.id}" -->
 	            <a class="btn btn-link" onclick="AdminDiXiongZiMei.dixiongzimei_ajax('$!{model.id}');" data-toggle="modal" data-target="#jibenxinxiModal">编辑</a>
-	            <a class="btn btn-link" href="/admin/dixiongzimei/dixiongzimeiedit/$!{model.id}">地址</a>
+	            <a class="btn btn-link" onclick="AdminDiXiongZiMei.dixiongzimeidizhi_ajax('$!{model.id}');" data-toggle="modal" data-target="#dizhixinxiModal">地址</a>
 	            <a class="btn btn-link" href="/admin/dixiongzimei/dixiongzimeiedit/$!{model.id}">教会</a>
 	        </td>
 		</tr>
@@ -72,6 +71,7 @@
   #parse ("/common/page.html")
    </div><!-- .container -->
 
+<!-- 弟兄姊妹基本信息 -->
 <div class="modal fade" id="jibenxinxiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">
       <div class="modal-content">
@@ -82,13 +82,24 @@
          <div class="modal-body">
              <div id="dixiongzimei_div"></div>
          </div>
-        <!--  <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            <button type="button" onclick="ShenHeUser.gengxinxiadansuoding_ajax()" class="btn btn-primary">更新</button>
-         </div> -->
       </div><!-- /.modal-content -->
    </div><!-- /.modal -->
 </div>
+<!-- 弟兄姊妹地址信息 -->
+<div class="modal fade" id="dizhixinxiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">更新地址信息</h4>
+         </div>
+         <div class="modal-body">
+             <div id="dixiongzimeidizhi_div"></div>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal -->
+</div>
+
 <script type="text/javascript" src="${static_resource}/resources/js/admin/admindixiongzimei.js"></script>
   </body>
 </html>

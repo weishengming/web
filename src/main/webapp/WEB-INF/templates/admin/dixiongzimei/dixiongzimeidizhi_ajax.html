@@ -1,0 +1,95 @@
+<table class="datatable table table-bordered table-hover">
+	<thead>
+		<tr class="success">
+			<th>类型</th>
+		    <th>省</th>
+		    <th>市</th>
+		    <th>县/区</th>
+			<th>乡/镇</th>
+			<th>详细地址</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+	    #foreach($!dizhi in $!resultViewDiZhiList) 
+		<tr>
+		    <td>$!dizhi.leixing</td>
+		    <td>$!dizhi.areaName</td>
+		    <td>$!dizhi.area1Name</td>
+			<td>$!dizhi.area2Name</td>
+			<td>$!dizhi.area3Name</td>
+			<td>$!dizhi.xiangxidizhi</td>
+			<td>
+	            <a class="btn btn-link" onclick="AdminDiXiongZiMei.dixiongzimeidizhi_delete_ajax('$!dizhi.id')">删除</a>
+	        </td>
+		</tr>
+		#end
+	</tbody>
+</table> 
+	
+ <form action="" method="post" >
+	    <input type="hidden" id="openID_dizhi_input" name="openID" value="$!dixiongzimei.openID">
+	    <input type="hidden" id="nickname_dizhi_input" name="nickname" value="$!dixiongzimei.nickname">
+	    <input type="hidden" id="dixiongzimeiid_dizhi_input" name="dixiongzimeiid" value="$!dixiongzimei.id">
+	    <input type="hidden" id="dixiongzimeixingming_dizhi_input" name="dixiongzimeixingming" value="$!dixiongzimei.xingming">
+	 <div class="form-group row">
+	   <label for="leixing" class="col-sm-2 form-control-label">地址类型</label>
+	   <div class="col-sm-10">
+	   <input type="radio" name="leixing_dizhi_input" #if($!dizhi.leixing=='原籍') checked="checked" #end id="leixing" value="原籍"> 原籍
+	   &nbsp;&nbsp;&nbsp;
+	   <input type="radio" name="leixing_dizhi_input" #if($!dizhi.leixing=='现住址') checked="checked" #end id="leixing" value="现住址"> 现住址
+	   &nbsp;&nbsp;&nbsp;
+	   <input type="radio" name="leixing_dizhi_input" #if($!dizhi.leixing=='工作') checked="checked" #end id="leixing" value="工作"> 工作
+	   &nbsp;&nbsp;&nbsp;
+	   <input type="radio" name="leixing_dizhi_input" #if($!dizhi.leixing=='学校') checked="checked" #end id="leixing" value="学校"> 学校
+	   </div>
+	 </div>
+	  <div class="form-group row">
+	   <label for="areaId" class="col-sm-2 form-control-label">省</label>
+	   <div class="col-sm-10">
+	     <select class="form-control first-label" name="areaId" id="areaId" onchange="getArea1()">
+	     </select>
+	   </div>
+	 </div>
+	 <div class="form-group row">
+	   <label for="area1Id" class="col-sm-2 form-control-label">市</label>
+	   <div class="col-sm-10">
+	     <select class="form-control" name="area1Id" id="area1Id" onchange="getArea2()">
+	     </select>
+	   </div>
+	 </div>
+	 <span id="area2Span" style="display: none;">
+	 <div class="form-group row">
+	   <label for="area2Id" class="col-sm-2 form-control-label">县/区</label>
+	   <div class="col-sm-10">
+	     <select class="form-control" name="area2Id" id="area2Id"  onchange="getArea3()">
+	     </select>
+	   </div>
+	 </div>
+	</span>
+	<span id="area3Span" style="display: none;">
+	  <div class="form-group row">
+	  <label for="area3Id" class="col-sm-2 form-control-label" >乡/镇</label>
+	  <div class="col-sm-10">
+	    <select class="form-control" name="area3Id" id="area3Id" onchange="getArea4()">
+	    </select> 
+	  </div>
+	 </div>
+	</span> 
+	<input type="hidden" id="areaName"  name="areaName"   value="$!dizhi.areaName"> 
+	<input type="hidden" id="area1Name" name="area1Name" value="$!dizhi.area1Name">
+	<input type="hidden" id="area2Name" name="area2Name" value="$!dizhi.area2Name">
+	<input type="hidden" id="area3Name" name="area3Name" value="$!dizhi.area3Name">
+	<div class="form-group row">
+	  <label for="xiangxidizhi" class="col-sm-2 form-control-label">详细</label>
+	  <div class="col-sm-10">
+	    <input type="text" class="form-control" name="xiangxidizhi" id="xiangxidizhi_dizhi_input"  value="$!dizhi.xiangxidizhi" placeholder="详细地址">
+	  </div>
+	</div>
+	 <div class="form-group row">
+	  <div class="col-sm-offset-2 col-sm-10">
+	    <button type="button" onclick="AdminDiXiongZiMei.dixiongzimeidizhi_update_ajax();" class="btn btn-block btn-success">添加地址</button>
+	  </div>
+	</div> 
+ </form>
+<script type="text/javascript" src="${static_resource}/resources/js/dizhi/dizhi.js"></script>

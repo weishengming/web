@@ -48,7 +48,7 @@ AdminDiXiongZiMei.dixiongzimei_update_ajax = function(){
 		    dataType:'json', 
 		    success:function(data) { 
                if (data.success) {
-                   alert("操作成功");
+                   alert(data.data);
                    window.location.reload();
                } else {
                    alert(data.errorMessage);
@@ -56,6 +56,95 @@ AdminDiXiongZiMei.dixiongzimei_update_ajax = function(){
 		     }
 		});
 }
+
+
+AdminDiXiongZiMei.dixiongzimeidizhi_ajax = function(dixiongzimeiid){
+	 var aj = $.ajax({ 
+		    url:'/admin/dixiongzimei/dixiongzimeidizhi_ajax',// 跳转到 action 
+		    data:{ 
+		             id : dixiongzimeiid
+		    }, 
+		    type:'post', 
+		    cache:false, 
+		    dataType:'html', 
+		    success:function(data) { 
+               $("#dixiongzimeidizhi_div").html(data);
+		     }
+		});
+}
+
+AdminDiXiongZiMei.dixiongzimeidizhi_update_ajax = function(){
+	 var openID=$("#openID_dizhi_input").val();
+	 var nickname=$("#nickname_dizhi_input").val();
+	 var dixiongzimeiid=$("#dixiongzimeiid_dizhi_input").val();
+	 var dixiongzimeixingming=$("#dixiongzimeixingming_dizhi_input").val();
+	 var leixing=$('input:radio[name="leixing_dizhi_input"]:checked' ).val();
+	 var areaId=$("#areaId").val();
+	 var areaName=$("#areaName").val();
+	 var area1Id=$("#area1Id").val();
+	 var area1Name=$("#area1Name").val();
+	 var area2Id=$("#area2Id").val();
+	 var area2Name=$("#area2Name").val();
+	 var area3Id=$("#area3Id").val();
+	 var area3Name=$("#area3Name").val();
+	 var xiangxidizhi=$("#xiangxidizhi_dizhi_input").val();
+//	 alert(openID+"-"+nickname+"-"+dixiongzimeiid+"-"+dixiongzimeixingming+"-"+
+//			 leixing+"-"+areaId+"-"+areaName+"-"+area1Id+"-"+
+//			 area1Name+"-"+area2Id+"-"+area2Name+"-"+area3Id+"-"+
+//			 area3Name+"-"+xiangxidizhi
+//	       );
+	 var aj = $.ajax({ 
+		    url:'/admin/dixiongzimei/dixiongzimeidizhi_update_ajax',// 跳转到 action 
+		    data:{ 
+		    	openID : openID, 
+		    	nickname : nickname,
+		    	dixiongzimeiid : dixiongzimeiid, 
+		    	dixiongzimeixingming : dixiongzimeixingming,
+		    	leixing : leixing, 
+		    	areaId : areaId,
+		    	areaName : areaName, 
+		    	area1Id : area1Id, 
+		    	area1Name : area1Name,
+		    	area2Id : area2Id, 
+		    	area2Name : area2Name,
+		    	area3Id : area3Id,
+		    	area3Name : area3Name, 
+		    	xiangxidizhi : xiangxidizhi
+		    }, 
+		    type:'post', 
+		    cache:false, 
+		    dataType:'json', 
+		    success:function(data) { 
+              if (data.success) {
+                  alert(data.data);
+                  window.location.reload();
+              } else {
+                  alert(data.errorMessage);
+              }
+		     }
+		});
+}
+
+AdminDiXiongZiMei.dixiongzimeidizhi_delete_ajax = function(dixiongzimeiid){
+	 var aj = $.ajax({ 
+		    url:'/admin/dixiongzimei/dixiongzimeidizhi_delete_ajax',// 跳转到 action 
+		    data:{ 
+		             id : dixiongzimeiid
+		    }, 
+		    type:'post', 
+		    cache:false, 
+		    dataType:'json', 
+		    success:function(data) { 
+		    	if (data.success) {
+	                  alert(data.data);
+	                  window.location.reload();
+	              } else {
+	                  alert(data.errorMessage);
+	              }
+		     }
+		});
+}
+
 
 $(document).ready(function() {	
 	

@@ -1,4 +1,4 @@
-package com.weishengming.web.controller;
+package com.weishengming.web.admin.controller;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
@@ -21,9 +21,9 @@ import com.weishengming.dao.query.ResultPage;
 import com.weishengming.dao.query.TTSDQuery;
 import com.weishengming.service.DiZhiService;
 import com.weishengming.service.JDAreaService;
-import com.weishengming.service.LeiXingService;
 import com.weishengming.service.QMZXService;
 import com.weishengming.service.TTSDService;
+import com.weishengming.web.controller.SecurityController;
 /**
  * @author 杨天赐
  * web控制数据接口  只有 OPENID=杨天赐 才可以访问这个功能
@@ -38,13 +38,7 @@ public class AdminController  extends SecurityController {
 	@Resource
 	private QMZXService qmzxService;
 	
-	@Resource
-	private DiZhiService dizhiService;
 	
-	@Resource
-	private JDAreaService jdAreaService;
-	
-
 	/**
 	 * 进入到后台首页
 	 * @return
@@ -53,84 +47,6 @@ public class AdminController  extends SecurityController {
 	public String adminindex(){
 		return "/admin/adminindex";
 	}
-	
-	/***********弟兄姊妹地址管理START****************/
-	
-	 /**
-     * 通过id 
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping(method = RequestMethod.GET, value = "/dixiongzimei/dixiongzimeidizhiedit/{id}")
-    public String dixiongzimeidizhiedit(@PathVariable Long id, Model model) {
-//        DiZhiDO dizhiDO=dizhiService.findOne(id);
-//        model.addAttribute("dizhi", dizhiDO);
-//        final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(dizhiDO.getDixiongzimeiid());
-//        model.addAttribute("model", dixiongzimeiDO);
-//        //还需要做一件事  查出来  这个 弟兄姊妹的地址信息
-//        List<DiZhiDO> dizhiList=dizhiService.findListByDixiongzimeiid(dixiongzimeiDO.getId());
-//        model.addAttribute("resultViewDiZhiList", dizhiList);
-        return "/admin/dixiongzimei/dixiongzimeiupdate";
-    }
-    
-    /**
-   	 * 更新
-   	 * @param entity
-   	 * @return
-   	 */
-   	@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei/dixiongzimeidizhiupdate")
-    public String dixiongzimeidizhiupdate(DiZhiDO entity) {
-   	    if(StringUtils.isBlank(entity.getArea3Name())&&StringUtils.isNotBlank(entity.getArea3Id())){
-	   		JDAreaDO jdarea=jdAreaService.findOneByAreaId(entity.getArea3Id());
-	   		if(jdarea!=null){
-	   			entity.setArea3Name(jdarea.getAreaName());
-	   		}
-	    }
-   		if(entity.getId()==null){
-		    entity.setCreateDate(DateUtil.getCurrentDate());
-	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	dizhiService.create(entity);
-	   }else{
-		   dizhiService.update(entity);
-	   }
-   		return "redirect:/admin/dixiongzimei/dixiongzimeidizhiedit/"+entity.getId();
-    }
-   	
-   	@RequestMapping(value = "/dixiongzimei/dixiongzimeidizhidelete/{id}")
-    public String dixiongzimeidizhidelete(@PathVariable Long id) {
-   	   DiZhiDO dizhiDO=dizhiService.findOne(id);
- 	   dizhiService.delete(id);
- 	   return "redirect:/admin/dixiongzimei/dixiongzimeiedit/"+dizhiDO.getDixiongzimeiid();
-    }
-   	
-   	public DiZhiService getDizhiService() {
-		return dizhiService;
-	}
-
-	public void setDizhiService(DiZhiService dizhiService) {
-		this.dizhiService = dizhiService;
-	}
-
-	public JDAreaService getJdAreaService() {
-		return jdAreaService;
-	}
-
-	public void setJdAreaService(JDAreaService jdAreaService) {
-		this.jdAreaService = jdAreaService;
-	}
-   	
-	/***********弟兄姊妹地址管理END***************/
-	
-	
-
-	
-	
-
-	
-
-
-	
 	
 	/**********奇妙真相管理START**************/
 	/**
