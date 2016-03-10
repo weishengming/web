@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weishengming.dao.mapper.WenZhangMapper">
 	<sql id="all_columns">
-		ID,CREATEDATE,UPDATEDATE,VERSION,BIAOTI,DIJIGE,FUBIAOTI,NEIRONG
+		ID,CREATEDATE,UPDATEDATE,VERSION,BIAOTI,FUBIAOTI,GAISHU,LAIYUAN,NEIRONG,PAIXU,ZUOZHE
 	</sql>
 	<sql id="where">
 		<where>
@@ -21,14 +21,23 @@
 			<if test="biaoti != null">
 				and BIAOTI = #{biaoti}
 			</if>
-			<if test="dijige != null">
-				and DIJIGE = #{dijige}
-			</if>
 			<if test="fubiaoti != null">
 				and FUBIAOTI = #{fubiaoti}
 			</if>
+			<if test="gaishu != null">
+				and GAISHU = #{gaishu}
+			</if>
+			<if test="laiyuan != null">
+				and LAIYUAN = #{laiyuan}
+			</if>
 			<if test="neirong != null">
 				and NEIRONG = #{neirong}
+			</if>
+			<if test="paixu != null">
+				and PAIXU = #{paixu}
+			</if>
+			<if test="zuozhe != null">
+				and ZUOZHE = #{zuozhe}
 			</if>
 		</where>
 	</sql>
@@ -38,7 +47,7 @@
 		INSERT INTO wenzhang (
 		<include refid="all_columns" />
 		) VALUES
-		(#{id},#{createDate},#{updateDate},#{version},#{biaoti},#{dijige},#{fubiaoti},#{neirong})
+		(#{id},#{createDate},#{updateDate},#{version},#{biaoti},#{fubiaoti},#{gaishu},#{laiyuan},#{neirong},#{paixu},#{zuozhe})
 	</insert>
 	<update id="update" parameterType="WenZhangDO">
 		UPDATE wenzhang SET
@@ -47,9 +56,12 @@
                     <![CDATA[ UPDATEDATE = #{updateDate}]]>,   
                     <![CDATA[ VERSION = #{version}]]>,   
                     <![CDATA[ BIAOTI = #{biaoti}]]>,   
-                    <![CDATA[ DIJIGE = #{dijige}]]>,   
                     <![CDATA[ FUBIAOTI = #{fubiaoti}]]>,   
-                    <![CDATA[ NEIRONG = #{neirong}]]>,
+                    <![CDATA[ GAISHU = #{gaishu}]]>,   
+                    <![CDATA[ LAIYUAN = #{laiyuan}]]>,   
+                    <![CDATA[ NEIRONG = #{neirong}]]>,   
+                    <![CDATA[ PAIXU = #{paixu}]]>,   
+                    <![CDATA[ ZUOZHE = #{zuozhe}]]>,
 		version = version+1 WHERE
 		id=#{id} and version = #{version}
 	</update>
@@ -84,11 +96,6 @@
 		<include refid="where" />
 		<include refid="orderById" />
 		LIMIT #{offset}, #{size}
-	</select>
-	<select id="findListByFubiaoti" parameterType="string" resultType="WenZhangDO">
-		SELECT
-		<include refid="all_columns" />
-		FROM wenzhang WHERE FUBIAOTI = #{fubiaoti}
 	</select>
 	<select id="getByIds" parameterType="list" resultType="WenZhangDO">
 		SELECT

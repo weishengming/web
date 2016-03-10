@@ -78,10 +78,12 @@ public class WenZhangService {
     }
     
     private void mergeEntity(WenZhangDO source,WenZhangDO target){
-    	target.setUpdateDate(DateUtil.getCurrentDate());
-    	target.setDijige(source.getDijige());
     	target.setFubiaoti(source.getFubiaoti());
     	target.setBiaoti(source.getBiaoti());
     	target.setNeirong(source.getNeirong());
+    	target.setGaishu(source.getGaishu());
+    	target.setPaixu(source.getPaixu());
+    	target.setZuozhe(source.getZuozhe());
+    	target.setLaiyuan(source.getLaiyuan());
     }
 }

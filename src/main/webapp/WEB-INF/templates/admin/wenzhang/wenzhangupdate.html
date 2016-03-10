@@ -19,18 +19,11 @@
    <div class="container">
     <form action="/admin/wenzhang/wenzhangupdate" method="post" >
 	  <input type="hidden" name="id"  value="$!model.id">
+	  
 	  <div class="form-group row">
 	    <label for="xingming" class="col-sm-2 form-control-label">父标题<span class="required">*</span></label>
 	    <div class="col-sm-10">
-		     <select class="form-control" name="fubiaoti" id="fubiaoti" >
-		       <option #if($!model.fubiaoti=='智慧人生') selected #end value="智慧人生">一- 智慧人生[1-48]</option>
-	        </select>
-	    </div>
-	  </div>
-	  <div class="form-group row">
-	    <label for="shoujihao" class="col-sm-2 form-control-label">第几个<span class="required">*</span></label>
-	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="dijige" id="dijige" value="$!model.dijige" placeholder="第几个">
+	      <input type="text" class="form-control" name="fubiaoti" id="fubiaoti" value="$!model.fubiaoti" placeholder="父标题">
 	    </div>
 	  </div>
 	  
@@ -42,11 +35,41 @@
 	  </div>
 	  
 	  <div class="form-group row">
-	    <label for="shoujihao" class="col-sm-2 form-control-label">内容<span class="required">*</span></label>
+	    <label for="shoujihao" class="col-sm-2 form-control-label">来源<span class="required">*</span></label>
 	    <div class="col-sm-10">
-	      <textarea class="form-control" rows="10" name="neirong" id="neirong"   placeholder="内容">$!model.neirong</textarea>
+	      <input type="text" class="form-control" name="laiyuan" id="laiyuan" value="$!model.laiyuan" placeholder="来源">
 	    </div>
 	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">作者<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="zuozhe" id="zuozhe" value="$!model.zuozhe" placeholder="作者">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">排序<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="paixu" id="paixu" value="$!model.paixu" placeholder="排序">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">概述<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <textarea class="ckeditor" rows="10" name="gaishu" id="gaishu"   placeholder="概述">$!model.gaishu</textarea>
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">内容<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <textarea class="ckeditor" rows="10" name="neirong" id="neirong"   placeholder="内容">$!model.neirong</textarea>
+	    </div>
+	  </div>
+	  
+	  
 	   
 	  <div class="form-group row">
 	    <div class="col-sm-offset-2 col-sm-10">
@@ -56,5 +79,7 @@
 	 </form>
      
    </div><!-- .container -->
+   <script src="${static_resource}/resources/js/ckeditor/ckeditor.js"></script>
+   <script src="${static_resource}/resources/js/admin/adminwenzhang.js"></script>
   </body>
 </html>

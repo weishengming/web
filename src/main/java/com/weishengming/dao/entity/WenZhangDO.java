@@ -12,23 +12,36 @@ import javax.persistence.Table;
 public class WenZhangDO extends BaseDO{
 
 	private static final long serialVersionUID = 1L;
-	private String dijige;   //是第几个
-	private String biaoti;   //2.捡石头
-	private String fubiaoti; //心海拾贝
-	private String neirong;
-	
-	public String getDijige() {
-		return dijige;
-	}
-	public void setDijige(String dijige) {
-		this.dijige = dijige;
-	}
-	 
+	private String fubiaoti;  
+	private String biaoti;    
+	private String laiyuan;   
+	private String zuozhe;
+	private String paixu;      
+	private String gaishu;   
+	private String neirong;    
 	public String getBiaoti() {
 		return biaoti;
 	}
 	public void setBiaoti(String biaoti) {
 		this.biaoti = biaoti;
+	}
+	public String getGaishu() {
+		return gaishu;
+	}
+	public void setGaishu(String gaishu) {
+		this.gaishu = gaishu;
+	}
+	public String getNeirong() {
+		return neirong;
+	}
+	public void setNeirong(String neirong) {
+		this.neirong = neirong;
+	}
+	public String getPaixu() {
+		return paixu;
+	}
+	public void setPaixu(String paixu) {
+		this.paixu = paixu;
 	}
 	public String getFubiaoti() {
 		return fubiaoti;
@@ -36,10 +49,17 @@ public class WenZhangDO extends BaseDO{
 	public void setFubiaoti(String fubiaoti) {
 		this.fubiaoti = fubiaoti;
 	}
-	public String getNeirong() {
-		return neirong;
+	 
+	public String getLaiyuan() {
+		return laiyuan;
 	}
-	public void setNeirong(String neirong) {
-		this.neirong = neirong;
-	}  
+	public void setLaiyuan(String laiyuan) {
+		this.laiyuan = laiyuan;
+	}
+	public String getZuozhe() {
+		return zuozhe;
+	}
+	public void setZuozhe(String zuozhe) {
+		this.zuozhe = zuozhe;
+	}    
 }
