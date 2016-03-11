@@ -60,6 +60,16 @@ public class IndexController extends SecurityController{
     public String aitarenPage(HttpServletRequest request,Model model){
         return "/index/aitaren";  
     }
+	
+	/**
+	 * 关于我们
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="about",method=RequestMethod.GET)  
+    public String aboutPage(HttpServletRequest request,Model model){
+        return "/index/about";  
+    }
 	/**
 	 * 进入QQ登陆
 	 * @param request
