@@ -75,6 +75,14 @@
 		<include refid="all_columns" />
 		FROM wenzhang
 	</select>
+	<select id="findListByFubiaoti" parameterType="string" resultType="WenZhangDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM wenzhang
+	    WHERE  
+		FUBIAOTI = #{fubiaoti}
+		ORDER BY UPDATEDATE DESC
+	</select>
 	<delete id="delete" parameterType="long">
 		DELETE FROM wenzhang WHERE id=#{id}
 	</delete>

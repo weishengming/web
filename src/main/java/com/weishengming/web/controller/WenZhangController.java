@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.weishengming.common.converter.Converter;
 import com.weishengming.dao.entity.WenZhangDO;
+import com.weishengming.dao.query.ResultPage;
+import com.weishengming.dao.query.WenZhangQuery;
 import com.weishengming.service.WenZhangService;
 
 /**
@@ -25,21 +28,51 @@ public class WenZhangController  extends SecurityController {
 	@Resource
 	private WenZhangService wenzhangService;
 	
+//	/**
+//	 * 进入到文章首页
+//	 * @param model
+//	 * @return
+//	 */
+//	@RequestMapping(value="wenzhang/{fubiaoti}",method=RequestMethod.GET)  
+//    public String wenzhang(Model model,@PathVariable String fubiaoti){
+//		if("kuangyehusheng".equals(fubiaoti)){
+//			List<WenZhangDO> wenzhanglist=wenzhangService.findListByFubiaoti("旷野呼声");
+//			model.addAttribute("fubiaoti","旷野呼声");
+//			model.addAttribute("miaoshu","www.kyhs.me" );
+//			model.addAttribute("resultList", wenzhanglist);
+//		}
+//        return "/wenzhang/wenzhang";  
+//    }
 	
-	/**
-	 * 进入到文章首页
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value="wenzhang",method=RequestMethod.GET)  
-    public String wenzhang(Model model){
-		List<WenZhangDO> wenzhanglist=wenzhangService.findAll();
-		model.addAttribute("resultList", wenzhanglist);
-        return "/wenzhang/wenzhang";  
+	@RequestMapping(value="wenzhang/{caidan}",method=RequestMethod.GET)  
+    public String wenzhang(Model model, WenZhangQuery query,@PathVariable String caidan,Integer changePageSize,Integer pn){
+		if("kuangyehusheng".equals(caidan)){
+			model.addAttribute("yetou","旷野呼声");
+			model.addAttribute("miaoshu","www.kyhs.me" );
+			query.setFubiaoti("旷野呼声");
+	    }
+		
+		query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+		ResultPage<WenZhangDO> result = wenzhangService.findPage(query);
+        String pageUrl = "/wenzhang/wenzhang/"+caidan+"/?"+Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);
+        model.addAttribute("caidan", caidan);
+        return "/wenzhang/wenzhang";
     }
     
+    /**
+     * 文章详细
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/wenzhangxiangxi/{id}")
-    public String wenzhangedit(@PathVariable Long id, Model model) {
+    public String wenzhangxiangxi(@PathVariable Long id, Model model) {
         final WenZhangDO wenzhangDO = wenzhangService.findOne(id);
         model.addAttribute("model", wenzhangDO);
         return "/wenzhang/wenzhangxiangxi"; 
