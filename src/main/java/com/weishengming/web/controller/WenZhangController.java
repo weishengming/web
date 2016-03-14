@@ -1,7 +1,5 @@
 package com.weishengming.web.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -28,23 +26,8 @@ public class WenZhangController  extends SecurityController {
 	@Resource
 	private WenZhangService wenzhangService;
 	
-//	/**
-//	 * 进入到文章首页
-//	 * @param model
-//	 * @return
-//	 */
-//	@RequestMapping(value="wenzhang/{fubiaoti}",method=RequestMethod.GET)  
-//    public String wenzhang(Model model,@PathVariable String fubiaoti){
-//		if("kuangyehusheng".equals(fubiaoti)){
-//			List<WenZhangDO> wenzhanglist=wenzhangService.findListByFubiaoti("旷野呼声");
-//			model.addAttribute("fubiaoti","旷野呼声");
-//			model.addAttribute("miaoshu","www.kyhs.me" );
-//			model.addAttribute("resultList", wenzhanglist);
-//		}
-//        return "/wenzhang/wenzhang";  
-//    }
 	
-	@RequestMapping(value="wenzhang/{caidan}",method=RequestMethod.GET)  
+	@RequestMapping(value="/wenzhang/{caidan}",method=RequestMethod.GET)  
     public String wenzhang(Model model, WenZhangQuery query,@PathVariable String caidan,Integer changePageSize,Integer pn){
 		if("kuangyehusheng".equals(caidan)){
 			model.addAttribute("yetou","旷野呼声");
@@ -55,7 +38,7 @@ public class WenZhangController  extends SecurityController {
 		query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
 		ResultPage<WenZhangDO> result = wenzhangService.findPage(query);
-        String pageUrl = "/wenzhang/wenzhang/"+caidan+"/?"+Converter.covertToQueryStr(query);
+        String pageUrl = "/wenzhang/wenzhang/"+caidan+"?"+Converter.covertToQueryStr(query);
         model.addAttribute("pageUrl", pageUrl);
         model.addAttribute("resultList", result.getResult());
         model.addAttribute("query", query);
