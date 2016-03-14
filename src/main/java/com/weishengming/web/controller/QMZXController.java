@@ -26,7 +26,7 @@ public class QMZXController extends SecurityController{
 	private QMZXService qmzxService;
 	
 	@RequestMapping(value="qmzxindex",method=RequestMethod.GET)  
-    public String page0(Model model){
+    public String pageqmzxindex(Model model){
         return "/qmzx/qmzxindex";  
     }
 	@RequestMapping(value="1",method=RequestMethod.GET)  
@@ -101,8 +101,14 @@ public class QMZXController extends SecurityController{
 		model.addAttribute("resultList", resultList);
         return "/qmzx/12";  
     }
-	@RequestMapping(value="qmzxend",method=RequestMethod.GET)  
+	@RequestMapping(value="13",method=RequestMethod.GET)  
 	public String page13(Model model){
+		List<QMZXDO> resultList=qmzxService.findListByFubiaoti("信心的勇士");
+		model.addAttribute("resultList", resultList);
+        return "/qmzx/13";  
+    }
+	@RequestMapping(value="qmzxend",method=RequestMethod.GET)  
+	public String pageqmzxend(Model model){
         return "/qmzx/qmzxend";  
     }
 	 
