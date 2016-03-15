@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    #parse("common/bootstrap-css-js.html")
+    <title>圣经纵览|编辑</title>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+      <li><h4><b><a href="/admin/adminindex">微生命后台</a></b></h4></li>
+	  <li><b><a href="/admin/sjzl/sjzllist"  style="font-size: 18px">圣经纵览</a></b></li>
+	</ol> 
+   <div class="container">
+    <form action="/admin/sjzl/sjzlupdate" method="post" >
+	  <input type="hidden" name="id"  value="$!model.id">
+	  <div class="form-group row">
+	    <label for="xingming" class="col-sm-2 form-control-label">父标题<span class="required">*</span></label>
+	    <div class="col-sm-10">
+		     <select class="form-control" name="fubiaoti" id="fubiaoti" >
+		       <option #if($!model.fubiaoti=='律法书') selected #end value="律法书">律法书</option>
+		       <option #if($!model.fubiaoti=='历史书') selected #end value="历史书">历史书</option>
+		       <option #if($!model.fubiaoti=='诗歌智慧书') selected #end value="诗歌智慧书">诗歌智慧书</option>
+		       <option #if($!model.fubiaoti=='四福音书') selected #end value="四福音书">四福音书</option>
+		       <option #if($!model.fubiaoti=='使徒行传') selected #end value="使徒行传">使徒行传</option>
+		       <option #if($!model.fubiaoti=='保罗书信') selected #end value="保罗书信">保罗书信</option>
+		       <option #if($!model.fubiaoti=='启示录') selected #end value="启示录">启示录</option>
+	        </select>
+	    </div>
+	  </div>
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">第几个<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="dijige" id="dijige" value="$!model.dijige" placeholder="第几个">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">标题<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="biaoti" id="biaoti" value="$!model.biaoti" placeholder="标题">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">土豆地址<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="tudousrc" id="tudousrc" value="$!model.tudousrc" placeholder="土豆地址">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">视频描述<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <textarea class="form-control" rows="10" name="miaoshu" id="miaoshu"   placeholder="视频描述">$!model.miaoshu</textarea>
+	    </div>
+	  </div>
+	   
+	  <div class="form-group row">
+	    <div class="col-sm-offset-2 col-sm-10">
+	      <button type="submit" class="btn btn-block btn-primary">更新</button>
+	    </div>
+	  </div>  
+	 </form>
+     
+   </div><!-- .container -->
+  </body>
+</html>

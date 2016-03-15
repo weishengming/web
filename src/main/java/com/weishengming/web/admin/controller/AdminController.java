@@ -1,7 +1,6 @@
 package com.weishengming.web.admin.controller;
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,16 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
-import com.weishengming.dao.entity.DiZhiDO;
-import com.weishengming.dao.entity.JDAreaDO;
 import com.weishengming.dao.entity.QMZXDO;
+import com.weishengming.dao.entity.SJZLDO;
 import com.weishengming.dao.entity.TTSDDO;
 import com.weishengming.dao.query.QMZXQuery;
 import com.weishengming.dao.query.ResultPage;
+import com.weishengming.dao.query.SJZLQuery;
 import com.weishengming.dao.query.TTSDQuery;
-import com.weishengming.service.DiZhiService;
-import com.weishengming.service.JDAreaService;
 import com.weishengming.service.QMZXService;
+import com.weishengming.service.SJZLService;
 import com.weishengming.service.TTSDService;
 import com.weishengming.web.controller.SecurityController;
 /**
@@ -38,6 +36,9 @@ public class AdminController  extends SecurityController {
 	@Resource
 	private QMZXService qmzxService;
 	
+	@Resource
+	private SJZLService sjzlService;
+	
 	
 	/**
 	 * 进入到后台首页
@@ -47,6 +48,70 @@ public class AdminController  extends SecurityController {
 	public String adminindex(){
 		return "/admin/adminindex";
 	}
+	
+	
+	/**********圣经纵览管理START**************/
+	/**
+	 * 进入到圣经纵览管理列表页面
+	 * @param model
+	 * @param query
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET,value="/sjzl/sjzllist")
+    public String sjzllist(Model model, SJZLQuery query,Integer changePageSize,Integer pn) {
+		logger.info("进入到圣经纵览管理页面");
+        query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        ResultPage<SJZLDO> result = sjzlService.findPage(query);
+        String pageUrl = "/admin/sjzl/sjzllist?" + Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultViewList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
+        return "/admin/sjzl/sjzllist";
+    }
+	
+	 /**
+     * 通过id 
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/sjzl/sjzledit/{id}")
+    public String sjzledit(@PathVariable Long id, Model model) {
+        final SJZLDO sjzlDO = sjzlService.findOne(id);
+        model.addAttribute("model", sjzlDO);
+        return "/admin/sjzl/sjzlupdate";
+    }
+    /**
+   	 * 更新
+   	 * @param entity
+   	 * @return
+   	 */
+   	@RequestMapping(method = RequestMethod.POST, value = "/sjzl/sjzlupdate")
+    public String sjzlupdate(SJZLDO entity) {
+   		if(entity.getId()==null){
+		    entity.setCreateDate(DateUtil.getCurrentDate());
+	    	entity.setUpdateDate(DateUtil.getCurrentDate());
+	    	sjzlService.create(entity);
+	   }else{
+		    sjzlService.update(entity);
+	   }
+   		return "redirect:/admin/sjzl/sjzllist";
+    }
+	
+	public SJZLService getSjzlService() {
+		return sjzlService;
+	}
+
+	public void setQmzxService(SJZLService sjzlService) {
+		this.sjzlService = sjzlService;
+	}
+	
+	/**********圣经纵览管理END**************/
+	
+	
 	
 	/**********奇妙真相管理START**************/
 	/**
