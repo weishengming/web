@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     #parse("common/bootstrap-css-js.html")
-    <title>最奇妙的圣经预言</title>
+    <title>使徒行传</title>
   </head>
   <body>
     <ol class="breadcrumb">
@@ -20,7 +20,7 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">菜单</button>
           </p>
            <div class="jumbotron" data-toggle="offcanvas">
-            <h4>&nbsp;&nbsp;奇妙真相&nbsp;&nbsp;<small>最奇妙的圣经预言</small></h4>
+            <h4>&nbsp;&nbsp;圣经纵览&nbsp;&nbsp;<small>使徒行传</small></h4>
            </div>
             <div class="row">
               #foreach($!model in $!resultList)
@@ -28,7 +28,7 @@
 			    <div class="thumbnail">
 			    <iframe src="$!model.tudousrc" allowtransparency="true" allowfullscreen="true" allowfullscreenInteractive="true" scrolling="no" border="0" frameborder="0" width="100%" height="100%"></iframe>
 			      <div class="caption">
-			        <h3>$!model.dijige . $!model.biaoti</h3>
+			        <h3>$!model.dijige . $!model.biaoti </h3>
 			        <p>$!model.miaoshu</p>
 			      </div>
 			    </div>
@@ -40,21 +40,16 @@
 	   <div class="col-sm-12 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
             <a href="/aishangdi" class="list-group-item">爱上帝</a>
-            <a href="/qmzx/qmzxindex" class="list-group-item">前言</a>
-            <a href="/qmzx/1" class="list-group-item">一-宇宙之战</a>
-            <a href="/qmzx/2" class="list-group-item">二-最重要的问题</a>
-            <a href="/qmzx/3" class="list-group-item">三-最高的目标</a>
-            <a href="/qmzx/4" class="list-group-item">四-奇妙探险</a>
-            <a href="/qmzx/5" class="list-group-item">五-信仰方程式</a>
-            <a href="/qmzx/6" class="list-group-item">六-永远的福音I</a>
-            <a href="/qmzx/7" class="list-group-item">七-永远的福音II</a>
-            <a href="/qmzx/8" class="list-group-item">八-十诫系列</a>
-            <a href="/qmzx/9" class="list-group-item">九-亲近上帝</a>
-            <a href="/qmzx/10" class="list-group-item active">十-最奇妙的圣经预言</a>
-            <a href="/qmzx/11" class="list-group-item">十一-天启概要</a>
-            <a href="/qmzx/12" class="list-group-item">十二-预言的地标</a>
-            <a href="/qmzx/13" class="list-group-item">十三-信心的勇士</a>
-            <a href="/qmzx/qmzxend" class="list-group-item">后记</a>
+            <a href="/sjzl/sjzlindex" class="list-group-item">前言</a>
+            <a href="/sjzl/1-5" class="list-group-item">律法书</a>
+            <a href="/sjzl/6-17" class="list-group-item">历史书</a>
+            <a href="/sjzl/18-22" class="list-group-item">诗歌智慧书</a>
+            <a href="/sjzl/23-39" class="list-group-item">先知书</a>
+            <a href="/sjzl/40-43" class="list-group-item">四福音书</a>
+            <a href="/sjzl/44" class="list-group-item active">使徒行传</a>
+            <a href="/sjzl/45-65" class="list-group-item">保罗书信</a>
+            <a href="/sjzl/66" class="list-group-item">启示录</a>
+            <a href="/sjzl/sjzlend" class="list-group-item">后记</a>
          </div>
 	   </div><!-- 6 -3 -->
 	   

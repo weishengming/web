@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weishengming.dao.mapper.SJZLMapper">
+	<sql id="all_columns">
+		ID,CREATEDATE,UPDATEDATE,VERSION,BIAOTI,DIJIGE,FUBIAOTI,MIAOSHU,TUDOUSRC
+	</sql>
+	<sql id="where">
+		<where>
+			<if test="id != null">
+				and ID = #{id}
+			</if>
+			<if test="createDate != null">
+				and CREATEDATE = #{createDate}
+			</if>
+			<if test="updateDate != null">
+				and UPDATEDATE = #{updateDate}
+			</if>
+			<if test="version != null">
+				and VERSION = #{version}
+			</if>
+			<if test="biaoti != null">
+				and BIAOTI = #{biaoti}
+			</if>
+			<if test="dijige != null">
+				and DIJIGE = #{dijige}
+			</if>
+			<if test="fubiaoti != null">
+				and FUBIAOTI = #{fubiaoti}
+			</if>
+			<if test="miaoshu != null">
+				and MIAOSHU = #{miaoshu}
+			</if>
+			<if test="tudousrc != null">
+				and TUDOUSRC = #{tudousrc}
+			</if>
+		</where>
+	</sql>
+	<sql id="orderById"> ORDER BY ID DESC </sql>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="SJZLDO">
+		INSERT INTO sjzl (
+		<include refid="all_columns" />
+		) VALUES
+		(#{id},#{createDate},#{updateDate},#{version},#{biaoti},#{dijige},#{fubiaoti},#{miaoshu},#{tudousrc})
+	</insert>
+	<update id="update" parameterType="SJZLDO">
+		UPDATE sjzl SET
+                    <![CDATA[ ID = #{id}]]>,   
+                    <![CDATA[ CREATEDATE = #{createDate}]]>,   
+                    <![CDATA[ UPDATEDATE = #{updateDate}]]>,   
+                    <![CDATA[ VERSION = #{version}]]>,   
+                    <![CDATA[ BIAOTI = #{biaoti}]]>,   
+                    <![CDATA[ DIJIGE = #{dijige}]]>,   
+                    <![CDATA[ FUBIAOTI = #{fubiaoti}]]>,   
+                    <![CDATA[ MIAOSHU = #{miaoshu}]]>,   
+                    <![CDATA[ TUDOUSRC = #{tudousrc}]]>,
+		version = version+1 WHERE
+		id=#{id} and version = #{version}
+	</update>
+	<select id="findOne" parameterType="long" resultType="SJZLDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM sjzl WHERE ID=#{id}
+	</select>
+	<select id="findListByFubiaoti" parameterType="string" resultType="SJZLDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM sjzl WHERE FUBIAOTI = #{fubiaoti}
+	</select>
+	<select id="findAll" resultType="SJZLDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM sjzl
+	</select>
+	<delete id="delete" parameterType="long">
+		DELETE FROM sjzl WHERE id=#{id}
+	</delete>
+	<delete id="deleteByIds">
+		DELETE FROM sjzl
+		<where>
+			ID in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</where>
+	</delete>
+
+	<select id="findList" resultType="SJZLDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM sjzl
+		<include refid="where" />
+		<include refid="orderById" />
+		LIMIT #{offset}, #{size}
+	</select>
+	<select id="getByIds" parameterType="list" resultType="SJZLDO">
+		SELECT
+		<include refid="all_columns" />
+		FROM sjzl
+		<where>
+			ID in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</where>
+	</select>
+	<select id="countList" resultType="long">
+		SELECT count(1) FROM sjzl
+		<include refid="where" />
+		<include refid="orderById" />
+	</select>
+	<select id="count" resultType="long">
+		SELECT count(1) FROM sjzl
+		<include refid="orderById" />
+	</select>
+</mapper>
