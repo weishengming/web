@@ -97,27 +97,63 @@ public class SJZLController extends SecurityController{
     }
 	
 	@RequestMapping(value="40-43",method=RequestMethod.GET)  
-	public String page5(Model model){
-		List<SJZLDO> resultList=sjzlService.findListByFubiaoti("四福音书");
-		model.addAttribute("resultList", resultList);
+	public String page5(Model model,SJZLQuery query,Integer changePageSize,Integer pn){
+		query.setFubiaoti("四福音书");
+		query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        query.setPageSize(3);
+		ResultPage<SJZLDO> result = sjzlService.findPage(query);
+        String pageUrl = "/sjzl/40-43?"+Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);
         return "/sjzl/40-43";  
     }
 	@RequestMapping(value="44",method=RequestMethod.GET)  
-	public String page6(Model model){
-		List<SJZLDO> resultList=sjzlService.findListByFubiaoti("使徒行传");
-		model.addAttribute("resultList", resultList);
+	public String page6(Model model,SJZLQuery query,Integer changePageSize,Integer pn){
+		query.setFubiaoti("使徒行传");
+		query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        query.setPageSize(3);
+		ResultPage<SJZLDO> result = sjzlService.findPage(query);
+        String pageUrl = "/sjzl/44?"+Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);
         return "/sjzl/44";  
     }
 	@RequestMapping(value="45-65",method=RequestMethod.GET)  
-	public String page7(Model model){
-		List<SJZLDO> resultList=sjzlService.findListByFubiaoti("保罗书信");
-		model.addAttribute("resultList", resultList);
+	public String page7(Model model,SJZLQuery query,Integer changePageSize,Integer pn){
+		query.setFubiaoti("书信");
+		query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        query.setPageSize(3);
+		ResultPage<SJZLDO> result = sjzlService.findPage(query);
+        String pageUrl = "/sjzl/45-65?"+Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);
         return "/sjzl/45-65";  
     }
 	@RequestMapping(value="66",method=RequestMethod.GET)  
-	public String page8(Model model){
-		List<SJZLDO> resultList=sjzlService.findListByFubiaoti("启示录");
-		model.addAttribute("resultList", resultList);
+	public String page8(Model model,SJZLQuery query,Integer changePageSize,Integer pn){
+		query.setFubiaoti("启示录");
+		query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        query.setPageSize(3);
+		ResultPage<SJZLDO> result = sjzlService.findPage(query);
+        String pageUrl = "/sjzl/66?"+Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);
         return "/sjzl/66";  
     }
 	 
