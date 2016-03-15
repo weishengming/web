@@ -36,6 +36,7 @@
 		</where>
 	</sql>
 	<sql id="orderById"> ORDER BY ID DESC </sql>
+	<sql id="orderByIdASC"> ORDER BY ID ASC </sql>
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
 		parameterType="SJZLDO">
 		INSERT INTO sjzl (
@@ -66,6 +67,7 @@
 		SELECT
 		<include refid="all_columns" />
 		FROM sjzl WHERE FUBIAOTI = #{fubiaoti}
+		<include refid="orderByIdASC" />
 	</select>
 	<select id="findAll" resultType="SJZLDO">
 		SELECT
@@ -91,7 +93,7 @@
 		<include refid="all_columns" />
 		FROM sjzl
 		<include refid="where" />
-		<include refid="orderById" />
+		<include refid="orderByIdASC" />
 		LIMIT #{offset}, #{size}
 	</select>
 	<select id="getByIds" parameterType="list" resultType="SJZLDO">

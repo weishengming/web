@@ -42,6 +42,7 @@
 		</where>
 	</sql>
 	<sql id="orderById"> ORDER BY ID DESC </sql>
+	<sql id="orderByIdASC"> ORDER BY ID DESC </sql>
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
 		parameterType="WenZhangDO">
 		INSERT INTO wenzhang (

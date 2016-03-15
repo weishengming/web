@@ -11,7 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.weishengming.common.converter.Converter;
 import com.weishengming.dao.entity.SJZLDO;
+import com.weishengming.dao.entity.WenZhangDO;
+import com.weishengming.dao.query.ResultPage;
+import com.weishengming.dao.query.SJZLQuery;
 import com.weishengming.service.SJZLService;
 
 /**
@@ -30,28 +34,65 @@ public class SJZLController extends SecurityController{
         return "/sjzl/sjzlindex";  
     }
 	@RequestMapping(value="1-5",method=RequestMethod.GET)  
-	public String page1(Model model){
-		List<SJZLDO> resultList=sjzlService.findListByFubiaoti("律法书");
-		model.addAttribute("resultList", resultList);
+	public String page1(Model model,SJZLQuery query,Integer changePageSize,Integer pn){
+		query.setFubiaoti("律法书");
+		query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        query.setPageSize(3);
+		ResultPage<SJZLDO> result = sjzlService.findPage(query);
+        String pageUrl = "/sjzl/1-5?"+Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);
         return "/sjzl/1-5";  
     }
 	
 	@RequestMapping(value="6-17",method=RequestMethod.GET)  
-	public String page2(Model model){
-		List<SJZLDO> resultList=sjzlService.findListByFubiaoti("历史书");
-		model.addAttribute("resultList", resultList);
+	public String page2(Model model,SJZLQuery query,Integer changePageSize,Integer pn){
+		query.setFubiaoti("历史书");
+		query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        query.setPageSize(3);
+		ResultPage<SJZLDO> result = sjzlService.findPage(query);
+        String pageUrl = "/sjzl/6-17?"+Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);
+		
         return "/sjzl/6-17";  
     }
 	@RequestMapping(value="18-22",method=RequestMethod.GET)  
-	public String page3(Model model){
-		List<SJZLDO> resultList=sjzlService.findListByFubiaoti("诗歌智慧书");
-		model.addAttribute("resultList", resultList);
+	public String page3(Model model,SJZLQuery query,Integer changePageSize,Integer pn){
+		query.setFubiaoti("诗歌智慧书");
+		query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        query.setPageSize(3);
+		ResultPage<SJZLDO> result = sjzlService.findPage(query);
+        String pageUrl = "/sjzl/18-22?"+Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);
         return "/sjzl/18-22";  
     }
 	@RequestMapping(value="23-39",method=RequestMethod.GET)  
-	public String page4(Model model){
-		List<SJZLDO> resultList=sjzlService.findListByFubiaoti("先知书");
-		model.addAttribute("resultList", resultList);
+	public String page4(Model model,SJZLQuery query,Integer changePageSize,Integer pn){
+		query.setFubiaoti("先知书");
+		query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        query.setPageSize(3);
+		ResultPage<SJZLDO> result = sjzlService.findPage(query);
+        String pageUrl = "/sjzl/23-39?"+Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);
         return "/sjzl/23-39";  
     }
 	
