@@ -37,6 +37,7 @@ public class WenZhangController  extends SecurityController {
 		
 		query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
+        query.setPageSize(3);
 		ResultPage<WenZhangDO> result = wenzhangService.findPage(query);
         String pageUrl = "/wenzhang/wenzhang/"+caidan+"?"+Converter.covertToQueryStr(query);
         model.addAttribute("pageUrl", pageUrl);
