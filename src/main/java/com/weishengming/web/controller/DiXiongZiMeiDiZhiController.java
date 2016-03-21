@@ -64,7 +64,7 @@ public class DiXiongZiMeiDiZhiController extends SecurityController{
    	 * @return
    	 */
    	@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeidizhigengxin")
-    public String dixiongzimeidizhiupdate(DiZhiDO entity) {
+    public String dixiongzimeidizhigengxin(DiZhiDO entity) {
    	    if(StringUtils.isBlank(entity.getArea3Name())&&StringUtils.isNotBlank(entity.getArea3Id())){
 	   		JDAreaDO jdarea=jdAreaService.findOneByAreaId(entity.getArea3Id());
 	   		if(jdarea!=null){
@@ -80,6 +80,7 @@ public class DiXiongZiMeiDiZhiController extends SecurityController{
 	   }
    	   return "redirect:/dixiongzimeidizhi/dixiongzimeidizhi";
     }
+   	
    	
    	@RequestMapping(value = "/dixiongzimeidizhidelete/{id}")
     public String dixiongzimeidizhidelete(@PathVariable Long id) {

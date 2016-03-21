@@ -2,14 +2,19 @@ package com.weishengming.web.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
 import com.weishengming.dao.entity.DiXiongZiMeiDO;
+import com.weishengming.dao.query.DiXiongZiMeiQuery;
+import com.weishengming.dao.query.ResultPage;
 import com.weishengming.service.DiXiongZiMeiService;
 import com.weishengming.service.DiZhiService;
 import com.weishengming.service.JDAreaService;
@@ -56,7 +61,7 @@ public class DiXiongZiMeiController extends SecurityController{
 	 * @return
 	 */
    @RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeigengxin")
-   public String put(DiXiongZiMeiDO entity) {
+   public String dixiongzimeigengxin(DiXiongZiMeiDO entity) {
 	   if(entity.getId()==null){
 		    entity.setCreateDate(DateUtil.getCurrentDate());
 	    	entity.setUpdateDate(DateUtil.getCurrentDate());
@@ -65,6 +70,30 @@ public class DiXiongZiMeiController extends SecurityController{
 		    dixiongzimeiService.update(entity);
 	   }
 	   return "redirect:/dixiongzimei/dixiongzimei";
+   }
+   
+   
+   /***获得弟兄姊妹的列表***/
+   /**
+	 * 进入到弟兄姊妹列表页面
+	 * @param model
+	 * @param query
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET,value="/dixiongzimeiliebiao")
+   public String dixiongzimeiliebiao(Model model, DiXiongZiMeiQuery query,Integer changePageSize,Integer pn) {
+		logger.info("进入到弟兄姊妹列表页面");
+       query.putPnIntoPageNumber(pn);
+       query.putPnIntoPageSize(changePageSize);
+       query.setSuoding("解锁");// 查询已经解锁的弟兄姊妹
+       ResultPage<DiXiongZiMeiDO> result = dixiongzimeiService.findPage(query);
+       String pageUrl = "/dixiongzimei/dixiongzimeiliebiao?" + Converter.covertToQueryStr(query);
+       model.addAttribute("pageUrl", pageUrl);
+       model.addAttribute("resultViewList", result.getResult());
+       model.addAttribute("query", query);
+       model.addAttribute("result", result);
+       model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
+       return "/dixiongzimei/dixiongzimeiliebiao";
    }
    
 	public DiXiongZiMeiService getDixiongzimeiService() {
