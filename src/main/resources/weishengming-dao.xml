@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
-     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
      <!-- 引入 dataSource -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver}" />
@@ -30,4 +31,5 @@
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 		<property name="basePackage" value="com.weishengming.dao.mapper" />
 	</bean>
+	 
 </beans>

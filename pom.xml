@@ -10,6 +10,7 @@
 		<spring-version>4.2.2.RELEASE</spring-version>
 		<junit-version>4.12</junit-version>
 		<commons.math3-version>3.4.1</commons.math3-version>
+		<jsonlib.version>2.4</jsonlib.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -68,6 +69,32 @@
 			    <artifactId>slf4j-log4j12</artifactId>
 			    <version>1.7.5</version>
 		</dependency>   -->
+		
+		<!-- 加入mongodb -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.8.4.RELEASE</version>
+		</dependency>
+		<dependency>
+	      <groupId>org.mongodb</groupId>
+	      <artifactId>mongo-java-driver</artifactId>
+	      <version>2.11.3</version>
+	    </dependency>
+	    
+	    <dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -185,8 +212,13 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>${spring-version}</version>
+			<version></version>
 		</dependency>
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
 		
 		<!-- spring 安全的类 -->
 		<dependency>
@@ -256,6 +288,24 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.6</version>
+		</dependency>
+		
+		<!-- Json -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-lgpl</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-lgpl</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>${jsonlib.version}</version>
+			<classifier>jdk15</classifier>
 		</dependency>
 		<!-- 引入qq登陆的jar -->
 		<dependency>
