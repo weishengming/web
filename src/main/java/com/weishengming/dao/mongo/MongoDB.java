@@ -1,13 +1,23 @@
 package com.weishengming.dao.mongo;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+
+import com.alibaba.fastjson.JSON;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.weishengming.dao.mongo.query.MongoQuery;
+import com.weishengming.dao.mongo.query.ResultMongoPage;
 
  
 /**
@@ -74,23 +84,50 @@ public class MongoDB implements BaseDao {
 
 	/**
 	 * 查询并分页
-	 * 
-	 * @param entityClass
-	 *            对象类型
-	 * @param query
-	 *            查询条件
-	 * @param page
-	 *            分页
+	 * @param entityClass 对象类型
+	 * @param query 查询条件
 	 * @return
 	 */
-	public <T> List<T> findByQuery(Class<T> entityClass, Query query) {
+	@Override
+	public <T> ResultMongoPage<T> findPageByQuery(Class<T> entityClass, MongoQuery query){
+		Criteria criatira = new Criteria();
+		Field[] field = query.getClass().getDeclaredFields();
+		try {
+			for (int j = 0; j < field.length; j++) { // 遍历所有属性
+	            String name = field[j].getName(); // 获取属性的名字
+	            String type = field[j].getGenericType().toString();
+	            name = name.substring(0, 1).toUpperCase() + name.substring(1); // 将属性的首字符大写，方便构造get，set方法
+	            if (!name.equals("SerialVersionUID")&& !name.equals("serialVersionUID")&& !name.equals("")) { //排除一些属性
+	                Method m = query.getClass().getMethod("get" + name);
+	                	String value = (String) m.invoke(query); // 调用getter方法获取属性值
+		                if(StringUtils.isNotBlank(value)){
+		                criatira.andOperator(Criteria.where(name).is(value));
+		                }
+	            }
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		query.addCriteria(criatira);
+		
 		Long count = this.count(entityClass, query);
-		// page.setCount(count);
-		// int pageNumber = page.getCurrent();
-		// int pageSize = page.getPageCount();
-		// query.skip((pageNumber - 1) * pageSize).limit(pageSize);
-		return this.mongoTemplate.find(query, entityClass);
+		query.setCount(count);
+		int pageNumber = query.getPageNumber();
+		int pageSize = query.getPageSize();
+		query.skip((pageNumber - 1) * pageSize).limit(pageSize);
+		List<T> list=this.mongoTemplate.find(query, entityClass);
+		ResultMongoPage<T> result=new ResultMongoPage<T>(list, query);
+        int total = count.intValue();
+        int totalPage = total / result.getPageSize();
+        if (totalPage != 0 && total % result.getPageSize() != 0) {
+            totalPage += 1;
+        }
+        result.setCount(count); //设置总条数
+        result.setTotal(totalPage); //谁知总页数
+		
+        return result;
 	}
+	
 
 	/**
 	 * 
@@ -115,9 +152,11 @@ public class MongoDB implements BaseDao {
 	public <T> void addCollection(Class<T> entityClass, Collection<T> collection) {
 		this.mongoTemplate.insert(collection, entityClass);
 	}
+	 
 
 	public MongoTemplate getMongoTemplate() {
 		return mongoTemplate;
 	}
+	
 
 }

@@ -7,53 +7,43 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class User {
 
-	private String id;
-	private String username;
-	private int age;
-	private Date createTime;
-
-	public User() {
-
-	}
-
-	public User(String username, int age, Date createTime) {
-		super();
-		this.username = username;
-		this.age = age;
-		this.createTime = createTime;
-	}
-
+	private String id;  
+	private String name;
+	private String age;
+	private Date   createDate;
+    private Date   updateDate;
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getUsername() {
-		return username;
+	 
+	public String getName() {
+		return name;
 	}
-
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
-
-	public Date getCreateTime() {
-		return createTime;
+	public Date getCreateDate() {
+		return createDate;
 	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+    
+	 
 }
 
