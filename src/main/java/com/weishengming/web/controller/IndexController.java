@@ -43,22 +43,22 @@ public class IndexController extends SecurityController{
         return "/index/index";  
     }
 	/**
-	 * 爱上帝
+	 * 求
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="aishangdi",method=RequestMethod.GET)  
-    public String aishangdiPage(HttpServletRequest request,Model model){
-        return "/index/aishangdi";  
+	@RequestMapping(value="qiu",method=RequestMethod.GET)  
+    public String qiuPage(HttpServletRequest request,Model model){
+        return "/index/qiu";  
     } 
 	/**
-	 * 爱他人
+	 * 给
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="aitaren",method=RequestMethod.GET)  
+	@RequestMapping(value="gei",method=RequestMethod.GET)  
     public String aitarenPage(HttpServletRequest request,Model model){
-        return "/index/aitaren";  
+        return "/index/gei";  
     }
 	
 	/**
