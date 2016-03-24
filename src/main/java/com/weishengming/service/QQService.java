@@ -39,7 +39,7 @@ public class QQService {
         return mapper.findOne(id);
     }
     public QQDO findOpenID(String openID){
-    	return mapper.findOpenID(openID);
+    	return mapper.findOpenID(openID).get(0);
     }
 
     public void create(QQDO entity) {
