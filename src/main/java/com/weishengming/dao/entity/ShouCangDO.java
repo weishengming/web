@@ -5,15 +5,16 @@ import javax.persistence.Table;
 
 /**
  * @author 杨天赐
- * 给
+ * 收藏
  */
 @Entity
-@Table(name = "gei")
-public class GeiDO extends BaseDO {
+@Table(name = "shouchang")
+public class ShouCangDO extends BaseDO {
 	private static final long serialVersionUID = 1L;
-	private String openID; 
-	private String neirong;
+	private Long objid; 
+	private String openID;
 	private String zhuangtai;
+	private String leixing;// gei qiu
 	
 	public String getZhuangtai() {
 		return zhuangtai;
@@ -21,18 +22,24 @@ public class GeiDO extends BaseDO {
 	public void setZhuangtai(String zhuangtai) {
 		this.zhuangtai = zhuangtai;
 	}
+	public String getLeixing() {
+		return leixing;
+	}
+	public void setLeixing(String leixing) {
+		this.leixing = leixing;
+	}
+	public Long getObjid() {
+		return objid;
+	}
+	public void setObjid(Long objid) {
+		this.objid = objid;
+	}
 	public String getOpenID() {
 		return openID;
 	}
 	public void setOpenID(String openID) {
 		this.openID = openID;
 	}
-	public String getNeirong() {
-		return neirong;
-	}
-	public void setNeirong(String neirong) {
-		this.neirong = neirong;
-	} 
 	
 	
 }

@@ -13,6 +13,14 @@ public class QiuDO extends BaseDO {
 	private static final long serialVersionUID = 1L;
 	private String openID; 
 	private String neirong;
+	private String zhuangtai;
+	
+	public String getZhuangtai() {
+		return zhuangtai;
+	}
+	public void setZhuangtai(String zhuangtai) {
+		this.zhuangtai = zhuangtai;
+	}
 	public String getOpenID() {
 		return openID;
 	}
