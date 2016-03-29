@@ -47,7 +47,7 @@
 		    <td>$!model.truename</td>
 		    <td>$!model.sex</td>
 		    <td>$!model.id_card</td>
-			<td>$!model.qq</td>
+			<td><button type="button" class="btn btn-link" onclick="QQtalk('$!model.qq')">$!model.qq</button></td>
 			<td>$!model.email</td>
 			<td>$!model.school</td>
 			<td>$!model.zhuanye - $!model.xuezhi</td>
@@ -109,4 +109,10 @@
 </div>
 <script type="text/javascript" src="${static_resource}/resources/js/admin/admindixiongzimei.js"></script>
   </body>
+  <script type="text/JavaScript">
+	function QQtalk(QQnum) {
+		Link = "tencent://message/?uin="+QQnum+"&Site=&menu=yes";
+		this.location.href = Link;
+	}
+</script>
 </html>

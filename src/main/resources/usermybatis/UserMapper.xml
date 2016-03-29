@@ -111,6 +111,7 @@
 			<if test="email != null">
 				and EMAIL = #{email}
 			</if>
+			and TRUENAME is not null
 		</where>
 	</sql>
 	<sql id="orderById"> ORDER BY USER_ID DESC </sql>
