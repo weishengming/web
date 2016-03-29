@@ -1,9 +1,7 @@
 package com.weishengming.web.admin.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,14 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.weishengming.common.ajax.AjaxOutputTool;
 import com.weishengming.common.converter.Converter;
-import com.weishengming.common.util.DateUtil;
-import com.weishengming.dao.mongo.MongoDB;
-import com.weishengming.dao.mongo.entity.User;
-import com.weishengming.dao.mongo.entity.Users;
-import com.weishengming.dao.mongo.query.ResultMongoPage;
-import com.weishengming.dao.mongo.query.UsersQuery;
+import com.weishengming.mongo.MongoDB;
+import com.weishengming.mongo.entity.Users;
+import com.weishengming.mongo.query.ResultMongoPage;
+import com.weishengming.mongo.query.UsersQuery;
 import com.weishengming.web.controller.SecurityController;
 
 

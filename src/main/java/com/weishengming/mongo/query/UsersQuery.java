@@ -1,4 +1,4 @@
-package com.weishengming.dao.mongo.query;
+package com.weishengming.mongo.query;
 
 public class UsersQuery extends MongoQuery{
 	private static final long serialVersionUID = 1L;

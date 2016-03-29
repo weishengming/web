@@ -1,4 +1,4 @@
-package com.weishengming.dao.mongo.query;
+package com.weishengming.mongo.query;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.weishengming.dao.mongo.entity;
+package com.weishengming.mongo.entity;
 
 import java.util.Date;
 

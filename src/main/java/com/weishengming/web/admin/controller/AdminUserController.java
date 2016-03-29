@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.weishengming.common.ajax.AjaxOutputTool;
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
-import com.weishengming.dao.entity.DiXiongZiMeiDO;
-import com.weishengming.dao.mongo.MongoDB;
-import com.weishengming.dao.mongo.entity.User;
-import com.weishengming.dao.mongo.query.ResultMongoPage;
-import com.weishengming.dao.mongo.query.UserQuery;
+import com.weishengming.mongo.MongoDB;
+import com.weishengming.mongo.entity.User;
+import com.weishengming.mongo.query.ResultMongoPage;
+import com.weishengming.mongo.query.UserQuery;
 import com.weishengming.web.controller.SecurityController;
 
 

@@ -1,4 +1,4 @@
-package com.weishengming.dao.mongo;
+package com.weishengming.mongo;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -13,11 +13,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.fastjson.JSON;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.weishengming.dao.mongo.query.MongoQuery;
-import com.weishengming.dao.mongo.query.ResultMongoPage;
+import com.weishengming.mongo.query.MongoQuery;
+import com.weishengming.mongo.query.ResultMongoPage;
 
  
 /**

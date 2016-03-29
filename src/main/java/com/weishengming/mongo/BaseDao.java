@@ -1,9 +1,9 @@
-package com.weishengming.dao.mongo;
+package com.weishengming.mongo;
 
 import java.util.List;
 
-import com.weishengming.dao.mongo.query.MongoQuery;
-import com.weishengming.dao.mongo.query.ResultMongoPage;
+import com.weishengming.mongo.query.MongoQuery;
+import com.weishengming.mongo.query.ResultMongoPage;
 
 public interface BaseDao {  
 	  
