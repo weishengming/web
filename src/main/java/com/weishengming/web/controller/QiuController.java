@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,8 +39,8 @@ public class QiuController extends SecurityController{
 	private QQService qqService;
 
 	@RequestMapping(method = RequestMethod.GET,value="/qiu")
-    public String gei(Model model, QiuQuery query,Integer changePageSize,Integer pn) {
-		logger.info("进入到给的列表");
+    public String qiu(Model model, QiuQuery query,Integer changePageSize,Integer pn) {
+		logger.info("进入到求的列表");
         query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
         ResultPage<QiuDO> result = qiuService.findPage(query);
@@ -74,8 +75,13 @@ public class QiuController extends SecurityController{
    	 * @return
    	 */
    	@RequestMapping(method = RequestMethod.POST, value = "/qiugengxin")
-    public String qiugengxin(QiuDO entity) {
+    public String qiugengxin(HttpServletRequest request,QiuDO entity) {
+   		if(getName(request)==null){
+        	request.getSession().setAttribute("redirectURL", "/qiu/qiu");
+        	return "redirect:/qqLogin";
+        }
    		if(entity.getId()==null){
+   			entity.setOpenID(getOpenID(request));
 		    entity.setCreateDate(DateUtil.getCurrentDate());
 	    	entity.setUpdateDate(DateUtil.getCurrentDate());
 	    	qiuService.create(entity);

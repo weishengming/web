@@ -27,8 +27,24 @@ public class QiuService {
         QiuParam param = new QiuParam();
         BeanUtils.copyProperties(query, param);
         List<QiuDO> list = mapper.findList(param);
+        
+        ResultPage<QiuDO> result=new ResultPage<QiuDO>(list, query);
+        Long count = this.countList(query);
+        int total = count.intValue();
+        int totalPage = total / result.getPageSize();
+        if (totalPage != 0 && total % result.getPageSize() != 0) {
+            totalPage += 1;
+        }
+        result.setCount(count); //设置总条数
+        result.setTotal(totalPage); //谁知总页数
 
-        return new ResultPage<QiuDO>(list, query);
+        return result;
+    }
+    
+    public Long countList(QiuQuery query){
+    	QiuParam param = new QiuParam();
+        BeanUtils.copyProperties(query, param);
+        return mapper.countList(param);
     }
 
     public List<QiuDO> findAll() {
