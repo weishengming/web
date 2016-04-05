@@ -29,9 +29,6 @@ public class AdminUserController  extends SecurityController{
 	@Resource(name = "mongoDB") 
 	MongoDB mongoDB;
 	
-	
-	
-	
 	@RequestMapping(method = RequestMethod.GET,value="/userlist")
     public String userlist(Model model, UserQuery query,Integer changePageSize,Integer pn) {
 		logger.info("进入到用户管理列表页面");

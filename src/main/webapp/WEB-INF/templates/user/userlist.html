@@ -31,12 +31,7 @@
 		    <th>性别</th>
 		    <th>身份证号</th>
 		    <th>qq号</th>
-			<th>邮箱</th>
-			<th>学校</th>
-			<th>专业</th>
-			<th>班级</th>
 			<th>原籍地址</th>
-			<th>操作</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -48,14 +43,7 @@
 		    <td>$!model.sex</td>
 		    <td>$!model.id_card</td>
 			<td><button type="button" class="btn btn-link" onclick="QQtalk('$!model.qq')">$!model.qq</button></td>
-			<td>$!model.email</td>
-			<td>$!model.school</td>
-			<td>$!model.zhuanye - $!model.xuezhi</td>
-			<td>$!model.banji</td>
 			<td>$!model.yuanjidizhi</td>
-			<td>
-	            <a class="btn btn-link" onclick="AdminDiXiongZiMei.dixiongzimei_ajax('$!{model.id}');" data-toggle="modal" data-target="#jibenxinxiModal">更多</a>
-	        </td>
 		</tr>
 		 #set($index=$index+1)
 		#end
