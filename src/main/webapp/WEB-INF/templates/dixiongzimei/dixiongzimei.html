@@ -10,8 +10,6 @@
   <body>
     <ol class="breadcrumb">
       <li><h4><b><a href="/index">微生命</a></b></h4></li><li><a href="/qiu/qiu">祈求</a></li><li><a href="/gei/gei">给予</a></li>
-	  
-	  
 	</ol> 
   
    <div class="container">
@@ -80,9 +78,9 @@
 	   <div class="form-group row">
 	    <label for="shoujihao" class="col-sm-2 form-control-label">身份<span class="required">*</span></label>
 	    <div class="col-sm-10">
-	       <input type="radio" #if($!model.shenfen =='成人') checked="checked" #end  name="shenfen" value="成人"> 成人
+	       <input type="radio" #if($!model.shenfen =='牧师') checked="checked" #end  name="shenfen" value="牧师"> 牧师
 	       &nbsp;&nbsp;&nbsp;
-	       <input type="radio" #if($!model.shenfen =='学生') checked="checked" #end  name="shenfen" value="学生"> 学生
+	       <input type="radio" #if($!model.shenfen =='信徒') checked="checked" #end  name="shenfen" value="信徒"> 信徒
 	    </div>
 	  </div>
 	  
@@ -95,7 +93,7 @@
 	  
 	  <div class="form-group row">
 	    <div class="col-sm-offset-2 col-sm-10">
-	      <button type="submit" class="btn btn-block btn-primary">更新基本信息</button>
+	      <button type="submit" class="btn btn-block btn-primary">保存基本信息</button>
 	    </div>
 	  </div> 
 	 </form>
@@ -107,10 +105,6 @@
              <a href="/qmzx/1" class="list-group-item">奇妙真相</a>
              <a href="/sjzl/1-5" class="list-group-item">圣经纵览</a>
              <a href="/wenzhang/wenzhang/kuangyehusheng" class="list-group-item">旷野呼声</a>
-             <a href="/dixiongzimei/dixiongzimei" class="list-group-item active">基本信息</a>
-             <a href="/dixiongzimeidizhi/dixiongzimeidizhi" class="list-group-item">常用地址</a>
-             <a href="/jiaohuidizhi/jiaohuidizhi" class="list-group-item">常去教会</a>
-             <a href="/about" class="list-group-item">关于我们</a>
          </div>
 	   </div><!-- 6 -3 -->
 	 </div><!-- .row -->
