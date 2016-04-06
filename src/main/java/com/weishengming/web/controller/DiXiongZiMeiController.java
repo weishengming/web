@@ -72,6 +72,48 @@ public class DiXiongZiMeiController extends SecurityController{
 	   return "redirect:/dixiongzimei/dixiongzimei";
    }
    
+    /**
+	 * 进入牧师列表
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/mushi")
+	public String mushi(Model model, DiXiongZiMeiQuery query,Integer changePageSize,Integer pn) {
+		logger.info("进入到牧师列表页面");
+        query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        ResultPage<DiXiongZiMeiDO> result = dixiongzimeiService.findPage(query);
+        String pageUrl = "/admin/dixiongzimei/dixiongzimeilist?" + Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultViewList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
+		return "/dixiongzimei/mushilist";
+	}
+	
+    /**
+	 * 进入信徒列表
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/xintu")
+	public String xintu(Model model, DiXiongZiMeiQuery query,Integer changePageSize,Integer pn) {
+		logger.info("进入到信徒列表页面");
+        query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        ResultPage<DiXiongZiMeiDO> result = dixiongzimeiService.findPage(query);
+        String pageUrl = "/admin/dixiongzimei/dixiongzimeilist?" + Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultViewList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
+       return "/dixiongzimei/xintulist";
+	}
+   
 	public DiXiongZiMeiService getDixiongzimeiService() {
 		return dixiongzimeiService;
 	}
