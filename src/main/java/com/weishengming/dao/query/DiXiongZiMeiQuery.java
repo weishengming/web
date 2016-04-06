@@ -6,8 +6,17 @@ public class DiXiongZiMeiQuery extends MapperQuery{
     private static final long serialVersionUID = 0L;
     private String xingming;
     private String shoujihao;
+    private String shenfen;
     private String suoding;
     
+    
+    
+	public String getShenfen() {
+		return shenfen;
+	}
+	public void setShenfen(String shenfen) {
+		this.shenfen = shenfen;
+	}
 	public String getSuoding() {
 		return suoding;
 	}

@@ -83,6 +83,7 @@ public class DiXiongZiMeiController extends SecurityController{
 		logger.info("进入到牧师列表页面");
         query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
+        query.setShenfen("牧师");
         ResultPage<DiXiongZiMeiDO> result = dixiongzimeiService.findPage(query);
         String pageUrl = "/admin/dixiongzimei/dixiongzimeilist?" + Converter.covertToQueryStr(query);
         model.addAttribute("pageUrl", pageUrl);
@@ -104,6 +105,7 @@ public class DiXiongZiMeiController extends SecurityController{
 		logger.info("进入到信徒列表页面");
         query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
+        query.setShenfen("信徒");
         ResultPage<DiXiongZiMeiDO> result = dixiongzimeiService.findPage(query);
         String pageUrl = "/admin/dixiongzimei/dixiongzimeilist?" + Converter.covertToQueryStr(query);
         model.addAttribute("pageUrl", pageUrl);
