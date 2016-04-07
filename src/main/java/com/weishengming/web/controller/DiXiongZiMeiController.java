@@ -73,47 +73,47 @@ public class DiXiongZiMeiController extends SecurityController{
    }
    
     /**
-	 * 进入牧师列表
+	 * 进入弟兄列表
 	 * @param request
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.GET, value = "/mushi")
-	public String mushi(Model model, DiXiongZiMeiQuery query,Integer changePageSize,Integer pn) {
+	@RequestMapping(method = RequestMethod.GET, value = "/dixiong")
+	public String dixiong(Model model, DiXiongZiMeiQuery query,Integer changePageSize,Integer pn) {
 		logger.info("进入到牧师列表页面");
         query.putPnIntoPageNumber(pn);
+        query.setXingbie("男");
         query.putPnIntoPageSize(changePageSize);
-        query.setShenfen("牧师");
         ResultPage<DiXiongZiMeiDO> result = dixiongzimeiService.findPage(query);
-        String pageUrl = "/admin/dixiongzimei/dixiongzimeilist?" + Converter.covertToQueryStr(query);
+        String pageUrl = "/dixiongzimei/dixionglist?" + Converter.covertToQueryStr(query);
         model.addAttribute("pageUrl", pageUrl);
         model.addAttribute("resultViewList", result.getResult());
         model.addAttribute("query", query);
         model.addAttribute("result", result);
         model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
-		return "/dixiongzimei/mushilist";
+		return "/dixiongzimei/dixionglist";
 	}
 	
     /**
-	 * 进入信徒列表
+	 * 进入姊妹列表
 	 * @param request
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.GET, value = "/xintu")
-	public String xintu(Model model, DiXiongZiMeiQuery query,Integer changePageSize,Integer pn) {
+	@RequestMapping(method = RequestMethod.GET, value = "/zimei")
+	public String zimei(Model model, DiXiongZiMeiQuery query,Integer changePageSize,Integer pn) {
 		logger.info("进入到信徒列表页面");
         query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
-        query.setShenfen("信徒");
+        query.setXingbie("女");
         ResultPage<DiXiongZiMeiDO> result = dixiongzimeiService.findPage(query);
-        String pageUrl = "/admin/dixiongzimei/dixiongzimeilist?" + Converter.covertToQueryStr(query);
+        String pageUrl = "/dixiongzimei/zimeilist?" + Converter.covertToQueryStr(query);
         model.addAttribute("pageUrl", pageUrl);
         model.addAttribute("resultViewList", result.getResult());
         model.addAttribute("query", query);
         model.addAttribute("result", result);
         model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
-       return "/dixiongzimei/xintulist";
+       return "/dixiongzimei/zimeilist";
 	}
    
 	public DiXiongZiMeiService getDixiongzimeiService() {

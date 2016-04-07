@@ -8,9 +8,16 @@ public class DiXiongZiMeiQuery extends MapperQuery{
     private String shoujihao;
     private String shenfen;
     private String suoding;
+    private String xingbie;
     
     
     
+	public String getXingbie() {
+		return xingbie;
+	}
+	public void setXingbie(String xingbie) {
+		this.xingbie = xingbie;
+	}
 	public String getShenfen() {
 		return shenfen;
 	}
