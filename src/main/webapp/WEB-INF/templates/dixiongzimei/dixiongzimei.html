@@ -9,7 +9,7 @@
   </head>
   <body>
     <ol class="breadcrumb">
-      <li><h4><b><a href="/index">微生命</a></b></h4></li><li><a href="/dixiongzimei/dixiong">求助帅哥</a></li><li><a href="/dixiongzimei/zimei">求助美女</a></li>
+      <li><h4><b><a href="/index">微生命</a></b></h4></li><li><a href="/dixiongzimei/dixiong">求助弟兄</a></li><li><a href="/dixiongzimei/zimei">求助姊妹</a></li>
 	</ol> 
   
    <div class="container">
@@ -78,9 +78,9 @@
 	   <div class="form-group row">
 	    <label for="shoujihao" class="col-sm-2 form-control-label">身份<span class="required">*</span></label>
 	    <div class="col-sm-10">
-	       <input type="radio" #if($!model.shenfen =='牧师') checked="checked" #end  name="shenfen" value="牧师"> 牧师
+	       <input type="radio" #if($!model.shenfen =='成人') checked="checked" #end  name="shenfen" value="成人"> 成人
 	       &nbsp;&nbsp;&nbsp;
-	       <input type="radio" #if($!model.shenfen =='信徒') checked="checked" #end  name="shenfen" value="信徒"> 信徒
+	       <input type="radio" #if($!model.shenfen =='学生') checked="checked" #end  name="shenfen" value="学生"> 学生
 	    </div>
 	  </div>
 	  
@@ -114,6 +114,6 @@
          </div>
 	   </div><!-- 6 -3 -->
 	 </div><!-- .row -->
-   </div><!-- .container -->
+   #parse("common/beian.html") </div><!-- .container -->
   </body>
 </html>

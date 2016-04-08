@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     #parse("common/bootstrap-css-js.html")
-    <title>求助美女</title>
+    <title>求助姊妹</title>
   </head>
   <body>
      <ol class="breadcrumb">
       <li><h4><b><a href="/index">微生命</a></b></h4></li>
-      <li><a href="/dixiongzimei/dixiong">求助帅哥</a></li>
-      <li><b><a style="font-size: 18px" href="/dixiongzimei/zimei">求助美女</a></b></li>
+      <li><a href="/dixiongzimei/dixiong">求助弟兄</a></li>
+      <li><b><a style="font-size: 18px" href="/dixiongzimei/zimei">求助姊妹</a></b></li>
 	</ol> 
      <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
@@ -20,8 +20,10 @@
          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">点我</button>
        </p>
        <div class="jumbotron" data-toggle="offcanvas">
-            <h4>&nbsp;&nbsp;帮助他人&nbsp;&nbsp;<small>希望美女可以帮助到你</small></h4>
+            <h4>&nbsp;&nbsp;求助姊妹&nbsp;&nbsp;<small>希望姊妹可以帮助到你</small></h4>
        </div>
+        <a href="/dixiongzimei/dixiongzimei" class="btn btn-block btn-info">加入我们</a>
+        <br>
    <!--   <form class="form-inline" action="" method="get">
 	  <div class="form-group">
 	    <input type="text" class="form-control" name="xingming" id="xingming" value="$!query.xingming"   placeholder="姓名">
@@ -36,14 +38,10 @@
 	</form>  -->
 		 #foreach($!model in $!resultViewList) 
 	  	<div class="alert alert-info alert-dismissible" role="alert">
-		  <p><h4>$!model.xingming $!model.xingbie  $!model.nianling
+		  <p><h4>$!model.xingming 
 	         </h4>
 	         <div>&nbsp;</div>
-			 QQ: $!model.qq <br>
-			 <div>&nbsp;</div>
-			  微信: $!model.weixinhao <br>
-			 <div>&nbsp;</div>
-			  手机: $!model.shoujihao <br>
+			 QQ: <button type="button" class="btn btn-link" onclick="QQtalk('$!model.qq')">$!model.qq </button>
 	      </p>
 		</div>
 	    #end
@@ -56,7 +54,8 @@
          </div>
 	   </div>
 	   </div>
-   </div><!-- .container -->
+	   
+   #parse("common/beian.html") </div><!-- .container -->
 
 <!-- 弟兄姊妹基本信息 -->
 <div class="modal fade" id="jibenxinxiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -102,5 +101,11 @@
    </div><!-- /.modal -->
 </div>
 <script type="text/javascript" src="${static_resource}/resources/js/admin/admindixiongzimei.js"></script>
+   <script type="text/JavaScript">
+	function QQtalk(QQnum) {
+		Link = "tencent://message/?uin="+QQnum+"&Site=&menu=yes";
+		this.location.href = Link;
+	}
+</script>
   </body>
 </html>
