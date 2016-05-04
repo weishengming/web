@@ -1,4 +1,4 @@
-package com.weishengming.web.controller;
+package com.weishengming.controller;
 
 import java.io.IOException;
 import java.util.List;

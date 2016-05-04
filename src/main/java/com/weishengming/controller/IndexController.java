@@ -1,4 +1,4 @@
-package com.weishengming.web.controller;
+package com.weishengming.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

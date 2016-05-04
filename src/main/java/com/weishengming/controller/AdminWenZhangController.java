@@ -1,4 +1,4 @@
-package com.weishengming.web.admin.controller;
+package com.weishengming.controller;
 
 import javax.annotation.Resource;
 
@@ -16,7 +16,6 @@ import com.weishengming.dao.entity.WenZhangDO;
 import com.weishengming.dao.query.ResultPage;
 import com.weishengming.dao.query.WenZhangQuery;
 import com.weishengming.service.WenZhangService;
-import com.weishengming.web.controller.SecurityController;
 
 /**
  * @author 杨天赐
@@ -24,21 +23,21 @@ import com.weishengming.web.controller.SecurityController;
  */
 @Controller
 @RequestMapping(value = "/admin/wenzhang")
-public class AdminWenZhangController extends SecurityController{
-	
-	Logger logger = LoggerFactory.getLogger(AdminWenZhangController.class);
-	@Resource
-	private WenZhangService wenzhangService;
-	
-	/**
-	 * 进入到文章列表页面
-	 * @param model
-	 * @param query
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.GET,value="/wenzhanglist")
-    public String wenzhanglist(Model model, WenZhangQuery query,Integer changePageSize,Integer pn) {
-		logger.info("进入到文章列表页面");
+public class AdminWenZhangController extends SecurityController {
+
+    Logger                  logger = LoggerFactory.getLogger(AdminWenZhangController.class);
+    @Resource
+    private WenZhangService wenzhangService;
+
+    /**
+     * 进入到文章列表页面
+     * @param model
+     * @param query
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/wenzhanglist")
+    public String wenzhanglist(Model model, WenZhangQuery query, Integer changePageSize, Integer pn) {
+        logger.info("进入到文章列表页面");
         query.putPnIntoPageNumber(pn);
         query.putPnIntoPageSize(changePageSize);
         ResultPage<WenZhangDO> result = wenzhangService.findPage(query);
@@ -50,42 +49,43 @@ public class AdminWenZhangController extends SecurityController{
         model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
         return "/admin/wenzhang/wenzhanglist";
     }
-	
-	 /**
-     * 通过id 
-     * @param id
-     * @param model
-     * @return
-     */
+
+    /**
+    * 通过id 
+    * @param id
+    * @param model
+    * @return
+    */
     @RequestMapping(method = RequestMethod.GET, value = "/wenzhangedit/{id}")
     public String wenzhangedit(@PathVariable Long id, Model model) {
         final WenZhangDO wenzhangDO = wenzhangService.findOne(id);
         model.addAttribute("model", wenzhangDO);
         return "/admin/wenzhang/wenzhangupdate";
     }
-    /**
-   	 * 更新
-   	 * @param entity
-   	 * @return
-   	 */
-   	@RequestMapping(method = RequestMethod.POST, value = "/wenzhangupdate")
-    public String wenzhangupdate(WenZhangDO entity) {
-   		if(entity.getId()==null){
-		    entity.setCreateDate(DateUtil.getCurrentDate());
-	    	entity.setUpdateDate(DateUtil.getCurrentDate());
-	    	wenzhangService.create(entity);
-	   }else{
-		    wenzhangService.update(entity);
-	   }
-   		return "redirect:/admin/wenzhang/wenzhanglist";
-    }
-   	
-	public WenZhangService getWenzhangService() {
-		return wenzhangService;
-	}
 
-	public void setWenzhangService(WenZhangService wenzhangService) {
-		this.wenzhangService = wenzhangService;
-	}
+    /**
+     * 更新
+     * @param entity
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/wenzhangupdate")
+    public String wenzhangupdate(WenZhangDO entity) {
+        if (entity.getId() == null) {
+            entity.setCreateDate(DateUtil.getCurrentDate());
+            entity.setUpdateDate(DateUtil.getCurrentDate());
+            wenzhangService.create(entity);
+        } else {
+            wenzhangService.update(entity);
+        }
+        return "redirect:/admin/wenzhang/wenzhanglist";
+    }
+
+    public WenZhangService getWenzhangService() {
+        return wenzhangService;
+    }
+
+    public void setWenzhangService(WenZhangService wenzhangService) {
+        this.wenzhangService = wenzhangService;
+    }
 
 }
