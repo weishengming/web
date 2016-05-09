@@ -19,7 +19,7 @@
          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">点我</button>
        </p>
        <div class="jumbotron" data-toggle="offcanvas">
-            <h4>&nbsp;&nbsp;弟兄姊妹&nbsp;&nbsp;<small>希望弟兄姊妹可以帮助到你</small></h4>
+            <h4>&nbsp;&nbsp;弟兄姊妹&nbsp;&nbsp;<small>交流沟通生命中感动</small></h4>
        </div>
     <form class="form-inline" action="" method="get">
      <div class="form-group">
@@ -29,21 +29,29 @@
 	    <input type="text" class="form-control" name="xingbie" id="xingbie" value="$!query.xingbie"   placeholder="性别">
 	  </div>
 	  <div class="form-group">
-	      <button type="submit" class="btn btn-success">查询</button>
+	      <button type="submit" class="btn btn-primary">查询</button>
 	  </div>
 	</form>  
 	<br>
-		 #foreach($!model in $!resultViewList) 
-	  	<div class="alert alert-success alert-dismissible" role="alert">
-		  <p><h4>$!model.xingming  $!model.xingbie  $!model.nianling
-	         </h4>
-	         <div>&nbsp;</div>
-			   QQ:$!model.qq<br>
-			 微信:$!model.weixin<br>
-			 手机:$!model.shoujihao<br>
-	      </p>
+	    <div class="row">
+		  #foreach($!model in $!resultViewList) 
+		 <div class="col-xs-12 col-lg-4">
+		   <div class="thumbnail">
+		     <div class="caption">
+		       <h3>$!model.xingming  $!model.xingbie  $!model.nianling</h3>
+		       <p>
+			       <br><br>
+				   QQ:$!model.qq<br><br>
+				 微信:$!model.weixinhao<br><br>
+				 手机:$!model.shoujihao<br><br>
+		       </p>
+		     </div>
+		   </div>
+		 </div>
+		 #end
 		</div>
-	    #end
+	    
+	    
 	    #parse ("/common/page_web.html")
 	</div>
 	
@@ -55,7 +63,5 @@
 	   </div>
 	   </div>
    #parse("common/beian.html") </div><!-- .container -->
-    
- 
   </body>
 </html>
