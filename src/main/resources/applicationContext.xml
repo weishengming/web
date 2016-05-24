@@ -19,7 +19,6 @@
             <list>
                 <value>classpath*:application.properties</value>
                 <value>classpath*:datasource.properties</value>
-                <value>classpath*:mongodb.properties</value>
             </list>
         </property>
     </bean>
@@ -43,6 +42,4 @@
     <import resource="classpath*:mongodb.xml"/>
     <import resource="classpath*:weishengming-dao.xml"/>
     <import resource="classpath*:weishengming-service.xml"/>
-    <import resource="classpath*:weishengming-user-dao.xml"/>
-    <import resource="classpath*:weishengming-user-service.xml"/>
 </beans>

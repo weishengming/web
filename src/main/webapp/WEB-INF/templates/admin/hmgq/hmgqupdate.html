@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    #parse("common/bootstrap-css-js.html")
+    <title>荒漠甘泉|编辑</title>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+       <li><h4><b><a href="/admin/adminindex">后台</a></b></h4></li>
+      <li><a href="/admin/shujuzidian/shujuzidianlist">数据字典</a></li>
+	  <li><a href="/admin/wenzhang/wenzhanglist">文章管理</a></li>
+	   <li><a href="/admin/dixiongzimei/dixiongzimeilist" >弟兄姊妹管理</a></li>
+	   <li><a href="/admin/ttsd/ttsdlist">谈天说地</a></li>
+	   <li><a href="/admin/qmzx/qmzxlist">奇妙真相</a></li>
+	  <li><a href="/admin/sjzl/sjzllist">圣经纵览</a></li>
+	  <li><b><a href="/admin/hmgq/hmgqlist" style="font-size: 18px">荒漠甘泉</a></b></li>
+	</ol> 
+   <div class="container">
+    <form action="/admin/hmgq/hmgqupdate" method="post" >
+	  <input type="hidden" name="id"  value="$!model.id">
+	  <div class="form-group row">
+	    <label for="xingming" class="col-sm-2 form-control-label">父标题<span class="required">*</span></label>
+	    <div class="col-sm-10">
+		     <select class="form-control" name="fubiaoti" id="fubiaoti" >
+		       <option #if($!model.fubiaoti=='第一月') selected #end value="第一月">第一月</option>
+		       <option #if($!model.fubiaoti=='第二月') selected #end value="第二月">第二月</option>
+		       <option #if($!model.fubiaoti=='第三月') selected #end value="第三月">第三月</option>
+		       <option #if($!model.fubiaoti=='第四月') selected #end value="第四月">第四月</option>
+		       <option #if($!model.fubiaoti=='第五月') selected #end value="第五月">第五月</option>
+		       <option #if($!model.fubiaoti=='第六月') selected #end value="第六月">第六月</option>
+		       <option #if($!model.fubiaoti=='第七月') selected #end value="第七月">第七月</option>
+		       <option #if($!model.fubiaoti=='第八月') selected #end value="第八月">第八月</option>
+		       <option #if($!model.fubiaoti=='第九月') selected #end value="第九月">第九月</option>
+		       <option #if($!model.fubiaoti=='第十月') selected #end value="第十月">第十月</option>
+		       <option #if($!model.fubiaoti=='第十一月') selected #end value="第十一月">第十一月</option>
+		       <option #if($!model.fubiaoti=='第十二月') selected #end value="第十二月">第十二月</option>
+	        </select>
+	    </div>
+	  </div>
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">第几个<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="dijige" id="dijige" value="$!model.dijige" placeholder="第几个">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">标题<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="biaoti" id="biaoti" value="$!model.biaoti" placeholder="标题">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">锚记<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="maoji" id="maoji" value="$!model.maoji" placeholder="锚记">
+	    </div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label for="shoujihao" class="col-sm-2 form-control-label">内容<span class="required">*</span></label>
+	    <div class="col-sm-10">
+	      <textarea class="form-control" rows="10" name="neirong" id="neirong"   placeholder="内容">$!model.neirong</textarea>
+	    </div>
+	  </div>
+	   
+	  <div class="form-group row">
+	    <div class="col-sm-offset-2 col-sm-10">
+	      <button type="submit" class="btn btn-block btn-primary">更新</button>
+	    </div>
+	  </div>  
+	 </form>
+     
+   #parse("common/beian.html") </div><!-- .container -->
+  </body>
+</html>

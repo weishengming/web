@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    #parse("common/bootstrap-css-js.html")
+    <title>第五月</title>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+      <li><h4><b><a href="/index">微生命</a></b></h4></li><li><a href="/dixiongzimei/dixiongzimeilist">弟兄姊妹</a></li>
+	</ol> 
+   <div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">点我</button>
+          </p>
+          <div class="jumbotron" data-toggle="offcanvas">
+            <h4>&nbsp;&nbsp;荒漠甘泉&nbsp;&nbsp;<small>第五月</small></h4>
+          </div>
+        <div class="row">
+          #foreach($!model in $!resultList)
+           <div class="col-xs-12 col-lg-12">
+             <h3>$!model.dijige . $!model.biaoti</h3>
+             <div>
+              <font size="3" style=" font-weight: 300;">$!model.neirong</font> 
+             <hr>
+             </div>
+            </div>
+            #end
+            
+          </div><!--/row--> 
+       </div><!--/.col-xs-12.col-sm-9-->
+      
+	   <div class="col-sm-12 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="/index" class="list-group-item">首页</a>
+            <a href="/hmgq/1" class="list-group-item">第一月</a>
+            <a href="/hmgq/2" class="list-group-item">第二月</a>
+            <a href="/hmgq/3" class="list-group-item">第三月</a>
+            <a href="/hmgq/4" class="list-group-item">第四月</a>
+            <a href="/hmgq/5" class="list-group-item active">第五月</a>
+            <a href="/hmgq/6" class="list-group-item">第六月</a>
+            <a href="/hmgq/7" class="list-group-item">第七月</a>
+            <a href="/hmgq/8" class="list-group-item">第八月</a>
+            <a href="/hmgq/9" class="list-group-item">第九月</a>
+            <a href="/hmgq/10" class="list-group-item">第十月</a>
+            <a href="/hmgq/11" class="list-group-item">第十一月</a>
+            <a href="/hmgq/12" class="list-group-item">第十二月</a>
+          </div>
+	   </div><!-- 6 -3 -->
+	   
+	 </div><!-- .row -->
+   #parse("common/beian.html") </div><!-- .container -->
+  </body>
+</html>

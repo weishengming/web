@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
+import com.weishengming.dao.entity.HMGQDO;
 import com.weishengming.dao.entity.QMZXDO;
 import com.weishengming.dao.entity.SJZLDO;
 import com.weishengming.dao.entity.TTSDDO;
+import com.weishengming.dao.query.HMGQQuery;
 import com.weishengming.dao.query.QMZXQuery;
 import com.weishengming.dao.query.ResultPage;
 import com.weishengming.dao.query.SJZLQuery;
 import com.weishengming.dao.query.TTSDQuery;
+import com.weishengming.service.HMGQService;
 import com.weishengming.service.QMZXService;
 import com.weishengming.service.SJZLService;
 import com.weishengming.service.TTSDService;
@@ -39,6 +42,9 @@ public class AdminController extends SecurityController {
 
     @Resource
     private SJZLService sjzlService;
+
+    @Resource
+    private HMGQService hmgqService;
 
     /**
      * 进入到后台首页
@@ -101,15 +107,15 @@ public class AdminController extends SecurityController {
         return "redirect:/admin/sjzl/sjzllist";
     }
 
+    /**********圣经纵览管理END**************/
+
     public SJZLService getSjzlService() {
         return sjzlService;
     }
 
-    public void setQmzxService(SJZLService sjzlService) {
+    public void setSjzlService(SJZLService sjzlService) {
         this.sjzlService = sjzlService;
     }
-
-    /**********圣经纵览管理END**************/
 
     /**********奇妙真相管理START**************/
     /**
@@ -234,5 +240,67 @@ public class AdminController extends SecurityController {
     }
 
     /**********谈天说地管理 END***************/
+
+    /**********荒漠甘泉管理 START***************/
+    /**
+     * 进入到谈天说地列表页面
+     * @param model
+     * @param query
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/hmgq/hmgqlist")
+    public String ttsdlist(Model model, HMGQQuery query, Integer changePageSize, Integer pn) {
+        logger.info("进入到荒漠甘泉列表页面");
+        query.putPnIntoPageNumber(pn);
+        query.putPnIntoPageSize(changePageSize);
+        ResultPage<HMGQDO> result = hmgqService.findPage(query);
+        String pageUrl = "/admin/hmgq/hmgqlist?" + Converter.covertToQueryStr(query);
+        model.addAttribute("pageUrl", pageUrl);
+        model.addAttribute("resultViewList", result.getResult());
+        model.addAttribute("query", query);
+        model.addAttribute("result", result);
+        model.addAttribute("changePageSize", changePageSize);//把这个pageSize放到前台
+        return "/admin/hmgq/hmgqlist";
+    }
+
+    /**
+    * 通过id 
+    * @param id
+    * @param model
+    * @return
+    */
+    @RequestMapping(method = RequestMethod.GET, value = "/hmgq/hmgqedit/{id}")
+    public String hmgqedit(@PathVariable Long id, Model model) {
+        final HMGQDO hmgqDO = hmgqService.findOne(id);
+        model.addAttribute("model", hmgqDO);
+        return "/admin/hmgq/hmgqupdate";
+    }
+
+    /**
+     * 更新
+     * @param entity
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/hmgq/hmgqupdate")
+    public String hmgqupdate(HMGQDO entity) {
+        if (entity.getId() == null) {
+            entity.setCreateDate(DateUtil.getCurrentDate());
+            entity.setUpdateDate(DateUtil.getCurrentDate());
+            hmgqService.create(entity);
+        } else {
+            hmgqService.update(entity);
+        }
+        return "redirect:/admin/hmgq/hmgqlist";
+    }
+
+    public HMGQService getHmgqService() {
+        return hmgqService;
+    }
+
+    public void setHmgqService(HMGQService hmgqService) {
+        this.hmgqService = hmgqService;
+    }
+
+    /**********荒漠甘泉管理 END***************/
 
 }

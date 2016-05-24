@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    #parse("common/bootstrap-css-js.html")
+    <title>荒漠甘泉管理</title>
+  </head>
+  <body>
+    <ol class="breadcrumb">
+      <li><h4><b><a href="/admin/adminindex">后台</a></b></h4></li>
+      <li><a href="/admin/shujuzidian/shujuzidianlist">数据字典</a></li>
+	  <li><a href="/admin/wenzhang/wenzhanglist">文章管理</a></li>
+	   <li><a href="/admin/dixiongzimei/dixiongzimeilist" >弟兄姊妹管理</a></li>
+	  <li><b><a href="/admin/hmgq/hmgqlist" style="font-size: 18px">荒漠甘泉</a></b></li>
+	</ol> 
+   <div class="container">
+     <form class="form-inline" action="" method="get">
+	  <div class="form-group">
+	     <select class="form-control" name="fubiaoti" id="fubiaoti" >
+		       <option value="第一月">第一月</option>
+		       <option value="第二月">第二月</option>
+		       <option value="第三月">第三月</option>
+		       <option value="第四月">第四月</option>
+		       <option value="第五月">第五月</option>
+		       <option value="第六月">第六月</option>
+		       <option value="第七月">第七月</option>
+		       <option value="第八月">第八月</option>
+		       <option value="第九月">第九月</option>
+		       <option value="第十月">第十月</option>
+		       <option value="第十一月">第十一月</option>
+		       <option value="第十二月">第十二月</option>
+	        </select>
+	  </div>
+	  <div class="form-group">
+	    <input type="text" class="form-control" name="biaoti" id="biaoti" value="$!query.biaoti"   placeholder="标题">
+	  </div>
+	  <div class="form-group">
+	  <button type="submit" class="btn btn-success">查询</button>
+	  <a class="btn btn-primary" href="/admin/hmgq/hmgqedit/-1">添加</a>
+	  </div>
+	</form> 
+    <br/> 
+	<table class="datatable table table-bordered table-hover">
+	<thead>
+		<tr class="success">
+		    <th>序号</th>
+		    <th>第几个</th>
+		    <th>父标题</th>
+			<th>标题</th>
+			<th>锚记</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+	    #set($index=$result.index)
+	    #foreach($!model in $!resultViewList)  
+		<tr>
+		    <td class="align-center">$index</td>
+		    <td>$!model.dijige</td>
+		    <td>$!model.fubiaoti</td>
+			<td>$!model.biaoti</td>
+			<td>$!model.maoji</td>
+			<td>
+	            <a class="btn btn-success" href="/admin/hmgq/hmgqedit/$!{model.id}">编辑</a>
+	        </td>
+		</tr>
+		 #set($index=$index+1)
+		#end
+	</tbody>
+</table> 
+  #parse ("/common/page.html")
+     
+   #parse("common/beian.html") </div><!-- .container -->
+  </body>
+</html>
