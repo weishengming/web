@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
@@ -22,7 +20,7 @@ import com.weishengming.service.DiXiongZiMeiService;
  * 弟兄姊妹控制层 
  */
 @Controller
-@RequestMapping(value = "dixiongzimei")
+//@RequestMapping(value = "dixiongzimei")
 public class DiXiongZiMeiController extends SecurityController {
     Logger                      logger = LoggerFactory.getLogger(DiXiongZiMeiController.class);
 
@@ -35,7 +33,7 @@ public class DiXiongZiMeiController extends SecurityController {
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/dixiongzimei")
+    //@RequestMapping(method = RequestMethod.GET, value = "/dixiongzimei")
     public String dixiongzimei(HttpServletRequest request, Model model) {
         if (getName(request) == null) {
             request.getSession().setAttribute("redirectURL", "/dixiongzimei/dixiongzimei");
@@ -58,7 +56,7 @@ public class DiXiongZiMeiController extends SecurityController {
     * @param entity
     * @return
     */
-    @RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeigengxin")
+    //@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeigengxin")
     public String dixiongzimeigengxin(DiXiongZiMeiDO entity) {
         if (entity.getId() == null) {
             entity.setCreateDate(DateUtil.getCurrentDate());
@@ -76,7 +74,7 @@ public class DiXiongZiMeiController extends SecurityController {
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/dixiongzimeilist")
+    //@RequestMapping(method = RequestMethod.GET, value = "/dixiongzimeilist")
     public String dixiong(Model model, DiXiongZiMeiQuery query, Integer changePageSize, Integer pn) {
         logger.info("进入到弟兄姊妹列表页面");
         query.putPnIntoPageNumber(pn);
