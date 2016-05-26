@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.converter.Converter;
 import com.weishengming.common.util.DateUtil;
@@ -35,7 +34,7 @@ public class AdminWenZhangController extends SecurityController {
      * @param query
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/wenzhanglist")
+    //@RequestMapping(method = RequestMethod.GET, value = "/wenzhanglist")
     public String wenzhanglist(Model model, WenZhangQuery query, Integer changePageSize, Integer pn) {
         logger.info("进入到文章列表页面");
         query.putPnIntoPageNumber(pn);
@@ -56,7 +55,7 @@ public class AdminWenZhangController extends SecurityController {
     * @param model
     * @return
     */
-    @RequestMapping(method = RequestMethod.GET, value = "/wenzhangedit/{id}")
+    //@RequestMapping(method = RequestMethod.GET, value = "/wenzhangedit/{id}")
     public String wenzhangedit(@PathVariable Long id, Model model) {
         final WenZhangDO wenzhangDO = wenzhangService.findOne(id);
         model.addAttribute("model", wenzhangDO);
@@ -68,7 +67,7 @@ public class AdminWenZhangController extends SecurityController {
      * @param entity
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/wenzhangupdate")
+    // @RequestMapping(method = RequestMethod.POST, value = "/wenzhangupdate")
     public String wenzhangupdate(WenZhangDO entity) {
         if (entity.getId() == null) {
             entity.setCreateDate(DateUtil.getCurrentDate());

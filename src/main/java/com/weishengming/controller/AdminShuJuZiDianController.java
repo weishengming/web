@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weishengming.common.ajax.AjaxOutputTool;
 import com.weishengming.common.converter.Converter;
@@ -32,7 +31,7 @@ public class AdminShuJuZiDianController extends SecurityController {
     @Resource
     private ShuJuZiDianService shujuzidianService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/shujuzidianlist")
+    //@RequestMapping(method = RequestMethod.GET, value = "/shujuzidianlist")
     public String shujuzidianlist(Model model, ShuJuZiDianQuery query, Integer changePageSize, Integer pn) {
         logger.info("进入到数据字典列表页面");
         query.putPnIntoPageNumber(pn);
@@ -48,7 +47,7 @@ public class AdminShuJuZiDianController extends SecurityController {
         return "/admin/shujuzidian/shujuzidianlist";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_ajax")
+    //@RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_ajax")
     public String shujuzidian_ajax(String id, Model model) {
         if (StringUtils.isNotBlank(id)) {
             final ShuJuZiDianDO shujuzidianDO = shujuzidianService.findOne(Long.parseLong(id));
@@ -62,7 +61,7 @@ public class AdminShuJuZiDianController extends SecurityController {
       	 * @param entity
       	 * @return
       	 */
-    @RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_update_ajax")
+    //@RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_update_ajax")
     public void shujuzidian_update_ajax(HttpServletResponse response, ShuJuZiDianDO entity) {
         if (entity.getId() == null) {
             entity.setCreateDate(DateUtil.getCurrentDate());
@@ -77,7 +76,7 @@ public class AdminShuJuZiDianController extends SecurityController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_delete_ajax")
+    //@RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_delete_ajax")
     public void shujuzidian_delete_ajax(HttpServletResponse response, String id) {
         if (StringUtils.isNotBlank(id)) {
             List<ShuJuZiDianDO> shujuzidianList = shujuzidianService.findListByFuId(Long.parseLong(id));
@@ -89,7 +88,7 @@ public class AdminShuJuZiDianController extends SecurityController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_zi_ajax")
+    //@RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_zi_ajax")
     public String shujuzidian_zi_ajax(String id, Model model) {
         if (StringUtils.isNotBlank(id)) {
             final ShuJuZiDianDO shujuzidianDO = shujuzidianService.findOne(Long.parseLong(id));
@@ -103,7 +102,7 @@ public class AdminShuJuZiDianController extends SecurityController {
         return "/admin/shujuzidian/shujuzidian_zi_ajax";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_zi_update_ajax")
+    //@RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_zi_update_ajax")
     public void shujuzidian_zi_update_ajax(HttpServletResponse response, ShuJuZiDianDO entity) {
         if (entity.getId() == null) {
             entity.setCreateDate(DateUtil.getCurrentDate());
@@ -113,7 +112,7 @@ public class AdminShuJuZiDianController extends SecurityController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_zi_delete_ajax")
+    //@RequestMapping(method = RequestMethod.POST, value = "/shujuzidian_zi_delete_ajax")
     public void shujuzidian_zi_delete_ajax(HttpServletResponse response, String id) {
         if (StringUtils.isNotBlank(id)) {
             shujuzidianService.delete(Long.parseLong(id));
