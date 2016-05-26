@@ -31,7 +31,7 @@ import com.weishengming.service.TTSDService;
  * web控制数据接口  只有 OPENID=杨天赐 才可以访问这个功能
  */
 @Controller
-@RequestMapping(value = "admin")
+//@RequestMapping(value = "admin")
 public class AdminController extends SecurityController {
     Logger              logger = LoggerFactory.getLogger(AdminController.class);
     @Resource

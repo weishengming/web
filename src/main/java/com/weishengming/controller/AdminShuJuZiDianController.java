@@ -26,7 +26,7 @@ import com.weishengming.service.ShuJuZiDianService;
  * 数据字典控制层
  */
 @Controller
-@RequestMapping(value = "/admin/shujuzidian")
+//@RequestMapping(value = "/admin/shujuzidian")
 public class AdminShuJuZiDianController extends SecurityController {
     Logger                     logger = LoggerFactory.getLogger(AdminShuJuZiDianController.class);
     @Resource

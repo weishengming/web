@@ -32,7 +32,7 @@ import com.weishengming.service.JiaoHuiDiZhiService;
  * 弟兄姊妹后台管理
  */
 @Controller
-@RequestMapping(value = "/admin/dixiongzimei")
+//@RequestMapping(value = "/admin/dixiongzimei")
 public class AdminDiXiongZiMeiController extends SecurityController {
     Logger                      logger = LoggerFactory.getLogger(AdminDiXiongZiMeiController.class);
 
