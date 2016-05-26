@@ -22,7 +22,7 @@ import com.weishengming.service.WenZhangService;
  * 文章管理
  */
 @Controller
-//@RequestMapping(value = "/admin/wenzhang")
+@RequestMapping(value = "/admin/wenzhang")
 public class AdminWenZhangController extends SecurityController {
 
     Logger                  logger = LoggerFactory.getLogger(AdminWenZhangController.class);
