@@ -248,7 +248,7 @@ public class AdminController extends SecurityController {
      * @param query
      * @return
      */
-    // @RequestMapping(method = RequestMethod.GET, value = "/hmgq/hmgqlist")
+    @RequestMapping(method = RequestMethod.GET, value = "/hmgq/hmgqlist")
     public String ttsdlist(Model model, HMGQQuery query, Integer changePageSize, Integer pn) {
         logger.info("进入到荒漠甘泉列表页面");
         query.putPnIntoPageNumber(pn);
@@ -269,7 +269,7 @@ public class AdminController extends SecurityController {
     * @param model
     * @return
     */
-    //@RequestMapping(method = RequestMethod.GET, value = "/hmgq/hmgqedit/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/hmgq/hmgqedit/{id}")
     public String hmgqedit(@PathVariable Long id, Model model) {
         final HMGQDO hmgqDO = hmgqService.findOne(id);
         model.addAttribute("model", hmgqDO);
@@ -281,13 +281,19 @@ public class AdminController extends SecurityController {
      * @param entity
      * @return
      */
-    //@RequestMapping(method = RequestMethod.POST, value = "/hmgq/hmgqupdate")
+    @RequestMapping(method = RequestMethod.POST, value = "/hmgq/hmgqupdate")
     public String hmgqupdate(HMGQDO entity) {
         if (entity.getId() == null) {
             entity.setCreateDate(DateUtil.getCurrentDate());
             entity.setUpdateDate(DateUtil.getCurrentDate());
+            entity.setMaoji(entity.getDijige());
+            entity.setFubiaoti("第三月");
+            entity.setBiaoti("3月" + entity.getDijige() + "日");
             hmgqService.create(entity);
         } else {
+            entity.setMaoji(entity.getDijige());
+            entity.setFubiaoti("第三月");
+            entity.setBiaoti("3月" + entity.getDijige() + "日");
             hmgqService.update(entity);
         }
         return "redirect:/admin/hmgq/hmgqlist";
