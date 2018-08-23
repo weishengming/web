@@ -56,7 +56,7 @@ public class AdminController extends SecurityController {
      * @param query
      * @return
      */
-    // @RequestMapping(method = RequestMethod.GET, value = "/sjzl/sjzllist")
+    @RequestMapping(method = RequestMethod.GET, value = "/sjzl/sjzllist")
     public String sjzllist(Model model, SJZLQuery query, Integer changePageSize, Integer pn) {
         logger.info("进入到圣经纵览管理页面");
         query.putPnIntoPageNumber(pn);
@@ -77,7 +77,7 @@ public class AdminController extends SecurityController {
     * @param model
     * @return
     */
-    //@RequestMapping(method = RequestMethod.GET, value = "/sjzl/sjzledit/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/sjzl/sjzledit/{id}")
     public String sjzledit(@PathVariable Long id, Model model) {
         final SJZLDO sjzlDO = sjzlService.findOne(id);
         model.addAttribute("model", sjzlDO);
@@ -89,7 +89,7 @@ public class AdminController extends SecurityController {
      * @param entity
      * @return
      */
-    // @RequestMapping(method = RequestMethod.POST, value = "/sjzl/sjzlupdate")
+    @RequestMapping(method = RequestMethod.POST, value = "/sjzl/sjzlupdate")
     public String sjzlupdate(SJZLDO entity) {
         if (entity.getId() == null) {
             entity.setCreateDate(DateUtil.getCurrentDate());
@@ -118,7 +118,7 @@ public class AdminController extends SecurityController {
      * @param query
      * @return
      */
-    //@RequestMapping(method = RequestMethod.GET, value = "/qmzx/qmzxlist")
+    @RequestMapping(method = RequestMethod.GET, value = "/qmzx/qmzxlist")
     public String qmzxlist(Model model, QMZXQuery query, Integer changePageSize, Integer pn) {
         logger.info("进入到奇妙真相列表页面");
         query.putPnIntoPageNumber(pn);
@@ -139,7 +139,7 @@ public class AdminController extends SecurityController {
     * @param model
     * @return
     */
-    //@RequestMapping(method = RequestMethod.GET, value = "/qmzx/qmzxedit/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/qmzx/qmzxedit/{id}")
     public String qmzxedit(@PathVariable Long id, Model model) {
         final QMZXDO qmzxDO = qmzxService.findOne(id);
         model.addAttribute("model", qmzxDO);
@@ -151,7 +151,7 @@ public class AdminController extends SecurityController {
      * @param entity
      * @return
      */
-    //@RequestMapping(method = RequestMethod.POST, value = "/qmzx/qmzxupdate")
+    @RequestMapping(method = RequestMethod.POST, value = "/qmzx/qmzxupdate")
     public String qmzxupdate(QMZXDO entity) {
         if (entity.getId() == null) {
             entity.setCreateDate(DateUtil.getCurrentDate());

@@ -25,6 +25,7 @@ import com.weishengming.service.DiXiongZiMeiService;
 import com.weishengming.service.DiZhiService;
 import com.weishengming.service.JDAreaService;
 import com.weishengming.service.JiaoHuiDiZhiService;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author 杨天赐
@@ -54,7 +55,7 @@ public class AdminDiXiongZiMeiController extends SecurityController {
      * @param query
      * @return
      */
-    //@RequestMapping(method = RequestMethod.GET, value = "/dixiongzimeilist")
+    @RequestMapping(method = RequestMethod.GET, value = "/dixiongzimeilist")
     public String dixiongzimeilist(Model model, DiXiongZiMeiQuery query, Integer changePageSize, Integer pn) {
         logger.info("进入到弟兄姊妹管理列表页面");
         query.putPnIntoPageNumber(pn);
@@ -75,7 +76,7 @@ public class AdminDiXiongZiMeiController extends SecurityController {
     * @param model
     * @return
     */
-    //@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei_ajax")
+    @RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei_ajax")
     public String dixiongzimei_ajax(String id, Model model) {
         if (StringUtils.isNotBlank(id)) {
             final DiXiongZiMeiDO dixiongzimeiDO = dixiongzimeiService.findOne(Long.parseLong(id));
@@ -89,7 +90,7 @@ public class AdminDiXiongZiMeiController extends SecurityController {
      * @param entity
      * @return
      */
-    //@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei_update_ajax")
+    @RequestMapping(method = RequestMethod.POST, value = "/dixiongzimei_update_ajax")
     public void dixiongzimei_update_ajax(HttpServletResponse response, DiXiongZiMeiDO entity) {
         if (entity.getId() == null) {
             entity.setCreateDate(DateUtil.getCurrentDate());
@@ -111,7 +112,7 @@ public class AdminDiXiongZiMeiController extends SecurityController {
      * @param entity
      * @return
      */
-    //@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeidizhi_ajax")
+   @RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeidizhi_ajax")
     public String dixiongzimeidizhi_ajax(String id, Model model) {
         if (StringUtils.isNotBlank(id)) {
             List<DiZhiDO> dizhiList = dizhiService.findListByDixiongzimeiid(Long.parseLong(id));
@@ -127,7 +128,7 @@ public class AdminDiXiongZiMeiController extends SecurityController {
      * @param entity
      * @return
      */
-    //@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeidizhi_update_ajax")
+    @RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeidizhi_update_ajax")
     public void dixiongzimeidizhi_update_ajax(HttpServletResponse response, DiZhiDO entity) {
         if (StringUtils.isBlank(entity.getArea3Name()) && StringUtils.isNotBlank(entity.getArea3Id())) {
             JDAreaDO jdarea = jdAreaService.findOneByAreaId(entity.getArea3Id());
@@ -143,7 +144,7 @@ public class AdminDiXiongZiMeiController extends SecurityController {
         }
     }
 
-    //@RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeidizhi_delete_ajax")
+    @RequestMapping(method = RequestMethod.POST, value = "/dixiongzimeidizhi_delete_ajax")
     public void dixiongzimeidizhi_delete_ajax(HttpServletResponse response, String id) {
         if (StringUtils.isNotBlank(id)) {
             dizhiService.delete(Long.parseLong(id));
@@ -159,7 +160,7 @@ public class AdminDiXiongZiMeiController extends SecurityController {
      * @param entity
      * @return
      */
-    //@RequestMapping(method = RequestMethod.POST, value = "/jiaohuidizhi_ajax")
+    @RequestMapping(method = RequestMethod.POST, value = "/jiaohuidizhi_ajax")
     public String jiaohuidizhi_ajax(String id, Model model) {
         if (StringUtils.isNotBlank(id)) {
             List<JiaoHuiDiZhiDO> jiaohuidizhiList = jiaohuidizhiService.findListByDixiongzimeiid(Long.parseLong(id));
@@ -175,7 +176,7 @@ public class AdminDiXiongZiMeiController extends SecurityController {
      * @param entity
      * @return
      */
-    //@RequestMapping(method = RequestMethod.POST, value = "/jiaohuidizhi_update_ajax")
+    @RequestMapping(method = RequestMethod.POST, value = "/jiaohuidizhi_update_ajax")
     public void jiaohuidizhi_update_ajax(HttpServletResponse response, JiaoHuiDiZhiDO entity) {
         if (StringUtils.isBlank(entity.getArea3Name()) && StringUtils.isNotBlank(entity.getArea3Id())) {
             JDAreaDO jdarea = jdAreaService.findOneByAreaId(entity.getArea3Id());
@@ -191,7 +192,7 @@ public class AdminDiXiongZiMeiController extends SecurityController {
         }
     }
 
-    //@RequestMapping(method = RequestMethod.POST, value = "/jiaohuidizhi_delete_ajax")
+    @RequestMapping(method = RequestMethod.POST, value = "/jiaohuidizhi_delete_ajax")
     public void jiaohuidizhi_delete_ajax(HttpServletResponse response, String id) {
         if (StringUtils.isNotBlank(id)) {
             jiaohuidizhiService.delete(Long.parseLong(id));
